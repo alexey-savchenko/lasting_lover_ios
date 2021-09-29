@@ -3,27 +3,36 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB4D2705074200847ED7 /* AppDelegate.swift */; };
-		0262BB502705074200847ED7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB4F2705074200847ED7 /* SceneDelegate.swift */; };
 		0262BB522705074200847ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB512705074200847ED7 /* ViewController.swift */; };
 		0262BB552705074200847ED7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB532705074200847ED7 /* Main.storyboard */; };
 		0262BB572705074300847ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB562705074300847ED7 /* Assets.xcassets */; };
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
+		0262BB6B2705084C00847ED7 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB6A2705084C00847ED7 /* Redux.swift */; };
+		02A2436A2705097D0048DB0D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 02A243692705097D0048DB0D /* RxCocoa */; };
+		02A2436C2705097D0048DB0D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2436B2705097D0048DB0D /* RxSwift */; };
+		02A2437027050A520048DB0D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2436F27050A520048DB0D /* Moya */; };
+		02A2437227050A520048DB0D /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437127050A520048DB0D /* RxMoya */; };
+		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
+		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0262BB4A2705074200847ED7 /* lasting_lover_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasting_lover_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0262BB4D2705074200847ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0262BB4F2705074200847ED7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0262BB512705074200847ED7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0262BB542705074200847ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0262BB562705074300847ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0262BB592705074300847ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0262BB5B2705074300847ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0262BB6A2705084C00847ED7 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasting_lover_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
+		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A2437227050A520048DB0D /* RxMoya in Frameworks */,
+				02A2436C2705097D0048DB0D /* RxSwift in Frameworks */,
+				02A2436A2705097D0048DB0D /* RxCocoa in Frameworks */,
+				02A2437627050ACF0048DB0D /* SnapKit in Frameworks */,
+				02A2437027050A520048DB0D /* Moya in Frameworks */,
+				250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +57,8 @@
 			children = (
 				0262BB4C2705074200847ED7 /* lasting_lover_ios */,
 				0262BB4B2705074200847ED7 /* Products */,
+				3182A63912443A8ED7D95C4F /* Pods */,
+				15FAF97D83017AC640C5F5D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +73,8 @@
 		0262BB4C2705074200847ED7 /* lasting_lover_ios */ = {
 			isa = PBXGroup;
 			children = (
-				0262BB4D2705074200847ED7 /* AppDelegate.swift */,
-				0262BB4F2705074200847ED7 /* SceneDelegate.swift */,
+				0262BB692705084300847ED7 /* Redux */,
+				0262BB662705083200847ED7 /* Application */,
 				0262BB512705074200847ED7 /* ViewController.swift */,
 				0262BB532705074200847ED7 /* Main.storyboard */,
 				0262BB562705074300847ED7 /* Assets.xcassets */,
@@ -67,6 +84,39 @@
 			path = lasting_lover_ios;
 			sourceTree = "<group>";
 		};
+		0262BB662705083200847ED7 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0262BB4D2705074200847ED7 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0262BB692705084300847ED7 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				0262BB6A2705084C00847ED7 /* Redux.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		15FAF97D83017AC640C5F5D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3182A63912443A8ED7D95C4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */,
+				D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +124,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0262BB5E2705074300847ED7 /* Build configuration list for PBXNativeTarget "lasting_lover_ios" */;
 			buildPhases = (
+				54941526B3934CE20219AFCB /* [CP] Check Pods Manifest.lock */,
 				0262BB462705074200847ED7 /* Sources */,
 				0262BB472705074200847ED7 /* Frameworks */,
 				0262BB482705074200847ED7 /* Resources */,
@@ -83,6 +134,13 @@
 			dependencies = (
 			);
 			name = lasting_lover_ios;
+			packageProductDependencies = (
+				02A243692705097D0048DB0D /* RxCocoa */,
+				02A2436B2705097D0048DB0D /* RxSwift */,
+				02A2436F27050A520048DB0D /* Moya */,
+				02A2437127050A520048DB0D /* RxMoya */,
+				02A2437527050ACF0048DB0D /* SnapKit */,
+			);
 			productName = lasting_lover_ios;
 			productReference = 0262BB4A2705074200847ED7 /* lasting_lover_ios.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +168,11 @@
 				Base,
 			);
 			mainGroup = 0262BB412705074200847ED7;
+			packageReferences = (
+				02A243682705097D0048DB0D /* XCRemoteSwiftPackageReference "RxSwift" */,
+				02A2436E27050A520048DB0D /* XCRemoteSwiftPackageReference "Moya" */,
+				02A2437427050ACF0048DB0D /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 0262BB4B2705074200847ED7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -132,6 +195,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		54941526B3934CE20219AFCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lasting_lover_ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0262BB462705074200847ED7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -139,7 +227,7 @@
 			files = (
 				0262BB522705074200847ED7 /* ViewController.swift in Sources */,
 				0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */,
-				0262BB502705074200847ED7 /* SceneDelegate.swift in Sources */,
+				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +371,14 @@
 		};
 		0262BB5F2705074300847ED7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N35W696BYS;
 				INFOPLIST_FILE = lasting_lover_ios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,18 +386,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "svch.lasting-lover-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		0262BB602705074300847ED7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N35W696BYS;
 				INFOPLIST_FILE = lasting_lover_ios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +407,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "svch.lasting-lover-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -341,6 +433,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		02A243682705097D0048DB0D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+		02A2436E27050A520048DB0D /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+		02A2437427050ACF0048DB0D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02A243692705097D0048DB0D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A243682705097D0048DB0D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		02A2436B2705097D0048DB0D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A243682705097D0048DB0D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		02A2436F27050A520048DB0D /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A2436E27050A520048DB0D /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		02A2437127050A520048DB0D /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A2436E27050A520048DB0D /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		02A2437527050ACF0048DB0D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A2437427050ACF0048DB0D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0262BB422705074200847ED7 /* Project object */;
 }
