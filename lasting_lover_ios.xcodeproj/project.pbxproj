@@ -439,8 +439,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.0;
+				kind = exactVersion;
+				version = 5.0.0;
 			};
 		};
 		02A2436E27050A520048DB0D /* XCRemoteSwiftPackageReference "Moya" */ = {
@@ -448,7 +448,7 @@
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.0;
+				minimumVersion = 14.0.1;
 			};
 		};
 		02A2437427050ACF0048DB0D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
