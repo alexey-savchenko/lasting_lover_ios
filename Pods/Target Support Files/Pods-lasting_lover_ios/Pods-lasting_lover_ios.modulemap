@@ -1,6 +1,0 @@
-framework module Pods_lasting_lover_ios {
-  umbrella header "Pods-lasting_lover_ios-umbrella.h"
-
-  export *
-  module * { export * }
-}
