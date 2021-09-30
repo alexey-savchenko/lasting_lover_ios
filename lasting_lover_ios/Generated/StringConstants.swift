@@ -10,6 +10,14 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// Sign In
+  internal static let signInTitleScreenSignInButtonTitle = L10n.tr("Localizable", "signInTitleScreen_signInButton_title")
+  /// Sign Up
+  internal static let signInTitleScreenSignUpButtonTitle = L10n.tr("Localizable", "signInTitleScreen_signUpButton_title")
+  /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more.
+  internal static let signInTitleScreenSubtitle = L10n.tr("Localizable", "signInTitleScreen_subtitle")
+  /// Lasting lover
+  internal static let signInTitleScreenTitle = L10n.tr("Localizable", "signInTitleScreen_title")
   /// testValue
   internal static let testKey = L10n.tr("Localizable", "testKey")
 }

@@ -9,3 +9,16 @@ strings:
     - templateName: structured-swift5
       output: StringConstants.swift
 
+xcassets:
+  inputs:
+    - Images.xcassets
+    - Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: Assets.swift
+
+fonts:
+  inputs: Fonts/
+  outputs:
+    templateName: swift5
+    output: Fonts.swift

@@ -24,6 +24,27 @@ class AppCoordinator: RxBaseCoordinator<Never> {
     navigationController.setNavigationBarHidden(true, animated: false)
     window.makeKeyAndVisible()
     
+    if Current.localStorageService().userToken.isEmpty {
+      presentAuthModule(controller: navigationController)
+        .flatMap { _ in
+          return self.presentMainModule(controller: self.navigationController)
+        }
+        .subscribe()
+        .disposed(by: disposeBag)
+    } else {
+      
+    }
+  
     return .never()
+  }
+  
+  func presentAuthModule(controller: UINavigationController) -> Observable<Void> {
+    let coordinator = SignInModuleCoordinator(controller: controller)
+    return coordinate(to: coordinator)
+  }
+  
+  func presentMainModule(controller: UINavigationController) -> Observable<Void> {
+    let coordinator = MainModuleCoordinator()
+    return coordinate(to: coordinator)
   }
 }
