@@ -39,3 +39,11 @@ class BackgroundGradientView: UIView {
     gradientLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(rotationAngle: 45 * CGFloat.pi / 180).concatenating(.init(scaleX: 2, y: 2)))
   }
 }
+
+class BackgroundImageView: UIImageView {
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		image = Asset.Images.background.image
+		contentMode = .scaleAspectFill
+	}
+}

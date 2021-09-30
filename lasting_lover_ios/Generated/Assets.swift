@@ -32,6 +32,7 @@ internal enum Asset {
     internal static let white = ColorAsset(name: "white")
   }
   internal enum Images {
+    internal static let background = ImageAsset(name: "background")
     internal static let placeholder = ImageAsset(name: "placeholder")
     internal static let signInTitleimage = ImageAsset(name: "signInTitleimage")
   }

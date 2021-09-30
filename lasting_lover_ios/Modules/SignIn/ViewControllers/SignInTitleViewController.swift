@@ -9,7 +9,7 @@ import UIKit
 
 class SignInTitleViewController: UIViewController {
   
-  let backgroundGradientView = BackgroundGradientView()
+  let backgroundGradientView = BackgroundImageView()
   let titleImageView = UIImageView(image: Asset.Images.signInTitleimage.image)
   
   let labelsStackView = UIStackView()
