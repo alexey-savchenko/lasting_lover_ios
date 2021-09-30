@@ -1,0 +1,5 @@
+sources:
+    - lasting_lover_ios
+templates:
+    - Templates
+output: lasting_lover_ios/Generated

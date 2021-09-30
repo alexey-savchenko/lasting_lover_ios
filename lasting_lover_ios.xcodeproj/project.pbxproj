@@ -22,6 +22,9 @@
 		221C51D62705C8F90085534E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51D52705C8F90085534E /* RxSwift */; };
 		221C51D92705C9560085534E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51D82705C9560085534E /* Moya */; };
 		221C51DB2705C9560085534E /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51DA2705C9560085534E /* RxMoya */; };
+		221C51E22705DB890085534E /* Prism.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51DF2705DB890085534E /* Prism.generated.swift */; };
+		221C51E32705DB890085534E /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E02705DB890085534E /* StringConstants.swift */; };
+		221C51E42705DB890085534E /* Lens.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E12705DB890085534E /* Lens.generated.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,9 @@
 		0262BB6A2705084C00847ED7 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasting_lover_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		221C51C42705C73B0085534E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		221C51DF2705DB890085534E /* Prism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prism.generated.swift; sourceTree = "<group>"; };
+		221C51E02705DB890085534E /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		221C51E12705DB890085534E /* Lens.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lens.generated.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +87,7 @@
 		0262BB4C2705074200847ED7 /* lasting_lover_ios */ = {
 			isa = PBXGroup;
 			children = (
+				221C51DE2705DB890085534E /* Generated */,
 				221C51C62705C7990085534E /* Modules */,
 				221C51C02705C7240085534E /* Resources */,
 				0262BB692705084300847ED7 /* Redux */,
@@ -140,6 +147,16 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
+		221C51DE2705DB890085534E /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				221C51DF2705DB890085534E /* Prism.generated.swift */,
+				221C51E02705DB890085534E /* StringConstants.swift */,
+				221C51E12705DB890085534E /* Lens.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		3182A63912443A8ED7D95C4F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +174,8 @@
 			buildConfigurationList = 0262BB5E2705074300847ED7 /* Build configuration list for PBXNativeTarget "lasting_lover_ios" */;
 			buildPhases = (
 				54941526B3934CE20219AFCB /* [CP] Check Pods Manifest.lock */,
+				221C51DC2705DB2F0085534E /* ShellScript */,
+				221C51DD2705DB380085534E /* ShellScript */,
 				0262BB462705074200847ED7 /* Sources */,
 				0262BB472705074200847ED7 /* Frameworks */,
 				0262BB482705074200847ED7 /* Resources */,
@@ -234,6 +253,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		221C51DC2705DB2F0085534E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Sourcery/bin/sourcery\"\n";
+		};
+		221C51DD2705DB380085534E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftgen\n";
+		};
 		54941526B3934CE20219AFCB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,8 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221C51E42705DB890085534E /* Lens.generated.swift in Sources */,
+				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				0262BB522705074200847ED7 /* ViewController.swift in Sources */,
 				0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */,
+				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

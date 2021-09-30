@@ -1,0 +1,10 @@
+input_dir: lasting_lover_ios/Resources
+output_dir: lasting_lover_ios/Generated/
+
+strings:
+- inputs:
+    - ../Resources/en.lproj/Localizable.strings
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift5
+      output: StringConstants.swift
