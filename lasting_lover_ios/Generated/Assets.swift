@@ -23,6 +23,8 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 internal enum Asset {
   internal enum Colors {
     internal static let button = ColorAsset(name: "Button")
+    internal static let backgroundGradientBottom = ColorAsset(name: "background_gradient_bottom")
+    internal static let backgroundGradientTop = ColorAsset(name: "background_gradient_top")
     internal static let gray = ColorAsset(name: "gray")
     internal static let redError = ColorAsset(name: "red_error")
     internal static let secondaryBtn = ColorAsset(name: "secondary_btn")

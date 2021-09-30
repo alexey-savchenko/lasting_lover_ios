@@ -9,6 +9,7 @@ import UIKit
 
 class SignInTitleViewController: UIViewController {
   
+  let backgroundGradientView = BackgroundGradientView()
   let titleImageView = UIImageView(image: Asset.Images.signInTitleimage.image)
   
   let labelsStackView = UIStackView()
@@ -38,9 +39,9 @@ class SignInTitleViewController: UIViewController {
     }
     
     titleLabel.text = L10n.signInTitleScreenTitle
-    titleLabel.font = UIFont.systemFont(ofSize: 36, weight: .bold)
+    titleLabel.font = FontFamily.Nunito.bold.font(size: 36)
     subtitleLabel.text = L10n.signInTitleScreenSubtitle
-    subtitleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    subtitleLabel.font = FontFamily.Nunito.semiBold.font(size: 17)
   }
   
   fileprivate func setupButtonsStackView() {
@@ -68,7 +69,7 @@ class SignInTitleViewController: UIViewController {
         string: L10n.signInTitleScreenTitle,
         attributes: [
           .foregroundColor: Asset.Colors.white.color,
-          .font: UIFont.systemFont(ofSize: 16)
+          .font: FontFamily.Nunito.semiBold.font(size: 16)
         ]
       ),
       for: .normal
@@ -78,8 +79,8 @@ class SignInTitleViewController: UIViewController {
       NSAttributedString(
         string: L10n.signInTitleScreenSignInButtonTitle,
         attributes: [
-          .foregroundColor: Asset.Colors.white.color,
-          .font: UIFont.systemFont(ofSize: 16)
+          .foregroundColor: Asset.Colors.text.color,
+          .font: FontFamily.Nunito.semiBold.font(size: 16)
         ]
       ),
       for: .normal
@@ -91,11 +92,20 @@ class SignInTitleViewController: UIViewController {
     
     view.backgroundColor = .gray
     
-    [titleImageView,
+    [backgroundGradientView,
+     titleImageView,
      labelsStackView,
      buttonsStackView]
       .forEach(view.addSubview)
     
+    backgroundGradientView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+    
+    titleImageView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+      make.leading.trailing.equalToSuperview()
+    }
     setupLabelsStackView()
     setupButtonsStackView()
   }
