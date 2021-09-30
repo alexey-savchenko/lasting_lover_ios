@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB4D2705074200847ED7 /* AppDelegate.swift */; };
-		0262BB522705074200847ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB512705074200847ED7 /* ViewController.swift */; };
 		0262BB572705074300847ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB562705074300847ED7 /* Assets.xcassets */; };
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
 		0262BB6B2705084C00847ED7 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB6A2705084C00847ED7 /* Redux.swift */; };
@@ -25,13 +24,20 @@
 		221C51E22705DB890085534E /* Prism.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51DF2705DB890085534E /* Prism.generated.swift */; };
 		221C51E32705DB890085534E /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E02705DB890085534E /* StringConstants.swift */; };
 		221C51E42705DB890085534E /* Lens.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E12705DB890085534E /* Lens.generated.swift */; };
+		221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E52705DC0C0085534E /* SignInModuleCoordinator.swift */; };
+		221C51E82705DC1B0085534E /* SignInTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E72705DC1B0085534E /* SignInTitleViewController.swift */; };
+		221C51EA2705DC6C0085534E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E92705DC6C0085534E /* AppCoordinator.swift */; };
+		221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51EB2705DD8B0085534E /* SplashViewController.swift */; };
+		221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51EE2705E0360085534E /* LocalStorageService.swift */; };
+		221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51F02705E1C60085534E /* DefaultsStoreServiceProtocol.swift */; };
+		221C51F32705E1F50085534E /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51F22705E1F50085534E /* Environment.swift */; };
+		221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51F52705E3A00085534E /* MainModuleCoordinator.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0262BB4A2705074200847ED7 /* lasting_lover_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasting_lover_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0262BB4D2705074200847ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0262BB512705074200847ED7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0262BB562705074300847ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0262BB592705074300847ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0262BB5B2705074300847ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +47,14 @@
 		221C51DF2705DB890085534E /* Prism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prism.generated.swift; sourceTree = "<group>"; };
 		221C51E02705DB890085534E /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		221C51E12705DB890085534E /* Lens.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lens.generated.swift; sourceTree = "<group>"; };
+		221C51E52705DC0C0085534E /* SignInModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModuleCoordinator.swift; sourceTree = "<group>"; };
+		221C51E72705DC1B0085534E /* SignInTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTitleViewController.swift; sourceTree = "<group>"; };
+		221C51E92705DC6C0085534E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		221C51EB2705DD8B0085534E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		221C51EE2705E0360085534E /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		221C51F02705E1C60085534E /* DefaultsStoreServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStoreServiceProtocol.swift; sourceTree = "<group>"; };
+		221C51F22705E1F50085534E /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		221C51F52705E3A00085534E /* MainModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleCoordinator.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,12 +101,12 @@
 		0262BB4C2705074200847ED7 /* lasting_lover_ios */ = {
 			isa = PBXGroup;
 			children = (
-				221C51DE2705DB890085534E /* Generated */,
+				0262BB662705083200847ED7 /* Application */,
 				221C51C62705C7990085534E /* Modules */,
 				221C51C02705C7240085534E /* Resources */,
+				221C51ED2705E0230085534E /* Shared */,
 				0262BB692705084300847ED7 /* Redux */,
-				0262BB662705083200847ED7 /* Application */,
-				0262BB512705074200847ED7 /* ViewController.swift */,
+				221C51DE2705DB890085534E /* Generated */,
 				0262BB582705074300847ED7 /* LaunchScreen.storyboard */,
 				0262BB5B2705074300847ED7 /* Info.plist */,
 			);
@@ -103,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				0262BB4D2705074200847ED7 /* AppDelegate.swift */,
+				221C51E92705DC6C0085534E /* AppCoordinator.swift */,
+				221C51EB2705DD8B0085534E /* SplashViewController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -135,6 +151,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				221C51F42705E38B0085534E /* Main */,
 				221C51C72705C7A00085534E /* SignIn */,
 			);
 			path = Modules;
@@ -143,6 +160,8 @@
 		221C51C72705C7A00085534E /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
+				221C51F72705E3C90085534E /* Coordinators */,
+				221C51F82705E3D00085534E /* ViewControllers */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -155,6 +174,48 @@
 				221C51E12705DB890085534E /* Lens.generated.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		221C51ED2705E0230085534E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				221C51EE2705E0360085534E /* LocalStorageService.swift */,
+				221C51F02705E1C60085534E /* DefaultsStoreServiceProtocol.swift */,
+				221C51F22705E1F50085534E /* Environment.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		221C51F42705E38B0085534E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				221C51F92705E3D70085534E /* Coordinators */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		221C51F72705E3C90085534E /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				221C51E52705DC0C0085534E /* SignInModuleCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		221C51F82705E3D00085534E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				221C51E72705DC1B0085534E /* SignInTitleViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		221C51F92705E3D70085534E /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				221C51F52705E3A00085534E /* MainModuleCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		3182A63912443A8ED7D95C4F /* Pods */ = {
@@ -317,11 +378,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				221C51E42705DB890085534E /* Lens.generated.swift in Sources */,
+				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
-				0262BB522705074200847ED7 /* ViewController.swift in Sources */,
+				221C51E82705DC1B0085534E /* SignInTitleViewController.swift in Sources */,
+				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
+				221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */,
 				0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */,
+				221C51EA2705DC6C0085534E /* AppCoordinator.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
+				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
+				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,
+				221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

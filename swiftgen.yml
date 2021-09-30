@@ -8,3 +8,4 @@ strings:
   outputs:
     - templateName: structured-swift5
       output: StringConstants.swift
+

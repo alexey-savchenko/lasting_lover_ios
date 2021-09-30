@@ -6,11 +6,23 @@
 //
 
 import Foundation
+import UNILibCore
 
+typealias Trigger = IdentifiedBox<_Void>?
+
+/// sourcery: lens
 struct AppState: Hashable {
-	let profileState: ProfileState
+	let profileState: SettingsState
+  let loginState: LoginState
+  let logoutTrigger: Trigger
 }
 
-struct ProfileState: Hashable {
+/// sourcery: lens
+struct LoginState: Hashable {
+  
+}
+
+/// sourcery: lens
+struct SettingsState: Hashable, Codable {
 	let subscriptionActive: Bool
 }

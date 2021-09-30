@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	var window: UIWindow?
+  var appCoordinator: AppCoordinator!
+  private let disposeBag = DisposeBag()
 	
 	func application(
 		_ application: UIApplication,
@@ -18,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	) -> Bool {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-		
+    
+    appCoordinator = AppCoordinator(window: window!)
+    appCoordinator.start().subscribe().disposed(by: disposeBag)
+    
 		return true
 	}
 }
