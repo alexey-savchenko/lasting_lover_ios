@@ -69,6 +69,7 @@
 		221C524527072C2F0085534E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C524427072C2F0085534E /* Button.swift */; };
 		221C5248270737A40085534E /* AuthControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C5247270737A40085534E /* AuthControllerViewModel.swift */; };
 		221C524B270738CB0085534E /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C524A270738CB0085534E /* State.swift */; };
+		221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C524C270750E60085534E /* FullscreenLoadingView.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,7 @@
 		221C524427072C2F0085534E /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		221C5247270737A40085534E /* AuthControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControllerViewModel.swift; sourceTree = "<group>"; };
 		221C524A270738CB0085534E /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		221C524C270750E60085534E /* FullscreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoadingView.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -341,6 +343,7 @@
 				221C52402706FC440085534E /* NavbarView.swift */,
 				221C5242270714900085534E /* TextfieldView.swift */,
 				221C524427072C2F0085534E /* Button.swift */,
+				221C524C270750E60085534E /* FullscreenLoadingView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				221C52012705ECF60085534E /* Assets.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
+				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,

@@ -33,6 +33,8 @@ class AuthViewController: UIViewController {
   
   let modeSwitchButton = UIButton()
   
+  let loadingView = FullscreenLoadingView()
+  
   private let disposeBag = DisposeBag()
   let viewModel: AuthControllerViewModel
   
@@ -134,6 +136,21 @@ class AuthViewController: UIViewController {
     }
   }
   
+  func setupTapGesture() {
+    view.addGestureRecognizer(endEditingTapGesture)
+    endEditingTapGesture.rx.event
+      .subscribe(onNext: { [unowned self] _ in
+        view.endEditing(true)
+      })
+      .disposed(by: disposeBag)
+  }
+  
+  fileprivate func makeLoadingView() {
+    loadingView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+  }
+  
   fileprivate func setupUI() {
     [
       backgroundView,
@@ -144,7 +161,8 @@ class AuthViewController: UIViewController {
       forgotPasswordButton,
       hintLabel,
       appleSignUpButton,
-      modeSwitchButton
+      modeSwitchButton,
+      loadingView
     ]
     .forEach(view.addSubview)
     
@@ -156,13 +174,8 @@ class AuthViewController: UIViewController {
     setupSubmitButton()
     setupTextfieldsStackView()
     setupTitleStackView()
-    
-    view.addGestureRecognizer(endEditingTapGesture)
-    endEditingTapGesture.rx.event
-      .subscribe(onNext: { [unowned self] _ in
-        view.endEditing(true)
-      })
-      .disposed(by: disposeBag)
+    setupTapGesture()
+    makeLoadingView()
   }
   
   override func viewDidLoad() {
@@ -182,6 +195,13 @@ class AuthViewController: UIViewController {
       .disposed(by: disposeBag)
     modeSwitchButton.rx.tap
       .subscribe(viewModel.input.modeSwitchTap)
+      .disposed(by: disposeBag)
+    viewModel.output.submitEnabled
+      .subscribe(submitButton.rx.isEnabled)
+      .disposed(by: disposeBag)
+    viewModel.output.isLoading
+      .map { !$0 }
+      .subscribe(loadingView.rx.isHidden)
       .disposed(by: disposeBag)
   }
   

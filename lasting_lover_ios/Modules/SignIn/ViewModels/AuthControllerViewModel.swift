@@ -27,6 +27,7 @@ class AuthControllerViewModel {
   struct Output {
     let mode: Observable<AuthModuleLaunchMode>
     let submitEnabled: Observable<Bool>
+    let isLoading: Observable<Bool>
   }
   
   let input: Input
@@ -46,7 +47,8 @@ class AuthControllerViewModel {
     )
     self.output = Output(
       mode: state.map { $0.mode }.distinctUntilChanged(),
-      submitEnabled: state.map { $0.email.isNotEmpty && $0.password.isNotEmpty }.distinctUntilChanged()
+      submitEnabled: state.map { $0.email.isNotEmpty && $0.password.isNotEmpty }.distinctUntilChanged(),
+      isLoading: state.map { $0.isLoading }.distinctUntilChanged()
     )
     
     disposeBag
