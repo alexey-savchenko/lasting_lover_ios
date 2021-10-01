@@ -39,7 +39,7 @@ class AppCoordinator: RxBaseCoordinator<Never> {
   }
   
   func presentAuthModule(controller: UINavigationController) -> Observable<Void> {
-    let coordinator = AuthModuleCoordinator(controller: controller)
+    let coordinator = AuthModuleCoordinator(navigationController: controller)
     return coordinate(to: coordinator)
   }
   

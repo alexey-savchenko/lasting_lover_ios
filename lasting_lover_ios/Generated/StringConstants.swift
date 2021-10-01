@@ -20,7 +20,7 @@ internal enum L10n {
   internal static let signInSubmitButtonText = L10n.tr("Localizable", "signIn_submitButton_text")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more.
   internal static let signInSubtitleLabelText = L10n.tr("Localizable", "signIn_subtitleLabel_text")
-  /// Don’t  have an account? Sign up
+  /// Don’t  have an account?
   internal static let signInSwitchModeButtonTitlePart1 = L10n.tr("Localizable", "signIn_switchModeButton_title_part1")
   /// Sign up
   internal static let signInSwitchModeButtonTitlePart2 = L10n.tr("Localizable", "signIn_switchModeButton_title_part2")
@@ -38,7 +38,7 @@ internal enum L10n {
   internal static let signUpSubmitButtonText = L10n.tr("Localizable", "signUp_submitButton_text")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more.
   internal static let signUpSubtitleLabelText = L10n.tr("Localizable", "signUp_subtitleLabel_text")
-  /// Do you have an account? Sign in
+  /// Do you have an account?
   internal static let signUpSwitchModeButtonTitlePart1 = L10n.tr("Localizable", "signUp_switchModeButton_title_part1")
   /// Sign in
   internal static let signUpSwitchModeButtonTitlePart2 = L10n.tr("Localizable", "signUp_switchModeButton_title_part2")

@@ -5,9 +5,9 @@
 "signInTitleScreen_signUpButton_title" = "Sign Up";
 "signIn_emailTextfield_placeholder" = "Email Adress";
 "signIn_passTextfield_placeholder" = "Password";
-"signUp_switchModeButton_title_part1" = "Do you have an account? Sign in";
+"signUp_switchModeButton_title_part1" = "Do you have an account?";
 "signUp_switchModeButton_title_part2" = "Sign in";
-"signIn_switchModeButton_title_part1" = "Don’t  have an account? Sign up";
+"signIn_switchModeButton_title_part1" = "Don’t  have an account?";
 "signIn_switchModeButton_title_part2" = "Sign up";
 "signUp_titleLabel_text" = "Welcome!";
 "signIn_titleLabel_text" = "Welcome Back!";

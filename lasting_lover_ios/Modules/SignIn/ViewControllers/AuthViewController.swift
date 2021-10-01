@@ -10,6 +10,8 @@ import UIKit
 
 class AuthViewController: UIViewController {
   
+  let endEditingTapGesture = UITapGestureRecognizer(target: nil, action: nil)
+  
   let backgroundView = BackgroundFlareImageView(frame: .zero)
   let navbarView = BackButtonNavbarView()
   
@@ -59,12 +61,13 @@ class AuthViewController: UIViewController {
   
   fileprivate func setupAppleSignInButton() {
     appleSignUpButton.snp.makeConstraints { make in
-      make.size.equalTo(57)
+      make.size.equalTo(56)
       make.centerX.equalToSuperview()
       make.bottom.equalTo(modeSwitchButton.snp.top).offset(-24)
     }
     appleSignUpButton.clipsToBounds = true
     appleSignUpButton.layer.borderWidth = 1
+    appleSignUpButton.layer.cornerRadius = 56.0 / 2
     appleSignUpButton.layer.borderColor = Asset.Colors.white.color.withAlphaComponent(0.5).cgColor
     appleSignUpButton.setBackgroundImage(UIImage(color: Asset.Colors.grayTransparent.color), for: .normal)
     appleSignUpButton.setImage(Asset.Images.appleIcon.image, for: .normal)
@@ -80,7 +83,8 @@ class AuthViewController: UIViewController {
       string: L10n.signInHintLabelText,
       attributes: [
         .font: FontFamily.Nunito.regular.font(size: 15),
-        .foregroundColor: Asset.Colors.graySolid.color
+        .foregroundColor: Asset.Colors.graySolid.color,
+        .paragraphStyle: NSParagraphStyle.centered
       ]
     )
   }
@@ -88,13 +92,14 @@ class AuthViewController: UIViewController {
   fileprivate func setupSubmitButton() {
     submitButton.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
+      make.bottom.equalTo(hintLabel.snp.top).offset(-32)
       make.height.equalTo(56)
     }
   }
   
   fileprivate func setupModeSwitchButton() {
     modeSwitchButton.snp.makeConstraints { make in
-      make.leading.trailing.equalToSuperview().offset(16)
+      make.leading.trailing.equalToSuperview().inset(16)
       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-28)
     }
   }
@@ -121,7 +126,7 @@ class AuthViewController: UIViewController {
     titleLabelsStackView.axis = .vertical
     titleLabelsStackView.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
-      make.bottom.equalTo(textfieldsStackView).offset(-32)
+      make.bottom.equalTo(textfieldsStackView.snp.top).offset(-32)
     }
     [titleLabel, subtitleLabel].forEach { l in
       titleLabelsStackView.addArrangedSubview(l)
@@ -151,16 +156,33 @@ class AuthViewController: UIViewController {
     setupSubmitButton()
     setupTextfieldsStackView()
     setupTitleStackView()
+    
+    view.addGestureRecognizer(endEditingTapGesture)
+    endEditingTapGesture.rx.event
+      .subscribe(onNext: { [unowned self] _ in
+        view.endEditing(true)
+      })
+      .disposed(by: disposeBag)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setupUI()
+    configure(with: viewModel)
   }
   
   func configure(with viewModel: AuthControllerViewModel) {
-    
+    viewModel.output.mode
+      .subscribe(onNext: { [unowned self] mode in
+        UIView.transition(with: view, duration: 0.2, options: .transitionCrossDissolve) {
+          self.render(mode)
+        }
+      })
+      .disposed(by: disposeBag)
+    modeSwitchButton.rx.tap
+      .subscribe(viewModel.input.modeSwitchTap)
+      .disposed(by: disposeBag)
   }
   
   func switchModeButtonTitle(_ mode: AuthModuleLaunchMode) -> NSAttributedString {
@@ -190,7 +212,7 @@ class AuthViewController: UIViewController {
       let modeSwitchButtonTitle = NSMutableAttributedString()
       modeSwitchButtonTitle.append(
         NSAttributedString(
-          string: L10n.signInSwitchModeButtonTitlePart1 + " ",
+          string: L10n.signUpSwitchModeButtonTitlePart1 + " ",
           attributes: [
             .foregroundColor: Asset.Colors.white.color,
             .font: FontFamily.Nunito.regular.font(size: 12)
@@ -199,7 +221,7 @@ class AuthViewController: UIViewController {
       )
       modeSwitchButtonTitle.append(
         NSAttributedString(
-          string: L10n.signInSwitchModeButtonTitlePart2,
+          string: L10n.signUpSwitchModeButtonTitlePart2,
           attributes: [
             .foregroundColor: Asset.Colors.white.color,
             .font: FontFamily.Nunito.bold.font(size: 12)
@@ -261,7 +283,7 @@ class AuthViewController: UIViewController {
     case .signIn:
       return L10n.signInSubmitButtonText
     case .signUp:
-      return L10n.signUpSubtitleLabelText
+      return L10n.signUpSubmitButtonText
     }
   }
   

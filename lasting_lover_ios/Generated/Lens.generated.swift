@@ -31,6 +31,42 @@ extension AppState {
     )
   }
 }
+extension Auth.State {
+  enum lens {
+    static let mode = Lens<Auth.State, AuthModuleLaunchMode>(
+      get: { $0.mode },
+      set: { part in 
+        { whole in
+          Auth.State.init(mode: part, email: whole.email, password: whole.password, isLoading: whole.isLoading)
+        }
+      }
+    )
+    static let email = Lens<Auth.State, String>(
+      get: { $0.email },
+      set: { part in 
+        { whole in
+          Auth.State.init(mode: whole.mode, email: part, password: whole.password, isLoading: whole.isLoading)
+        }
+      }
+    )
+    static let password = Lens<Auth.State, String>(
+      get: { $0.password },
+      set: { part in 
+        { whole in
+          Auth.State.init(mode: whole.mode, email: whole.email, password: part, isLoading: whole.isLoading)
+        }
+      }
+    )
+    static let isLoading = Lens<Auth.State, Bool>(
+      get: { $0.isLoading },
+      set: { part in 
+        { whole in
+          Auth.State.init(mode: whole.mode, email: whole.email, password: whole.password, isLoading: part)
+        }
+      }
+    )
+  }
+}
 extension LoginState {
   enum lens {
   }

@@ -25,7 +25,7 @@
 		221C51E32705DB890085534E /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E02705DB890085534E /* StringConstants.swift */; };
 		221C51E42705DB890085534E /* Lens.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E12705DB890085534E /* Lens.generated.swift */; };
 		221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E52705DC0C0085534E /* SignInModuleCoordinator.swift */; };
-		221C51E82705DC1B0085534E /* SignInTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E72705DC1B0085534E /* SignInTitleViewController.swift */; };
+		221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E72705DC1B0085534E /* AuthTitleViewController.swift */; };
 		221C51EA2705DC6C0085534E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51E92705DC6C0085534E /* AppCoordinator.swift */; };
 		221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51EB2705DD8B0085534E /* SplashViewController.swift */; };
 		221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C51EE2705E0360085534E /* LocalStorageService.swift */; };
@@ -85,7 +85,7 @@
 		221C51E02705DB890085534E /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		221C51E12705DB890085534E /* Lens.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lens.generated.swift; sourceTree = "<group>"; };
 		221C51E52705DC0C0085534E /* SignInModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModuleCoordinator.swift; sourceTree = "<group>"; };
-		221C51E72705DC1B0085534E /* SignInTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTitleViewController.swift; sourceTree = "<group>"; };
+		221C51E72705DC1B0085534E /* AuthTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTitleViewController.swift; sourceTree = "<group>"; };
 		221C51E92705DC6C0085534E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		221C51EB2705DD8B0085534E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		221C51EE2705E0360085534E /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 		221C51F82705E3D00085534E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				221C51E72705DC1B0085534E /* SignInTitleViewController.swift */,
+				221C51E72705DC1B0085534E /* AuthTitleViewController.swift */,
 				221C523E2706F9C20085534E /* AuthViewController.swift */,
 			);
 			path = ViewControllers;
@@ -557,7 +557,7 @@
 				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
-				221C51E82705DC1B0085534E /* SignInTitleViewController.swift in Sources */,
+				221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
 				221C5248270737A40085534E /* AuthControllerViewModel.swift in Sources */,
 				221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */,

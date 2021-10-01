@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TextfieldView: UIView {
+class TextfieldView: UIView, UITextFieldDelegate {
   
   enum State {
     case `default`
@@ -20,6 +20,7 @@ class TextfieldView: UIView {
   let textfield = UITextField()
   var state = State.default
   let placeholder: String
+  let isEditing = BehaviorSubject<Bool>(value: false)
   
   let disposeBag = DisposeBag()
   
@@ -29,16 +30,14 @@ class TextfieldView: UIView {
     
     setupUI()
     
-    let stateObervable = textfield.rx
-      .observe(UIControl.State.self, #keyPath(UITextField.state))
-      .filterNil()
+    textfield.delegate = self
     
     let text = textfield.rx.text.filterNil()
     
     Observable
-      .combineLatest(stateObervable, text)
-      .subscribe(onNext: { [weak self] state, _ in
-        if state == .focused {
+      .combineLatest(isEditing, text)
+      .subscribe(onNext: { [weak self] editing, _ in
+        if editing {
           self?.render(.focused)
         } else {
           self?.render(.default)
@@ -60,6 +59,14 @@ class TextfieldView: UIView {
       make.centerY.equalToSuperview()
       make.height.equalTo(28)
     }
+  }
+  
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    isEditing.onNext(true)
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    isEditing.onNext(false)
   }
   
   func setupUI() {

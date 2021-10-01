@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignInTitleViewController: UIViewController {
+class AuthTitleViewController: UIViewController {
   
   let backgroundGradientView = BackgroundImageView(frame: .zero)
   let titleImageView = UIImageView(image: Asset.Images.signInTitleimage.image)

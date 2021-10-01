@@ -35,8 +35,8 @@ class AuthControllerViewModel {
   private let disposeBag = DisposeBag()
   
   init(
-    state: Observable<AuthModuleState>,
-    dispatch: @escaping DispatchFunction<AuthModuleAction>
+    state: Observable<Auth.State>,
+    dispatch: @escaping DispatchFunction<Auth.Action>
   ) {
     self.input = Input(
       submitTap: submitTapSubject.asObserver(),
@@ -54,7 +54,16 @@ class AuthControllerViewModel {
         submitTapSubject.subscribe(onNext: { dispatch(.submitEmailPass) }),
         emailSubject.subscribe(onNext: { dispatch(.setEmail(value: $0)) }),
         passwordSubject.subscribe(onNext: { dispatch(.setPassword(value: $0)) }),
-        modeSwitchTapSubject.subscribe(onNext: { dispatch(.modeSwitch) })
+        modeSwitchTapSubject
+          .withLatestFrom(state.map { $0.mode })
+          .subscribe(onNext: { currentMode in
+            switch currentMode {
+            case .signIn:
+              dispatch(.setMode(value: .signUp))
+            case .signUp:
+              dispatch(.setMode(value: .signIn))
+            }
+          })
       )
   }
 }
