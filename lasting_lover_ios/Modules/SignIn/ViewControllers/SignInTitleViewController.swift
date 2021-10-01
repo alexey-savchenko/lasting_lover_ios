@@ -9,7 +9,7 @@ import UIKit
 
 class SignInTitleViewController: UIViewController {
   
-  let backgroundGradientView = BackgroundImageView()
+  let backgroundGradientView = BackgroundImageView(frame: .zero)
   let titleImageView = UIImageView(image: Asset.Images.signInTitleimage.image)
   
   let labelsStackView = UIStackView()
@@ -19,8 +19,8 @@ class SignInTitleViewController: UIViewController {
   
   let buttonsStackView = UIStackView()
   
-  let signInButton = UIButton()
-  let signUpButton = UIButton()
+  let signInButton = Button(style: .secondary, title: L10n.signInTitleScreenSignInButtonTitle)
+  let signUpButton = Button(style: .primary, title: L10n.signInTitleScreenSignUpButtonTitle)
   
   fileprivate func setupLabelsStackView() {
     [titleLabel, subtitleLabel]
@@ -62,29 +62,19 @@ class SignInTitleViewController: UIViewController {
       make.leading.trailing.equalToSuperview().inset(24)
       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
     }
-    
-    signUpButton.setBackgroundImage(UIImage(color: Asset.Colors.button.color), for: .normal)
-    signUpButton.setAttributedTitle(
-      NSAttributedString(
-        string: L10n.signInTitleScreenTitle,
-        attributes: [
-          .foregroundColor: Asset.Colors.white.color,
-          .font: FontFamily.Nunito.semiBold.font(size: 16)
-        ]
-      ),
-      for: .normal
-    )
-    signInButton.setBackgroundImage(UIImage(color: Asset.Colors.white.color), for: .normal)
-    signInButton.setAttributedTitle(
-      NSAttributedString(
-        string: L10n.signInTitleScreenSignInButtonTitle,
-        attributes: [
-          .foregroundColor: Asset.Colors.text.color,
-          .font: FontFamily.Nunito.semiBold.font(size: 16)
-        ]
-      ),
-      for: .normal
-    )
+  }
+  
+  fileprivate func setupTitleImageView() {
+    titleImageView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+      make.leading.trailing.equalToSuperview()
+    }
+  }
+  
+  fileprivate func setupBackgroundImageView() {
+    backgroundGradientView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
   }
   
   override func viewDidLoad() {
@@ -98,14 +88,8 @@ class SignInTitleViewController: UIViewController {
      buttonsStackView]
       .forEach(view.addSubview)
     
-    backgroundGradientView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
-    }
-    
-    titleImageView.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-      make.leading.trailing.equalToSuperview()
-    }
+    setupBackgroundImageView()
+    setupTitleImageView()
     setupLabelsStackView()
     setupButtonsStackView()
   }

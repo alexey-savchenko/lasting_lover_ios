@@ -11,8 +11,13 @@ import RxUNILib
 import RxSwift
 import UIKit
 
-class SignInModuleCoordinator: RxBaseCoordinator<Void> {
-  
+enum AuthModuleLaunchMode {
+  case signIn
+  case signUp
+}
+
+class AuthModuleCoordinator: RxBaseCoordinator<Void> {
+
   let controller: UINavigationController
   
   init(controller: UINavigationController) {

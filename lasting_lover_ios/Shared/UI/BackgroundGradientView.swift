@@ -7,43 +7,33 @@
 
 import UIKit
 
-class BackgroundGradientView: UIView {
-
-  let gradientLayer = CAGradientLayer()
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    
-    layer.addSublayer(gradientLayer)
-    gradientLayer.colors = [
-      Asset.Colors.backgroundGradientTop.color.cgColor,
-      Asset.Colors.backgroundGradientBottom.color.cgColor
-    ]
-
-    gradientLayer.locations = [0, 1]
-    gradientLayer.startPoint = CGPoint(x: 0.25, y: 0.5)
-    gradientLayer.endPoint = CGPoint(x: 0.75, y: 0.5)
-//    gradientLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: -0.37, b: -0.87, c: -0.87, d: 0.37, tx: 0.89, ty: 0.22))
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    
-//    gradientLayer.frame =
-    let f = layer.bounds.insetBy(dx: -bounds.width * 0.5, dy: -bounds.height * 0.5)
-    gradientLayer.frame = f
-    gradientLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(rotationAngle: 45 * CGFloat.pi / 180).concatenating(.init(scaleX: 2, y: 2)))
-  }
-}
-
 class BackgroundImageView: UIImageView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		image = Asset.Images.background.image
 		contentMode = .scaleAspectFill
 	}
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+class BackgroundFlareImageView: BackgroundImageView {
+  
+  let flareImageView = UIImageView(image: Asset.Images.backgroundFlareImage.image)
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    addSubview(flareImageView)
+    flareImageView.snp.makeConstraints { make in
+      make.top.equalToSuperview()
+      make.leading.equalToSuperview().offset(36)
+    }
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }
