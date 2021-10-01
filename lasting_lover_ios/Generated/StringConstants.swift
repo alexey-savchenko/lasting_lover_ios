@@ -12,6 +12,8 @@ import Foundation
 internal enum L10n {
   /// Email Adress
   internal static let signInEmailTextfieldPlaceholder = L10n.tr("Localizable", "signIn_emailTextfield_placeholder")
+  /// or sign up with social media
+  internal static let signInHintLabelText = L10n.tr("Localizable", "signIn_hintLabel_text")
   /// Password
   internal static let signInPassTextfieldPlaceholder = L10n.tr("Localizable", "signIn_passTextfield_placeholder")
   /// Sign In

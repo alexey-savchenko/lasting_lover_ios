@@ -86,7 +86,7 @@ class TextfieldView: UIView {
         backgroundColor = Asset.Colors.redPaleError.color
       case .default:
         layer.borderColor = Asset.Colors.white.color.cgColor
-        backgroundColor = Asset.Colors.gray.color
+        backgroundColor = Asset.Colors.grayTransparent.color
         textfield.attributedPlaceholder = NSAttributedString(
           string: placeholder,
           attributes: [

@@ -15,3 +15,4 @@
 "signIn_subtitleLabel_text" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more.";
 "signUp_submitButton_text" = "Sign Up";
 "signIn_submitButton_text" = "Sign In";
+"signIn_hintLabel_text" = "or sign up with social media";

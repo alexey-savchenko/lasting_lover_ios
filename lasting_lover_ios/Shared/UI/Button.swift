@@ -21,7 +21,11 @@ class Button: UIButton {
   }
   
   let style: Style
-  let title: String
+  var title: String {
+    didSet {
+      renderState(_state)
+    }
+  }
   
   var _state = State.default
   private let disposeBag = DisposeBag()
@@ -58,7 +62,7 @@ class Button: UIButton {
       layer.borderWidth = 0
       renderStyle(style)
     case .pressed:
-      backgroundColor = Asset.Colors.gray.color
+      backgroundColor = Asset.Colors.grayTransparent.color
       layer.borderWidth = 1
       setAttributedTitle(
         NSAttributedString(

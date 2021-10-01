@@ -11,7 +11,7 @@ import RxUNILib
 import RxSwift
 import UIKit
 
-enum AuthModuleLaunchMode {
+enum AuthModuleLaunchMode: Int, Hashable {
   case signIn
   case signUp
 }
