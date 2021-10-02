@@ -37,3 +37,16 @@ class BackgroundFlareImageView: BackgroundImageView {
     fatalError("init(coder:) has not been implemented")
   }
 }
+
+class ViewController<BackgroundView: UIImageView>: UIViewController {
+  let backgroundView = BackgroundView()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    view.addSubview(backgroundView)
+    backgroundView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+  }
+}

@@ -7,9 +7,8 @@
 
 import UIKit
 
-class AuthTitleViewController: UIViewController {
+class AuthTitleViewController: ViewController<BackgroundImageView> {
   
-  let backgroundGradientView = BackgroundImageView(frame: .zero)
   let titleImageView = UIImageView(image: Asset.Images.signInTitleimage.image)
   
   let labelsStackView = UIStackView()
@@ -71,24 +70,16 @@ class AuthTitleViewController: UIViewController {
     }
   }
   
-  fileprivate func setupBackgroundImageView() {
-    backgroundGradientView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
-    }
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     view.backgroundColor = .gray
     
-    [backgroundGradientView,
-     titleImageView,
+    [titleImageView,
      labelsStackView,
      buttonsStackView]
       .forEach(view.addSubview)
     
-    setupBackgroundImageView()
     setupTitleImageView()
     setupLabelsStackView()
     setupButtonsStackView()

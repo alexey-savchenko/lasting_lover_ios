@@ -8,11 +8,10 @@
 import RxSwift
 import UIKit
 
-class AuthViewController: UIViewController {
+class AuthViewController: ViewController<BackgroundFlareImageView> {
   
   let endEditingTapGesture = UITapGestureRecognizer(target: nil, action: nil)
   
-  let backgroundView = BackgroundFlareImageView(frame: .zero)
   let navbarView = BackButtonNavbarView()
   
   let titleLabelsStackView = UIStackView()
@@ -52,12 +51,6 @@ class AuthViewController: UIViewController {
       make.leading.trailing.equalToSuperview()
       make.top.equalTo(view.safeAreaLayoutGuide)
       make.height.equalTo(44)
-    }
-  }
-  
-  fileprivate func setupBackgroundImageView() {
-    backgroundView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
     }
   }
   
@@ -153,7 +146,6 @@ class AuthViewController: UIViewController {
   
   fileprivate func setupUI() {
     [
-      backgroundView,
       navbarView,
       titleLabelsStackView,
       textfieldsStackView,
@@ -166,7 +158,6 @@ class AuthViewController: UIViewController {
     ]
     .forEach(view.addSubview)
     
-    setupBackgroundImageView()
     setupNavbarView()
     setupModeSwitchButton()
     setupAppleSignInButton()
