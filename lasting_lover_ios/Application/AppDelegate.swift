@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	) -> Bool {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-//    window?.rootViewController = SignInTitleViewController()
+//    window?.rootViewController = CongratulationsController()
 //    window?.makeKeyAndVisible()
     appCoordinator = AppCoordinator(window: window!)
     appCoordinator.start().subscribe().disposed(by: disposeBag)

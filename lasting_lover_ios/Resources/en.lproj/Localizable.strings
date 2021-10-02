@@ -16,3 +16,6 @@
 "signUp_submitButton_text" = "Sign Up";
 "signIn_submitButton_text" = "Sign In";
 "signIn_hintLabel_text" = "or sign up with social media";
+"congratulations_title" = "Congratulations!";
+"congratulations_subtitle" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more.";
+"button_next" = "Next";

@@ -45,8 +45,10 @@ class Button: UIButton {
           .controlEvent(.touchUpInside)
           .map { _ in State.default }
       )
-      .subscribe(onNext: { [weak self] state in
-        self?.renderState(state)
+      .subscribe(onNext: { [unowned self] state in
+        UIView.transition(with: self, duration: 0.2, options: .transitionCrossDissolve) {
+          self.renderState(state)
+        }
       })
       .disposed(by: disposeBag)
     
@@ -69,7 +71,7 @@ class Button: UIButton {
           string: title,
           attributes: [
             .foregroundColor: Asset.Colors.white.color,
-            .font: FontFamily.Nunito.regular.font(size: 16)
+            .font: FontFamily.Nunito.semiBold.font(size: 16)
           ]
         ),
         for: .normal
@@ -86,7 +88,7 @@ class Button: UIButton {
           string: title,
           attributes: [
             .foregroundColor: Asset.Colors.white.color,
-            .font: FontFamily.Nunito.regular.font(size: 16)
+            .font: FontFamily.Nunito.semiBold.font(size: 16)
           ]
         ),
         for: .normal
@@ -98,7 +100,7 @@ class Button: UIButton {
           string: title,
           attributes: [
             .foregroundColor: Asset.Colors.text.color,
-            .font: FontFamily.Nunito.regular.font(size: 16)
+            .font: FontFamily.Nunito.semiBold.font(size: 16)
           ]
         ),
         for: .normal

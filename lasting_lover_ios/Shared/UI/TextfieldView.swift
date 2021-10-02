@@ -37,10 +37,13 @@ class TextfieldView: UIView, UITextFieldDelegate {
     Observable
       .combineLatest(isEditing, text)
       .subscribe(onNext: { [weak self] editing, _ in
-        if editing {
-          self?.render(.focused)
-        } else {
-          self?.render(.default)
+        guard let self = self else { return }
+        UIView.transition(with: self, duration: 0.1, options: .transitionCrossDissolve) {
+          if editing {
+            self.render(.focused)
+          } else {
+            self.render(.default)
+          }
         }
       })
       .disposed(by: disposeBag)

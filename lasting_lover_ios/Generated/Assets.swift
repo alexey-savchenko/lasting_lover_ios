@@ -51,6 +51,7 @@ internal enum Asset {
     internal static let googleIcon = ImageAsset(name: "google_icon")
     internal static let headphoneFill = ImageAsset(name: "headphone-fill")
     internal static let heartFilled = ImageAsset(name: "heart_filled")
+    internal static let heartsIllustrtion = ImageAsset(name: "heartsIllustrtion")
     internal static let moon = ImageAsset(name: "moon")
     internal static let placeholder = ImageAsset(name: "placeholder")
     internal static let search = ImageAsset(name: "search")
