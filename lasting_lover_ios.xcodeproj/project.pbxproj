@@ -78,6 +78,8 @@
 		221C525D270A4ACF0085534E /* MainControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C525C270A4ACE0085534E /* MainControllerViewModel.swift */; };
 		221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C525E270A4B5D0085534E /* MainModuleState.swift */; };
 		221C5261270A4DF60085534E /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C5260270A4DF60085534E /* SleepViewController.swift */; };
+		221C5272270A59F90085534E /* SleepControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C5271270A59F90085534E /* SleepControllerViewModel.swift */; };
+		221C5274270A61330085534E /* DiscoverControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C5273270A61330085534E /* DiscoverControllerViewModel.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +149,8 @@
 		221C525C270A4ACE0085534E /* MainControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerViewModel.swift; sourceTree = "<group>"; };
 		221C525E270A4B5D0085534E /* MainModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleState.swift; sourceTree = "<group>"; };
 		221C5260270A4DF60085534E /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
+		221C5271270A59F90085534E /* SleepControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepControllerViewModel.swift; sourceTree = "<group>"; };
+		221C5273270A61330085534E /* DiscoverControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverControllerViewModel.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,7 +250,8 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				221C51F42705E38B0085534E /* Discover */,
+				221C526C270A55FD0085534E /* Settings */,
+				221C51F42705E38B0085534E /* Main */,
 				221C51C72705C7A00085534E /* SignIn */,
 			);
 			path = Modules;
@@ -286,15 +291,16 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		221C51F42705E38B0085534E /* Discover */ = {
+		221C51F42705E38B0085534E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				221C5262270A544F0085534E /* Child */,
 				221C525B270A4ABF0085534E /* ViewModels */,
 				221C525A2709DCC80085534E /* Models */,
 				221C52502709CCB10085534E /* Controllers */,
 				221C51F92705E3D70085534E /* Coordinators */,
 			);
-			path = Discover;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		221C51F72705E3C90085534E /* Coordinators */ = {
@@ -390,8 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				221C52542709CD330085534E /* MainModuleViewController.swift */,
-				221C52512709CCC70085534E /* DiscoverViewController.swift */,
-				221C5260270A4DF60085534E /* SleepViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -410,6 +414,120 @@
 				221C525C270A4ACE0085534E /* MainControllerViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		221C5262270A544F0085534E /* Child */ = {
+			isa = PBXGroup;
+			children = (
+				221C5264270A545E0085534E /* Sleep */,
+				221C5263270A54580085534E /* Discover */,
+			);
+			path = Child;
+			sourceTree = "<group>";
+		};
+		221C5263270A54580085534E /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				221C526B270A55E50085534E /* UI */,
+				221C5269270A55DC0085534E /* ViewModels */,
+				221C5265270A54640085534E /* Contollers */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		221C5264270A545E0085534E /* Sleep */ = {
+			isa = PBXGroup;
+			children = (
+				221C526A270A55E10085534E /* UI */,
+				221C5267270A55CF0085534E /* ViewModels */,
+				221C5266270A55C90085534E /* Controllers */,
+			);
+			path = Sleep;
+			sourceTree = "<group>";
+		};
+		221C5265270A54640085534E /* Contollers */ = {
+			isa = PBXGroup;
+			children = (
+				221C52512709CCC70085534E /* DiscoverViewController.swift */,
+			);
+			path = Contollers;
+			sourceTree = "<group>";
+		};
+		221C5266270A55C90085534E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				221C5260270A4DF60085534E /* SleepViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		221C5267270A55CF0085534E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				221C5271270A59F90085534E /* SleepControllerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		221C5269270A55DC0085534E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				221C5273270A61330085534E /* DiscoverControllerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		221C526A270A55E10085534E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		221C526B270A55E50085534E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		221C526C270A55FD0085534E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				221C5270270A56280085534E /* UI */,
+				221C526F270A561E0085534E /* ViewModels */,
+				221C526E270A56160085534E /* Controllers */,
+				221C526D270A560A0085534E /* Coordinators */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		221C526D270A560A0085534E /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		221C526E270A56160085534E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		221C526F270A561E0085534E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		221C5270270A56280085534E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		3182A63912443A8ED7D95C4F /* Pods */ = {
@@ -601,10 +719,12 @@
 			files = (
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
 				221C51E42705DB890085534E /* Lens.generated.swift in Sources */,
+				221C5272270A59F90085534E /* SleepControllerViewModel.swift in Sources */,
 				221C524527072C2F0085534E /* Button.swift in Sources */,
 				221C524B270738CB0085534E /* State.swift in Sources */,
 				221C52582709DC3D0085534E /* ToolbarItem.swift in Sources */,
 				221C525D270A4ACF0085534E /* MainControllerViewModel.swift in Sources */,
+				221C5274270A61330085534E /* DiscoverControllerViewModel.swift in Sources */,
 				221C5243270714900085534E /* TextfieldView.swift in Sources */,
 				221C523A2705FB390085534E /* Fonts.swift in Sources */,
 				221C52592709DC3D0085534E /* Toolbar.swift in Sources */,
