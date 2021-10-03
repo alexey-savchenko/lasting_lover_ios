@@ -15,14 +15,26 @@ class MainModuleViewController: UIViewController {
   let discoverItem = _ToolBarItem(
     image: Asset.Images.headphoneFill.image,
     text: L10n.mainTabDiscover,
-    selectedColors: (Asset.Colors.tabColor0.color, Asset.Colors.tabColor1.color),
-    deselectedColors: (Asset.Colors.white.color.withAlphaComponent(0.5), Asset.Colors.white.color.withAlphaComponent(0.5))
+    selectedColors: (
+      Asset.Colors.tabColor0.color,
+      Asset.Colors.tabColor1.color
+    ),
+    deselectedColors: (
+      Asset.Colors.white.color.withAlphaComponent(0.5),
+      Asset.Colors.white.color.withAlphaComponent(0.5)
+    )
   )
   let sleepItem = _ToolBarItem(
     image: Asset.Images.moon.image,
     text: L10n.mainTabSleep,
-    selectedColors: (Asset.Colors.tabColor0.color, Asset.Colors.tabColor1.color),
-    deselectedColors: (Asset.Colors.white.color.withAlphaComponent(0.5), Asset.Colors.white.color.withAlphaComponent(0.5))
+    selectedColors: (
+      Asset.Colors.tabColor0.color,
+      Asset.Colors.tabColor1.color
+    ),
+    deselectedColors: (
+      Asset.Colors.white.color.withAlphaComponent(0.5),
+      Asset.Colors.white.color.withAlphaComponent(0.5)
+    )
   )
   
   let viewModel: MainControllerViewModel
@@ -32,7 +44,6 @@ class MainModuleViewController: UIViewController {
   init(viewModel: MainControllerViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
-
   }
   
   required init?(coder: NSCoder) {
@@ -43,9 +54,10 @@ class MainModuleViewController: UIViewController {
     super.viewDidLoad()
     
     setupUI()
+    configure(with: viewModel)
   }
   
-  func setupUI() {
+  private func setupUI() {
     
     view.addSubview(toolbar)
     toolbar.snp.makeConstraints { make in
@@ -58,6 +70,18 @@ class MainModuleViewController: UIViewController {
         make.height.equalTo(42)
       }
     }
-    
+  }
+  
+  private func configure(with viewModel: MainControllerViewModel) {
+    viewModel.output.selectedTabIndex
+      .subscribe(onNext: { value in
+        self.toolbar.items.enumerated().forEach { idx, item in
+          item.setSelected(idx == value)
+        }
+      })
+      .disposed(by: disposeBag)
+    self.toolbar.tapWithIndex
+      .subscribe(viewModel.input.selectedTabWithIndex)
+      .disposed(by: disposeBag)
   }
 }

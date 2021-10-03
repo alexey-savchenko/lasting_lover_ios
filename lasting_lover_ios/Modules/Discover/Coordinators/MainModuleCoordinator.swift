@@ -19,8 +19,10 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
   
   override func start() -> Observable<Void> {
     
-//    let mainController = MainModuleViewController(viewModel: MainControllerViewModel(state: <#T##Observable<AppState>#>, dispatch: <#T##DispatchFunction<AppAction>##DispatchFunction<AppAction>##(AppAction) -> Void#>))
-//    navigationController.setViewControllers([mainController], animated: false)
+    let viewModel = MainControllerViewModel(state: appStore.stateObservable, dispatch: appStore.dispatch)
+    let mainController = MainModuleViewController(viewModel: viewModel)
+    navigationController.setViewControllers([mainController], animated: false)
+    
     return .never()
   }
   

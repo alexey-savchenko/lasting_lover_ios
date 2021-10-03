@@ -9,11 +9,11 @@ import UIKit
 import RxUNILib
 import RxSwift
 
-//let appStore = RxStore<AppState, AppAction>(
-//  inputState: AppState(settingsState: SettingsState(subscriptionActive: false), mainModuleState: <#T##MainModuleState#>),
-//  middleware: [],
-//  reducer: <#T##Reducer<AppState, AppAction>#>
-//)
+let appStore = RxStore<AppState, AppAction>(
+  inputState: AppState.default(),
+  middleware: [appMiddleware],
+  reducer: appReducer
+)
 
 class AppCoordinator: RxBaseCoordinator<Never> {
   

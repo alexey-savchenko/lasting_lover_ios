@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UNILibCore
 
 /// sourcery: lens
 struct MainModuleState: Hashable {
@@ -14,4 +15,11 @@ struct MainModuleState: Hashable {
 
 enum MainModuleAction {
   case setTabIndex(value: Int)
+}
+
+let mainModuleReducer = Reducer<MainModuleState, MainModuleAction> { state, action in
+  switch action {
+  case .setTabIndex(let value):
+    return MainModuleState.lens.selectedTabIndex.set(value)(state)
+  }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UNILibCore
+import RxUNILib
 
 typealias Trigger = IdentifiedBox<_Void>?
 
@@ -28,6 +29,7 @@ struct AppState: Hashable {
   }
 }
 
+/// sourcery: prism
 enum AppAction {
   case mainModuleAction(action: MainModuleAction)
 }
@@ -35,4 +37,15 @@ enum AppAction {
 /// sourcery: lens
 struct SettingsState: Hashable, Codable {
 	let subscriptionActive: Bool
+}
+
+let appReducer = mainModuleReducer
+  .lift(localStateLens: AppState.lens.mainModuleState, localActionPrism: AppAction.prism.mainModuleAction)
+
+let appMiddleware: Middleware<AppState, AppAction> = { dispatch, getState in
+  { next in
+    { action in
+      next(action)
+    }
+  }
 }
