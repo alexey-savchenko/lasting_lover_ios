@@ -16,6 +16,10 @@ internal enum L10n {
   internal static let congratulationsSubtitle = L10n.tr("Localizable", "congratulations_subtitle")
   /// Congratulations!
   internal static let congratulationsTitle = L10n.tr("Localizable", "congratulations_title")
+  /// Discover
+  internal static let mainTabDiscover = L10n.tr("Localizable", "main_tab_discover")
+  /// Sleep
+  internal static let mainTabSleep = L10n.tr("Localizable", "main_tab_sleep")
   /// Email Adress
   internal static let signInEmailTextfieldPlaceholder = L10n.tr("Localizable", "signIn_emailTextfield_placeholder")
   /// or sign up with social media

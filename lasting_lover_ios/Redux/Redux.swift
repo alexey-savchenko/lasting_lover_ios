@@ -12,14 +12,24 @@ typealias Trigger = IdentifiedBox<_Void>?
 
 /// sourcery: lens
 struct AppState: Hashable {
-	let profileState: SettingsState
-  let loginState: LoginState
-  let logoutTrigger: Trigger
+	let settingsState: SettingsState
+  let mainModuleState: MainModuleState
+  
+  static func `default`() -> AppState {
+    let isSubActive = Current.localStorageService().isSubsctiptionActive
+    return AppState(
+      settingsState: SettingsState(
+        subscriptionActive: isSubActive
+      ),
+      mainModuleState: MainModuleState(
+        selectedTabIndex: 0
+      )
+    )
+  }
 }
 
-/// sourcery: lens
-struct LoginState: Hashable {
-  
+enum AppAction {
+  case mainModuleAction(action: MainModuleAction)
 }
 
 /// sourcery: lens

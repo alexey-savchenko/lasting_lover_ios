@@ -9,6 +9,12 @@ import UIKit
 import RxUNILib
 import RxSwift
 
+//let appStore = RxStore<AppState, AppAction>(
+//  inputState: AppState(settingsState: SettingsState(subscriptionActive: false), mainModuleState: <#T##MainModuleState#>),
+//  middleware: [],
+//  reducer: <#T##Reducer<AppState, AppAction>#>
+//)
+
 class AppCoordinator: RxBaseCoordinator<Never> {
   
   let window: UIWindow
@@ -24,16 +30,19 @@ class AppCoordinator: RxBaseCoordinator<Never> {
     navigationController.setNavigationBarHidden(true, animated: false)
     window.makeKeyAndVisible()
     
-    if Current.localStorageService().userToken.isEmpty {
-      presentAuthModule(controller: navigationController)
-        .flatMap { _ in
-          return self.presentMainModule(controller: self.navigationController)
-        }
-        .subscribe()
-        .disposed(by: disposeBag)
-    } else {
-      
-    }
+    presentMainModule(controller: navigationController)
+      .subscribe()
+      .disposed(by: disposeBag)
+//    if Current.localStorageService().userToken.isEmpty {
+//      presentAuthModule(controller: navigationController)
+//        .flatMap { _ in
+//          return self.presentDiscoverModule(controller: self.navigationController)
+//        }
+//        .subscribe()
+//        .disposed(by: disposeBag)
+//    } else {
+//
+//    }
   
     return .never()
   }
@@ -44,7 +53,7 @@ class AppCoordinator: RxBaseCoordinator<Never> {
   }
   
   func presentMainModule(controller: UINavigationController) -> Observable<Void> {
-    let coordinator = MainModuleCoordinator()
+    let coordinator = MainModuleCoordinator(controller: controller)
     return coordinate(to: coordinator)
   }
 }

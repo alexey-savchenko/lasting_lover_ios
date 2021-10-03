@@ -30,6 +30,9 @@ internal enum Asset {
     internal static let redError = ColorAsset(name: "red_error")
     internal static let redPaleError = ColorAsset(name: "red_pale_error")
     internal static let secondaryBtn = ColorAsset(name: "secondary_btn")
+    internal static let tabBarBackground = ColorAsset(name: "tabBarBackground")
+    internal static let tabColor0 = ColorAsset(name: "tabColor0")
+    internal static let tabColor1 = ColorAsset(name: "tabColor1")
     internal static let text = ColorAsset(name: "text")
     internal static let white = ColorAsset(name: "white")
   }

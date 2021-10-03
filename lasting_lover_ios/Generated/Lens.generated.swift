@@ -5,27 +5,19 @@ import RxUNILib
 
 extension AppState {
   enum lens {
-    static let profileState = Lens<AppState, SettingsState>(
-      get: { $0.profileState },
+    static let settingsState = Lens<AppState, SettingsState>(
+      get: { $0.settingsState },
       set: { part in 
         { whole in
-          AppState.init(profileState: part, loginState: whole.loginState, logoutTrigger: whole.logoutTrigger)
+          AppState.init(settingsState: part, mainModuleState: whole.mainModuleState)
         }
       }
     )
-    static let loginState = Lens<AppState, LoginState>(
-      get: { $0.loginState },
+    static let mainModuleState = Lens<AppState, MainModuleState>(
+      get: { $0.mainModuleState },
       set: { part in 
         { whole in
-          AppState.init(profileState: whole.profileState, loginState: part, logoutTrigger: whole.logoutTrigger)
-        }
-      }
-    )
-    static let logoutTrigger = Lens<AppState, Trigger>(
-      get: { $0.logoutTrigger },
-      set: { part in 
-        { whole in
-          AppState.init(profileState: whole.profileState, loginState: whole.loginState, logoutTrigger: part)
+          AppState.init(settingsState: whole.settingsState, mainModuleState: part)
         }
       }
     )
@@ -67,8 +59,16 @@ extension Auth.State {
     )
   }
 }
-extension LoginState {
+extension MainModuleState {
   enum lens {
+    static let selectedTabIndex = Lens<MainModuleState, Int>(
+      get: { $0.selectedTabIndex },
+      set: { part in 
+        { whole in
+          MainModuleState.init(selectedTabIndex: part)
+        }
+      }
+    )
   }
 }
 extension SettingsState {
