@@ -84,6 +84,7 @@
 		221E22BE270C5969003F324B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22BD270C5969003F324B /* SettingsViewController.swift */; };
 		221E22C0270C5A02003F324B /* SettingsControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22BF270C5A02003F324B /* SettingsControllerViewModel.swift */; };
 		221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22C2270C5AA0003F324B /* SettingsState.swift */; };
+		221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22C4270C5E16003F324B /* SettingsItem.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +160,7 @@
 		221E22BD270C5969003F324B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		221E22BF270C5A02003F324B /* SettingsControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControllerViewModel.swift; sourceTree = "<group>"; };
 		221E22C2270C5AA0003F324B /* SettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsState.swift; sourceTree = "<group>"; };
+		221E22C4270C5E16003F324B /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,8 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				221C52042705FA830085534E /* Fonts */,
-				0262BB562705074300847ED7 /* Assets.xcassets */,
 				221C51C52705C73B0085534E /* Localizable.strings */,
+				0262BB562705074300847ED7 /* Assets.xcassets */,
 				221C51FE2705ECBA0085534E /* Images.xcassets */,
 				221C52022705F5260085534E /* Colors.xcassets */,
 			);
@@ -502,7 +504,7 @@
 		221C526C270A55FD0085534E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				221E22C1270C5A97003F324B /* Redux */,
+				221E22C1270C5A97003F324B /* Models */,
 				221C5270270A56280085534E /* UI */,
 				221C526F270A561E0085534E /* ViewModels */,
 				221C526E270A56160085534E /* Controllers */,
@@ -542,12 +544,13 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		221E22C1270C5A97003F324B /* Redux */ = {
+		221E22C1270C5A97003F324B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				221E22C2270C5AA0003F324B /* SettingsState.swift */,
+				221E22C4270C5E16003F324B /* SettingsItem.swift */,
 			);
-			path = Redux;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3182A63912443A8ED7D95C4F /* Pods */ = {
@@ -754,6 +757,7 @@
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
 				221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */,
+				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
 				221C524F27086EA80085534E /* CongratulationsController.swift in Sources */,
 				221C5248270737A40085534E /* AuthControllerViewModel.swift in Sources */,
@@ -922,7 +926,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N35W696BYS;
+				DEVELOPMENT_TEAM = CNZ9UGBFKN;
 				INFOPLIST_FILE = lasting_lover_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -943,7 +947,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N35W696BYS;
+				DEVELOPMENT_TEAM = CNZ9UGBFKN;
 				INFOPLIST_FILE = lasting_lover_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

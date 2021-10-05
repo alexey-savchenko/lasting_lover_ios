@@ -20,6 +20,8 @@ internal enum L10n {
   internal static let mainTabDiscover = L10n.tr("Localizable", "main_tab_discover")
   /// Sleep
   internal static let mainTabSleep = L10n.tr("Localizable", "main_tab_sleep")
+  /// Settings
+  internal static let settings = L10n.tr("Localizable", "settings")
   /// Email Adress
   internal static let signInEmailTextfieldPlaceholder = L10n.tr("Localizable", "signIn_emailTextfield_placeholder")
   /// or sign up with social media
@@ -54,8 +56,6 @@ internal enum L10n {
   internal static let signUpSwitchModeButtonTitlePart2 = L10n.tr("Localizable", "signUp_switchModeButton_title_part2")
   /// Welcome!
   internal static let signUpTitleLabelText = L10n.tr("Localizable", "signUp_titleLabel_text")
-  /// testValue
-  internal static let testKey = L10n.tr("Localizable", "testKey")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
