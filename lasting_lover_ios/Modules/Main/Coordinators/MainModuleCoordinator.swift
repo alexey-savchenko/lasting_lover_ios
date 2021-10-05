@@ -23,7 +23,18 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
     let mainController = MainModuleViewController(viewModel: viewModel)
     navigationController.setViewControllers([mainController], animated: false)
     
+    viewModel.output.settingsButtonTap
+      .flatMap { _ in
+        self.presentSettingsModule(navigationController: self.navigationController)
+      }
+      .subscribe()
+      .disposed(by: disposeBag)
+    
     return .never()
   }
   
+  func presentSettingsModule(navigationController: UINavigationController) -> Observable<Void> {
+    let coordinator = SettingsModuleCoordinator(navigationController: navigationController)
+    return coordinate(to: coordinator)
+  }
 }

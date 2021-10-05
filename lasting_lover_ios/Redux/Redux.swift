@@ -34,11 +34,6 @@ enum AppAction {
   case mainModuleAction(action: MainModuleAction)
 }
 
-/// sourcery: lens
-struct SettingsState: Hashable, Codable {
-	let subscriptionActive: Bool
-}
-
 let appReducer = mainModuleReducer
   .lift(localStateLens: AppState.lens.mainModuleState, localActionPrism: AppAction.prism.mainModuleAction)
 

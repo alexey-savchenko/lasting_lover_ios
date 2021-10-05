@@ -48,16 +48,20 @@ class BackButtonNavbarView: NavbarViewBase {
   
   let backButton = UIButton()
   
-  override func setupUI() {
-    super.setupUI()
-    
-    addSubview(backButton)
+  fileprivate func setupBackButton() {
     backButton.setImage(Asset.Images.chevronLeft.image.tinted(Asset.Colors.white.color), for: .normal)
     backButton.snp.makeConstraints { make in
       make.leading.equalToSuperview().offset(24)
       make.centerY.equalToSuperview()
       make.size.equalTo(24)
     }
+  }
+  
+  override func setupUI() {
+    super.setupUI()
+    
+    addSubview(backButton)
+    setupBackButton()
     
     titleLabel.snp.remakeConstraints { make in
       make.center.equalToSuperview()

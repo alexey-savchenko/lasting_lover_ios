@@ -14,12 +14,15 @@ class MainControllerViewModel {
   
   struct Input {
     let selectedTabWithIndex: AnyObserver<Int>
+    let settingsButtonTap: AnyObserver<Void>
   }
   
   let selectedTabWithIndexSubject = PublishSubject<Int>()
+  let settingsButtonTapSubject = PublishSubject<Void>()
   
   struct Output {
     let selectedTabIndex: Observable<Int>
+    let settingsButtonTap: Observable<Void>
   }
   
   let input: Input
@@ -32,10 +35,12 @@ class MainControllerViewModel {
     dispatch: @escaping DispatchFunction<AppAction>
   ) {
     self.input = Input(
-      selectedTabWithIndex: selectedTabWithIndexSubject.asObserver()
+      selectedTabWithIndex: selectedTabWithIndexSubject.asObserver(),
+      settingsButtonTap: settingsButtonTapSubject.asObserver()
     )
     self.output = Output(
-      selectedTabIndex: state.map { $0.mainModuleState.selectedTabIndex }.distinctUntilChanged()
+      selectedTabIndex: state.map { $0.mainModuleState.selectedTabIndex }.distinctUntilChanged(),
+      settingsButtonTap: settingsButtonTapSubject.asObservable()
     )
     
     disposeBag

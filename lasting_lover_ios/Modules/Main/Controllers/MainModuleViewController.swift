@@ -37,6 +37,13 @@ class MainModuleViewController: UIViewController {
     )
   )
   
+  lazy var discoverViewController = DiscoverViewController(
+    viewModel: DiscoverControllerViewModel()
+  )
+  lazy var sleepViewController = SleepViewController(
+    viewModel: SleepControllerViewModel()
+  )
+  
   let viewModel: MainControllerViewModel
   
   private let disposeBag = DisposeBag()
@@ -70,6 +77,15 @@ class MainModuleViewController: UIViewController {
         make.height.equalTo(42)
       }
     }
+    
+    [discoverViewController, sleepViewController].forEach { c in
+      add(c)
+      c.view.snp.makeConstraints { make in
+        make.top.leading.trailing.equalToSuperview()
+        make.bottom.equalTo(toolbar.snp.top)
+      }
+    }
+    view.bringSubviewToFront(toolbar)
   }
   
   private func configure(with viewModel: MainControllerViewModel) {
@@ -78,10 +94,23 @@ class MainModuleViewController: UIViewController {
         self.toolbar.items.enumerated().forEach { idx, item in
           item.setSelected(idx == value)
         }
+        [
+          self.discoverViewController,
+          self.sleepViewController
+        ].enumerated().forEach { idx, item in
+          item.view.isHidden = idx != value
+        }
       })
       .disposed(by: disposeBag)
     self.toolbar.tapWithIndex
       .subscribe(viewModel.input.selectedTabWithIndex)
+      .disposed(by: disposeBag)
+    
+    discoverViewController.navbar.rightButton.rx.tap
+      .subscribe(viewModel.input.settingsButtonTap)
+      .disposed(by: disposeBag)
+    sleepViewController.navbar.rightButton.rx.tap
+      .subscribe(viewModel.input.settingsButtonTap)
       .disposed(by: disposeBag)
   }
 }
