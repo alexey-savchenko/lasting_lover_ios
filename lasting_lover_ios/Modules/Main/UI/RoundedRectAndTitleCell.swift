@@ -132,6 +132,18 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
     setupAccesoryLabel()
   }
   
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    
+    topLeftAccesoryLabel.backgroundColor = UIColor(
+      patternImage: horizontalGradientImage(
+        size: topLeftAccesoryLabel.bounds.size,
+        color0: Asset.Colors.tabColor0.color,
+        color1: Asset.Colors.tabColor1.color
+      )
+    )
+  }
+  
   override func prepareForReuse() {
     super.prepareForReuse()
     
