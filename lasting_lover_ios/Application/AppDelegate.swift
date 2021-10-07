@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	) -> Bool {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = _SnapshotController<TodayPopularView>()
+    window?.rootViewController = _SnapshotController<RoundedRectAndTitleSubtitleCell>()
     window?.makeKeyAndVisible()
 //    appCoordinator = AppCoordinator(window: window!)
 //    appCoordinator.start().subscribe().disposed(by: disposeBag)

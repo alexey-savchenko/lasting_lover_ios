@@ -9,16 +9,21 @@ import UIKit
 import UNILibCore
 import RxSwift
 
-protocol RoundedRectAndTitleSubtitleCellViewModel {
+protocol RoundedRectAndTitleSubtitleCellViewModelProtocol {
   var image: Observable<UIImage> { get }
   var title: String { get }
   var subtitle: String { get }
   var shouldDisplayPlayImage: Bool { get }
-  var shouldDisplayAccessoryView: Bool { get }
+  var accessoryViewMode: RoundedRectAndTitleSubtitleCell.AccessoryViewMode { get }
   var shouldDisplayCherryView: Bool { get }
 }
 
 class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
+  
+  enum AccessoryViewMode {
+    case hide
+    case show(title: String)
+  }
   
   let imageView = UIImageView()
   let titleLabel = UILabel()
@@ -28,7 +33,7 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
   let playImageView = UIImageView(image: Asset.Images.playInWhiteCircle.image)
   let topLeftAccesoryLabel = InsetLabel()
   
-  var viewModel: RoundedRectAndTitleSubtitleCellViewModel?
+  var viewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol?
   
   var disposeBag = DisposeBag()
   
@@ -42,7 +47,7 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func configure(with viewModel: RoundedRectAndTitleSubtitleCellViewModel) {
+  func configure(with viewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol) {
     self.viewModel = viewModel
     viewModel.image
       .map(Optional.init)
@@ -50,7 +55,14 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
       .disposed(by: disposeBag)
     titleLabel.text = viewModel.title
     subtitleLabel.text = viewModel.subtitle
-    topLeftAccesoryLabel.isHidden = !viewModel.shouldDisplayAccessoryView
+//    topLeftAccesoryLabel.isHidden = !viewModel.shouldDisplayAccessoryView
+    switch viewModel.accessoryViewMode {
+    case .hide:
+      topLeftAccesoryLabel.isHidden = true
+    case .show(let title):
+      topLeftAccesoryLabel.isHidden = false
+      topLeftAccesoryLabel.text = title
+    }
     playImageView.isHidden = !viewModel.shouldDisplayPlayImage
     cherryImageView.isHidden = !viewModel.shouldDisplayCherryView
   }
@@ -74,7 +86,7 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
     titleLabel.snp.makeConstraints { make in
       make.leading.equalToSuperview().offset(4)
       make.trailing.equalToSuperview().offset(-20)
-      make.top.equalTo(imageView.snp.bottom).offset(-8)
+      make.top.equalTo(imageView.snp.bottom).offset(8)
     }
   }
   
@@ -89,6 +101,7 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
   }
   
   fileprivate func setupCherryImageView() {
+    cherryImageView.image = cherryImageView.image?.tinted(Asset.Colors.button.color)
     cherryImageView.snp.makeConstraints { make in
       make.size.equalTo(18)
       make.trailing.equalToSuperview()
@@ -107,6 +120,7 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
     topLeftAccesoryLabel.layer.cornerRadius = 14
     topLeftAccesoryLabel.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
     topLeftAccesoryLabel.clipsToBounds = true
+    topLeftAccesoryLabel.font = FontFamily.Nunito.semiBold.font(size: 12)
     topLeftAccesoryLabel.snp.makeConstraints { make in
       make.leading.equalToSuperview()
       make.top.equalToSuperview()
@@ -148,5 +162,47 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
     super.prepareForReuse()
     
     disposeBag = DisposeBag()
+  }
+}
+
+extension RoundedRectAndTitleSubtitleCell: Snapshotable {
+  
+  func layoutIn(context: UIView) {
+    snp.makeConstraints { make in
+      make.center.equalToSuperview()
+      make.width.equalTo(156)
+      make.height.equalTo(220)
+    }
+  }
+  
+  static func make() -> Snapshotable {
+    
+    struct RoundedRectAndTitleSubtitleCellViewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol {
+      var accessoryViewMode: RoundedRectAndTitleSubtitleCell.AccessoryViewMode { .hide }
+      
+      var image: Observable<UIImage> {
+        return .just(Asset.Images.placeholder.image)
+      }
+      
+      var title: String {
+        return "'opiamfaogm;sdlkgfm;lsdkfg  "
+      }
+      
+      var subtitle: String {
+        return "'opiamfaogm;sdlkgfm;lsdkfg asdklfnlasdnfasnldfnasdfnlaskndf;lasnl;dfnaslkdfnl;kasndflkasndflnasdf;;nfa "
+      }
+      
+      var shouldDisplayPlayImage: Bool {
+        true
+      }
+      
+      var shouldDisplayCherryView: Bool { true }
+      
+      
+    }
+    
+    let v = RoundedRectAndTitleSubtitleCell()
+    v.configure(with: RoundedRectAndTitleSubtitleCellViewModel())
+    return v
   }
 }
