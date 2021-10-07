@@ -56,6 +56,8 @@ internal enum L10n {
   internal static let signUpSwitchModeButtonTitlePart2 = L10n.tr("Localizable", "signUp_switchModeButton_title_part2")
   /// Welcome!
   internal static let signUpTitleLabelText = L10n.tr("Localizable", "signUp_titleLabel_text")
+  /// Today popular?
+  internal static let todaysPopular = L10n.tr("Localizable", "Todays_popular")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
