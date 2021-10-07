@@ -91,6 +91,7 @@
 		221E22CE270DE985003F324B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22CD270DE985003F324B /* CategoryCell.swift */; };
 		221E22D0270DEB15003F324B /* TodayPopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22CF270DEB15003F324B /* TodayPopularView.swift */; };
 		221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22D7270F2FAA003F324B /* Snapshotable.swift */; };
+		221E22DA270F43CC003F324B /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22D9270F43CC003F324B /* PlayerController.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +174,7 @@
 		221E22CD270DE985003F324B /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		221E22CF270DEB15003F324B /* TodayPopularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPopularView.swift; sourceTree = "<group>"; };
 		221E22D7270F2FAA003F324B /* Snapshotable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshotable.swift; sourceTree = "<group>"; };
+		221E22D9270F43CC003F324B /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -602,6 +604,7 @@
 		221E22D3270F2F69003F324B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				221E22D9270F43CC003F324B /* PlayerController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
 				221E22C8270DCC8D003F324B /* CircleImageAndTitleCellCell.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
+				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,

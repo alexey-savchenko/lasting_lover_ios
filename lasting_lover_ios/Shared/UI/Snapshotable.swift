@@ -7,26 +7,49 @@
 
 import UIKit
 
-protocol Snapshotable: UIView {
+protocol Snapshotable {
   static func make() -> Snapshotable
-  func layoutIn(context: UIView)
+  func add(to context: UIViewController)
+  func layoutIn(_ view: UIView)
 }
 
-extension Snapshotable {
-  static func make() -> Snapshotable {
-    return Self()
+protocol SnapshotableView: Snapshotable, UIView {
+  
+}
+
+extension SnapshotableView {
+  func add(to context: UIViewController) {
+    context.view.addSubview(self)
   }
 }
 
-class _SnapshotController<T: Snapshotable>: UIViewController {
+protocol SnapshotableController: Snapshotable, UIViewController {
+  
+}
+
+extension SnapshotableController {
+  func add(to context: UIViewController) {
+    context.addChild(self)
+    context.view.addSubview(self.view)
+    self.didMove(toParent: context)
+  }
+  
+  func layoutIn(_ view: UIView) {
+    view.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+  }
+}
+
+class SnapshotController<Content: Snapshotable>: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
   
     view.backgroundColor = .darkGray
     
-    let targetView = T.make()
-    view.addSubview(targetView)
-    targetView.layoutIn(context: view)
+    let content = Content.make()
+    content.add(to: self)
+    content.layoutIn(view)
   }
 }

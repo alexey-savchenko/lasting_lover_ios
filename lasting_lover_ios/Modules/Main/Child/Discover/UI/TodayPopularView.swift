@@ -71,7 +71,7 @@ class ProgressBarView: UIView {
   }
 }
 
-extension ProgressBarView: Snapshotable {
+extension ProgressBarView: SnapshotableView {
   
   static func make() -> Snapshotable {
     let v = ProgressBarView()
@@ -80,7 +80,7 @@ extension ProgressBarView: Snapshotable {
     return v
   }
   
-  func layoutIn(context: UIView) {
+  func layoutIn(_ view: UIView) {
     snp.makeConstraints { make in
       make.centerY.equalToSuperview()
       make.leading.trailing.equalToSuperview().inset(16)
@@ -125,7 +125,7 @@ class TodayPopularView: UIView {
       make.top.equalTo(titleLabel.snp.bottom).offset(16)
       make.bottom.equalToSuperview().offset(-16)
     }
-//    progressBarStackView.alignment = .fill
+
     progressBarStackView.spacing = 8
     progressBarStackView.axis = .vertical
     [progressBar0, progressBar1].forEach { v in
@@ -147,7 +147,7 @@ class TodayPopularView: UIView {
   
 }
 
-extension TodayPopularView: Snapshotable {
+extension TodayPopularView: SnapshotableView {
   static func make() -> Snapshotable {
     let v = TodayPopularView()
     v.progressBar0.setProgress(value: 0.3)
@@ -157,11 +157,10 @@ extension TodayPopularView: Snapshotable {
     return v
   }
   
-  func layoutIn(context: UIView) {
+  func layoutIn(_ view: UIView) {
     snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
       make.centerY.equalToSuperview()
-//      make.height.equalTo(142)
     }
   }
 }
