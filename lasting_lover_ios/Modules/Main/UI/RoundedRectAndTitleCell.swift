@@ -14,11 +14,11 @@ protocol RoundedRectAndTitleSubtitleCellViewModelProtocol {
   var title: String { get }
   var subtitle: String { get }
   var shouldDisplayPlayImage: Bool { get }
-  var accessoryViewMode: RoundedRectAndTitleSubtitleCell.AccessoryViewMode { get }
+  var accessoryViewMode: CardCell.AccessoryViewMode { get }
   var shouldDisplayCherryView: Bool { get }
 }
 
-class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
+class CardCell: UICollectionViewCell {
   
   enum AccessoryViewMode {
     case hide
@@ -165,7 +165,7 @@ class RoundedRectAndTitleSubtitleCell: UICollectionViewCell {
   }
 }
 
-extension RoundedRectAndTitleSubtitleCell: Snapshotable {
+extension CardCell: Snapshotable {
   
   func layoutIn(context: UIView) {
     snp.makeConstraints { make in
@@ -178,7 +178,7 @@ extension RoundedRectAndTitleSubtitleCell: Snapshotable {
   static func make() -> Snapshotable {
     
     struct RoundedRectAndTitleSubtitleCellViewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol {
-      var accessoryViewMode: RoundedRectAndTitleSubtitleCell.AccessoryViewMode { .hide }
+      var accessoryViewMode: CardCell.AccessoryViewMode { .hide }
       
       var image: Observable<UIImage> {
         return .just(Asset.Images.placeholder.image)
@@ -201,7 +201,7 @@ extension RoundedRectAndTitleSubtitleCell: Snapshotable {
       
     }
     
-    let v = RoundedRectAndTitleSubtitleCell()
+    let v = CardCell()
     v.configure(with: RoundedRectAndTitleSubtitleCellViewModel())
     return v
   }
