@@ -8,12 +8,11 @@
 import UIKit
 
 class FullscreenLoadingView: UIView {
-  
   let activityIndicator = UIActivityIndicatorView(style: .medium)
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     backgroundColor = Asset.Colors.grayTransparent.color
     addSubview(activityIndicator)
     activityIndicator.snp.makeConstraints { make in
@@ -21,9 +20,8 @@ class FullscreenLoadingView: UIView {
     }
     activityIndicator.startAnimating()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
 }

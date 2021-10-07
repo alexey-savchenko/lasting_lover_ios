@@ -12,6 +12,4 @@ struct SettingsState: Hashable, Codable {
   let subscriptionActive: Bool
 }
 
-enum SettingsAction {
-  
-}
+enum SettingsAction {}

@@ -9,43 +9,42 @@ import RxSwift
 import UIKit
 
 class AuthViewController: ViewController<BackgroundFlareImageView> {
-  
   let endEditingTapGesture = UITapGestureRecognizer(target: nil, action: nil)
-  
+
   let navbarView = BackButtonNavbarView()
-  
+
   let titleLabelsStackView = UIStackView()
   let titleLabel = UILabel()
   let subtitleLabel = UILabel()
-  
+
   let textfieldsStackView = UIStackView()
   let mailTextfieldView = TextfieldView(placeholder: L10n.signInEmailTextfieldPlaceholder)
   let passwordTextfieldView = TextfieldView(placeholder: L10n.signInPassTextfieldPlaceholder)
-  
+
   let forgotPasswordButton = UIButton()
-  
+
   let submitButton = Button(style: .primary, title: "")
-  
+
   let hintLabel = UILabel()
-  
+
   let appleSignUpButton = UIButton()
-  
+
   let modeSwitchButton = UIButton()
-  
+
   let loadingView = FullscreenLoadingView()
-  
+
   private let disposeBag = DisposeBag()
   let viewModel: AuthControllerViewModel
-  
+
   init(viewModel: AuthControllerViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  
+
   fileprivate func setupNavbarView() {
     navbarView.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview()
@@ -53,7 +52,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       make.height.equalTo(44)
     }
   }
-  
+
   fileprivate func setupAppleSignInButton() {
     appleSignUpButton.snp.makeConstraints { make in
       make.size.equalTo(56)
@@ -67,7 +66,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
     appleSignUpButton.setBackgroundImage(UIImage(color: Asset.Colors.grayTransparent.color), for: .normal)
     appleSignUpButton.setImage(Asset.Images.appleIcon.image, for: .normal)
   }
-  
+
   fileprivate func setupHintLabel() {
     hintLabel.numberOfLines = 0
     hintLabel.snp.makeConstraints { make in
@@ -83,7 +82,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       ]
     )
   }
-  
+
   fileprivate func setupSubmitButton() {
     submitButton.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
@@ -91,14 +90,14 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       make.height.equalTo(56)
     }
   }
-  
+
   fileprivate func setupModeSwitchButton() {
     modeSwitchButton.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-28)
     }
   }
-  
+
   fileprivate func setupTextfieldsStackView() {
     textfieldsStackView.spacing = 24
     textfieldsStackView.axis = .vertical
@@ -115,7 +114,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
     }
     passwordTextfieldView.textfield.isSecureTextEntry = true
   }
-  
+
   fileprivate func setupTitleStackView() {
     titleLabelsStackView.spacing = 16
     titleLabelsStackView.axis = .vertical
@@ -128,7 +127,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       l.numberOfLines = 0
     }
   }
-  
+
   func setupTapGesture() {
     view.addGestureRecognizer(endEditingTapGesture)
     endEditingTapGesture.rx.event
@@ -137,13 +136,13 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       })
       .disposed(by: disposeBag)
   }
-  
+
   fileprivate func makeLoadingView() {
     loadingView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
   }
-  
+
   fileprivate func setupUI() {
     [
       navbarView,
@@ -157,7 +156,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       loadingView
     ]
     .forEach(view.addSubview)
-    
+
     setupNavbarView()
     setupModeSwitchButton()
     setupAppleSignInButton()
@@ -168,14 +167,14 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
     setupTapGesture()
     makeLoadingView()
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setupUI()
     configure(with: viewModel)
   }
-  
+
   func configure(with viewModel: AuthControllerViewModel) {
     viewModel.output.mode
       .subscribe(onNext: { [unowned self] mode in
@@ -195,7 +194,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       .subscribe(loadingView.rx.isHidden)
       .disposed(by: disposeBag)
   }
-  
+
   func switchModeButtonTitle(_ mode: AuthModuleLaunchMode) -> NSAttributedString {
     switch mode {
     case .signIn:
@@ -242,7 +241,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       return modeSwitchButtonTitle
     }
   }
-  
+
   func titleLabelText(_ mode: AuthModuleLaunchMode) -> NSAttributedString {
     switch mode {
     case .signIn:
@@ -265,7 +264,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       )
     }
   }
-  
+
   func subtitleLabelText(_ mode: AuthModuleLaunchMode) -> NSAttributedString {
     switch mode {
     case .signIn:
@@ -288,7 +287,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       )
     }
   }
-  
+
   func submitButtonTitle(_ mode: AuthModuleLaunchMode) -> String {
     switch mode {
     case .signIn:
@@ -297,7 +296,7 @@ class AuthViewController: ViewController<BackgroundFlareImageView> {
       return L10n.signUpSubmitButtonText
     }
   }
-  
+
   func render(_ mode: AuthModuleLaunchMode) {
     modeSwitchButton.setAttributedTitle(switchModeButtonTitle(mode), for: .normal)
     titleLabel.attributedText = titleLabelText(mode)

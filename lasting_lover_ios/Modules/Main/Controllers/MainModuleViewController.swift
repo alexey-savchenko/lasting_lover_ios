@@ -9,9 +9,8 @@ import UIKit
 import RxSwift
 
 class MainModuleViewController: UIViewController {
-  
   let toolbar = ToolBar()
-  
+
   let discoverItem = _ToolBarItem(
     image: Asset.Images.headphoneFill.image,
     text: L10n.mainTabDiscover,
@@ -36,36 +35,35 @@ class MainModuleViewController: UIViewController {
       Asset.Colors.white.color.withAlphaComponent(0.5)
     )
   )
-  
+
   lazy var discoverViewController = DiscoverViewController(
     viewModel: DiscoverControllerViewModel()
   )
   lazy var sleepViewController = SleepViewController(
     viewModel: SleepControllerViewModel()
   )
-  
+
   let viewModel: MainControllerViewModel
-  
+
   private let disposeBag = DisposeBag()
-  
+
   init(viewModel: MainControllerViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setupUI()
     configure(with: viewModel)
   }
-  
+
   private func setupUI() {
-    
     view.addSubview(toolbar)
     toolbar.snp.makeConstraints { make in
       make.leading.trailing.bottom.equalToSuperview()
@@ -77,7 +75,7 @@ class MainModuleViewController: UIViewController {
         make.height.equalTo(42)
       }
     }
-    
+
     [discoverViewController, sleepViewController].forEach { c in
       add(c)
       c.view.snp.makeConstraints { make in
@@ -87,7 +85,7 @@ class MainModuleViewController: UIViewController {
     }
     view.bringSubviewToFront(toolbar)
   }
-  
+
   private func configure(with viewModel: MainControllerViewModel) {
     viewModel.output.selectedTabIndex
       .subscribe(onNext: { value in
@@ -105,7 +103,7 @@ class MainModuleViewController: UIViewController {
     self.toolbar.tapWithIndex
       .subscribe(viewModel.input.selectedTabWithIndex)
       .disposed(by: disposeBag)
-    
+
     discoverViewController.navbar.rightButton.rx.tap
       .subscribe(viewModel.input.settingsButtonTap)
       .disposed(by: disposeBag)

@@ -13,9 +13,9 @@ typealias Trigger = IdentifiedBox<_Void>?
 
 /// sourcery: lens
 struct AppState: Hashable {
-	let settingsState: SettingsState
+  let settingsState: SettingsState
   let mainModuleState: MainModuleState
-  
+
   static func `default`() -> AppState {
     let isSubActive = Current.localStorageService().isSubsctiptionActive
     return AppState(

@@ -13,34 +13,34 @@ protocol DefaultsStoreServiceProtocol {
   func setObject<T: Codable>(_ value: T, forKey defaultName: String)
   func getObject<T: Codable>(forKey defaultName: String) -> T?
   func object(forKey defaultName: String) -> Any?
-  
+
   func set(_ value: Bool, forKey defaultName: String)
   func bool(forKey defaultName: String) -> Bool
-  
+
   func set(_ value: Int, forKey defaultName: String)
   func integer(forKey defaultName: String) -> Int
-  
+
   func string(forKey defaultName: String) -> String?
-  func dictionaryRepresentation() -> [String : Any]
-  
+  func dictionaryRepresentation() -> [String: Any]
+
   func observeReactive<E>(key defaultName: String) -> Observable<E?>
   func synchronize() -> Bool
 }
 
 extension UserDefaults: DefaultsStoreServiceProtocol {
-  func setObject<T>(_ value: T, forKey defaultName: String) where T : Decodable, T : Encodable {
-    let data = String(data: (try! JSONEncoder().encode(value)), encoding: .utf8)!
+  func setObject<T>(_ value: T, forKey defaultName: String) where T: Decodable, T: Encodable {
+    let data = String(data: try! JSONEncoder().encode(value), encoding: .utf8)!
     set(data, forKey: defaultName)
   }
-  
-  func getObject<T>(forKey defaultName: String) -> T? where T : Decodable, T : Encodable {
+
+  func getObject<T>(forKey defaultName: String) -> T? where T: Decodable, T: Encodable {
     string(forKey: defaultName)
       .flatMap { $0.data(using: .utf8) }
       .flatMap { data in
-        return try? JSONDecoder().decode(T.self, from: data)
+        try? JSONDecoder().decode(T.self, from: data)
       }
   }
-  
+
   func observeReactive<E>(key defaultName: String) -> Observable<E?> {
     return UserDefaults.standard.rx
       .observe(E.self, defaultName)

@@ -11,30 +11,29 @@ import UNILibCore
 import RxUNILib
 
 class AuthControllerViewModel {
-  
   struct Input {
     let submitTap: AnyObserver<Void>
     let email: AnyObserver<String>
     let password: AnyObserver<String>
     let modeSwitchTap: AnyObserver<Void>
   }
-  
+
   private let submitTapSubject = PublishSubject<Void>()
   private let emailSubject = PublishSubject<String>()
   private let passwordSubject = PublishSubject<String>()
   private let modeSwitchTapSubject = PublishSubject<Void>()
-  
+
   struct Output {
     let mode: Observable<AuthModuleLaunchMode>
     let submitEnabled: Observable<Bool>
     let isLoading: Observable<Bool>
   }
-  
+
   let input: Input
   let output: Output
-  
+
   private let disposeBag = DisposeBag()
-  
+
   init(
     state: Observable<Auth.State>,
     dispatch: @escaping DispatchFunction<Auth.Action>
@@ -50,7 +49,7 @@ class AuthControllerViewModel {
       submitEnabled: state.map { $0.email.isNotEmpty && $0.password.isNotEmpty }.distinctUntilChanged(),
       isLoading: state.map { $0.isLoading }.distinctUntilChanged()
     )
-    
+
     disposeBag
       .insert(
         submitTapSubject.subscribe(onNext: { dispatch(.submitEmailPass) }),

@@ -13,7 +13,7 @@ struct Environment {
 }
 
 #if DEBUG
-var Current = Environment()
+  var Current = Environment()
 #else
-let Current = Environment()
+  let Current = Environment()
 #endif

@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 class TextfieldView: UIView, UITextFieldDelegate {
-  
   enum State {
     case `default`
     case focused
@@ -21,19 +20,19 @@ class TextfieldView: UIView, UITextFieldDelegate {
   var state = State.default
   let placeholder: String
   let isEditing = BehaviorSubject<Bool>(value: false)
-  
+
   let disposeBag = DisposeBag()
-  
+
   init(placeholder: String) {
     self.placeholder = placeholder
     super.init(frame: .zero)
-    
+
     setupUI()
-    
+
     textfield.delegate = self
-    
+
     let text = textfield.rx.text.filterNil()
-    
+
     Observable
       .combineLatest(isEditing, text)
       .subscribe(onNext: { [weak self] editing, _ in
@@ -48,11 +47,11 @@ class TextfieldView: UIView, UITextFieldDelegate {
       })
       .disposed(by: disposeBag)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   fileprivate func setupTextfield() {
     textfield.font = FontFamily.Nunito.regular.font(size: 15)
     textfield.textColor = Asset.Colors.text.color
@@ -63,27 +62,27 @@ class TextfieldView: UIView, UITextFieldDelegate {
       make.height.equalTo(28)
     }
   }
-  
+
   func textFieldDidBeginEditing(_ textField: UITextField) {
     isEditing.onNext(true)
   }
-  
+
   func textFieldDidEndEditing(_ textField: UITextField) {
     isEditing.onNext(false)
   }
-  
+
   func setupUI() {
     defer {
       render(.default)
     }
-    
+
     clipsToBounds = true
     layer.cornerRadius = 14
     layer.borderWidth = 1
-    
+
     setupTextfield()
   }
- 
+
   func render(_ state: State) {
     self.state = state
     if !textfield.text!.isEmpty {

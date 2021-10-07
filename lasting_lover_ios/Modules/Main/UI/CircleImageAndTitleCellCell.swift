@@ -14,24 +14,23 @@ protocol CircleImageAndTitleCellCellViewModel {
 }
 
 class CircleImageAndTitleCellCell: UICollectionViewCell {
-    
   let imageView = UIImageView()
   let titleLabel = UILabel()
-  
+
   var viewModel: CircleImageAndTitleCellCellViewModel?
-  
+
   private var disposeBag = DisposeBag()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     setupUI()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   func configure(with viewModel: CircleImageAndTitleCellCellViewModel) {
     self.viewModel = viewModel
     viewModel.image
@@ -40,7 +39,7 @@ class CircleImageAndTitleCellCell: UICollectionViewCell {
       .disposed(by: disposeBag)
     titleLabel.text = viewModel.title
   }
-  
+
   fileprivate func setupImageView() {
     imageView.snp.makeConstraints { make in
       make.size.equalTo(72)
@@ -51,7 +50,7 @@ class CircleImageAndTitleCellCell: UICollectionViewCell {
     imageView.clipsToBounds = true
     imageView.layer.cornerRadius = 36
   }
-  
+
   fileprivate func setupTitleLabel() {
     titleLabel.textColor = Asset.Colors.white.color
     titleLabel.font = FontFamily.Nunito.semiBold.font(size: 17)
@@ -60,16 +59,16 @@ class CircleImageAndTitleCellCell: UICollectionViewCell {
       make.top.equalTo(imageView.snp.bottom).offset(-8)
     }
   }
-  
+
   private func setupUI() {
     [imageView, titleLabel].forEach(contentView.addSubview)
     setupImageView()
     setupTitleLabel()
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
-    
+
     disposeBag = DisposeBag()
   }
 }

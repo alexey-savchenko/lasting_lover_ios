@@ -21,13 +21,13 @@ struct LocalStorageService: LocalStorageServiceProtocol {
       Current.defaultsStoreService().setObject(newValue, forKey: #function)
     }
   }
+
   var isSubsctiptionActive: Bool {
     get {
-      return Current.defaultsStoreService().bool(forKey: #function) 
+      return Current.defaultsStoreService().bool(forKey: #function)
     }
     set {
       Current.defaultsStoreService().setObject(newValue, forKey: #function)
     }
   }
-
 }

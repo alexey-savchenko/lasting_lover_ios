@@ -1,19 +1,22 @@
 //
-//  SettingsControllerViewModel.swift
+//  PlayerControllerViewModel.swift
 //  lasting_lover_ios
 //
-//  Created by Alexey Savchenko on 05.10.2021.
+//  Created by Alexey Savchenko on 07.10.2021.
 //
 
+import Foundation
 import RxSwift
 
-class SettingsControllerViewModel {
+class PlayerControllerViewModel {
   struct Input {}
 
   struct Output {}
 
   let input: Input
   let output: Output
+
+  private let disposeBag = DisposeBag()
 
   init() {
     self.input = Input()

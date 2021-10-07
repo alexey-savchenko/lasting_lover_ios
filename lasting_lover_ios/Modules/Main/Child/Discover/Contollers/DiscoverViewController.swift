@@ -8,28 +8,27 @@
 import UIKit
 
 class DiscoverViewController: ViewController<BackgroundImageView> {
-
   let viewModel: DiscoverControllerViewModel
-  
+
   let topArtworkImageView = UIImageView(image: Asset.Images.lips.image)
   let navbar = NavbarViewBase()
-  
+
   init(viewModel: DiscoverControllerViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-   
+
     setupUI()
     configure(with: viewModel)
   }
-  
+
   fileprivate func setupTopArtwork() {
     topArtworkImageView.contentMode = .scaleAspectFit
     topArtworkImageView.snp.makeConstraints { make in
@@ -37,7 +36,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
       make.trailing.equalToSuperview().offset(40)
     }
   }
-  
+
   fileprivate func setupNavbar() {
     navbar.setTitle(
       NSAttributedString(
@@ -55,16 +54,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
       make.height.equalTo(44)
     }
   }
-  
+
   func setupUI() {
     [topArtworkImageView, navbar]
       .forEach(view.addSubview)
-    
+
     setupTopArtwork()
     setupNavbar()
   }
-  
-  func configure(with viewModel: DiscoverControllerViewModel) {
-    
-  }
+
+  func configure(with viewModel: DiscoverControllerViewModel) {}
 }

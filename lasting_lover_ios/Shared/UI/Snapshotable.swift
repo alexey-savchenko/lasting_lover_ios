@@ -25,7 +25,7 @@ extension Snapshotable where Self: UIViewController {
     context.view.addSubview(self.view)
     self.didMove(toParent: context)
   }
-  
+
   func layoutIn(_ view: UIView) {
     view.snp.makeConstraints { make in
       make.edges.equalToSuperview()
@@ -34,12 +34,11 @@ extension Snapshotable where Self: UIViewController {
 }
 
 class SnapshotController<Content: Snapshotable>: UIViewController {
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-  
+
     view.backgroundColor = .darkGray
-    
+
     let content = Content.make()
     content.add(to: self)
     content.layoutIn(view)

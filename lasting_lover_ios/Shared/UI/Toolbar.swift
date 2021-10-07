@@ -47,10 +47,10 @@ class ToolBar: UIView {
 
     configureBindings()
   }
-  
+
   override func layoutSubviews() {
     super.layoutSubviews()
-    
+
     items.forEach { $0.setNeedsDisplay() }
   }
 }
@@ -76,8 +76,6 @@ private extension ToolBar {
       make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
     }
   }
-  
-
 
   func configureBindings() {
     Observable

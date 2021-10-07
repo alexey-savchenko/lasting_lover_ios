@@ -8,27 +8,26 @@
 import UIKit
 
 class SleepViewController: ViewController<BackgroundImageView> {
-
   let viewModel: SleepControllerViewModel
-  
+
   let navbar = NavbarViewBase()
-  
+
   init(viewModel: SleepControllerViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setupUI()
     configure(with: viewModel)
   }
-  
+
   fileprivate func setupNavbar() {
     navbar.setTitle(
       NSAttributedString(
@@ -46,15 +45,13 @@ class SleepViewController: ViewController<BackgroundImageView> {
       make.height.equalTo(44)
     }
   }
-  
+
   func setupUI() {
     [navbar]
       .forEach(view.addSubview)
-    
+
     setupNavbar()
   }
-  
-  func configure(with viewModel: SleepControllerViewModel) {
-    
-  }
+
+  func configure(with viewModel: SleepControllerViewModel) {}
 }

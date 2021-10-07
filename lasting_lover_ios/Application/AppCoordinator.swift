@@ -16,23 +16,21 @@ let appStore = RxStore<AppState, AppAction>(
 )
 
 class AppCoordinator: RxBaseCoordinator<Never> {
-  
   let window: UIWindow
   let navigationController = UINavigationController(rootViewController: SplashViewController())
-  
+
   init(window: UIWindow) {
     self.window = window
   }
-  
+
   override func start() -> Observable<Never> {
-    
     window.rootViewController = navigationController
     navigationController.navigationBar.isHidden = true
 //      .setNavigationBarHidden(true, animated: false)
 //    navigationController.interactivePopGestureRecognizer?.isEnabled = true
 //    navigationController.rx.willShow
     window.makeKeyAndVisible()
-    
+
     presentMainModule(controller: navigationController)
       .subscribe()
       .disposed(by: disposeBag)
@@ -46,15 +44,15 @@ class AppCoordinator: RxBaseCoordinator<Never> {
 //    } else {
 //
 //    }
-  
+
     return .never()
   }
-  
+
   func presentAuthModule(controller: UINavigationController) -> Observable<Void> {
     let coordinator = AuthModuleCoordinator(navigationController: controller)
     return coordinate(to: coordinator)
   }
-  
+
   func presentMainModule(controller: UINavigationController) -> Observable<Void> {
     let coordinator = MainModuleCoordinator(controller: controller)
     return coordinate(to: coordinator)

@@ -9,20 +9,19 @@ import UIKit
 import UNILibCore
 
 class ProgressBarView: UIView {
-  
   let titleLabel = UILabel()
   let progressImageView = UIImageView()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     setupUI()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   fileprivate func setupTitleLabel() {
     titleLabel.textColor = Asset.Colors.white.color
     titleLabel.font = FontFamily.Nunito.regular.font(size: 15)
@@ -31,7 +30,7 @@ class ProgressBarView: UIView {
       make.centerY.equalToSuperview()
     }
   }
-  
+
   fileprivate func setupProgressImageView() {
     progressImageView.clipsToBounds = true
     progressImageView.layer.cornerRadius = 14
@@ -40,7 +39,7 @@ class ProgressBarView: UIView {
       make.width.equalToSuperview().multipliedBy(0)
     }
   }
-  
+
   func setupUI() {
     [progressImageView, titleLabel].forEach(addSubview)
     clipsToBounds = true
@@ -48,7 +47,7 @@ class ProgressBarView: UIView {
     setupProgressImageView()
     setupTitleLabel()
   }
-  
+
   func setProgress(value: Double) {
     progressImageView.snp.remakeConstraints { make in
       make.bottom.leading.top.equalToSuperview()
@@ -56,11 +55,10 @@ class ProgressBarView: UIView {
     }
     setNeedsLayout()
   }
-  
+
   override func layoutSubviews() {
     super.layoutSubviews()
-    
-    
+
     progressImageView.layer.cornerRadius = bounds.height / 2
     layer.cornerRadius = bounds.height / 2
     progressImageView.image = horizontalGradientImage(
@@ -72,14 +70,13 @@ class ProgressBarView: UIView {
 }
 
 extension ProgressBarView: Snapshotable {
-  
   static func make() -> Snapshotable {
     let v = ProgressBarView()
     v.setProgress(value: 0.5)
     v.titleLabel.text = "TEST"
     return v
   }
-  
+
   func layoutIn(_ view: UIView) {
     snp.makeConstraints { make in
       make.centerY.equalToSuperview()
@@ -90,23 +87,22 @@ extension ProgressBarView: Snapshotable {
 }
 
 class TodayPopularView: UIView {
-  
   let titleLabel = UILabel()
-  
+
   let progressBarStackView = UIStackView()
   let progressBar0 = ProgressBarView()
   let progressBar1 = ProgressBarView()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     setupUI()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   fileprivate func setupTitleLabel() {
     titleLabel.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
@@ -114,11 +110,13 @@ class TodayPopularView: UIView {
     }
     titleLabel.attributedText = NSAttributedString(
       string: L10n.todaysPopular,
-      attributes: [.foregroundColor: Asset.Colors.white.color,
-                   .font: FontFamily.Nunito.semiBold.font(size: 17)]
+      attributes: [
+        .foregroundColor: Asset.Colors.white.color,
+        .font: FontFamily.Nunito.semiBold.font(size: 17)
+      ]
     )
   }
-  
+
   fileprivate func setupProgressBarStackView() {
     progressBarStackView.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)
@@ -135,7 +133,7 @@ class TodayPopularView: UIView {
       }
     }
   }
-  
+
   func setupUI() {
     backgroundColor = Asset.Colors.tabBarBackground.color
     layer.cornerRadius = 14
@@ -144,7 +142,6 @@ class TodayPopularView: UIView {
     setupTitleLabel()
     setupProgressBarStackView()
   }
-  
 }
 
 extension TodayPopularView: Snapshotable {
@@ -156,7 +153,7 @@ extension TodayPopularView: Snapshotable {
     v.progressBar1.titleLabel.text = "Mike"
     return v
   }
-  
+
   func layoutIn(_ view: UIView) {
     snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(16)

@@ -9,33 +9,32 @@ import UIKit
 import RxSwift
 
 class Button: UIButton {
-  
   enum Style {
     case primary
     case secondary
   }
-  
+
   enum State {
     case `default`
     case pressed
   }
-  
+
   let style: Style
   var title: String {
     didSet {
       renderState(_state)
     }
   }
-  
+
   var _state = State.default
   private let disposeBag = DisposeBag()
-  
+
   init(style: Style, title: String) {
     self.style = style
     self.title = title
-    
+
     super.init(frame: .zero)
-    
+
     Observable
       .merge(
         rx
@@ -51,12 +50,12 @@ class Button: UIButton {
         }
       })
       .disposed(by: disposeBag)
-    
+
     clipsToBounds = true
     layer.borderColor = Asset.Colors.white.color.cgColor
     renderState(.default)
   }
-  
+
   func renderState(_ state: State) {
     self._state = state
     switch state {
@@ -78,7 +77,7 @@ class Button: UIButton {
       )
     }
   }
-  
+
   func renderStyle(_ style: Style) {
     switch style {
     case .primary:
@@ -107,14 +106,14 @@ class Button: UIButton {
       )
     }
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func layoutSubviews() {
     super.layoutSubviews()
-    
+
     layer.cornerRadius = bounds.height / 2
   }
 }

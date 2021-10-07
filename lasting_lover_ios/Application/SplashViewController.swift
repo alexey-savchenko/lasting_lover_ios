@@ -9,12 +9,11 @@ import UIKit
 import SnapKit
 
 class SplashViewController: UIViewController {
-  
   let titleLabel = UILabel()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     view.backgroundColor = .white
     view.addSubview(titleLabel)
     titleLabel.textColor = .black

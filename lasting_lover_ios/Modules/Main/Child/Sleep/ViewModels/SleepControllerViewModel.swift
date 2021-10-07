@@ -6,7 +6,5 @@
 //
 
 import Foundation
-  
-class SleepControllerViewModel {
-  
-}
+
+class SleepControllerViewModel {}

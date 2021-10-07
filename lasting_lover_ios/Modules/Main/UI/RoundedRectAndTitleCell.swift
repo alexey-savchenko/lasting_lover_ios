@@ -19,34 +19,33 @@ protocol RoundedRectAndTitleSubtitleCellViewModelProtocol {
 }
 
 class CardCell: UICollectionViewCell {
-  
   enum AccessoryViewMode {
     case hide
     case show(title: String)
   }
-  
+
   let imageView = UIImageView()
   let titleLabel = UILabel()
   let subtitleLabel = UILabel()
-  
+
   let cherryImageView = UIImageView(image: Asset.Images.cherries.image)
   let playImageView = UIImageView(image: Asset.Images.playInWhiteCircle.image)
   let topLeftAccesoryLabel = InsetLabel()
-  
+
   var viewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol?
-  
+
   var disposeBag = DisposeBag()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     setupUI()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   func configure(with viewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol) {
     self.viewModel = viewModel
     viewModel.image
@@ -66,7 +65,7 @@ class CardCell: UICollectionViewCell {
     playImageView.isHidden = !viewModel.shouldDisplayPlayImage
     cherryImageView.isHidden = !viewModel.shouldDisplayCherryView
   }
-  
+
   fileprivate func setupImageView() {
     imageView.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview()
@@ -79,7 +78,7 @@ class CardCell: UICollectionViewCell {
     imageView.layer.borderWidth = 1
     imageView.layer.borderColor = Asset.Colors.white.color.withAlphaComponent(0.5).cgColor
   }
-  
+
   fileprivate func setupTitleLabel() {
     titleLabel.textColor = Asset.Colors.white.color
     titleLabel.font = FontFamily.Nunito.semiBold.font(size: 17)
@@ -89,7 +88,7 @@ class CardCell: UICollectionViewCell {
       make.top.equalTo(imageView.snp.bottom).offset(8)
     }
   }
-  
+
   fileprivate func setupSubtitleLabel() {
     subtitleLabel.textColor = Asset.Colors.white.color.withAlphaComponent(0.8)
     subtitleLabel.font = FontFamily.Nunito.regular.font(size: 15)
@@ -99,7 +98,7 @@ class CardCell: UICollectionViewCell {
       make.top.equalTo(titleLabel.snp.bottom).offset(8)
     }
   }
-  
+
   fileprivate func setupCherryImageView() {
     cherryImageView.image = cherryImageView.image?.tinted(Asset.Colors.button.color)
     cherryImageView.snp.makeConstraints { make in
@@ -108,14 +107,14 @@ class CardCell: UICollectionViewCell {
       make.bottom.equalTo(titleLabel)
     }
   }
-  
+
   fileprivate func setupPlayImageView() {
     playImageView.snp.makeConstraints { make in
       make.center.equalTo(imageView)
       make.size.equalTo(40)
     }
   }
-  
+
   fileprivate func setupAccesoryLabel() {
     topLeftAccesoryLabel.layer.cornerRadius = 14
     topLeftAccesoryLabel.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
@@ -127,7 +126,7 @@ class CardCell: UICollectionViewCell {
       make.height.equalTo(22)
     }
   }
-  
+
   private func setupUI() {
     [
       imageView,
@@ -137,7 +136,7 @@ class CardCell: UICollectionViewCell {
       playImageView,
       topLeftAccesoryLabel
     ].forEach(contentView.addSubview)
-    
+
     setupImageView()
     setupTitleLabel()
     setupSubtitleLabel()
@@ -145,10 +144,10 @@ class CardCell: UICollectionViewCell {
     setupPlayImageView()
     setupAccesoryLabel()
   }
-  
+
   override func layoutSubviews() {
     super.layoutSubviews()
-    
+
     topLeftAccesoryLabel.backgroundColor = UIColor(
       patternImage: horizontalGradientImage(
         size: topLeftAccesoryLabel.bounds.size,
@@ -157,16 +156,15 @@ class CardCell: UICollectionViewCell {
       )
     )
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
-    
+
     disposeBag = DisposeBag()
   }
 }
 
 extension CardCell: Snapshotable {
-  
   func layoutIn(_ view: UIView) {
     snp.makeConstraints { make in
       make.center.equalToSuperview()
@@ -174,33 +172,30 @@ extension CardCell: Snapshotable {
       make.height.equalTo(220)
     }
   }
-  
+
   static func make() -> Snapshotable {
-    
     struct RoundedRectAndTitleSubtitleCellViewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol {
       var accessoryViewMode: CardCell.AccessoryViewMode { .hide }
-      
+
       var image: Observable<UIImage> {
         return .just(Asset.Images.placeholder.image)
       }
-      
+
       var title: String {
         return "'opiamfaogm;sdlkgfm;lsdkfg  "
       }
-      
+
       var subtitle: String {
         return "'opiamfaogm;sdlkgfm;lsdkfg asdklfnlasdnfasnldfnasdfnlaskndf;lasnl;dfnaslkdfnl;kasndflkasndflnasdf;;nfa "
       }
-      
+
       var shouldDisplayPlayImage: Bool {
         true
       }
-      
+
       var shouldDisplayCherryView: Bool { true }
-      
-      
     }
-    
+
     let v = CardCell()
     v.configure(with: RoundedRectAndTitleSubtitleCellViewModel())
     return v

@@ -10,14 +10,13 @@ import UNILibCore
 import RxUNILib
 
 enum Auth {
-  
   /// sourcery: lens
   struct State: Hashable {
     let mode: AuthModuleLaunchMode
     let email: String
     let password: String
     let isLoading: Bool
-    
+
     static func `default`(mode: AuthModuleLaunchMode) -> Auth.State {
       return Auth.State(mode: mode, email: "", password: "", isLoading: false)
     }
@@ -29,7 +28,7 @@ enum Auth {
     case setEmail(value: String)
     case setPassword(value: String)
   }
-  
+
   static let reducer = Reducer<Auth.State, Auth.Action> { state, action in
     switch action {
     case .setMode(let value):
@@ -42,7 +41,7 @@ enum Auth {
       return state
     }
   }
-  
+
   static let middleware: Middleware<Auth.State, Auth.Action> = { dispatch, getState in
     { next in
       { action in
@@ -51,4 +50,3 @@ enum Auth {
     }
   }
 }
-
