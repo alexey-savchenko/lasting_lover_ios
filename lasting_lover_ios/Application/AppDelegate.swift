@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	) -> Bool {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = _SnapshotController<CardCell>()
-    window?.makeKeyAndVisible()
-//    appCoordinator = AppCoordinator(window: window!)
-//    appCoordinator.start().subscribe().disposed(by: disposeBag)
+//    window?.rootViewController = _SnapshotController<CardCell>()
+//    window?.makeKeyAndVisible()
+    appCoordinator = AppCoordinator(window: window!)
+    appCoordinator.start().subscribe().disposed(by: disposeBag)
     
 		return true
 	}

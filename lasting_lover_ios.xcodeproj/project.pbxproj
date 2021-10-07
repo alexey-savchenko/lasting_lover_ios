@@ -90,6 +90,7 @@
 		221E22CC270DE585003F324B /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22CB270DE585003F324B /* InsetLabel.swift */; };
 		221E22CE270DE985003F324B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22CD270DE985003F324B /* CategoryCell.swift */; };
 		221E22D0270DEB15003F324B /* TodayPopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22CF270DEB15003F324B /* TodayPopularView.swift */; };
+		221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22D7270F2FAA003F324B /* Snapshotable.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +172,7 @@
 		221E22CB270DE585003F324B /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		221E22CD270DE985003F324B /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		221E22CF270DEB15003F324B /* TodayPopularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPopularView.swift; sourceTree = "<group>"; };
+		221E22D7270F2FAA003F324B /* Snapshotable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshotable.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,6 +272,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				221E22D1270F2F50003F324B /* Player */,
 				221C526C270A55FD0085534E /* Settings */,
 				221C51F42705E38B0085534E /* Main */,
 				221C51C72705C7A00085534E /* SignIn */,
@@ -394,6 +397,7 @@
 				221C524427072C2F0085534E /* Button.swift */,
 				221C524C270750E60085534E /* FullscreenLoadingView.swift */,
 				221E22CB270DE585003F324B /* InsetLabel.swift */,
+				221E22D7270F2FAA003F324B /* Snapshotable.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -572,6 +576,53 @@
 				221E22C7270DCC8D003F324B /* CircleImageAndTitleCellCell.swift */,
 				221E22C9270DCFB0003F324B /* RoundedRectAndTitleCell.swift */,
 				221E22CD270DE985003F324B /* CategoryCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		221E22D1270F2F50003F324B /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				221E22D6270F2F7F003F324B /* UI */,
+				221E22D5270F2F79003F324B /* Models */,
+				221E22D4270F2F71003F324B /* ViewModels */,
+				221E22D3270F2F69003F324B /* Controllers */,
+				221E22D2270F2F58003F324B /* Coordinators */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		221E22D2270F2F58003F324B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		221E22D3270F2F69003F324B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		221E22D4270F2F71003F324B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		221E22D5270F2F79003F324B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		221E22D6270F2F7F003F324B /* UI */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -764,6 +815,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
+				221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */,
 				221C51E42705DB890085534E /* Lens.generated.swift in Sources */,
 				221C5272270A59F90085534E /* SleepControllerViewModel.swift in Sources */,
 				221C524527072C2F0085534E /* Button.swift in Sources */,
