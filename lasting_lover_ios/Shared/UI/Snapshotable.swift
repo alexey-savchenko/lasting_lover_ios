@@ -13,21 +13,13 @@ protocol Snapshotable {
   func layoutIn(_ view: UIView)
 }
 
-protocol SnapshotableView: Snapshotable, UIView {
-  
-}
-
-extension SnapshotableView {
+extension Snapshotable where Self: UIView {
   func add(to context: UIViewController) {
     context.view.addSubview(self)
   }
 }
 
-protocol SnapshotableController: Snapshotable, UIViewController {
-  
-}
-
-extension SnapshotableController {
+extension Snapshotable where Self: UIViewController {
   func add(to context: UIViewController) {
     context.addChild(self)
     context.view.addSubview(self.view)

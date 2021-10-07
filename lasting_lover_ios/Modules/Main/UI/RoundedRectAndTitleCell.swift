@@ -165,7 +165,7 @@ class CardCell: UICollectionViewCell {
   }
 }
 
-extension CardCell: SnapshotableView {
+extension CardCell: Snapshotable {
   
   func layoutIn(_ view: UIView) {
     snp.makeConstraints { make in

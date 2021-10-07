@@ -71,7 +71,7 @@ class ProgressBarView: UIView {
   }
 }
 
-extension ProgressBarView: SnapshotableView {
+extension ProgressBarView: Snapshotable {
   
   static func make() -> Snapshotable {
     let v = ProgressBarView()
@@ -147,7 +147,7 @@ class TodayPopularView: UIView {
   
 }
 
-extension TodayPopularView: SnapshotableView {
+extension TodayPopularView: Snapshotable {
   static func make() -> Snapshotable {
     let v = TodayPopularView()
     v.progressBar0.setProgress(value: 0.3)
