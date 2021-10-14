@@ -12,6 +12,11 @@
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
 		0262BB6B2705084C00847ED7 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB6A2705084C00847ED7 /* Redux.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
+		2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */; };
+		2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7C27185D61002C405C /* PlayerItem.swift */; };
+		2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7E27185DDF002C405C /* PlayerModuleCoordinator.swift */; };
+		2218AD8127187096002C405C /* PlayerModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD8027187096002C405C /* PlayerModuleState.swift */; };
+		2218AD8327187207002C405C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2218AD8227187207002C405C /* placeholder.png */; };
 		221C51C32705C73B0085534E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 221C51C52705C73B0085534E /* Localizable.strings */; };
 		221C51CA2705C8A30085534E /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51C92705C8A30085534E /* RxDataSources */; };
 		221C51CC2705C8A30085534E /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51CB2705C8A30085534E /* Differentiator */; };
@@ -104,6 +109,11 @@
 		0262BB5B2705074300847ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0262BB6A2705084C00847ED7 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasting_lover_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModuleCoordinator.swift; sourceTree = "<group>"; };
+		2218AD7C27185D61002C405C /* PlayerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerItem.swift; sourceTree = "<group>"; };
+		2218AD7E27185DDF002C405C /* PlayerModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleCoordinator.swift; sourceTree = "<group>"; };
+		2218AD8027187096002C405C /* PlayerModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleState.swift; sourceTree = "<group>"; };
+		2218AD8227187207002C405C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		221C51C42705C73B0085534E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		221C51DF2705DB890085534E /* Prism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prism.generated.swift; sourceTree = "<group>"; };
 		221C51E02705DB890085534E /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
@@ -261,9 +271,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2218AD7827185CE2002C405C /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				2218AD7B27185D23002C405C /* Coordinators */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		2218AD7B27185D23002C405C /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		221C51C02705C7240085534E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD8227187207002C405C /* placeholder.png */,
 				221C52042705FA830085534E /* Fonts */,
 				221C51C52705C73B0085534E /* Localizable.strings */,
 				0262BB562705074300847ED7 /* Assets.xcassets */,
@@ -276,6 +303,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD7827185CE2002C405C /* Purchase */,
 				221E22D1270F2F50003F324B /* Player */,
 				221C526C270A55FD0085534E /* Settings */,
 				221C51F42705E38B0085534E /* Main */,
@@ -599,6 +627,7 @@
 		221E22D2270F2F58003F324B /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD7E27185DDF002C405C /* PlayerModuleCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -622,6 +651,8 @@
 		221E22D5270F2F79003F324B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD7C27185D61002C405C /* PlayerItem.swift */,
+				2218AD8027187096002C405C /* PlayerModuleState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -725,6 +756,7 @@
 				221C52152705FA900085534E /* PlayfairDisplay-BlackItalic.ttf in Resources */,
 				221C522B2705FA9A0085534E /* Nunito-Light.ttf in Resources */,
 				221C52362705FA9A0085534E /* Nunito-SemiBold.ttf in Resources */,
+				2218AD8327187207002C405C /* placeholder.png in Resources */,
 				221C521A2705FA900085534E /* PlayfairDisplay-Black.ttf in Resources */,
 				221C52032705F5260085534E /* Colors.xcassets in Resources */,
 				221C521C2705FA900085534E /* PlayfairDisplay-Italic.ttf in Resources */,
@@ -840,8 +872,10 @@
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */,
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
+				2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */,
 				221E22CE270DE985003F324B /* CategoryCell.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
+				2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */,
 				221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */,
 				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
@@ -850,6 +884,7 @@
 				221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */,
 				0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */,
 				221C51EA2705DC6C0085534E /* AppCoordinator.swift in Sources */,
+				2218AD8127187096002C405C /* PlayerModuleState.swift in Sources */,
 				221C52012705ECF60085534E /* Assets.swift in Sources */,
 				221E22BE270C5969003F324B /* SettingsViewController.swift in Sources */,
 				221E22BC270C5919003F324B /* SettingsModuleCoordinator.swift in Sources */,
@@ -857,6 +892,7 @@
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
 				221C5261270A4DF60085534E /* SleepViewController.swift in Sources */,
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
+				2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */,
 				221E22C8270DCC8D003F324B /* CircleImageAndTitleCellCell.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,

@@ -16,3 +16,18 @@ extension AppAction {
 }
 
 
+
+extension Player.Action {
+    internal enum prism {
+        internal static let playTap = Prism<Player.Action, ()>(
+            tryGet: { if case .playTap = $0 { return () } else { return nil } },
+            inject: { .playTap })
+
+        internal static let favoriteTap = Prism<Player.Action, ()>(
+            tryGet: { if case .favoriteTap = $0 { return () } else { return nil } },
+            inject: { .favoriteTap })
+
+    }
+}
+
+

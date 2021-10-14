@@ -71,6 +71,34 @@ extension MainModuleState {
     )
   }
 }
+extension Player.State {
+  enum lens {
+    static let isPlaying = Lens<Player.State, Bool>(
+      get: { $0.isPlaying },
+      set: { part in 
+        { whole in
+          Player.State.init(isPlaying: part, isFavourite: whole.isFavourite, item: whole.item)
+        }
+      }
+    )
+    static let isFavourite = Lens<Player.State, Bool>(
+      get: { $0.isFavourite },
+      set: { part in 
+        { whole in
+          Player.State.init(isPlaying: whole.isPlaying, isFavourite: part, item: whole.item)
+        }
+      }
+    )
+    static let item = Lens<Player.State, PlayerItem>(
+      get: { $0.item },
+      set: { part in 
+        { whole in
+          Player.State.init(isPlaying: whole.isPlaying, isFavourite: whole.isFavourite, item: part)
+        }
+      }
+    )
+  }
+}
 extension SettingsState {
   enum lens {
     static let subscriptionActive = Lens<SettingsState, Bool>(
