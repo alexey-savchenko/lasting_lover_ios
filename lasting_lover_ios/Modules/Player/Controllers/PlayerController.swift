@@ -12,6 +12,16 @@ class PlayerController: ViewController<BackgroundImageView> {
   
   let navbar = BackButtonNavbarView()
   
+  let artworkImageView = UIImageView()
+  let titleLabel = UILabel()
+  let authorLabel = UILabel()
+  let progressBarView = PlayerProgressBarView()
+  let currentTimeLabel = UILabel()
+  let durationLabel = UILabel()
+  let playButton = UIButton()
+  let bwdSeekButton = UIButton()
+  let fwdSeekButton = UIButton()
+  
   let viewModel: PlayerControllerViewModel
   private let disposeBag = DisposeBag()
   
@@ -32,15 +42,42 @@ class PlayerController: ViewController<BackgroundImageView> {
   }
   
   private func setupUI() {
-    [navbar].forEach(view.addSubview)
+    [navbar,
+     artworkImageView,
+     titleLabel,
+     authorLabel,
+     progressBarView,
+     currentTimeLabel,
+     durationLabel,
+     playButton,
+     bwdSeekButton,
+     fwdSeekButton].forEach(view.addSubview)
+    
     navbar.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview()
       make.top.equalTo(view.safeAreaLayoutGuide)
       make.height.equalTo(44)
     }
+    
+    artworkImageView.clipsToBounds = true
+    artworkImageView.snp.makeConstraints { make in
+      make.size.equalTo(UIScreen.main.bounds.height * 0.33)
+      make.centerX.equalToSuperview()
+      make.top.equalTo(navbar.snp.bottom).offset(14)
+    }
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    artworkImageView.layer.cornerRadius = artworkImageView.bounds.height / 2
   }
   
   private func configure(with viewModel: PlayerControllerViewModel) {
+    viewModel.output.image
+      .map(Optional.init)
+      .subscribe(artworkImageView.rx.image)
+      .disposed(by: disposeBag)
     viewModel.output.isFavorite
       .bind { [unowned navbar] value in
         if value {

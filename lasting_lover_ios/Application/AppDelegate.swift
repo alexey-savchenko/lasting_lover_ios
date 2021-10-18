@@ -20,21 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
     
-//    window?.rootViewController = PlayerController(
-//      viewModel: PlayerControllerViewModel(
-//        state: Player.mockStore.stateObservable,
-//        dispatch: Player.mockStore.dispatch
-//      )
-//    )
-//    window?.makeKeyAndVisible()
+    window?.rootViewController = PlayerController(
+      viewModel: PlayerControllerViewModel(
+        state: Player.mockStore.stateObservable,
+        dispatch: Player.mockStore.dispatch
+      )
+    )
+    window?.makeKeyAndVisible()
     
     //    appCoordinator = AppCoordinator(window: window!)
     //    appCoordinator.start().subscribe().disposed(by: disposeBag)
     
-    let c = SnapshotController<PlayerProgressBarView>()
-    (c.content as! PlayerProgressBarView)
-    window?.rootViewController = c
-    window?.makeKeyAndVisible()
+//    let c = SnapshotController<PlayerProgressBarView>()
+//    (c.content as! PlayerProgressBarView)
+//    window?.rootViewController = c
+//    window?.makeKeyAndVisible()
     
     return true
   }

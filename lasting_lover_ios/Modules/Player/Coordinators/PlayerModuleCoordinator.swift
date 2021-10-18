@@ -21,16 +21,25 @@ class PlayerModuleCoordinator: RxBaseCoordinator<Void> {
   
   override func start() -> Observable<Void> {
     
-    let store = RxStore(inputState: Player.State.mock, middleware: [], reducer: Player.reducer)
+    let store = RxStore(
+      inputState: Player.State.mock,
+      middleware: [Player.middleware],
+      reducer: Player.reducer
+    )
     
-//    let viewModel = PlayerControllerViewModel(
-//      state: <#Observable<Player.State>#>,
-//      dispatch: <#DispatchFunction<Player.Action>#>
-//    )
-//    let controller = PlayerController(viewModel: viewModel)
-//
-//    navigationController.pushViewController(controller, animated: true)
-//
+    store.attach(Player.Plugin.isPlayingPlugin)
+    store.attach(Player.Plugin.playbackProgressPlugin)
+    
+    let viewModel = PlayerControllerViewModel(
+      state: store.stateObservable,
+      dispatch: store.dispatch
+    )
+    let controller = PlayerController(viewModel: viewModel)
+
+    navigationController.pushViewController(controller, animated: true)
+
+    store.dispatch(.initializePlayerWithItem)
+    
     return .never()
   }
   

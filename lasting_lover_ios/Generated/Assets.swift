@@ -59,6 +59,8 @@ internal enum Asset {
     internal static let moon = ImageAsset(name: "moon")
     internal static let placeholder = ImageAsset(name: "placeholder")
     internal static let playInWhiteCircle = ImageAsset(name: "playInWhiteCircle")
+    internal static let playerPauseButton = ImageAsset(name: "playerPauseButton")
+    internal static let playerPlayButton = ImageAsset(name: "playerPlayButton")
     internal static let playerProgressBarIndicatorImage = ImageAsset(name: "playerProgressBarIndicatorImage")
     internal static let search = ImageAsset(name: "search")
     internal static let signInTitleimage = ImageAsset(name: "signInTitleimage")

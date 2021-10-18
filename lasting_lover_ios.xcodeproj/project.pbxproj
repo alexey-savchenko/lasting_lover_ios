@@ -18,6 +18,9 @@
 		2218AD8127187096002C405C /* PlayerModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD8027187096002C405C /* PlayerModuleState.swift */; };
 		2218AD8327187207002C405C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2218AD8227187207002C405C /* placeholder.png */; };
 		2218AD85271D772A002C405C /* PlayerProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD84271D772A002C405C /* PlayerProgressBarView.swift */; };
+		2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD87271D92F7002C405C /* AudioPlayerService.swift */; };
+		2218AD8A271D95D9002C405C /* placeholderAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2218AD89271D95D9002C405C /* placeholderAudio.mp3 */; };
+		2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD8B271DA53A002C405C /* FavoritesService.swift */; };
 		221C51C32705C73B0085534E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 221C51C52705C73B0085534E /* Localizable.strings */; };
 		221C51CA2705C8A30085534E /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51C92705C8A30085534E /* RxDataSources */; };
 		221C51CC2705C8A30085534E /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51CB2705C8A30085534E /* Differentiator */; };
@@ -116,6 +119,9 @@
 		2218AD8027187096002C405C /* PlayerModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleState.swift; sourceTree = "<group>"; };
 		2218AD8227187207002C405C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		2218AD84271D772A002C405C /* PlayerProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProgressBarView.swift; sourceTree = "<group>"; };
+		2218AD87271D92F7002C405C /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
+		2218AD89271D95D9002C405C /* placeholderAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = placeholderAudio.mp3; sourceTree = "<group>"; };
+		2218AD8B271DA53A002C405C /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		221C51C42705C73B0085534E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		221C51DF2705DB890085534E /* Prism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prism.generated.swift; sourceTree = "<group>"; };
 		221C51E02705DB890085534E /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
@@ -289,9 +295,22 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		2218AD86271D92DF002C405C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				221C51EE2705E0360085534E /* LocalStorageService.swift */,
+				221C51F02705E1C60085534E /* DefaultsStoreServiceProtocol.swift */,
+				221C51F22705E1F50085534E /* Environment.swift */,
+				2218AD87271D92F7002C405C /* AudioPlayerService.swift */,
+				2218AD8B271DA53A002C405C /* FavoritesService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		221C51C02705C7240085534E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD89271D95D9002C405C /* placeholderAudio.mp3 */,
 				2218AD8227187207002C405C /* placeholder.png */,
 				221C52042705FA830085534E /* Fonts */,
 				221C51C52705C73B0085534E /* Localizable.strings */,
@@ -340,10 +359,8 @@
 		221C51ED2705E0230085534E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD86271D92DF002C405C /* Services */,
 				221C523B2705FCD40085534E /* UI */,
-				221C51EE2705E0360085534E /* LocalStorageService.swift */,
-				221C51F02705E1C60085534E /* DefaultsStoreServiceProtocol.swift */,
-				221C51F22705E1F50085534E /* Environment.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -776,6 +793,7 @@
 				221C522F2705FA9A0085534E /* Nunito-Italic.ttf in Resources */,
 				221C52302705FA9A0085534E /* Nunito-BoldItalic.ttf in Resources */,
 				221C521B2705FA900085534E /* PlayfairDisplay-ExtraBold.ttf in Resources */,
+				2218AD8A271D95D9002C405C /* placeholderAudio.mp3 in Resources */,
 				0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */,
 				221C51C32705C73B0085534E /* Localizable.strings in Resources */,
 				221C52162705FA900085534E /* PlayfairDisplay-SemiBold.ttf in Resources */,
@@ -892,8 +910,10 @@
 				221C52012705ECF60085534E /* Assets.swift in Sources */,
 				221E22BE270C5969003F324B /* SettingsViewController.swift in Sources */,
 				221E22BC270C5919003F324B /* SettingsModuleCoordinator.swift in Sources */,
+				2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
+				2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */,
 				221C5261270A4DF60085534E /* SleepViewController.swift in Sources */,
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
 				2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */,
