@@ -17,6 +17,7 @@
 		2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7E27185DDF002C405C /* PlayerModuleCoordinator.swift */; };
 		2218AD8127187096002C405C /* PlayerModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD8027187096002C405C /* PlayerModuleState.swift */; };
 		2218AD8327187207002C405C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2218AD8227187207002C405C /* placeholder.png */; };
+		2218AD85271D772A002C405C /* PlayerProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD84271D772A002C405C /* PlayerProgressBarView.swift */; };
 		221C51C32705C73B0085534E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 221C51C52705C73B0085534E /* Localizable.strings */; };
 		221C51CA2705C8A30085534E /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51C92705C8A30085534E /* RxDataSources */; };
 		221C51CC2705C8A30085534E /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 221C51CB2705C8A30085534E /* Differentiator */; };
@@ -114,6 +115,7 @@
 		2218AD7E27185DDF002C405C /* PlayerModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleCoordinator.swift; sourceTree = "<group>"; };
 		2218AD8027187096002C405C /* PlayerModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleState.swift; sourceTree = "<group>"; };
 		2218AD8227187207002C405C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		2218AD84271D772A002C405C /* PlayerProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProgressBarView.swift; sourceTree = "<group>"; };
 		221C51C42705C73B0085534E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		221C51DF2705DB890085534E /* Prism.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prism.generated.swift; sourceTree = "<group>"; };
 		221C51E02705DB890085534E /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 		221E22D6270F2F7F003F324B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2218AD84271D772A002C405C /* PlayerProgressBarView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				221E22D0270DEB15003F324B /* TodayPopularView.swift in Sources */,
 				221C52582709DC3D0085534E /* ToolbarItem.swift in Sources */,
 				221C525D270A4ACF0085534E /* MainControllerViewModel.swift in Sources */,
+				2218AD85271D772A002C405C /* PlayerProgressBarView.swift in Sources */,
 				221C5274270A61330085534E /* DiscoverControllerViewModel.swift in Sources */,
 				221C5243270714900085534E /* TextfieldView.swift in Sources */,
 				221E22CC270DE585003F324B /* InsetLabel.swift in Sources */,

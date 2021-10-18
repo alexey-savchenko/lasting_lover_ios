@@ -10,7 +10,7 @@ import RxSwift
 import RxUNILib
 
 class PlayerControllerViewModel {
-  struct Input {
+  struct Input {  
     let playTap: AnyObserver<Void>
     let favoriteTap: AnyObserver<Void>
   }

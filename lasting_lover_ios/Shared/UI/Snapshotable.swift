@@ -17,6 +17,10 @@ extension Snapshotable where Self: UIView {
   func add(to context: UIViewController) {
     context.view.addSubview(self)
   }
+  
+  static func make() -> Snapshotable {
+    return Self()
+  }
 }
 
 extension Snapshotable where Self: UIViewController {
@@ -34,12 +38,13 @@ extension Snapshotable where Self: UIViewController {
 }
 
 class SnapshotController<Content: Snapshotable>: UIViewController {
+  
+  let content = Content.make()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = .darkGray
-
-    let content = Content.make()
     content.add(to: self)
     content.layoutIn(view)
   }
