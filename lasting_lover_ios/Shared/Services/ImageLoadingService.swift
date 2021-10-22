@@ -75,6 +75,7 @@ class ImageLoadingService: ImageLoadingServiceProtocol {
           .appendingPathExtension("jpg")
         let data = try! Data(contentsOf: cachedImageURL)
         let image = UIImage(data: data, scale: UIScreen.main.scale)!
+        let _ = image.cgImage?.dataProvider?.data
         completion(image)
       } else {
         self.fetchAndCacheImage(url, completion: completion)
