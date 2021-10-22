@@ -102,6 +102,8 @@
 		221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22D7270F2FAA003F324B /* Snapshotable.swift */; };
 		221E22DA270F43CC003F324B /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22D9270F43CC003F324B /* PlayerController.swift */; };
 		221E22DC270F48E0003F324B /* PlayerControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E22DB270F48E0003F324B /* PlayerControllerViewModel.swift */; };
+		22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8191F27230DD900BFDB8B /* ImageLoadingService.swift */; };
+		22B8192227230F7F00BFDB8B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8192127230F7F00BFDB8B /* Constants.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +197,8 @@
 		221E22D7270F2FAA003F324B /* Snapshotable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshotable.swift; sourceTree = "<group>"; };
 		221E22D9270F43CC003F324B /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		221E22DB270F48E0003F324B /* PlayerControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControllerViewModel.swift; sourceTree = "<group>"; };
+		22B8191F27230DD900BFDB8B /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
+		22B8192127230F7F00BFDB8B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -303,6 +307,7 @@
 				221C51F22705E1F50085534E /* Environment.swift */,
 				2218AD87271D92F7002C405C /* AudioPlayerService.swift */,
 				2218AD8B271DA53A002C405C /* FavoritesService.swift */,
+				22B8191F27230DD900BFDB8B /* ImageLoadingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 			children = (
 				2218AD86271D92DF002C405C /* Services */,
 				221C523B2705FCD40085534E /* UI */,
+				22B8192127230F7F00BFDB8B /* Constants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -913,10 +919,12 @@
 				2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
+				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,
 				2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */,
 				221C5261270A4DF60085534E /* SleepViewController.swift in Sources */,
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
 				2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */,
+				22B8192227230F7F00BFDB8B /* Constants.swift in Sources */,
 				221E22C8270DCC8D003F324B /* CircleImageAndTitleCellCell.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,

@@ -58,7 +58,7 @@ class PlayerControllerViewModel {
       author: state.map { $0.item.author }.distinctUntilChanged(),
       isFavorite: state.map { $0.isFavourite }.distinctUntilChanged(),
       isPlaying: state.map { $0.isPlaying }.distinctUntilChanged(),
-      image: state.map { $0.item.artworkURL }.distinctUntilChanged().map { url in UIImage(data: try! Data(contentsOf: url))! },
+      image: state.map { $0.item.artworkURL }.distinctUntilChanged().flatMap { url in Current.imageLoadingService().image(url) },
       playbackProgress: state.map { $0.playbackProgress }.distinctUntilChanged()
     )
     

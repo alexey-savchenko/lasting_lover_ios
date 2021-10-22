@@ -23,7 +23,8 @@ struct _PlayerItem: Hashable, PlayerItemProtocol, Codable {
   static let mock = _PlayerItem(
     title: "Sample title",
     author: "Sample author",
-    artworkURL: Bundle.main.url(forResource: "placeholder", withExtension: "png")!,
+    artworkURL: URL(string: "https://picsum.photos/seed/somerandomvalue/500/500")!,
+//      Bundle.main.url(forResource: "placeholder", withExtension: "png")!,
     contentURL: Bundle.main.url(forResource: "placeholderAudio", withExtension: "mp3")!
   )
 }

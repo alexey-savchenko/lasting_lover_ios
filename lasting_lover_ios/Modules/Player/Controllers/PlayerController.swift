@@ -135,7 +135,6 @@ class PlayerController: ViewController<BackgroundImageView> {
   
   private func configure(with viewModel: PlayerControllerViewModel) {
     viewModel.output.playbackProgress
-//      .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
       .bind { [weak self] value in
         self?.progressBarView.setProgress(value)
       }

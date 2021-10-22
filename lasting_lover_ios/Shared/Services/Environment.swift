@@ -12,6 +12,7 @@ struct Environment {
   var localStorageService: () -> LocalStorageServiceProtocol = { LocalStorageService() }
   var playerService: () -> AudioPlayerServiceProtocol = { AudioPlayerService.shared }
   var favoritesService: () -> FavoritesServiceProtocol = { FavoritesService() }
+  var imageLoadingService: () -> ImageLoadingServiceProtocol = { ImageLoadingService.shared }
 }
 
 #if DEBUG
