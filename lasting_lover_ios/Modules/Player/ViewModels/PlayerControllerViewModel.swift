@@ -15,8 +15,14 @@ class PlayerControllerViewModel {
     let playTap: AnyObserver<Void>
     let favoriteTap: AnyObserver<Void>
     let seekToProgress: AnyObserver<Double>
+    let fwdTap: AnyObserver<Void>
+    let bcwdTap: AnyObserver<Void>
+    let backTap: AnyObserver<Void>
   }
   
+  private let backTapSubject = PublishSubject<Void>()
+  private let fwdTapSubject = PublishSubject<Void>()
+  private let bcwdTapSubject = PublishSubject<Void>()
   private let playTapSubject = PublishSubject<Void>()
   private let favoriteTapSubject = PublishSubject<Void>()
   private let seekToProgressSubject = PublishSubject<Double>()
@@ -27,6 +33,7 @@ class PlayerControllerViewModel {
     let isFavorite: Observable<Bool>
     let isPlaying: Observable<Bool>
     let image: Observable<UIImage>
+    let playbackProgress: Observable<Double>
   }
   
   let input: Input
@@ -41,22 +48,37 @@ class PlayerControllerViewModel {
     self.input = Input(
       playTap: playTapSubject.asObserver(),
       favoriteTap: favoriteTapSubject.asObserver(),
-      seekToProgress: seekToProgressSubject.asObserver()
+      seekToProgress: seekToProgressSubject.asObserver(),
+      fwdTap: fwdTapSubject.asObserver(),
+      bcwdTap: bcwdTapSubject.asObserver(),
+      backTap: backTapSubject.asObserver()
     )
     self.output = Output(
       title: state.map { $0.item.title }.distinctUntilChanged(),
       author: state.map { $0.item.author }.distinctUntilChanged(),
       isFavorite: state.map { $0.isFavourite }.distinctUntilChanged(),
       isPlaying: state.map { $0.isPlaying }.distinctUntilChanged(),
-      image: state.map { $0.item.artworkURL }.distinctUntilChanged().map { url in UIImage(data: try! Data(contentsOf: url))! }
+      image: state.map { $0.item.artworkURL }.distinctUntilChanged().map { url in UIImage(data: try! Data(contentsOf: url))! },
+      playbackProgress: state.map { $0.playbackProgress }.distinctUntilChanged()
     )
     
+    dispatch(.initializePlayerWithItem)
+    
     disposeBag.insert(
+      fwdTapSubject.bind {
+        dispatch(.fwdSeek)
+      },
+      bcwdTapSubject.bind {
+        dispatch(.bcwdSeek)
+      },
       playTapSubject.bind {
         dispatch(.playTap)
       },
       favoriteTapSubject.bind {
         dispatch(.favoriteTap)
+      },
+      seekToProgressSubject.bind { value in
+        dispatch(.seekToProgress(value: value))
       }
     )
   }

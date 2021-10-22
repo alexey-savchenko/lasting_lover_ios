@@ -50,13 +50,22 @@ enum Player {
     case setIsPlaying(value: Bool)
     case seekToProgress(value: Double)
     case setPlaybackProgress(value: Double)
+    case fwdSeek
+    case bcwdSeek
   }
   
   static let middleware: Middleware<Player.State, Player.Action> = { dispatch, getState in
     { next in
       { action in
         switch action {
+        case .bcwdSeek:
+          Current.playerService().seekBackward(offset: 15)
+          next(action)
+        case .fwdSeek:
+          Current.playerService().seekForward(offset: 15)
+          next(action)
         case .setPlaybackProgress:
+          guard !Current.playerService().seeking else { return }
           next(action)
         case .seekToProgress(let value):
           Current.playerService().setPlaybackProgress(value)
@@ -92,16 +101,12 @@ enum Player {
     switch action {
     case .setPlaybackProgress(let value):
       return Player.State.lens.playbackProgress.set(value)(state)
-    case .seekToProgress(let value):
-      return state
     case .setIsPlaying(let value):
       return Player.State.lens.isPlaying.set(value)(state)
-    case .initializePlayerWithItem:
-      return state
-    case .playTap:
-      return state
     case .favoriteTap:
       return Player.State.lens.isFavourite.set(!state.isFavourite)(state)
+    case .initializePlayerWithItem, .fwdSeek, .bcwdSeek, .playTap, .seekToProgress:
+      return state
     }
   }
   

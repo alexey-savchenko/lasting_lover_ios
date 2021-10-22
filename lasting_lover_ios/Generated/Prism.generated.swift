@@ -43,6 +43,14 @@ extension Player.Action {
             tryGet: { if case .setPlaybackProgress(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setPlaybackProgress(value:x1) })
 
+        internal static let fwdSeek = Prism<Player.Action, ()>(
+            tryGet: { if case .fwdSeek = $0 { return () } else { return nil } },
+            inject: { .fwdSeek })
+
+        internal static let bcwdSeek = Prism<Player.Action, ()>(
+            tryGet: { if case .bcwdSeek = $0 { return () } else { return nil } },
+            inject: { .bcwdSeek })
+
     }
 }
 

@@ -16,6 +16,9 @@ protocol AudioPlayerServiceProtocol {
   var playbackProgress: Observable<Double> { get }
   var isPlaying: Observable<Bool> { get }
   func setPlaybackProgress(_ value: Double)
+  func seekForward(offset: Double)
+  func seekBackward(offset: Double)
+  var seeking: Bool { get }
 }
 
 class AudioPlayerService: AudioPlayerServiceProtocol {
@@ -33,7 +36,7 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
   
   let player = AVPlayer()
   
-  private var seeking = false
+  private(set) var seeking = false
   
   private init() {
     player.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 30), queue: nil) { [unowned self] currentTime in
@@ -42,6 +45,22 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
         playbackProgressSubject.onNext(progress)
       }
     }
+  }
+  
+  func seekForward(offset: Double) {
+    let duration = player.currentItem?.duration.seconds ?? 0.0
+    let currentTime = player.currentTime().seconds
+    let targetTime = (currentTime + offset).clamped(min: 0, max: duration)
+    let targetCMTime = CMTimeMakeWithSeconds(targetTime, preferredTimescale: player.currentTime().timescale)
+    player.seek(to: targetCMTime, toleranceBefore: .zero, toleranceAfter: .zero)
+  }
+  
+  func seekBackward(offset: Double) {
+    let duration = player.currentItem?.duration.seconds ?? 0.0
+    let currentTime = player.currentTime().seconds
+    let targetTime = (currentTime - offset).clamped(min: 0, max: duration)
+    let targetCMTime = CMTimeMakeWithSeconds(targetTime, preferredTimescale: player.currentTime().timescale)
+    player.seek(to: targetCMTime, toleranceBefore: .zero, toleranceAfter: .zero)
   }
   
   func play() {
@@ -63,7 +82,7 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
     if let duration = player.currentItem?.duration {
       let result = CMTimeMultiplyByFloat64(duration, multiplier: value)
       player.seek(to: result, toleranceBefore: .zero, toleranceAfter: .zero) { finished in
-        self.seeking = finished
+        self.seeking = false
       }
     }
   }

@@ -37,8 +37,6 @@ class PlayerModuleCoordinator: RxBaseCoordinator<Void> {
     let controller = PlayerController(viewModel: viewModel)
 
     navigationController.pushViewController(controller, animated: true)
-
-    store.dispatch(.initializePlayerWithItem)
     
     return .never()
   }
