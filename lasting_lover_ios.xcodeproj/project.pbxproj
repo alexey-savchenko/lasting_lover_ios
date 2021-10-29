@@ -12,6 +12,10 @@
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
 		0262BB6B2705084C00847ED7 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB6A2705084C00847ED7 /* Redux.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
+		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
+		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
+		02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */; };
+		02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EF2272BFE3B00BB1E7C /* Category.swift */; };
 		2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */; };
 		2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7C27185D61002C405C /* PlayerItem.swift */; };
 		2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7E27185DDF002C405C /* PlayerModuleCoordinator.swift */; };
@@ -114,6 +118,10 @@
 		0262BB592705074300847ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0262BB5B2705074300847ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0262BB6A2705084C00847ED7 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
+		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		02F57EF2272BFE3B00BB1E7C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasting_lover_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModuleCoordinator.swift; sourceTree = "<group>"; };
 		2218AD7C27185D61002C405C /* PlayerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerItem.swift; sourceTree = "<group>"; };
@@ -275,6 +283,49 @@
 			path = Redux;
 			sourceTree = "<group>";
 		};
+		02F57EE7272BFD1C00BB1E7C /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				02F57EF1272BFDD200BB1E7C /* Models */,
+				02F57EEE272BFDBC00BB1E7C /* Coordinators */,
+				02F57EEF272BFDC500BB1E7C /* Controllers */,
+				02F57EF0272BFDCC00BB1E7C /* ViewModels */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		02F57EEE272BFDBC00BB1E7C /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		02F57EEF272BFDC500BB1E7C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02F57EEA272BFDA800BB1E7C /* CategoryController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		02F57EF0272BFDCC00BB1E7C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		02F57EF1272BFDD200BB1E7C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02F57EF2272BFE3B00BB1E7C /* Category.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		15FAF97D83017AC640C5F5D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +380,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				02F57EE7272BFD1C00BB1E7C /* Category */,
 				2218AD7827185CE2002C405C /* Purchase */,
 				221E22D1270F2F50003F324B /* Player */,
 				221C526C270A55FD0085534E /* Settings */,
@@ -897,6 +949,8 @@
 				221C52592709DC3D0085534E /* Toolbar.swift in Sources */,
 				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
+				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
+				02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */,
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
@@ -905,6 +959,7 @@
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
 				2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */,
 				221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */,
+				02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */,
 				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
 				221C524F27086EA80085534E /* CongratulationsController.swift in Sources */,
@@ -919,6 +974,7 @@
 				2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* Redux.swift in Sources */,
+				02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */,
 				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,
 				2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */,
 				221C5261270A4DF60085534E /* SleepViewController.swift in Sources */,
