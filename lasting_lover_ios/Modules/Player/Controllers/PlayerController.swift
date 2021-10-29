@@ -106,7 +106,12 @@ class PlayerController: ViewController<BackgroundImageView> {
     playbackControlsStackView.axis = .horizontal
     playbackControlsStackView.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(45)
-      make.top.equalTo(progressBarView.snp.bottom).offset(50)
+			if UIScreen.main.bounds.height >= 667 {
+				make.top.equalTo(progressBarView.snp.bottom).offset(50)
+			} else {
+				make.top.equalTo(progressBarView.snp.bottom).offset(30)
+			}
+		
       make.height.equalTo(110)
     }
     [bwdSeekButton, playButton, fwdSeekButton].forEach(playbackControlsStackView.addArrangedSubview)
