@@ -8,18 +8,28 @@
 import Foundation
 import UNILibCore
 
-/// sourcery: lens
-struct MainModuleState: Hashable {
-  let selectedTabIndex: Int
+enum MainModule {
+	/// sourcery: lens
+	struct State: Hashable {
+		let selectedTabIndex: Int
+		let discoverState: Discover.State
+	}
+	
+	/// sourcery: prism
+	enum Action {
+		case setTabIndex(value: Int)
+		case discoverAction(value: Discover.Action)
+	}
+
+	private static let _reducer = Reducer<MainModule.State, MainModule.Action> { state, action in
+		switch action {
+		case .setTabIndex(let value):
+			return MainModule.State.lens.selectedTabIndex.set(value)(state)
+		}
+	}
+
+	static let reducer: Reducer<MainModule.State, MainModule.Action> = _reducer <>
+	Discover.reducer
+		.lift(localStateLens: MainModule.State.lens.discoverState, localActionPrism: MainModule.Action.prism.discoverAction)
 }
 
-enum MainModuleAction {
-  case setTabIndex(value: Int)
-}
-
-let mainModuleReducer = Reducer<MainModuleState, MainModuleAction> { state, action in
-  switch action {
-  case .setTabIndex(let value):
-    return MainModuleState.lens.selectedTabIndex.set(value)(state)
-  }
-}

@@ -3,21 +3,21 @@
 import UNILibCore
 import RxUNILib
 
-extension AppState {
+extension App.State {
   enum lens {
-    static let settingsState = Lens<AppState, SettingsState>(
+    static let settingsState = Lens<App.State, Settings.State>(
       get: { $0.settingsState },
       set: { part in 
         { whole in
-          AppState.init(settingsState: part, mainModuleState: whole.mainModuleState)
+          App.State.init(settingsState: part, mainModuleState: whole.mainModuleState)
         }
       }
     )
-    static let mainModuleState = Lens<AppState, MainModuleState>(
+    static let mainModuleState = Lens<App.State, MainModule.State>(
       get: { $0.mainModuleState },
       set: { part in 
         { whole in
-          AppState.init(settingsState: whole.settingsState, mainModuleState: part)
+          App.State.init(settingsState: whole.settingsState, mainModuleState: part)
         }
       }
     )
@@ -59,13 +59,61 @@ extension Auth.State {
     )
   }
 }
-extension MainModuleState {
+extension Category {
   enum lens {
-    static let selectedTabIndex = Lens<MainModuleState, Int>(
+    static let id = Lens<Category, String>(
+      get: { $0.id },
+      set: { part in 
+        { whole in
+          Category.init(id: part, title: whole.title, subtitle: whole.subtitle)
+        }
+      }
+    )
+    static let title = Lens<Category, String>(
+      get: { $0.title },
+      set: { part in 
+        { whole in
+          Category.init(id: whole.id, title: part, subtitle: whole.subtitle)
+        }
+      }
+    )
+    static let subtitle = Lens<Category, String>(
+      get: { $0.subtitle },
+      set: { part in 
+        { whole in
+          Category.init(id: whole.id, title: whole.title, subtitle: part)
+        }
+      }
+    )
+  }
+}
+extension Discover.State {
+  enum lens {
+    static let categories = Lens<Discover.State, [Category]>(
+      get: { $0.categories },
+      set: { part in 
+        { whole in
+          Discover.State.init(categories: part)
+        }
+      }
+    )
+  }
+}
+extension MainModule.State {
+  enum lens {
+    static let selectedTabIndex = Lens<MainModule.State, Int>(
       get: { $0.selectedTabIndex },
       set: { part in 
         { whole in
-          MainModuleState.init(selectedTabIndex: part)
+          MainModule.State.init(selectedTabIndex: part, discoverState: whole.discoverState)
+        }
+      }
+    )
+    static let discoverState = Lens<MainModule.State, Discover.State>(
+      get: { $0.discoverState },
+      set: { part in 
+        { whole in
+          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: part)
         }
       }
     )
@@ -107,13 +155,13 @@ extension Player.State {
     )
   }
 }
-extension SettingsState {
+extension Settings.State {
   enum lens {
-    static let subscriptionActive = Lens<SettingsState, Bool>(
+    static let subscriptionActive = Lens<Settings.State, Bool>(
       get: { $0.subscriptionActive },
       set: { part in 
         { whole in
-          SettingsState.init(subscriptionActive: part)
+          Settings.State.init(subscriptionActive: part)
         }
       }
     )

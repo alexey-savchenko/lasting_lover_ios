@@ -6,11 +6,37 @@ import RxUNILib
 
 
 
-extension AppAction {
+extension App.Action {
     internal enum prism {
-        internal static let mainModuleAction = Prism<AppAction,MainModuleAction>(
+        internal static let mainModuleAction = Prism<App.Action,MainModule.Action>(
             tryGet: { if case .mainModuleAction(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .mainModuleAction(action:x1) })
+
+        internal static let settingsAction = Prism<App.Action,Settings.Action>(
+            tryGet: { if case .settingsAction(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .settingsAction(action:x1) })
+
+    }
+}
+
+
+
+extension Discover.Action {
+    internal enum prism {
+    }
+}
+
+
+
+extension MainModule.Action {
+    internal enum prism {
+        internal static let setTabIndex = Prism<MainModule.Action,Int>(
+            tryGet: { if case .setTabIndex(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setTabIndex(value:x1) })
+
+        internal static let discoverAction = Prism<MainModule.Action,Discover.Action>(
+            tryGet: { if case .discoverAction(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .discoverAction(value:x1) })
 
     }
 }
@@ -50,6 +76,17 @@ extension Player.Action {
         internal static let bcwdSeek = Prism<Player.Action, ()>(
             tryGet: { if case .bcwdSeek = $0 { return () } else { return nil } },
             inject: { .bcwdSeek })
+
+    }
+}
+
+
+
+extension Settings.Action {
+    internal enum prism {
+        internal static let setSubscriptionActive = Prism<Settings.Action,Bool>(
+            tryGet: { if case .setSubscriptionActive(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setSubscriptionActive(value:x1) })
 
     }
 }

@@ -30,8 +30,8 @@ class MainControllerViewModel {
   private let disposeBag = DisposeBag()
 
   init(
-    state: Observable<AppState>,
-    dispatch: @escaping DispatchFunction<AppAction>
+		state: Observable<App.State>,
+		dispatch: @escaping DispatchFunction<App.Action>
   ) {
     self.input = Input(
       selectedTabWithIndex: selectedTabWithIndexSubject.asObserver(),
