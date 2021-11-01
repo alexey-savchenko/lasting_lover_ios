@@ -59,34 +59,6 @@ extension Auth.State {
     )
   }
 }
-extension Category {
-  enum lens {
-    static let id = Lens<Category, String>(
-      get: { $0.id },
-      set: { part in 
-        { whole in
-          Category.init(id: part, title: whole.title, subtitle: whole.subtitle)
-        }
-      }
-    )
-    static let title = Lens<Category, String>(
-      get: { $0.title },
-      set: { part in 
-        { whole in
-          Category.init(id: whole.id, title: part, subtitle: whole.subtitle)
-        }
-      }
-    )
-    static let subtitle = Lens<Category, String>(
-      get: { $0.subtitle },
-      set: { part in 
-        { whole in
-          Category.init(id: whole.id, title: whole.title, subtitle: part)
-        }
-      }
-    )
-  }
-}
 extension Discover.State {
   enum lens {
     static let categories = Lens<Discover.State, [Category]>(
