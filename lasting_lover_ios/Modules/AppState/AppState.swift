@@ -25,7 +25,10 @@ enum App {
 				),
 				mainModuleState: MainModule.State(
 					selectedTabIndex: 0,
-					discoverState: Discover.State(categories: [])
+					discoverState: Discover.State(
+						categories: [],
+						isLoading: false
+					)
 				)
 			)
 		}

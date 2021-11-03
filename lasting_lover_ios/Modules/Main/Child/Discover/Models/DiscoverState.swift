@@ -13,7 +13,7 @@ enum Discover {
 	/// sourcery: lens
 	struct State: Hashable {
 		let categories: [Category]
-//		let 
+		let isLoading: Bool
 	}
 	
 	/// sourcery: prism

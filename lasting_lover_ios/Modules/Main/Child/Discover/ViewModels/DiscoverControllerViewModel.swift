@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxUNILib
 
 class DiscoverControllerViewModel {
   struct Input {
@@ -19,7 +21,7 @@ class DiscoverControllerViewModel {
   let input: Input
   let output: Output
   
-  init() {
+	init(state: Observable<Discover.State>, dispatch: @escaping DispatchFunction<Discover.Action>) {
     self.input = Input()
     self.output = Output()
   }

@@ -8,6 +8,7 @@
 import RxUNILib
 import RxSwift
 import UIKit
+import UNILibCore
 
 class MainModuleCoordinator: RxBaseCoordinator<Void> {
   let navigationController: UINavigationController
@@ -17,7 +18,10 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
   }
 
   override func start() -> Observable<Void> {
-    let viewModel = MainControllerViewModel(state: appStore.stateObservable, dispatch: appStore.dispatch)
+    let viewModel = MainControllerViewModel(
+			state: appStore.stateObservable.map { $0.mainModuleState },
+			dispatch: App.Action.mainModuleAction <*> appStore.dispatch
+		)
     let mainController = MainModuleViewController(viewModel: viewModel)
     navigationController.setViewControllers([mainController], animated: false)
 

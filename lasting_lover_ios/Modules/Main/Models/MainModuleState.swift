@@ -21,15 +21,13 @@ enum MainModule {
 		case discoverAction(value: Discover.Action)
 	}
 
-	private static let _reducer = Reducer<MainModule.State, MainModule.Action> { state, action in
+	static let reducer = Reducer<MainModule.State, MainModule.Action> { state, action in
 		switch action {
 		case .setTabIndex(let value):
 			return MainModule.State.lens.selectedTabIndex.set(value)(state)
+		case .discoverAction(let value):
+			return State.lens.discoverState.set(Discover.reducer.reduce(state.discoverState, value))(state)
 		}
 	}
-
-	static let reducer: Reducer<MainModule.State, MainModule.Action> = _reducer <>
-	Discover.reducer
-		.lift(localStateLens: MainModule.State.lens.discoverState, localActionPrism: MainModule.Action.prism.discoverAction)
 }
 

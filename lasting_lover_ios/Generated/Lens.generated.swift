@@ -65,7 +65,15 @@ extension Discover.State {
       get: { $0.categories },
       set: { part in 
         { whole in
-          Discover.State.init(categories: part)
+          Discover.State.init(categories: part, isLoading: whole.isLoading)
+        }
+      }
+    )
+    static let isLoading = Lens<Discover.State, Bool>(
+      get: { $0.isLoading },
+      set: { part in 
+        { whole in
+          Discover.State.init(categories: whole.categories, isLoading: part)
         }
       }
     )

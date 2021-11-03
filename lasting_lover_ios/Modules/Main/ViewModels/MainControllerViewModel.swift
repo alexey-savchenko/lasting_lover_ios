@@ -30,22 +30,22 @@ class MainControllerViewModel {
   private let disposeBag = DisposeBag()
 
   init(
-		state: Observable<App.State>,
-		dispatch: @escaping DispatchFunction<App.Action>
+		state: Observable<MainModule.State>,
+		dispatch: @escaping DispatchFunction<MainModule.Action>
   ) {
     self.input = Input(
       selectedTabWithIndex: selectedTabWithIndexSubject.asObserver(),
       settingsButtonTap: settingsButtonTapSubject.asObserver()
     )
     self.output = Output(
-      selectedTabIndex: state.map { $0.mainModuleState.selectedTabIndex }.distinctUntilChanged(),
+      selectedTabIndex: state.map { $0.selectedTabIndex }.distinctUntilChanged(),
       settingsButtonTap: settingsButtonTapSubject.asObservable()
     )
 
     disposeBag
       .insert(
         selectedTabWithIndexSubject
-          .subscribe(onNext: { value in dispatch(.mainModuleAction(action: .setTabIndex(value: value))) })
+          .subscribe(onNext: { value in dispatch(.setTabIndex(value: value)) })
       )
   }
 }

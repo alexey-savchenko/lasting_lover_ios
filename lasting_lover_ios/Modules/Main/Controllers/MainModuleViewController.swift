@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import SwiftUI
+import UNILibCore
 
 class MainModuleViewController: UIViewController {
   let toolbar = ToolBar()
@@ -37,7 +39,10 @@ class MainModuleViewController: UIViewController {
   )
 
   lazy var discoverViewController = DiscoverViewController(
-    viewModel: DiscoverControllerViewModel()
+		viewModel: DiscoverControllerViewModel(
+			state: appStore.stateObservable.map { $0.mainModuleState.discoverState }.distinctUntilChanged(),
+			dispatch: MainModule.Action.discoverAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
   )
   lazy var sleepViewController = SleepViewController(
     viewModel: SleepControllerViewModel()

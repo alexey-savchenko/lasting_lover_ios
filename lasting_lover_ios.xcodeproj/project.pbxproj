@@ -333,6 +333,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		02F57EF6272C1AF600BB1E7C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02F57EF4272C135400BB1E7C /* DiscoverState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		15FAF97D83017AC640C5F5D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
