@@ -14,6 +14,8 @@
 		02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD32735B38000DF4F49 /* VerticalScrollingView.swift */; };
 		02770AD62735B8F000DF4F49 /* AuthorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */; };
 		02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD72735BA9900DF4F49 /* Secrion.swift */; };
+		02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */; };
+		02770ADC2735E04300DF4F49 /* Serieslayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770ADB2735E04300DF4F49 /* Serieslayout.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -128,6 +130,8 @@
 		02770AD32735B38000DF4F49 /* VerticalScrollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScrollingView.swift; sourceTree = "<group>"; };
 		02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCellViewModel.swift; sourceTree = "<group>"; };
 		02770AD72735BA9900DF4F49 /* Secrion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrion.swift; sourceTree = "<group>"; };
+		02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCellViewModel.swift.swift; sourceTree = "<group>"; };
+		02770ADB2735E04300DF4F49 /* Serieslayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serieslayout.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -574,6 +578,7 @@
 			children = (
 				221C525C270A4ACE0085534E /* MainControllerViewModel.swift */,
 				02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */,
+				02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -651,6 +656,7 @@
 			isa = PBXGroup;
 			children = (
 				221E22CF270DEB15003F324B /* TodayPopularView.swift */,
+				02770ADB2735E04300DF4F49 /* Serieslayout.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -991,6 +997,7 @@
 				221C5243270714900085534E /* TextfieldView.swift in Sources */,
 				221E22CC270DE585003F324B /* InsetLabel.swift in Sources */,
 				221C523A2705FB390085534E /* Fonts.swift in Sources */,
+				02770ADC2735E04300DF4F49 /* Serieslayout.swift in Sources */,
 				221E22DC270F48E0003F324B /* PlayerControllerViewModel.swift in Sources */,
 				221C52592709DC3D0085534E /* Toolbar.swift in Sources */,
 				02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */,
@@ -1001,6 +1008,7 @@
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */,
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
+				02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */,
 				2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */,
 				221E22CE270DE985003F324B /* CategoryCell.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,

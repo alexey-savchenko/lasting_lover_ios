@@ -32,6 +32,15 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		return c
 	}()
 	
+	let seriesTitleLabel = UILabel()
+	let seeAllSeriesButton = UIButton()
+	lazy var seriesCollectionView: UICollectionView = {
+		let layout = SeriesLayout()
+		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		c.registerClass(CardCell.self)
+		return c
+	}()
+	
 	private let disposebag = DisposeBag()
 	
 	init(viewModel: DiscoverControllerViewModel) {
@@ -83,13 +92,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		}
 	}
 	
-	fileprivate func setupContentScrollView() {
-		contentScrollView.snp.makeConstraints { make in
-			make.leading.trailing.equalToSuperview()
-			make.top.equalTo(titleLabel.snp.bottom).offset(8)
-			make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
-		}
-		[authorsTitleLabel, authorsCollectionView].forEach(contentScrollView.containerView.addSubview)
+	fileprivate func setupAuthorsBlock() {
 		authorsTitleLabel.attributedText = NSAttributedString(
 			string: L10n.discoverAuthors,
 			attributes: [
@@ -109,14 +112,68 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		}
 	}
 	
+	fileprivate func setupContentScrollView() {
+		contentScrollView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+			make.top.equalTo(titleLabel.snp.bottom).offset(8)
+			make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
+		}
+		[authorsTitleLabel,
+		 authorsCollectionView,
+		 seriesTitleLabel,
+		 seriesCollectionView,
+		 seeAllSeriesButton].forEach(contentScrollView.containerView.addSubview)
+		
+		setupAuthorsBlock()
+		setupSeriesCollectionView()
+	}
+	
+	fileprivate func setupSeriesCollectionView() {
+		seriesTitleLabel.attributedText = NSAttributedString(
+			string: L10n.discoverFeaturedSeries,
+			attributes: [
+				.foregroundColor: Asset.Colors.white.color,
+				.font: FontFamily.Nunito.semiBold.font(size: 22)
+			]
+		)
+		seriesTitleLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(24)
+			make.top.equalTo(authorsCollectionView.snp.bottom).offset(16)
+		}
+		seriesCollectionView.backgroundColor = .clear
+		seriesCollectionView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+			make.height.equalTo(270)
+			make.top.equalTo(seriesTitleLabel.snp.bottom).offset(8)
+		}
+		seeAllSeriesButton.snp.makeConstraints { make in
+			make.trailing.equalToSuperview().offset(-24)
+			make.centerY.equalTo(seriesTitleLabel)
+		}
+		seeAllSeriesButton.setAttributedTitle(
+			NSAttributedString(
+				string: L10n.discoverSeeAll,
+				attributes: [
+					.foregroundColor: Asset.Colors.white.color,
+				 .font: FontFamily.Nunito.semiBold.font(size: 16)
+			 ]
+			),
+			for: .normal
+		)
+	}
+	
 	func setupUI() {
-		[topArtworkImageView, navbar, titleLabel, contentScrollView]
+		[topArtworkImageView,
+		 navbar,
+		 titleLabel,
+		 contentScrollView]
 			.forEach(view.addSubview)
 		
 		setupTopArtwork()
 		setupNavbar()
 		setupTitleLabel()
 		setupContentScrollView()
+		
 	}
 	
 	func configure(with viewModel: DiscoverControllerViewModel) {
@@ -147,6 +204,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.bind(to: authorsCollectionView.rx.items(dataSource: authorsCollectionViewDataSource()))
 			.disposed(by: disposebag)
 		
+		data
+			.map { $0.featuredSeries }
+			.map { array in return array.map(SeriesCellViewModel.init) }
+			.map(Section.init)
+			.map(toArray)
+			.bind(to: seriesCollectionView.rx.items(dataSource: seriesCollectionViewDataSource()))
+			.disposed(by: disposebag)
+		
 		let errors = viewModel.output.data
 			.compactMap { value -> HashableWrapper<Discover.Error>? in
 				if case .error(let wrapped) = value {
@@ -157,6 +222,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			}
 			.distinctUntilChanged()
 		
+	}
+	
+	private func seriesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SeriesCellViewModel>> {
+		return RxCollectionViewSectionedReloadDataSource { ds, cv, indexPath, item in
+			let cell: CardCell = cv.dequeueReusableCell(forIndexPath: indexPath)
+			cell.configure(with: item)
+			return cell
+		}
 	}
 	
 	private func authorsCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<AuthorCellViewModel>> {

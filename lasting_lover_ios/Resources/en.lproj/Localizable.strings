@@ -25,3 +25,5 @@
 "error_network_unreachable" = "Network unreachable";
 "discover_title" = "Discover new impressions";
 "discover_authors" = "Authors";
+"discover_Featured_Series" = "Featured Series";
+"discover_see_all" = "See all";
