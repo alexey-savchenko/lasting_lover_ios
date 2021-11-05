@@ -7,6 +7,7 @@
 
 import Foundation
 import UNILibCore
+import RxUNILib
 
 enum MainModule {
 	/// sourcery: lens
@@ -27,6 +28,24 @@ enum MainModule {
 			return MainModule.State.lens.selectedTabIndex.set(value)(state)
 		case .discoverAction(let value):
 			return State.lens.discoverState.set(Discover.reducer.reduce(state.discoverState, value))(state)
+		}
+	}
+	
+	static let middleware: Middleware<MainModule.State, MainModule.Action> = { dispatch, getState in
+		return { next in
+			return { action in
+				switch action {
+				case .setTabIndex:
+					next(action)
+				case .discoverAction(let value):
+					Discover
+						.middleware(
+							MainModule.Action.prism.discoverAction.inject <*> dispatch, { getState().map { $0.discoverState } }
+						)(
+							MainModule.Action.prism.discoverAction.inject <*> next
+						)(value)
+				}
+			}
 		}
 	}
 }

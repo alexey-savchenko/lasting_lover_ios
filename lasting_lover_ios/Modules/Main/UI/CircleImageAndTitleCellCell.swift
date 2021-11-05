@@ -54,9 +54,10 @@ class CircleImageAndTitleCellCell: UICollectionViewCell {
   fileprivate func setupTitleLabel() {
     titleLabel.textColor = Asset.Colors.white.color
     titleLabel.font = FontFamily.Nunito.semiBold.font(size: 17)
+		titleLabel.textAlignment = .center
     titleLabel.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(4)
-      make.top.equalTo(imageView.snp.bottom).offset(-8)
+      make.top.equalTo(imageView.snp.bottom).offset(8)
     }
   }
 

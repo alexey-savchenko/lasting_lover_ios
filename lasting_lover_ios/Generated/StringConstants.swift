@@ -16,8 +16,10 @@ internal enum L10n {
   internal static let congratulationsSubtitle = L10n.tr("Localizable", "congratulations_subtitle")
   /// Congratulations!
   internal static let congratulationsTitle = L10n.tr("Localizable", "congratulations_title")
+  /// Authors
+  internal static let discoverAuthors = L10n.tr("Localizable", "discover_authors")
   /// Discover new impressions
-  internal static let discoverNewImpressions = L10n.tr("Localizable", "Discover new impressions")
+  internal static let discoverTitle = L10n.tr("Localizable", "discover_title")
   /// Network unreachable
   internal static let errorNetworkUnreachable = L10n.tr("Localizable", "error_network_unreachable")
   /// Discover

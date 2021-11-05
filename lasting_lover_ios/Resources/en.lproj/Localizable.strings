@@ -23,4 +23,5 @@
 "settings" = "Settings";
 "Todays_popular" = "Today popular?";
 "error_network_unreachable" = "Network unreachable";
-"Discover new impressions" = "Discover new impressions";
+"discover_title" = "Discover new impressions";
+"discover_authors" = "Authors";

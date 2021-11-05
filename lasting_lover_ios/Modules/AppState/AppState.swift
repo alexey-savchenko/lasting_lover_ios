@@ -40,15 +40,33 @@ enum App {
 	}
 
 	static let reducer = MainModule.reducer
-		.lift(localStateLens: App.State.lens.mainModuleState, localActionPrism: App.Action.prism.mainModuleAction)
+		.lift(
+			localStateLens: App.State.lens.mainModuleState,
+			localActionPrism: App.Action.prism.mainModuleAction
+		)
 	<>
 	Settings.reducer
-		.lift(localStateLens: App.State.lens.settingsState, localActionPrism: App.Action.prism.settingsAction)
+		.lift(
+			localStateLens: App.State.lens.settingsState,
+			localActionPrism: App.Action.prism.settingsAction
+		)
 
 	static let middleware: Middleware<App.State, App.Action> = { dispatch, getState in
 		{ next in
 			{ action in
-				next(action)
+				switch action {
+				case .mainModuleAction(let action):
+					
+					MainModule
+						.middleware(
+							App.Action.prism.mainModuleAction.inject <*> dispatch, { getState().map { $0.mainModuleState } }
+						)(
+							App.Action.prism.mainModuleAction.inject <*> next
+						)(action)
+				case .settingsAction(let action):
+					break
+				}
+//				next(action)
 			}
 		}
 	}

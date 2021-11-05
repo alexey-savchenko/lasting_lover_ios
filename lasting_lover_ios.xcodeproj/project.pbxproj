@@ -11,6 +11,9 @@
 		0262BB572705074300847ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB562705074300847ED7 /* Assets.xcassets */; };
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
 		0262BB6B2705084C00847ED7 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB6A2705084C00847ED7 /* AppState.swift */; };
+		02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD32735B38000DF4F49 /* VerticalScrollingView.swift */; };
+		02770AD62735B8F000DF4F49 /* AuthorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */; };
+		02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD72735BA9900DF4F49 /* Secrion.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -122,6 +125,9 @@
 		0262BB592705074300847ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0262BB5B2705074300847ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0262BB6A2705084C00847ED7 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		02770AD32735B38000DF4F49 /* VerticalScrollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScrollingView.swift; sourceTree = "<group>"; };
+		02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCellViewModel.swift; sourceTree = "<group>"; };
+		02770AD72735BA9900DF4F49 /* Secrion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrion.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 		0237F9292732B89F00BE76E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				02770AD72735BA9900DF4F49 /* Secrion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -525,6 +532,7 @@
 				221E22CB270DE585003F324B /* InsetLabel.swift */,
 				221E22D7270F2FAA003F324B /* Snapshotable.swift */,
 				22BF198D272D608000FAA6C6 /* AudioItemCell.swift */,
+				02770AD32735B38000DF4F49 /* VerticalScrollingView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -565,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				221C525C270A4ACE0085534E /* MainControllerViewModel.swift */,
+				02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -984,6 +993,7 @@
 				221C523A2705FB390085534E /* Fonts.swift in Sources */,
 				221E22DC270F48E0003F324B /* PlayerControllerViewModel.swift in Sources */,
 				221C52592709DC3D0085534E /* Toolbar.swift in Sources */,
+				02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */,
 				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
 				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
@@ -1021,8 +1031,10 @@
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
 				2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */,
 				22B8192227230F7F00BFDB8B /* Constants.swift in Sources */,
+				02770AD62735B8F000DF4F49 /* AuthorCellViewModel.swift in Sources */,
 				221E22C8270DCC8D003F324B /* CircleImageAndTitleCellCell.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
+				02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
