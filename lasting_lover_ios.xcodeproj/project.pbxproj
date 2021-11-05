@@ -240,6 +240,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0237F9292732B89F00BE76E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0262BB412705074200847ED7 = {
 			isa = PBXGroup;
 			children = (
@@ -329,14 +336,6 @@
 			isa = PBXGroup;
 			children = (
 				02F57EF2272BFE3B00BB1E7C /* Category.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		02F57EF6272C1AF600BB1E7C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				02F57EF4272C135400BB1E7C /* DiscoverState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -433,6 +432,7 @@
 		221C51ED2705E0230085534E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0237F9292732B89F00BE76E1 /* Model */,
 				2218AD86271D92DF002C405C /* Services */,
 				221C523B2705FCD40085534E /* UI */,
 				22B8192127230F7F00BFDB8B /* Constants.swift */,

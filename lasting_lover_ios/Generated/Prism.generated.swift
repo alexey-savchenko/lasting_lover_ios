@@ -23,6 +23,18 @@ extension App.Action {
 
 extension Discover.Action {
     internal enum prism {
+        internal static let loadData = Prism<Discover.Action, ()>(
+            tryGet: { if case .loadData = $0 { return () } else { return nil } },
+            inject: { .loadData })
+
+        internal static let setDiscoverData = Prism<Discover.Action,DiscoverData>(
+            tryGet: { if case .setDiscoverData(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setDiscoverData(value:x1) })
+
+        internal static let setError = Prism<Discover.Action,Discover.Error>(
+            tryGet: { if case .setError(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setError(value:x1) })
+
     }
 }
 

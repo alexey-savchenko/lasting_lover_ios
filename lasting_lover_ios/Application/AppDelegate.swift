@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		appCoordinator = AppCoordinator(window: window!)
 		appCoordinator.start().subscribe().disposed(by: disposeBag)
-    
-//    let c = SnapshotController<PlayerProgressBarView>()
-//    (c.content as! PlayerProgressBarView)
+		
+		//    let c = SnapshotController<PlayerProgressBarView>()
+		//    (c.content as! PlayerProgressBarView)
 //    window?.rootViewController = c
 //    window?.makeKeyAndVisible()
     

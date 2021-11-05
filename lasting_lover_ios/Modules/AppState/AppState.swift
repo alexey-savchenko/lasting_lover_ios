@@ -26,8 +26,7 @@ enum App {
 				mainModuleState: MainModule.State(
 					selectedTabIndex: 0,
 					discoverState: Discover.State(
-						categories: [],
-						isLoading: false
+						data: Loadable.indefiniteLoading
 					)
 				)
 			)

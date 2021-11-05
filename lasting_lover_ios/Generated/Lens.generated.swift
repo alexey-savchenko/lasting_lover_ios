@@ -61,19 +61,11 @@ extension Auth.State {
 }
 extension Discover.State {
   enum lens {
-    static let categories = Lens<Discover.State, [Category]>(
-      get: { $0.categories },
+    static let data = Lens<Discover.State, Loadable<DiscoverData, HashableWrapper<Discover.Error>>>(
+      get: { $0.data },
       set: { part in 
         { whole in
-          Discover.State.init(categories: part, isLoading: whole.isLoading)
-        }
-      }
-    )
-    static let isLoading = Lens<Discover.State, Bool>(
-      get: { $0.isLoading },
-      set: { part in 
-        { whole in
-          Discover.State.init(categories: whole.categories, isLoading: part)
+          Discover.State.init(data: part)
         }
       }
     )

@@ -12,6 +12,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 
   let topArtworkImageView = UIImageView(image: Asset.Images.lips.image)
   let navbar = NavbarViewBase()
+	let titleLabel = UILabel()
 
   init(viewModel: DiscoverControllerViewModel) {
     self.viewModel = viewModel
@@ -38,15 +39,6 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
   }
 
   fileprivate func setupNavbar() {
-    navbar.setTitle(
-      NSAttributedString(
-        string: "Lasting lover",
-        attributes: [
-          .foregroundColor: Asset.Colors.white.color,
-          .font: FontFamily.Nunito.semiBold.font(size: 22)
-        ]
-      )
-    )
     navbar.setRightButtonImage(Asset.Images.setting.image.tinted(Asset.Colors.white.color))
     navbar.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview()
@@ -56,12 +48,27 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
   }
 
   func setupUI() {
-    [topArtworkImageView, navbar]
+    [topArtworkImageView, navbar, titleLabel]
       .forEach(view.addSubview)
 
     setupTopArtwork()
     setupNavbar()
+		titleLabel.attributedText = NSAttributedString(
+			string: L10n.discoverNewImpressions,
+			attributes: [
+				.foregroundColor: Asset.Colors.white.color,
+				.font: FontFamily.Nunito.bold.font(size: 36)
+			]
+		)
+		titleLabel.numberOfLines = 0
+		titleLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(16)
+			make.top.equalTo(navbar)
+			make.trailing.equalToSuperview().offset(-32)
+		}
   }
 
-  func configure(with viewModel: DiscoverControllerViewModel) {}
+  func configure(with viewModel: DiscoverControllerViewModel) {
+		
+	}
 }

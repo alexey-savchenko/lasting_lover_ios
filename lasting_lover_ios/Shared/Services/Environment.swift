@@ -13,6 +13,7 @@ struct Environment {
   var playerService: () -> AudioPlayerServiceProtocol = { AudioPlayerService.shared }
   var favoritesService: () -> FavoritesServiceProtocol = { FavoritesService() }
   var imageLoadingService: () -> ImageLoadingServiceProtocol = { ImageLoadingService.shared }
+	var backend: () -> BackendServiceProtocol = { BackendService.shared }
 }
 
 #if DEBUG

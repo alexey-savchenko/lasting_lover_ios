@@ -15,7 +15,7 @@ protocol BackendServiceProtocol {
   func getDiscoverData() -> Observable<DiscoverData>
 }
 
-class BackendService {
+class BackendService: BackendServiceProtocol {
   let provider = MoyaProvider<Backend>()
   
   static let shared = BackendService()
@@ -24,20 +24,34 @@ class BackendService {
     provider.session.sessionConfiguration.timeoutIntervalForRequest = 10
   }
   
-  func getDiscoverData() -> Observable<DiscoverData> {
-    fatalError()
-//    let discoverAuthors = provider.rx.request(.discoverAuthors).map(BackendResponse<Author>.self)
-//    let discoverCategories = provider.rx.request(.discoverCategories).map(BackendResponse<Category>.self)
-//    return Observable
-//      .zip([discoverAuthors, discoverCategories])
-//      .map { authors, categories in
-//
-//      }
-  }
+	func getDiscoverData() -> Observable<DiscoverData> {
+		
+		let discoverAuthors = provider.rx
+			.request(.discoverAuthors)
+			.asObservable()
+			.map(BackendResponse<Author>.self)
+			.map { $0.data }
+		let discoverCategories = provider.rx
+			.request(.discoverCategories)
+			.asObservable()
+			.map(BackendResponse<Category>.self)
+			.map { $0.data }
+		let discoverSeries = provider.rx
+			.request(.discoverSeries(featured: true))
+			.asObservable()
+			.map(BackendResponse<Series>.self)
+			.map { $0.data }
+		
+		return Observable
+			.zip(discoverAuthors, discoverCategories, discoverSeries)
+			.map { authors, categories, series in
+				DiscoverData(authors: authors, categories: categories, featuredSeries: series)
+			}
+	}
 }
 
 enum Backend {
-  case discoverAuthors
+	case discoverAuthors
   case authorDetails(id: String)
   case discoverCategories
   case discoverSeries(featured: Bool)
