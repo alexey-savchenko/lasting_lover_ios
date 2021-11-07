@@ -13,6 +13,7 @@ import RxMoya
 
 protocol BackendServiceProtocol {
   func getDiscoverData() -> Observable<DiscoverData>
+	func getSleepData() -> Observable<SleepData>
 }
 
 class BackendService: BackendServiceProtocol {
@@ -23,6 +24,23 @@ class BackendService: BackendServiceProtocol {
   private init() {
     provider.session.sessionConfiguration.timeoutIntervalForRequest = 10
   }
+	
+	func getSleepData() -> Observable<SleepData> {
+		let categories = provider.rx
+			.request(.sleepCategories)
+			.asObservable()
+			.map(BackendResponse<Category>.self)
+			.map { $0.data }
+		let stories = provider.rx
+			.request(.listStories(type: .allStories(featured: true, type: .sleep)))
+			.asObservable()
+			.map(BackendResponse<Story>.self)
+			.map { $0.data }
+		
+		return Observable
+			.zip(categories, stories)
+			.map(SleepData.init)
+	}
   
 	func getDiscoverData() -> Observable<DiscoverData> {
 		

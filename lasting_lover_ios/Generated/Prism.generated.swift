@@ -21,17 +21,17 @@ extension App.Action {
 
 
 
-extension Discover.Action {
+extension DiscoverTab.Action {
     internal enum prism {
-        internal static let loadData = Prism<Discover.Action, ()>(
+        internal static let loadData = Prism<DiscoverTab.Action, ()>(
             tryGet: { if case .loadData = $0 { return () } else { return nil } },
             inject: { .loadData })
 
-        internal static let setDiscoverData = Prism<Discover.Action,DiscoverData>(
+        internal static let setDiscoverData = Prism<DiscoverTab.Action,DiscoverData>(
             tryGet: { if case .setDiscoverData(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setDiscoverData(value:x1) })
 
-        internal static let setError = Prism<Discover.Action,Discover.Error>(
+        internal static let setError = Prism<DiscoverTab.Action,DiscoverTab.Error>(
             tryGet: { if case .setError(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setError(value:x1) })
 
@@ -46,9 +46,13 @@ extension MainModule.Action {
             tryGet: { if case .setTabIndex(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setTabIndex(value:x1) })
 
-        internal static let discoverAction = Prism<MainModule.Action,Discover.Action>(
+        internal static let discoverAction = Prism<MainModule.Action,DiscoverTab.Action>(
             tryGet: { if case .discoverAction(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .discoverAction(value:x1) })
+
+        internal static let sleepAction = Prism<MainModule.Action,SleepTab.Action>(
+            tryGet: { if case .sleepAction(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .sleepAction(value:x1) })
 
     }
 }
@@ -99,6 +103,25 @@ extension Settings.Action {
         internal static let setSubscriptionActive = Prism<Settings.Action,Bool>(
             tryGet: { if case .setSubscriptionActive(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setSubscriptionActive(value:x1) })
+
+    }
+}
+
+
+
+extension SleepTab.Action {
+    internal enum prism {
+        internal static let loadData = Prism<SleepTab.Action, ()>(
+            tryGet: { if case .loadData = $0 { return () } else { return nil } },
+            inject: { .loadData })
+
+        internal static let setSleepData = Prism<SleepTab.Action,SleepData>(
+            tryGet: { if case .setSleepData(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setSleepData(value:x1) })
+
+        internal static let setError = Prism<SleepTab.Action,SleepTab.Error>(
+            tryGet: { if case .setError(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setError(value:x1) })
 
     }
 }

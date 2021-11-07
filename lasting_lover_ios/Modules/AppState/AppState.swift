@@ -25,8 +25,11 @@ enum App {
 				),
 				mainModuleState: MainModule.State(
 					selectedTabIndex: 0,
-					discoverState: Discover.State(
+					discoverState: DiscoverTab.State(
 						data: Loadable.indefiniteLoading
+					),
+					sleepState: SleepTab.State(
+						data: .indefiniteLoading
 					)
 				)
 			)

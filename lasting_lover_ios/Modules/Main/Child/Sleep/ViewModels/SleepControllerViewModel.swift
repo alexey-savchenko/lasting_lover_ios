@@ -6,5 +6,31 @@
 //
 
 import Foundation
+import RxSwift
+import UNILibCore
+import RxUNILib
 
-class SleepControllerViewModel {}
+class SleepControllerViewModel {
+	struct Input {
+		
+	}
+	
+	struct Output {
+		let data: Observable<Loadable<SleepData, HashableWrapper<SleepTab.Error>>>
+	}
+	
+	let input: Input
+	let output: Output
+	
+	init(
+		state: Observable<SleepTab.State>,
+		dispatch: @escaping DispatchFunction<SleepTab.Action>
+	) {
+		self.input = Input()
+		self.output = Output(
+			data: state.map { $0.data }.distinctUntilChanged()
+		)
+		
+		dispatch(.loadData)
+	}
+}

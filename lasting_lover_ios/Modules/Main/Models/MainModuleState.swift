@@ -13,13 +13,15 @@ enum MainModule {
 	/// sourcery: lens
 	struct State: Hashable {
 		let selectedTabIndex: Int
-		let discoverState: Discover.State
+		let discoverState: DiscoverTab.State
+		let sleepState: SleepTab.State
 	}
 	
 	/// sourcery: prism
 	enum Action {
 		case setTabIndex(value: Int)
-		case discoverAction(value: Discover.Action)
+		case discoverAction(value: DiscoverTab.Action)
+		case sleepAction(value: SleepTab.Action)
 	}
 
 	static let reducer = Reducer<MainModule.State, MainModule.Action> { state, action in
@@ -27,7 +29,9 @@ enum MainModule {
 		case .setTabIndex(let value):
 			return MainModule.State.lens.selectedTabIndex.set(value)(state)
 		case .discoverAction(let value):
-			return State.lens.discoverState.set(Discover.reducer.reduce(state.discoverState, value))(state)
+			return State.lens.discoverState.set(DiscoverTab.reducer.reduce(state.discoverState, value))(state)
+		case .sleepAction(let value):
+			return State.lens.sleepState.set(SleepTab.reducer.reduce(state.sleepState, value))(state)
 		}
 	}
 	
@@ -37,8 +41,15 @@ enum MainModule {
 				switch action {
 				case .setTabIndex:
 					next(action)
+				case .sleepAction(let value):
+					SleepTab
+						.middleware(
+							MainModule.Action.prism.sleepAction.inject <*> dispatch, { getState().map { $0.sleepState } }
+						)(
+							MainModule.Action.prism.sleepAction.inject <*> next
+						)(value)
 				case .discoverAction(let value):
-					Discover
+					DiscoverTab
 						.middleware(
 							MainModule.Action.prism.discoverAction.inject <*> dispatch, { getState().map { $0.discoverState } }
 						)(

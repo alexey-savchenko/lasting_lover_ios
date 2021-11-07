@@ -16,15 +16,15 @@ class DiscoverControllerViewModel {
   }
   
   struct Output {
-		let data: Observable<Loadable<DiscoverData, HashableWrapper<Discover.Error>>>
+		let data: Observable<Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>>
   }
   
   let input: Input
   let output: Output
   
 	init(
-		state: Observable<Discover.State>,
-		dispatch: @escaping DispatchFunction<Discover.Action>
+		state: Observable<DiscoverTab.State>,
+		dispatch: @escaping DispatchFunction<DiscoverTab.Action>
 	) {
     self.input = Input()
 		self.output = Output(

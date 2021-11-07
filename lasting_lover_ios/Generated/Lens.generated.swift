@@ -59,13 +59,13 @@ extension Auth.State {
     )
   }
 }
-extension Discover.State {
+extension DiscoverTab.State {
   enum lens {
-    static let data = Lens<Discover.State, Loadable<DiscoverData, HashableWrapper<Discover.Error>>>(
+    static let data = Lens<DiscoverTab.State, Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>>(
       get: { $0.data },
       set: { part in 
         { whole in
-          Discover.State.init(data: part)
+          DiscoverTab.State.init(data: part)
         }
       }
     )
@@ -77,15 +77,23 @@ extension MainModule.State {
       get: { $0.selectedTabIndex },
       set: { part in 
         { whole in
-          MainModule.State.init(selectedTabIndex: part, discoverState: whole.discoverState)
+          MainModule.State.init(selectedTabIndex: part, discoverState: whole.discoverState, sleepState: whole.sleepState)
         }
       }
     )
-    static let discoverState = Lens<MainModule.State, Discover.State>(
+    static let discoverState = Lens<MainModule.State, DiscoverTab.State>(
       get: { $0.discoverState },
       set: { part in 
         { whole in
-          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: part)
+          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: part, sleepState: whole.sleepState)
+        }
+      }
+    )
+    static let sleepState = Lens<MainModule.State, SleepTab.State>(
+      get: { $0.sleepState },
+      set: { part in 
+        { whole in
+          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: whole.discoverState, sleepState: part)
         }
       }
     )
@@ -134,6 +142,18 @@ extension Settings.State {
       set: { part in 
         { whole in
           Settings.State.init(subscriptionActive: part)
+        }
+      }
+    )
+  }
+}
+extension SleepTab.State {
+  enum lens {
+    static let data = Lens<SleepTab.State, Loadable<SleepData, HashableWrapper<SleepTab.Error>>>(
+      get: { $0.data },
+      set: { part in 
+        { whole in
+          SleepTab.State.init(data: part)
         }
       }
     )

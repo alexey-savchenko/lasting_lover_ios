@@ -66,6 +66,8 @@ internal enum Asset {
     internal static let playerProgressBarIndicatorImage = ImageAsset(name: "playerProgressBarIndicatorImage")
     internal static let search = ImageAsset(name: "search")
     internal static let signInTitleimage = ImageAsset(name: "signInTitleimage")
+    internal static let starEmpty = ImageAsset(name: "starEmpty")
+    internal static let starFilled = ImageAsset(name: "starFilled")
     internal static let upload = ImageAsset(name: "upload")
     internal static let user = ImageAsset(name: "user")
   }

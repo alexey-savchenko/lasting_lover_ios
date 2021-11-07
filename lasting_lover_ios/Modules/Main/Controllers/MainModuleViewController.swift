@@ -25,6 +25,18 @@ class MainModuleViewController: UIViewController {
       Asset.Colors.white.color.withAlphaComponent(0.5)
     )
   )
+	let favoritesItem = _ToolBarItem(
+		image: Asset.Images.starFilled.image,
+		text: L10n.mainTabFavorites,
+		selectedColors: (
+			Asset.Colors.tabColor0.color,
+			Asset.Colors.tabColor1.color
+		),
+		deselectedColors: (
+			Asset.Colors.white.color.withAlphaComponent(0.5),
+			Asset.Colors.white.color.withAlphaComponent(0.5)
+		)
+	)
   let sleepItem = _ToolBarItem(
     image: Asset.Images.moon.image,
     text: L10n.mainTabSleep,
@@ -44,8 +56,14 @@ class MainModuleViewController: UIViewController {
 			dispatch: MainModule.Action.discoverAction <*> App.Action.mainModuleAction <*> appStore.dispatch
 		)
   )
+	lazy var favoritesViewController = FavoritesViewController(
+		viewModel: FavoritesControllerViewModel()
+	)
   lazy var sleepViewController = SleepViewController(
-    viewModel: SleepControllerViewModel()
+		viewModel: SleepControllerViewModel(
+			state: appStore.stateObservable.map { $0.mainModuleState.sleepState }.distinctUntilChanged(),
+			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
   )
 
   let viewModel: MainControllerViewModel
@@ -73,15 +91,15 @@ class MainModuleViewController: UIViewController {
     toolbar.snp.makeConstraints { make in
       make.leading.trailing.bottom.equalToSuperview()
     }
-    toolbar.set(items: [discoverItem, sleepItem])
-    [discoverItem, sleepItem].forEach { i in
+    toolbar.set(items: [discoverItem, favoritesItem, sleepItem])
+    [discoverItem, favoritesItem, sleepItem].forEach { i in
       i.snp.makeConstraints { make in
         make.width.equalTo(60)
         make.height.equalTo(42)
       }
     }
 
-    [discoverViewController, sleepViewController].forEach { c in
+    [discoverViewController, favoritesViewController, sleepViewController].forEach { c in
       add(c)
       c.view.snp.makeConstraints { make in
         make.top.leading.trailing.equalToSuperview()
@@ -99,6 +117,7 @@ class MainModuleViewController: UIViewController {
         }
         [
           self.discoverViewController,
+					self.favoritesViewController,
           self.sleepViewController
         ].enumerated().forEach { idx, item in
           item.view.isHidden = idx != value

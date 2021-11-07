@@ -20,6 +20,9 @@
 		02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */; };
 		02770AE42737E93400DF4F49 /* StoriesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE32737E93400DF4F49 /* StoriesLayout.swift */; };
 		02770AE62737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE52737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift */; };
+		02770AED2737F1D000DF4F49 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AEC2737F1D000DF4F49 /* FavoritesViewController.swift */; };
+		02770AEF2737F1F700DF4F49 /* FavoritesControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AEE2737F1F700DF4F49 /* FavoritesControllerViewModel.swift */; };
+		02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF1273806BE00DF4F49 /* SleepState.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -140,6 +143,9 @@
 		02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		02770AE32737E93400DF4F49 /* StoriesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesLayout.swift; sourceTree = "<group>"; };
 		02770AE52737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCellViewModel.swift; sourceTree = "<group>"; };
+		02770AEC2737F1D000DF4F49 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		02770AEE2737F1F700DF4F49 /* FavoritesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesControllerViewModel.swift; sourceTree = "<group>"; };
+		02770AF1273806BE00DF4F49 /* SleepState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepState.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -333,6 +339,55 @@
 				02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		02770AE72737F12D00DF4F49 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				02770AEB2737F15800DF4F49 /* Models */,
+				02770AEA2737F15000DF4F49 /* UI */,
+				02770AE92737F14A00DF4F49 /* Controllers */,
+				02770AE82737F14200DF4F49 /* ViewModels */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		02770AE82737F14200DF4F49 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				02770AEE2737F1F700DF4F49 /* FavoritesControllerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		02770AE92737F14A00DF4F49 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02770AEC2737F1D000DF4F49 /* FavoritesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		02770AEA2737F15000DF4F49 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		02770AEB2737F15800DF4F49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		02770AF0273806B300DF4F49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02770AF1273806BE00DF4F49 /* SleepState.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		02F57EE7272BFD1C00BB1E7C /* Category */ = {
@@ -613,6 +668,7 @@
 		221C5262270A544F0085534E /* Child */ = {
 			isa = PBXGroup;
 			children = (
+				02770AE72737F12D00DF4F49 /* Favorites */,
 				221C5264270A545E0085534E /* Sleep */,
 				221C5263270A54580085534E /* Discover */,
 			);
@@ -633,6 +689,7 @@
 		221C5264270A545E0085534E /* Sleep */ = {
 			isa = PBXGroup;
 			children = (
+				02770AF0273806B300DF4F49 /* Models */,
 				221C526A270A55E10085534E /* UI */,
 				221C5267270A55CF0085534E /* ViewModels */,
 				221C5266270A55C90085534E /* Controllers */,
@@ -1020,6 +1077,7 @@
 				22BF1993272E852D00FAA6C6 /* Models.swift in Sources */,
 				221E22D0270DEB15003F324B /* TodayPopularView.swift in Sources */,
 				02770ADF2737C63000DF4F49 /* CategoryCellViewModel.swift in Sources */,
+				02770AEF2737F1F700DF4F49 /* FavoritesControllerViewModel.swift in Sources */,
 				221C52582709DC3D0085534E /* ToolbarItem.swift in Sources */,
 				221C525D270A4ACF0085534E /* MainControllerViewModel.swift in Sources */,
 				2218AD85271D772A002C405C /* PlayerProgressBarView.swift in Sources */,
@@ -1034,6 +1092,7 @@
 				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
 				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
+				02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */,
 				02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */,
@@ -1076,6 +1135,7 @@
 				02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
+				02770AED2737F1D000DF4F49 /* FavoritesViewController.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
 				02770AE42737E93400DF4F49 /* StoriesLayout.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,

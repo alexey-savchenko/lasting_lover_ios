@@ -10,7 +10,7 @@ import UNILibCore
 import RxUNILib
 import RxSwift
 
-enum Discover {
+enum DiscoverTab {
 	
 	enum Error: LocalizedError, Hashable {
 		case networkError
@@ -25,17 +25,17 @@ enum Discover {
 	
 	/// sourcery: lens
 	struct State: Hashable {
-		let data: Loadable<DiscoverData, HashableWrapper<Discover.Error>>
+		let data: Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>
 	}
 	
 	/// sourcery: prism
 	enum Action {
 		case loadData
 		case setDiscoverData(value: DiscoverData)
-		case setError(value: Discover.Error)
+		case setError(value: DiscoverTab.Error)
 	}
 	
-	static let middleware: Middleware<Discover.State, Discover.Action> = { dispatch, getState in
+	static let middleware: Middleware<DiscoverTab.State, DiscoverTab.Action> = { dispatch, getState in
 		{ next in
 			{ action in
 				switch action {
@@ -65,14 +65,14 @@ enum Discover {
 		}
 	}
 	
-	static let reducer = Reducer<Discover.State, Discover.Action> { state, action in
+	static let reducer = Reducer<DiscoverTab.State, DiscoverTab.Action> { state, action in
 		switch action {
 		case .loadData:
 			return state
 		case .setDiscoverData(let value):
-			return Discover.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<Discover.Error>>.item(item: value))(state)
+			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>.item(item: value))(state)
 		case .setError(let value):
-			return Discover.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<Discover.Error>>.error(error: HashableWrapper(value: value)))(state)
+			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>.error(error: HashableWrapper(value: value)))(state)
 		}
 	}
 }
