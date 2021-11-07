@@ -24,8 +24,9 @@ class CategoryCell: UICollectionViewCell {
     titleLabel.textColor = Asset.Colors.white.color
     titleLabel.font = FontFamily.Nunito.regular.font(size: 15)
     titleLabel.snp.makeConstraints { make in
-      make.leading.trailing.equalToSuperview().inset(8)
+      make.leading.trailing.equalToSuperview().inset(24)
       make.centerY.equalToSuperview()
+			make.top.bottom.equalToSuperview().inset(16)
     }
   }
 
@@ -40,4 +41,8 @@ class CategoryCell: UICollectionViewCell {
     setupContentView()
     setupTitleLabel()
   }
+	
+	func configure(with viewModel: CategoryCellViewModelProtocol) {
+		titleLabel.text = viewModel.title
+	}
 }

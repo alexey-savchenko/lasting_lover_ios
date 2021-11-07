@@ -18,8 +18,12 @@ internal enum L10n {
   internal static let congratulationsTitle = L10n.tr("Localizable", "congratulations_title")
   /// Authors
   internal static let discoverAuthors = L10n.tr("Localizable", "discover_authors")
+  /// Categories
+  internal static let discoverCategories = L10n.tr("Localizable", "discover_categories")
   /// Featured Series
   internal static let discoverFeaturedSeries = L10n.tr("Localizable", "discover_Featured_Series")
+  /// New sexy stories
+  internal static let discoverNewSexyStories = L10n.tr("Localizable", "discover_New_sexy_stories")
   /// See all
   internal static let discoverSeeAll = L10n.tr("Localizable", "discover_see_all")
   /// Discover new impressions
