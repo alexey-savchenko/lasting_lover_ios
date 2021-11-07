@@ -20,11 +20,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 	let contentScrollView = VerticalScrollingView()
 	let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
 	
+	let contentStackView = UIStackView()
+	
+	let authorsContainerView = UIView()
 	let authorsTitleLabel = UILabel()
 	lazy var authorsCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
-		layout.itemSize = CGSize(width: 72, height: 128)
+		layout.itemSize = CGSize(width: 72, height: 100)
 		layout.minimumLineSpacing = 16
 		layout.minimumInteritemSpacing = 16
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
@@ -34,6 +37,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		return c
 	}()
 	
+	let seriesContainerView = UIView()
 	let seriesTitleLabel = UILabel()
 	let seeAllSeriesButton = UIButton()
 	lazy var seriesCollectionView: UICollectionView = {
@@ -44,6 +48,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		return c
 	}()
 	
+	let categoriesContainerView = UIView()
 	let categoriesTitleLabel = UILabel()
 	lazy var categoriesCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
@@ -56,6 +61,16 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		c.registerClass(CategoryCell.self)
 		return c
 	}()
+	
+//	let featuredStoriesTitleLabel = UILabel()
+//	let allFeaturedStoriesButton = UIButton()
+//	lazy var seriesCollectionView: UICollectionView = {
+//		let layout = SeriesLayout()
+//		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//		c.showsHorizontalScrollIndicator = false
+//		c.registerClass(CardCell.self)
+//		return c
+//	}()
 	
 	private let disposebag = DisposeBag()
 	
@@ -109,6 +124,9 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 	}
 	
 	fileprivate func setupAuthorsBlock() {
+		
+		[authorsTitleLabel, authorsCollectionView].forEach(authorsContainerView.addSubview)
+		
 		authorsTitleLabel.attributedText = NSAttributedString(
 			string: L10n.discoverAuthors,
 			attributes: [
@@ -118,39 +136,24 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		)
 		authorsTitleLabel.snp.makeConstraints { make in
 			make.leading.equalToSuperview().offset(24)
-			make.top.equalToSuperview().offset(16)
+			make.top.equalToSuperview()
 		}
 		authorsCollectionView.backgroundColor = .clear
 		authorsCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
-			make.height.equalTo(130)
+			make.height.equalTo(110)
 			make.top.equalTo(authorsTitleLabel.snp.bottom).offset(8)
+			make.bottom.equalToSuperview()
 		}
 	}
 	
-	fileprivate func setupContentScrollView() {
-		contentScrollView.snp.makeConstraints { make in
-			make.leading.trailing.equalToSuperview()
-			make.top.equalTo(titleLabel.snp.bottom).offset(8)
-			make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
-		}
-		[
-			authorsTitleLabel,
-			authorsCollectionView,
-			seriesTitleLabel,
-			seriesCollectionView,
-			seeAllSeriesButton,
-			categoriesTitleLabel,
-			categoriesCollectionView
-		]
-			.forEach(contentScrollView.containerView.addSubview)
+	fileprivate func setupCategoriesBlock() {
 		
-		setupAuthorsBlock()
-		setupSeriesCollectionView()
+		[categoriesTitleLabel, categoriesCollectionView].forEach(categoriesContainerView.addSubview)
 		
 		categoriesTitleLabel.snp.makeConstraints { make in
 			make.leading.equalToSuperview().offset(24)
-			make.top.equalTo(seriesCollectionView.snp.bottom).offset(8)
+			make.top.equalToSuperview()
 		}
 		categoriesTitleLabel.attributedText = NSAttributedString(
 			string: L10n.discoverCategories,
@@ -164,10 +167,48 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			make.leading.trailing.equalToSuperview()
 			make.height.equalTo(55)
 			make.top.equalTo(categoriesTitleLabel.snp.bottom).offset(16)
+			make.bottom.equalToSuperview()
 		}
 	}
 	
+	fileprivate func setupContentScrollView() {
+		contentScrollView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+			make.top.equalTo(titleLabel.snp.bottom).offset(8)
+			make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
+		}
+		contentScrollView.containerView.addSubview(contentStackView)
+		contentStackView.axis = .vertical
+		contentStackView.spacing = 8
+		contentStackView.snp.makeConstraints { make in
+			make.edges.equalToSuperview()
+		}
+		
+		[authorsContainerView,
+		 seriesContainerView,
+		 categoriesContainerView]
+			.forEach(contentStackView.addArrangedSubview)
+//		[
+//			authorsTitleLabel,
+//			authorsCollectionView,
+//			seriesTitleLabel,
+//			seriesCollectionView,
+//			seeAllSeriesButton,
+//			categoriesTitleLabel,
+//			categoriesCollectionView
+//		]
+//			.forEach(contentScrollView.containerView.addSubview)
+		
+		setupAuthorsBlock()
+		setupSeriesCollectionView()
+		setupCategoriesBlock()
+	}
+	
 	fileprivate func setupSeriesCollectionView() {
+		
+		[seriesTitleLabel, seriesCollectionView, seeAllSeriesButton]
+			.forEach(seriesContainerView.addSubview)
+		
 		seriesTitleLabel.attributedText = NSAttributedString(
 			string: L10n.discoverFeaturedSeries,
 			attributes: [
@@ -177,13 +218,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		)
 		seriesTitleLabel.snp.makeConstraints { make in
 			make.leading.equalToSuperview().offset(24)
-			make.top.equalTo(authorsCollectionView.snp.bottom).offset(8)
+			make.top.equalToSuperview()
 		}
 		seriesCollectionView.backgroundColor = .clear
 		seriesCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
 			make.height.equalTo(270)
 			make.top.equalTo(seriesTitleLabel.snp.bottom).offset(8)
+			make.bottom.equalToSuperview()
 		}
 		seeAllSeriesButton.snp.makeConstraints { make in
 			make.trailing.equalToSuperview().offset(-24)

@@ -46,7 +46,7 @@ class BackendService: BackendServiceProtocol {
 			.asObservable()
 			.map(BackendResponse<Story>.self)
 			.map { $0.data }
-		
+
 		return Observable
 			.zip(discoverAuthors, discoverCategories, discoverSeries, discoverFeaturedStories)
 			.map(DiscoverData.init)
