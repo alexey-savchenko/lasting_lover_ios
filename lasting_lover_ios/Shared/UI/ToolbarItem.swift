@@ -126,28 +126,9 @@ func toolbarImage(image: UIImage, text: String, color0: UIColor, color1: UIColor
   }
 
   let gradient = horizontalGradientImage(size: rect.size, color0: color0, color1: color1)
-
-//  let colors = [color0.cgColor, color1.cgColor]
-//  let colorSpace = CGColorSpaceCreateDeviceRGB()
-//  let colorLocations: [CGFloat] = [0.0, 1.0]
-//  let gradient = CGGradient(
-//    colorsSpace: colorSpace,
-//    colors: colors as CFArray,
-//    locations: colorLocations
-//  )!
-//
-//  let startPoint = CGPoint.zero
-//  let endPoint = CGPoint(x: rect.width, y: 0)
-//
   let result = renderer.image { ctx in
     ctx.cgContext.clip(to: rect, mask: mask.cgImage!)
     gradient.draw(in: rect)
-//    ctx.cgContext.drawLinearGradient(
-//      gradient,
-//      start: startPoint,
-//      end: endPoint,
-//      options: []
-//    )
   }
 
   return result

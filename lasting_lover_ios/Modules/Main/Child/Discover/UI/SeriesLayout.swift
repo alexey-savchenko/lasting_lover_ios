@@ -9,9 +9,6 @@ import Foundation
 import UIKit
 
 class SeriesLayout: UICollectionViewFlowLayout {
-	private var setupDone = false
-	private let smallItemScale: CGFloat = 0.5
-	private let smallItemAlpha: CGFloat = 0.2
 	
 	override func prepare() {
 		super.prepare()

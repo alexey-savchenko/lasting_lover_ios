@@ -24,6 +24,8 @@ internal enum L10n {
   internal static let discoverFeaturedSeries = L10n.tr("Localizable", "discover_Featured_Series")
   /// New sexy stories
   internal static let discoverNewSexyStories = L10n.tr("Localizable", "discover_New_sexy_stories")
+  /// New topic
+  internal static let discoverNewTopic = L10n.tr("Localizable", "discover_new_topic")
   /// See all
   internal static let discoverSeeAll = L10n.tr("Localizable", "discover_see_all")
   /// Discover new impressions

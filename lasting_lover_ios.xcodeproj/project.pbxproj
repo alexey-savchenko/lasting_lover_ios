@@ -15,9 +15,11 @@
 		02770AD62735B8F000DF4F49 /* AuthorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */; };
 		02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD72735BA9900DF4F49 /* Secrion.swift */; };
 		02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */; };
-		02770ADC2735E04300DF4F49 /* Serieslayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770ADB2735E04300DF4F49 /* Serieslayout.swift */; };
+		02770ADC2735E04300DF4F49 /* SeriesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770ADB2735E04300DF4F49 /* SeriesLayout.swift */; };
 		02770ADF2737C63000DF4F49 /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770ADE2737C63000DF4F49 /* CategoryCellViewModel.swift */; };
 		02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */; };
+		02770AE42737E93400DF4F49 /* StoriesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE32737E93400DF4F49 /* StoriesLayout.swift */; };
+		02770AE62737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE52737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -133,9 +135,11 @@
 		02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCellViewModel.swift; sourceTree = "<group>"; };
 		02770AD72735BA9900DF4F49 /* Secrion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrion.swift; sourceTree = "<group>"; };
 		02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCellViewModel.swift.swift; sourceTree = "<group>"; };
-		02770ADB2735E04300DF4F49 /* Serieslayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serieslayout.swift; sourceTree = "<group>"; };
+		02770ADB2735E04300DF4F49 /* SeriesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesLayout.swift; sourceTree = "<group>"; };
 		02770ADE2737C63000DF4F49 /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
 		02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		02770AE32737E93400DF4F49 /* StoriesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesLayout.swift; sourceTree = "<group>"; };
+		02770AE52737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverStoryCellViewModel.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 				02770AD52735B8F000DF4F49 /* AuthorCellViewModel.swift */,
 				02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */,
 				02770ADE2737C63000DF4F49 /* CategoryCellViewModel.swift */,
+				02770AE52737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -678,7 +683,8 @@
 			isa = PBXGroup;
 			children = (
 				221E22CF270DEB15003F324B /* TodayPopularView.swift */,
-				02770ADB2735E04300DF4F49 /* Serieslayout.swift */,
+				02770ADB2735E04300DF4F49 /* SeriesLayout.swift */,
+				02770AE32737E93400DF4F49 /* StoriesLayout.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1021,7 +1027,7 @@
 				221C5243270714900085534E /* TextfieldView.swift in Sources */,
 				221E22CC270DE585003F324B /* InsetLabel.swift in Sources */,
 				221C523A2705FB390085534E /* Fonts.swift in Sources */,
-				02770ADC2735E04300DF4F49 /* Serieslayout.swift in Sources */,
+				02770ADC2735E04300DF4F49 /* SeriesLayout.swift in Sources */,
 				221E22DC270F48E0003F324B /* PlayerControllerViewModel.swift in Sources */,
 				221C52592709DC3D0085534E /* Toolbar.swift in Sources */,
 				02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */,
@@ -1058,6 +1064,7 @@
 				0262BB6B2705084C00847ED7 /* AppState.swift in Sources */,
 				02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */,
 				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,
+				02770AE62737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift in Sources */,
 				2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */,
 				221C5261270A4DF60085534E /* SleepViewController.swift in Sources */,
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
@@ -1070,6 +1077,7 @@
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
+				02770AE42737E93400DF4F49 /* StoriesLayout.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,
 				221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */,
 				221C52522709CCC70085534E /* DiscoverViewController.swift in Sources */,
@@ -1222,7 +1230,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CNZ9UGBFKN;
+				DEVELOPMENT_TEAM = N35W696BYS;
 				INFOPLIST_FILE = lasting_lover_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1243,7 +1251,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CNZ9UGBFKN;
+				DEVELOPMENT_TEAM = N35W696BYS;
 				INFOPLIST_FILE = lasting_lover_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

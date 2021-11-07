@@ -30,6 +30,7 @@ class CardCell: UICollectionViewCell {
 
   let cherryImageView = UIImageView(image: Asset.Images.cherries.image)
   let playImageView = UIImageView(image: Asset.Images.playInWhiteCircle.image)
+	let topLeftAccesoryBGImageView = UIImageView()
   let topLeftAccesoryLabel = InsetLabel()
 
   var viewModel: RoundedRectAndTitleSubtitleCellViewModelProtocol?
@@ -54,16 +55,19 @@ class CardCell: UICollectionViewCell {
       .disposed(by: disposeBag)
     titleLabel.text = viewModel.title
     subtitleLabel.text = viewModel.subtitle
-//    topLeftAccesoryLabel.isHidden = !viewModel.shouldDisplayAccessoryView
+
     switch viewModel.accessoryViewMode {
     case .hide:
       topLeftAccesoryLabel.isHidden = true
+			topLeftAccesoryBGImageView.isHidden = true
     case .show(let title):
+			topLeftAccesoryBGImageView.isHidden = false
       topLeftAccesoryLabel.isHidden = false
       topLeftAccesoryLabel.text = title
     }
     playImageView.isHidden = !viewModel.shouldDisplayPlayImage
     cherryImageView.isHidden = !viewModel.shouldDisplayCherryView
+		setNeedsLayout()
   }
 
   fileprivate func setupImageView() {
@@ -116,9 +120,6 @@ class CardCell: UICollectionViewCell {
   }
 
   fileprivate func setupAccesoryLabel() {
-    topLeftAccesoryLabel.layer.cornerRadius = 14
-    topLeftAccesoryLabel.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
-    topLeftAccesoryLabel.clipsToBounds = true
     topLeftAccesoryLabel.font = FontFamily.Nunito.semiBold.font(size: 12)
     topLeftAccesoryLabel.snp.makeConstraints { make in
       make.leading.equalToSuperview()
@@ -127,13 +128,28 @@ class CardCell: UICollectionViewCell {
     }
   }
 
-  private func setupUI() {
+	fileprivate func setupAccessoryBGView() {
+		topLeftAccesoryBGImageView.clipsToBounds = true
+		topLeftAccesoryBGImageView.layer.cornerRadius = 14
+		topLeftAccesoryBGImageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
+		topLeftAccesoryBGImageView.image = horizontalGradientImage(
+			size: CGSize(width: 50, height: 22),
+			color0: Asset.Colors.tabColor0.color,
+			color1: Asset.Colors.tabColor1.color
+		)
+		topLeftAccesoryBGImageView.snp.makeConstraints { make in
+			make.edges.equalTo(topLeftAccesoryLabel)
+		}
+	}
+	
+	private func setupUI() {
     [
       imageView,
       titleLabel,
       subtitleLabel,
       cherryImageView,
       playImageView,
+			topLeftAccesoryBGImageView,
       topLeftAccesoryLabel
     ].forEach(contentView.addSubview)
 
@@ -142,19 +158,8 @@ class CardCell: UICollectionViewCell {
     setupSubtitleLabel()
     setupCherryImageView()
     setupPlayImageView()
-    setupAccesoryLabel()
-  }
-
-  override func layoutSubviews() {
-    super.layoutSubviews()
-
-    topLeftAccesoryLabel.backgroundColor = UIColor(
-      patternImage: horizontalGradientImage(
-        size: topLeftAccesoryLabel.bounds.size,
-        color0: Asset.Colors.tabColor0.color,
-        color1: Asset.Colors.tabColor1.color
-      )
-    )
+		setupAccesoryLabel()
+		setupAccessoryBGView()
   }
 
   override func prepareForReuse() {

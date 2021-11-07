@@ -62,15 +62,16 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		return c
 	}()
 	
-//	let featuredStoriesTitleLabel = UILabel()
-//	let allFeaturedStoriesButton = UIButton()
-//	lazy var seriesCollectionView: UICollectionView = {
-//		let layout = SeriesLayout()
-//		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//		c.showsHorizontalScrollIndicator = false
-//		c.registerClass(CardCell.self)
-//		return c
-//	}()
+	let featuredStoriesContainerView = UIView()
+	let featuredStoriesTitleLabel = UILabel()
+	let allFeaturedStoriesButton = UIButton()
+	lazy var featuredStoriesCollectionView: UICollectionView = {
+		let layout = StoriesLayout()
+		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		c.showsHorizontalScrollIndicator = false
+		c.registerClass(CardCell.self)
+		return c
+	}()
 	
 	private let disposebag = DisposeBag()
 	
@@ -171,6 +172,44 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		}
 	}
 	
+	fileprivate func setupFeaturedStoriesBlock() {
+		[featuredStoriesTitleLabel, featuredStoriesCollectionView, allFeaturedStoriesButton]
+			.forEach(featuredStoriesContainerView.addSubview)
+		
+		featuredStoriesTitleLabel.attributedText = NSAttributedString(
+			string: L10n.discoverNewSexyStories,
+			attributes: [
+				.foregroundColor: Asset.Colors.white.color,
+				.font: FontFamily.Nunito.semiBold.font(size: 22)
+			]
+		)
+		featuredStoriesTitleLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(24)
+			make.top.equalToSuperview()
+		}
+		allFeaturedStoriesButton.setAttributedTitle(
+			NSAttributedString(
+				string: L10n.discoverSeeAll,
+				attributes: [
+					.foregroundColor: Asset.Colors.white.color,
+					.font: FontFamily.Nunito.semiBold.font(size: 16)
+				]
+			),
+			for: .normal
+		)
+		allFeaturedStoriesButton.snp.makeConstraints { make in
+			make.centerY.equalTo(featuredStoriesTitleLabel)
+			make.trailing.equalToSuperview().offset(-24)
+		}
+		featuredStoriesCollectionView.backgroundColor = .clear
+		featuredStoriesCollectionView.snp.makeConstraints { make in
+			make.top.equalTo(featuredStoriesTitleLabel.snp.bottom).offset(16)
+			make.leading.trailing.equalToSuperview()
+			make.height.equalTo(244)
+			make.bottom.equalToSuperview()
+		}
+	}
+	
 	fileprivate func setupContentScrollView() {
 		contentScrollView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
@@ -184,27 +223,21 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			make.edges.equalToSuperview()
 		}
 		
-		[authorsContainerView,
-		 seriesContainerView,
-		 categoriesContainerView]
+		[
+			authorsContainerView,
+			seriesContainerView,
+			categoriesContainerView,
+			featuredStoriesContainerView
+		]
 			.forEach(contentStackView.addArrangedSubview)
-//		[
-//			authorsTitleLabel,
-//			authorsCollectionView,
-//			seriesTitleLabel,
-//			seriesCollectionView,
-//			seeAllSeriesButton,
-//			categoriesTitleLabel,
-//			categoriesCollectionView
-//		]
-//			.forEach(contentScrollView.containerView.addSubview)
 		
 		setupAuthorsBlock()
-		setupSeriesCollectionView()
+		setupSeriesBlock()
 		setupCategoriesBlock()
+		setupFeaturedStoriesBlock()
 	}
 	
-	fileprivate func setupSeriesCollectionView() {
+	fileprivate func setupSeriesBlock() {
 		
 		[seriesTitleLabel, seriesCollectionView, seeAllSeriesButton]
 			.forEach(seriesContainerView.addSubview)
@@ -320,7 +353,24 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.bind(to: categoriesCollectionView.rx.items(dataSource: categoriesCollectionViewDataSource()))
 			.disposed(by: disposebag)
 		
-		let errors = data
+		content
+			.map { $0.featuredStories }
+			.map { array in
+				return array.enumerated()
+					.map { idx, value -> DiscoverStoryCellViewModel in
+						if idx == 0 {
+							return DiscoverStoryCellViewModel(story: value, showNewTopicAccessory: true)
+						} else {
+							return DiscoverStoryCellViewModel(story: value, showNewTopicAccessory: false)
+						}
+					}
+			}
+			.map(Section.init)
+			.map(toArray)
+			.bind(to: featuredStoriesCollectionView.rx.items(dataSource: storiesCollectionViewDataSource()))
+			.disposed(by: disposebag)
+		
+		data
 			.compactMap { value -> HashableWrapper<Discover.Error>? in
 				if case .error(let wrapped) = value {
 					return wrapped
@@ -334,6 +384,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			}
 			.disposed(by: disposebag)
 		
+	}
+	
+	private func storiesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<DiscoverStoryCellViewModel>> {
+		return RxCollectionViewSectionedReloadDataSource { ds, cv, indexPath, item in
+			let cell: CardCell = cv.dequeueReusableCell(forIndexPath: indexPath)
+			cell.configure(with: item)
+			return cell
+		}
 	}
 	
 	private func seriesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SeriesCellViewModel>> {
