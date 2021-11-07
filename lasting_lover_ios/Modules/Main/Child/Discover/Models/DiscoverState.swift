@@ -15,7 +15,7 @@ enum Discover {
 	enum Error: LocalizedError, Hashable {
 		case networkError
 		
-		var localizedDescription: String? {
+		var errorDescription: String? {
 			switch self {
 			case .networkError:
 				return L10n.errorNetworkUnreachable

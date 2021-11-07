@@ -18,6 +18,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 	let titleLabel = UILabel()
 	
 	let contentScrollView = VerticalScrollingView()
+	let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
 	
 	let authorsTitleLabel = UILabel()
 	lazy var authorsCollectionView: UICollectionView = {
@@ -48,7 +49,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
 		layout.minimumLineSpacing = 8
-		layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+		layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
 		layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		c.showsHorizontalScrollIndicator = false
@@ -193,38 +194,57 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 				string: L10n.discoverSeeAll,
 				attributes: [
 					.foregroundColor: Asset.Colors.white.color,
-				 .font: FontFamily.Nunito.semiBold.font(size: 16)
-			 ]
+					.font: FontFamily.Nunito.semiBold.font(size: 16)
+				]
 			),
 			for: .normal
 		)
+	}
+	
+	fileprivate func setupActivityIndicator() {
+		activityIndicator.snp.makeConstraints { make in
+			make.center.equalTo(contentScrollView)
+		}
 	}
 	
 	func setupUI() {
 		[topArtworkImageView,
 		 navbar,
 		 titleLabel,
-		 contentScrollView]
+		 contentScrollView,
+		 activityIndicator]
 			.forEach(view.addSubview)
 		
 		setupTopArtwork()
 		setupNavbar()
 		setupTitleLabel()
 		setupContentScrollView()
-		
+		setupActivityIndicator()
 	}
 	
 	func configure(with viewModel: DiscoverControllerViewModel) {
 		
-		let isLoading = viewModel.output.data.map { value -> Bool in
+		let data = viewModel.output.data.share(replay: 1, scope: .whileConnected)
+		
+		let isLoading = data.map { value -> Bool in
 			if case .loading = value {
 				return true
 			} else {
 				return false
 			}
 		}
+			.bind { value in
+				self.activityIndicator.isHidden = !value
+				self.contentScrollView.isHidden = value
+				if value {
+					self.activityIndicator.startAnimating()
+				} else {
+					self.activityIndicator.stopAnimating()
+				}
+			}
+			.disposed(by: disposebag)
 		
-		let data = viewModel.output.data
+		let content = data
 			.compactMap { value -> DiscoverData? in
 				if case .item(let item) = value {
 					return item
@@ -234,7 +254,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			}
 			.distinctUntilChanged()
 		
-		data
+		content
 			.map { $0.authors }
 			.map { array in return array.map(AuthorCellViewModel.init) }
 			.map(Section.init)
@@ -242,7 +262,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.bind(to: authorsCollectionView.rx.items(dataSource: authorsCollectionViewDataSource()))
 			.disposed(by: disposebag)
 		
-		data
+		content
 			.map { $0.featuredSeries }
 			.map { array in return array.map(SeriesCellViewModel.init) }
 			.map(Section.init)
@@ -250,7 +270,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.bind(to: seriesCollectionView.rx.items(dataSource: seriesCollectionViewDataSource()))
 			.disposed(by: disposebag)
 		
-		data
+		content
 			.map { $0.categories }
 			.map { array in return array.map(CategoryCellViewModel.init) }
 			.map(Section.init)
@@ -258,7 +278,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.bind(to: categoriesCollectionView.rx.items(dataSource: categoriesCollectionViewDataSource()))
 			.disposed(by: disposebag)
 		
-		let errors = viewModel.output.data
+		let errors = data
 			.compactMap { value -> HashableWrapper<Discover.Error>? in
 				if case .error(let wrapped) = value {
 					return wrapped
@@ -267,6 +287,10 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 				}
 			}
 			.distinctUntilChanged()
+			.bind { value in
+				self.presentError(value.value)
+			}
+			.disposed(by: disposebag)
 		
 	}
 	

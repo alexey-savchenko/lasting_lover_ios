@@ -30,6 +30,10 @@ internal enum L10n {
   internal static let discoverTitle = L10n.tr("Localizable", "discover_title")
   /// Network unreachable
   internal static let errorNetworkUnreachable = L10n.tr("Localizable", "error_network_unreachable")
+  /// Something went wrong..
+  internal static let generalError = L10n.tr("Localizable", "general_error")
+  /// OK
+  internal static let generalOk = L10n.tr("Localizable", "general_ok")
   /// Discover
   internal static let mainTabDiscover = L10n.tr("Localizable", "main_tab_discover")
   /// Sleep

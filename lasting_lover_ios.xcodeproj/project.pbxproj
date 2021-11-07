@@ -17,6 +17,7 @@
 		02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */; };
 		02770ADC2735E04300DF4F49 /* Serieslayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770ADB2735E04300DF4F49 /* Serieslayout.swift */; };
 		02770ADF2737C63000DF4F49 /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770ADE2737C63000DF4F49 /* CategoryCellViewModel.swift */; };
+		02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -134,6 +135,7 @@
 		02770AD92735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCellViewModel.swift.swift; sourceTree = "<group>"; };
 		02770ADB2735E04300DF4F49 /* Serieslayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serieslayout.swift; sourceTree = "<group>"; };
 		02770ADE2737C63000DF4F49 /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
+		02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -320,6 +322,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		02770AE02737D00F00DF4F49 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		02F57EE7272BFD1C00BB1E7C /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +465,7 @@
 		221C51ED2705E0230085534E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				02770AE02737D00F00DF4F49 /* Extensions */,
 				0237F9292732B89F00BE76E1 /* Model */,
 				2218AD86271D92DF002C405C /* Services */,
 				221C523B2705FCD40085534E /* UI */,
@@ -995,6 +1006,7 @@
 			files = (
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
 				221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */,
+				02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */,
 				221C51E42705DB890085534E /* Lens.generated.swift in Sources */,
 				221C5272270A59F90085534E /* SleepControllerViewModel.swift in Sources */,
 				221C524527072C2F0085534E /* Button.swift in Sources */,

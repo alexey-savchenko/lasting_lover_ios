@@ -41,12 +41,15 @@ class BackendService: BackendServiceProtocol {
 			.asObservable()
 			.map(BackendResponse<Series>.self)
 			.map { $0.data }
+		let discoverFeaturedStories = provider.rx
+			.request(.listStories(type: StoryRequestType.allStories(featured: false, type: .discover)))
+			.asObservable()
+			.map(BackendResponse<Story>.self)
+			.map { $0.data }
 		
 		return Observable
-			.zip(discoverAuthors, discoverCategories, discoverSeries)
-			.map { authors, categories, series in
-				DiscoverData(authors: authors, categories: categories, featuredSeries: series)
-			}
+			.zip(discoverAuthors, discoverCategories, discoverSeries, discoverFeaturedStories)
+			.map(DiscoverData.init)
 	}
 }
 

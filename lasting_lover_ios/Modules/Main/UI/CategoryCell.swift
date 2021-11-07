@@ -31,7 +31,7 @@ class CategoryCell: UICollectionViewCell {
   }
 
   fileprivate func setupContentView() {
-    contentView.backgroundColor = Asset.Colors.tabBarBackground.color
+		contentView.backgroundColor = UIColor(red: 32.0 / 255.0, green: 14.0 / 255.0, blue: 42.0 / 255.0, alpha: 1)
     contentView.clipsToBounds = true
     contentView.layer.cornerRadius = 14
     contentView.addSubview(titleLabel)
