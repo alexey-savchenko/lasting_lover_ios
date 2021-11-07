@@ -30,15 +30,6 @@ class FavoritesViewController: ViewController<BackgroundImageView> {
 	}
 
 	fileprivate func setupNavbar() {
-		navbar.setTitle(
-			NSAttributedString(
-				string: "Lasting lover",
-				attributes: [
-					.foregroundColor: Asset.Colors.white.color,
-					.font: FontFamily.Nunito.semiBold.font(size: 22)
-				]
-			)
-		)
 		navbar.setRightButtonImage(Asset.Images.setting.image.tinted(Asset.Colors.white.color))
 		navbar.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()

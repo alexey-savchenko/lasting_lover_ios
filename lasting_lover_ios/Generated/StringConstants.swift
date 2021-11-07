@@ -78,6 +78,8 @@ internal enum L10n {
   internal static let signUpSwitchModeButtonTitlePart2 = L10n.tr("Localizable", "signUp_switchModeButton_title_part2")
   /// Welcome!
   internal static let signUpTitleLabelText = L10n.tr("Localizable", "signUp_titleLabel_text")
+  /// Sleep
+  internal static let sleepTitle = L10n.tr("Localizable", "sleep_title")
   /// Today popular?
   internal static let todaysPopular = L10n.tr("Localizable", "Todays_popular")
 }

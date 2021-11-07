@@ -118,7 +118,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		)
 		titleLabel.numberOfLines = 0
 		titleLabel.snp.makeConstraints { make in
-			make.leading.equalToSuperview().offset(16)
+			make.leading.equalToSuperview().offset(24)
 			make.top.equalTo(navbar)
 			make.trailing.equalToSuperview().offset(-32)
 		}
