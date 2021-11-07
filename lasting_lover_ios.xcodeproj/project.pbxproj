@@ -24,6 +24,7 @@
 		02770AEF2737F1F700DF4F49 /* FavoritesControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AEE2737F1F700DF4F49 /* FavoritesControllerViewModel.swift */; };
 		02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF1273806BE00DF4F49 /* SleepState.swift */; };
 		02770AF427385DE900DF4F49 /* SleepCategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */; };
+		02770AF6273864C700DF4F49 /* SleepFeaturedStoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -148,6 +149,7 @@
 		02770AEE2737F1F700DF4F49 /* FavoritesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesControllerViewModel.swift; sourceTree = "<group>"; };
 		02770AF1273806BE00DF4F49 /* SleepState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepState.swift; sourceTree = "<group>"; };
 		02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCategoryCellViewModel.swift; sourceTree = "<group>"; };
+		02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepFeaturedStoryCellViewModel.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 			children = (
 				221C5271270A59F90085534E /* SleepControllerViewModel.swift */,
 				02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */,
+				02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02770AF6273864C700DF4F49 /* SleepFeaturedStoryCellViewModel.swift in Sources */,
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
 				221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */,
 				02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */,

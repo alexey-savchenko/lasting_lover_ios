@@ -36,6 +36,17 @@ class SleepViewController: ViewController<BackgroundImageView> {
 		return c
 	}()
 	
+	let featuredStoriesContainerView = UIView()
+	let featuredStoriesTitleLabel = UILabel()
+	let featuredStoriesSeeAllButton = UIButton()
+	lazy var featuredStoriesCollectionView: UICollectionView = {
+		let layout = SeriesLayout()
+		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		c.showsHorizontalScrollIndicator = false
+		c.registerClass(CardCell.self)
+		return c
+	}()
+	
 	private let disposebag = DisposeBag()
 	
 	init(viewModel: SleepControllerViewModel) {
@@ -97,6 +108,53 @@ class SleepViewController: ViewController<BackgroundImageView> {
 		}
 	}
 	
+	fileprivate func setupFeaturedBlock() {
+		featuredStoriesContainerView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+		}
+		
+		[
+			featuredStoriesTitleLabel,
+			featuredStoriesCollectionView,
+			featuredStoriesSeeAllButton
+		]
+			.forEach(featuredStoriesContainerView.addSubview)
+		
+		featuredStoriesTitleLabel.attributedText = NSAttributedString(
+			string: L10n.sleepFeatured,
+			attributes: [
+				.foregroundColor: Asset.Colors.white.color,
+				.font: FontFamily.Nunito.semiBold.font(size: 22)
+			]
+		)
+		featuredStoriesTitleLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(24)
+			make.top.equalToSuperview()
+		}
+		featuredStoriesSeeAllButton.setAttributedTitle(
+			NSAttributedString(
+				string: L10n.discoverSeeAll,
+				attributes: [
+					.foregroundColor: Asset.Colors.white.color,
+					.font: FontFamily.Nunito.semiBold.font(size: 16)
+				]
+			),
+			for: .normal
+		)
+		featuredStoriesSeeAllButton.snp.makeConstraints { make in
+			make.centerY.equalTo(featuredStoriesTitleLabel)
+			make.trailing.equalToSuperview().offset(-24)
+		}
+		
+		featuredStoriesCollectionView.backgroundColor = .clear
+		featuredStoriesCollectionView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+			make.height.equalTo(270)
+			make.top.equalTo(featuredStoriesTitleLabel.snp.bottom).offset(8)
+			make.bottom.equalToSuperview()
+		}
+	}
+	
 	fileprivate func setupContentScrollView() {
 		contentScrollView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
@@ -110,10 +168,13 @@ class SleepViewController: ViewController<BackgroundImageView> {
 			make.edges.equalToSuperview()
 		}
 		
-		[categoriesCollectionView]
+		[categoriesCollectionView, featuredStoriesContainerView]
 			.forEach(contentStackView.addArrangedSubview)
 		
+		contentStackView.setCustomSpacing(24, after: categoriesCollectionView)
+		
 		setupCategoriesBlock()
+		setupFeaturedBlock()
 	}
 	
 	fileprivate func setupActivityIndicator() {
@@ -171,6 +232,22 @@ class SleepViewController: ViewController<BackgroundImageView> {
 			.map(toArray)
 			.bind(to: categoriesCollectionView.rx.items(dataSource: categoriesCollectionViewDataSource()))
 			.disposed(by: disposebag)
+		
+		content
+			.map { $0.featuredStories }
+			.map { array in return array.map(SleepFeaturedStoryCellViewModel.init) }
+			.map(Section.init)
+			.map(toArray)
+			.bind(to: featuredStoriesCollectionView.rx.items(dataSource: featuredStoriesCollectionViewDataSource()))
+			.disposed(by: disposebag)
+	}
+	
+	private func featuredStoriesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SleepFeaturedStoryCellViewModel>> {
+		return RxCollectionViewSectionedReloadDataSource { ds, cv, indexPath, item in
+			let cell: CardCell = cv.dequeueReusableCell(forIndexPath: indexPath)
+			cell.configure(with: item)
+			return cell
+		}
 	}
 	
 	private func categoriesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SleepCategoryCellViewModel>> {
