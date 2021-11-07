@@ -38,7 +38,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 	lazy var seriesCollectionView: UICollectionView = {
 		let layout = SeriesLayout()
 		let c = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		c.showsHorizontalScrollIndicator = falsef
+		c.showsHorizontalScrollIndicator = false
 		c.registerClass(CardCell.self)
 		return c
 	}()
