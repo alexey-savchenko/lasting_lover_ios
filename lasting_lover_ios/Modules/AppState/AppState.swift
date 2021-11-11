@@ -29,7 +29,8 @@ enum App {
 						data: Loadable.indefiniteLoading
 					),
 					sleepState: SleepTab.State(
-						data: .indefiniteLoading
+						data: .indefiniteLoading,
+						sleepStories: .indefiniteLoading
 					)
 				)
 			)
@@ -59,7 +60,6 @@ enum App {
 			{ action in
 				switch action {
 				case .mainModuleAction(let action):
-					
 					MainModule
 						.middleware(
 							App.Action.prism.mainModuleAction.inject <*> dispatch, { getState().map { $0.mainModuleState } }

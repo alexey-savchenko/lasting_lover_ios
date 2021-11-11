@@ -16,4 +16,9 @@ enum Constants {
     static let apiURL = URL(string: "https://cherrieapp.com/api/v1")!
     static let apiKEY = "0be3b027-6029-4102-84fa-7ba1c6cee3ac"
   }
+	
+	enum UserDefaults {
+		static let purchasedPlanKey = "purchasedPlanKey"
+		static let cachedAudioDurations = "cachedAudioDurations"
+	}
 }

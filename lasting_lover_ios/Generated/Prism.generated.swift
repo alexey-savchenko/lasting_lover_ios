@@ -115,13 +115,25 @@ extension SleepTab.Action {
             tryGet: { if case .loadData = $0 { return () } else { return nil } },
             inject: { .loadData })
 
+        internal static let loadSleepStories = Prism<SleepTab.Action, ()>(
+            tryGet: { if case .loadSleepStories = $0 { return () } else { return nil } },
+            inject: { .loadSleepStories })
+
+        internal static let setSleepStories = Prism<SleepTab.Action,[Story]>(
+            tryGet: { if case .setSleepStories(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setSleepStories(value:x1) })
+
+        internal static let setSleepStoriesError = Prism<SleepTab.Action,SleepTab.Error>(
+            tryGet: { if case .setSleepStoriesError(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setSleepStoriesError(value:x1) })
+
         internal static let setSleepData = Prism<SleepTab.Action,SleepData>(
             tryGet: { if case .setSleepData(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setSleepData(value:x1) })
 
-        internal static let setError = Prism<SleepTab.Action,SleepTab.Error>(
-            tryGet: { if case .setError(let value) = $0 { return value } else { return nil } },
-            inject: { (x1) in .setError(value:x1) })
+        internal static let setSleepDataError = Prism<SleepTab.Action,SleepTab.Error>(
+            tryGet: { if case .setSleepDataError(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setSleepDataError(value:x1) })
 
     }
 }

@@ -25,22 +25,30 @@ enum SleepTab {
 	/// sourcery: lens
 	struct State: Hashable {
 		let data: Loadable<SleepData, HashableWrapper<SleepTab.Error>>
+		let sleepStories: Loadable<[Story], HashableWrapper<SleepTab.Error>>
 	}
 	/// sourcery: prism
 	enum Action {
 		case loadData
+		case loadSleepStories
+		case setSleepStories(value: [Story])
+		case setSleepStoriesError(value: SleepTab.Error)
 		case setSleepData(value: SleepData)
-		case setError(value: SleepTab.Error)
+		case setSleepDataError(value: SleepTab.Error)
 	}
 	
 	static let reducer = Reducer<SleepTab.State, SleepTab.Action> { state, action in
 		switch action {
-		case .loadData:
+		case .loadData, .loadSleepStories:
 			return state
 		case .setSleepData(let value):
-			return SleepTab.State.lens.data.set(Loadable<SleepData, HashableWrapper<SleepTab.Error>>.item(item: value))(state)
-		case .setError(let value):
-			return SleepTab.State.lens.data.set(Loadable<SleepData, HashableWrapper<SleepTab.Error>>.error(error: HashableWrapper(value: value)))(state)
+			return SleepTab.State.lens.data.set(.item(item: value))(state)
+		case .setSleepDataError(let value):
+			return SleepTab.State.lens.data.set(.error(error: HashableWrapper(value: value)))(state)
+		case .setSleepStories(value: let value):
+			return SleepTab.State.lens.sleepStories.set(.item(item: value))(state)
+		case .setSleepStoriesError(value: let value):
+			return SleepTab.State.lens.sleepStories.set(.error(error: HashableWrapper(value: value)))(state)
 		}
 	}
 	
@@ -49,7 +57,9 @@ enum SleepTab {
 			{ action in
 				switch action {
 				case .setSleepData,
-						.setError:
+						.setSleepDataError,
+						.setSleepStories,
+						.setSleepStoriesError:
 					next(action)
 				case .loadData:
 					
@@ -65,7 +75,24 @@ enum SleepTab {
 								disposable?.dispose()
 							},
 							onError: { error in
-								dispatch(.setError(value: .networkError))
+								dispatch(.setSleepDataError(value: .networkError))
+								disposable?.dispose()
+							}
+						)
+				case .loadSleepStories:
+					var disposable: Disposable?
+					
+					disposable = Current
+						.backend()
+						.getAllSleepStories()
+						.subscribe(
+							onNext: { data in
+								
+								dispatch(.setSleepStories(value: data))
+								disposable?.dispose()
+							},
+							onError: { error in
+								dispatch(.setSleepStoriesError(value: .networkError))
 								disposable?.dispose()
 							}
 						)

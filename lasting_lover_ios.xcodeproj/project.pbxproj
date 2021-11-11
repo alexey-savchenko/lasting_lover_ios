@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021BA2A82739A5D100A0F3CF /* AllSleepTracksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* AllSleepTracksController.swift */; };
+		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
+		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
+		021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AD273AB74300A0F3CF /* Subscription.swift */; };
+		021BA2B3273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2B2273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift */; };
 		0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB4D2705074200847ED7 /* AppDelegate.swift */; };
 		0262BB572705074300847ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB562705074300847ED7 /* Assets.xcassets */; };
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
@@ -130,6 +135,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021BA2A72739A5D100A0F3CF /* AllSleepTracksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSleepTracksController.swift; sourceTree = "<group>"; };
+		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
+		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		021BA2AD273AB74300A0F3CF /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		021BA2B2273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSleepTracksControllerViewModel.swift; sourceTree = "<group>"; };
 		0262BB4A2705074200847ED7 /* lasting_lover_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasting_lover_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0262BB4D2705074200847ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0262BB562705074300847ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -268,10 +278,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021BA2B1273BDA8300A0F3CF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */,
+				02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0237F9292732B89F00BE76E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				02770AD72735BA9900DF4F49 /* Secrion.swift */,
+				021BA2AD273AB74300A0F3CF /* Subscription.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -471,6 +491,8 @@
 				2218AD8B271DA53A002C405C /* FavoritesService.swift */,
 				22B8191F27230DD900BFDB8B /* ImageLoadingService.swift */,
 				22BF1991272E851E00FAA6C6 /* API */,
+				021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */,
+				021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -713,6 +735,7 @@
 			isa = PBXGroup;
 			children = (
 				221C5260270A4DF60085534E /* SleepViewController.swift */,
+				021BA2A72739A5D100A0F3CF /* AllSleepTracksController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -721,8 +744,8 @@
 			isa = PBXGroup;
 			children = (
 				221C5271270A59F90085534E /* SleepControllerViewModel.swift */,
-				02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */,
-				02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */,
+				021BA2B1273BDA8300A0F3CF /* Cells */,
+				021BA2B2273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1099,6 +1122,7 @@
 				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
 				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
+				021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */,
 				02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */,
 				02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
@@ -1106,14 +1130,17 @@
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
 				02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */,
 				2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */,
+				021BA2A82739A5D100A0F3CF /* AllSleepTracksController.swift in Sources */,
 				221E22CE270DE985003F324B /* CategoryCell.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
 				02F57EF5272C135400BB1E7C /* DiscoverState.swift in Sources */,
 				2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */,
+				021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */,
 				02770AF427385DE900DF4F49 /* SleepCategoryCellViewModel.swift in Sources */,
 				221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */,
 				22BF198E272D608000FAA6C6 /* AudioItemCell.swift in Sources */,
 				22BF1990272E790B00FAA6C6 /* BackendService.swift in Sources */,
+				021BA2B3273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift in Sources */,
 				02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */,
 				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
@@ -1139,6 +1166,7 @@
 				22B8192227230F7F00BFDB8B /* Constants.swift in Sources */,
 				02770AD62735B8F000DF4F49 /* AuthorCellViewModel.swift in Sources */,
 				221E22C8270DCC8D003F324B /* CircleImageAndTitleCellCell.swift in Sources */,
+				021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
 				02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,

@@ -153,7 +153,15 @@ extension SleepTab.State {
       get: { $0.data },
       set: { part in 
         { whole in
-          SleepTab.State.init(data: part)
+          SleepTab.State.init(data: part, sleepStories: whole.sleepStories)
+        }
+      }
+    )
+    static let sleepStories = Lens<SleepTab.State, Loadable<[Story], HashableWrapper<SleepTab.Error>>>(
+      get: { $0.sleepStories },
+      set: { part in 
+        { whole in
+          SleepTab.State.init(data: whole.data, sleepStories: part)
         }
       }
     )

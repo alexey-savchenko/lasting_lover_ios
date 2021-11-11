@@ -14,6 +14,8 @@ struct Environment {
   var favoritesService: () -> FavoritesServiceProtocol = { FavoritesService() }
   var imageLoadingService: () -> ImageLoadingServiceProtocol = { ImageLoadingService.shared }
 	var backend: () -> BackendServiceProtocol = { BackendService.shared }
+	var subscriptionService: () -> SubscriptionServiceProtocol = { SubscriptionService.shared }
+	var listentedItemsService: () -> ListenedItemsServiceProtocol = { ListenedItemsService() }
 }
 
 #if DEBUG

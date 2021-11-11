@@ -68,6 +68,9 @@ internal enum Asset {
     internal static let signInTitleimage = ImageAsset(name: "signInTitleimage")
     internal static let starEmpty = ImageAsset(name: "starEmpty")
     internal static let starFilled = ImageAsset(name: "starFilled")
+    internal static let storyCellLocked = ImageAsset(name: "storyCellLocked")
+    internal static let storyCellPlay = ImageAsset(name: "storyCellPlay")
+    internal static let storyCellPlayed = ImageAsset(name: "storyCellPlayed")
     internal static let upload = ImageAsset(name: "upload")
     internal static let user = ImageAsset(name: "user")
   }

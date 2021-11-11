@@ -31,9 +31,24 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
       }
       .subscribe()
       .disposed(by: disposeBag)
+		
+		mainController.sleepViewController.featuredStoriesSeeAllButton.rx.tap
+			.bind {
+				self.presentAllSleepStoriesScreen(navigationContoller: self.navigationController)
+			}
+			.disposed(by: disposeBag)
 
     return .never()
   }
+	
+	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) {
+		let viewModel = AllSleepTracksControllerViewModel(
+			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
+			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
+		let contoller = AllSleepTracksController(viewModel: viewModel)
+		navigationController.pushViewController(contoller, animated: true)
+	}
 
   func presentSettingsModule(navigationController: UINavigationController) -> Observable<Void> {
     let coordinator = SettingsModuleCoordinator(navigationController: navigationController)

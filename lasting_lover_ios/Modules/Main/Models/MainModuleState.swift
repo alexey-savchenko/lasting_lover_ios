@@ -44,16 +44,16 @@ enum MainModule {
 				case .sleepAction(let value):
 					SleepTab
 						.middleware(
-							MainModule.Action.prism.sleepAction.inject <*> dispatch, { getState().map { $0.sleepState } }
+							MainModule.Action.sleepAction <*> dispatch, { getState().map { $0.sleepState } }
 						)(
-							MainModule.Action.prism.sleepAction.inject <*> next
+							MainModule.Action.sleepAction <*> next
 						)(value)
 				case .discoverAction(let value):
 					DiscoverTab
 						.middleware(
-							MainModule.Action.prism.discoverAction.inject <*> dispatch, { getState().map { $0.discoverState } }
+							MainModule.Action.discoverAction <*> dispatch, { getState().map { $0.discoverState } }
 						)(
-							MainModule.Action.prism.discoverAction.inject <*> next
+							MainModule.Action.discoverAction <*> next
 						)(value)
 				}
 			}
