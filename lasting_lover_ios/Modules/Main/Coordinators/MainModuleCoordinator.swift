@@ -32,22 +32,46 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
       .subscribe()
       .disposed(by: disposeBag)
 		
-		mainController.sleepViewController.featuredStoriesSeeAllButton.rx.tap
-			.bind {
-				self.presentAllSleepStoriesScreen(navigationContoller: self.navigationController)
+		let presentedAllSleepStories = mainController.sleepViewController.featuredStoriesSeeAllButton.rx.tap
+			.flatMap {
+				return self.presentAllSleepStoriesScreen(navigationContoller: self.navigationController)
 			}
+			.share()
+//			.subscribe(onNext: { either in
+//				switch either {
+//				case .right(let value):
+//				case .left(value: <#T##Void#>)
+//				}
+//			})
+//			.disposed(by: disposeBag)
+		
+		presentedAllSleepStories
+			.subscribe(onNext: { [unowned self] v in
+				if case .left = v {
+					self.navigationController.popViewController(animated: true)
+				}
+			})
 			.disposed(by: disposeBag)
 
     return .never()
   }
 	
-	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) {
+	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) -> Observable<Either<Void, Story>> {
 		let viewModel = AllSleepTracksControllerViewModel(
 			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
 			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
 		)
 		let contoller = AllSleepTracksController(viewModel: viewModel)
+	
 		navigationController.pushViewController(contoller, animated: true)
+		
+		let result = Observable
+			.merge(
+				viewModel.output.backTap.map { Either<Void, Story>.left(value: Void()) },
+				viewModel.output.selectedStory.map { value in Either<Void, Story>.right(value: value) }
+			)
+		
+		return result
 	}
 
   func presentSettingsModule(navigationController: UINavigationController) -> Observable<Void> {

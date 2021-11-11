@@ -36,6 +36,10 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	deinit {
+		print("\(self) deinit")
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -80,6 +84,15 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 				}
 			}
 			.bind(to: contentCollectionView.rx.items(dataSource: datasource()))
+			.disposed(by: disposeBag)
+		
+		navbar.backButton.rx.tap
+			.subscribe(viewModel.input.backTap)
+			.disposed(by: disposeBag)
+		
+		contentCollectionView.rx.itemSelected
+			.map { $0.item }
+			.subscribe(viewModel.input.selectedItem)
 			.disposed(by: disposeBag)
 	}
 	
