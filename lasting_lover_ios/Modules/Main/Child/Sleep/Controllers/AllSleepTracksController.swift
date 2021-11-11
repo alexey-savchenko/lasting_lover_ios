@@ -16,6 +16,7 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 	
 	let navbar = BackButtonNavbarView()
 	let titleLabel = UILabel()
+	let activityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
 	
 	lazy var contentCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
@@ -48,7 +49,7 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 	}
 	
 	private func setupUI() {
-		[navbar, titleLabel, contentCollectionView].forEach(view.addSubview)
+		[navbar, titleLabel, contentCollectionView, activityIndicatorView].forEach(view.addSubview)
 		navbar.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
 			make.top.equalTo(view.safeAreaLayoutGuide)
@@ -69,11 +70,26 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 			make.top.equalTo(titleLabel.snp.bottom).offset(8)
 			make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
 		}
+		activityIndicatorView.snp.makeConstraints { make in
+			make.center.equalTo(contentCollectionView)
+		}
 	}
 	
 	func configure(with viewModel: AllSleepTracksControllerViewModel) {
 		
 		let data = viewModel.output.contents.share(replay: 1, scope: .whileConnected)
+		
+		data
+			.subscribe(onNext: { [weak self] value in
+				if case .loading = value {
+					self?.activityIndicatorView.isHidden = false
+					self?.activityIndicatorView.startAnimating()
+				} else {
+					self?.activityIndicatorView.isHidden = true
+					self?.activityIndicatorView.stopAnimating()
+				}
+			})
+			.disposed(by: disposeBag)
 		
 		data
 			.compactMap { l -> [Section<StoryCellViewModel>]? in
@@ -84,6 +100,14 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 				}
 			}
 			.bind(to: contentCollectionView.rx.items(dataSource: datasource()))
+			.disposed(by: disposeBag)
+		
+		data
+			.subscribe(onNext: { [weak self] value in
+				if case .error(let wrapped) = value {
+					self?.presentError(wrapped.value)
+				}
+			})
 			.disposed(by: disposeBag)
 		
 		navbar.backButton.rx.tap
