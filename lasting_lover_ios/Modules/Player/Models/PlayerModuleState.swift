@@ -28,11 +28,11 @@ enum Player {
     let playbackProgress: Double
     let isPlaying: Bool
     let isFavourite: Bool
-    let item: _PlayerItem
+    let item: PlayerItem
     
     static let mock = State(playbackProgress: 0, isPlaying: false, isFavourite: false, item: .mock)
     
-    static func `default`(item: _PlayerItem) -> State {
+    static func `default`(item: PlayerItem) -> State {
       return State(
         playbackProgress: 0,
         isPlaying: false,
@@ -91,6 +91,7 @@ enum Player {
         case .initializePlayerWithItem:
           guard let state = getState() else { return }
           Current.playerService().setItem(state.item)
+					Current.listentedItemsService().setListened(state.item.id)
           dispatch(.playTap)
         }
       }

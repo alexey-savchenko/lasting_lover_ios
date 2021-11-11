@@ -125,7 +125,7 @@ extension Player.State {
         }
       }
     )
-    static let item = Lens<Player.State, _PlayerItem>(
+    static let item = Lens<Player.State, PlayerItem>(
       get: { $0.item },
       set: { part in 
         { whole in
@@ -142,6 +142,26 @@ extension Settings.State {
       set: { part in 
         { whole in
           Settings.State.init(subscriptionActive: part)
+        }
+      }
+    )
+  }
+}
+extension SleepData {
+  enum lens {
+    static let categories = Lens<SleepData, [Category]>(
+      get: { $0.categories },
+      set: { part in 
+        { whole in
+          SleepData.init(categories: part, featuredStories: whole.featuredStories)
+        }
+      }
+    )
+    static let featuredStories = Lens<SleepData, [Story]>(
+      get: { $0.featuredStories },
+      set: { part in 
+        { whole in
+          SleepData.init(categories: whole.categories, featuredStories: part)
         }
       }
     )

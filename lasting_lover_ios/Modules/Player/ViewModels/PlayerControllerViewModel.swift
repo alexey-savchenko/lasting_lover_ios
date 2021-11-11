@@ -55,7 +55,7 @@ class PlayerControllerViewModel {
     )
     self.output = Output(
       title: state.map { $0.item.title }.distinctUntilChanged(),
-      author: state.map { $0.item.author }.distinctUntilChanged(),
+      author: state.map { $0.item.authorName }.distinctUntilChanged(),
       isFavorite: state.map { $0.isFavourite }.distinctUntilChanged(),
       isPlaying: state.map { $0.isPlaying }.distinctUntilChanged(),
       image: state.map { $0.item.artworkURL }.distinctUntilChanged().flatMap { url in Current.imageLoadingService().image(url) },

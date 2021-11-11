@@ -11,10 +11,10 @@ import RxUNILib
 
 class PlayerModuleCoordinator: RxBaseCoordinator<Void> {
 
-  let playerItem: PlayerItemProtocol
+  let playerItem: PlayerItem
   let navigationController: UINavigationController
   
-  init(navigationController: UINavigationController, playerItem: PlayerItemProtocol) {
+  init(navigationController: UINavigationController, playerItem: PlayerItem) {
     self.navigationController = navigationController
     self.playerItem = playerItem
   }
@@ -22,7 +22,7 @@ class PlayerModuleCoordinator: RxBaseCoordinator<Void> {
   override func start() -> Observable<Void> {
     
     let store = RxStore(
-      inputState: Player.State.mock,
+			inputState: Player.State.default(item: playerItem),
       middleware: [Player.middleware],
       reducer: Player.reducer
     )

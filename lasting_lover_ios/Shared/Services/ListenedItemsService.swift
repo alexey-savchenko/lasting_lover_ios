@@ -29,7 +29,7 @@ class ListenedItemsService: ListenedItemsServiceProtocol {
 	}
 	
 	func setListened(_ audioitemID: Int) {
-		let idsToSet = Set(allListenedIDsSync + [audioitemID])
+		let idsToSet = Set(allListenedIDsSync + [audioitemID]).flatMap { $0 }
 		defaults.set(idsToSet, forKey: "allListenedIDs")
 	}
 }

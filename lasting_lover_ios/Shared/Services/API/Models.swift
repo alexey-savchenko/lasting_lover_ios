@@ -87,6 +87,24 @@ struct Story: Codable, Hashable {
 	}
 }
 
+extension Story {	
+	var title: String {
+		return name
+	}
+	
+	var authorName: String {
+		return author.name
+	}
+	
+	var artworkURL: URL {
+		return URL(string: audioImg)!
+	}
+	
+	var contentURL: URL {
+		return URL(string: audioURL)!
+	}
+}
+
 struct SeriesTruncated: Codable, Hashable {
 	let id: Int?
 	let name: String?
@@ -110,8 +128,8 @@ struct SeriesTruncated: Codable, Hashable {
 	}
 }
 
+/// sourcery: lens
 struct SleepData: Hashable {
 	let categories: [Category]
-//	let series: [Series]
 	let featuredStories: [Story]
 }

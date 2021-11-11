@@ -7,25 +7,27 @@
 
 import Foundation
 
-protocol PlayerItemProtocol {
+protocol PlayerItemProtocol: Hashable {
+	var id: Int { get }
   var title: String { get }
-  var author: String { get }
+  var authorName: String { get }
   var artworkURL: URL { get }
   var contentURL: URL { get }
 }
 
-struct _PlayerItem: Hashable, PlayerItemProtocol, Codable {
+struct PlayerItem: Hashable, PlayerItemProtocol, Codable {
   let title: String
-  let author: String
+  let authorName: String
   let artworkURL: URL
   let contentURL: URL
+	let id: Int
   
-  static let mock = _PlayerItem(
+  static let mock = PlayerItem(
     title: "Sample title",
-    author: "Sample author",
+    authorName: "Sample author",
     artworkURL: URL(string: "https://picsum.photos/seed/somerandomvalue/500/500")!,
-//      Bundle.main.url(forResource: "placeholder", withExtension: "png")!,
-    contentURL: Bundle.main.url(forResource: "placeholderAudio", withExtension: "mp3")!
+    contentURL: Bundle.main.url(forResource: "placeholderAudio", withExtension: "mp3")!,
+		id: 100
   )
 }
 //

@@ -8,25 +8,25 @@
 import Foundation
 
 protocol FavoritesServiceProtocol {
-  func addFavorite(_ item: _PlayerItem)
-  func removeFavorite(_ item: _PlayerItem)
-  func favoriteItems() -> [_PlayerItem]
+  func addFavorite(_ item: PlayerItem)
+  func removeFavorite(_ item: PlayerItem)
+  func favoriteItems() -> [PlayerItem]
 }
 
 class FavoritesService: FavoritesServiceProtocol {
-  func addFavorite(_ item: _PlayerItem) {
+  func addFavorite(_ item: PlayerItem) {
     let items = Current.localStorageService().favoriteItems
     let updatedItems = items + [item]
     Current.localStorageService().favoriteItems = updatedItems
   }
   
-  func removeFavorite(_ item: _PlayerItem) {
+  func removeFavorite(_ item: PlayerItem) {
     let items = Current.localStorageService().favoriteItems
     let updatedItems = items.filter { $0 != item }
     Current.localStorageService().favoriteItems = updatedItems
   }
   
-  func favoriteItems() -> [_PlayerItem] {
+  func favoriteItems() -> [PlayerItem] {
     return Current.localStorageService().favoriteItems
   }
 }

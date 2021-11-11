@@ -37,13 +37,6 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 				return self.presentAllSleepStoriesScreen(navigationContoller: self.navigationController)
 			}
 			.share()
-//			.subscribe(onNext: { either in
-//				switch either {
-//				case .right(let value):
-//				case .left(value: <#T##Void#>)
-//				}
-//			})
-//			.disposed(by: disposeBag)
 		
 		presentedAllSleepStories
 			.subscribe(onNext: { [unowned self] v in
@@ -52,9 +45,44 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 				}
 			})
 			.disposed(by: disposeBag)
-
+		
+		presentedAllSleepStories
+			.compactMap { $0.right }
+			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
+			.flatMap { story, state -> Observable<Story> in
+//				if story.paid == 1 && !state.settingsState.subscriptionActive {
+//
+//				} else {
+					return Observable.just(story)
+//				}
+			}
+			.flatMap { story in
+				self.presentPlayerModule(navigationContoller: self.navigationController, story: story)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
+		
+		
     return .never()
   }
+	
+	func presentPlayerModule(
+		navigationContoller: UINavigationController,
+		story: Story
+	) -> Observable<Void> {
+		let coordinator = PlayerModuleCoordinator(
+			navigationController: navigationController,
+			playerItem: PlayerItem(
+				title: story.name,
+				authorName: story.authorName,
+				artworkURL: story.artworkURL,
+				contentURL: story.contentURL,
+				id: story.id
+			)
+		)
+		
+		return coordinate(to: coordinator)
+	}
 	
 	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) -> Observable<Either<Void, Story>> {
 		let viewModel = AllSleepTracksControllerViewModel(

@@ -12,7 +12,7 @@ import RxSwift
 protocol AudioPlayerServiceProtocol {
   func play()
   func pause()
-  func setItem(_ item: _PlayerItem)
+  func setItem(_ item: PlayerItem)
   var playbackProgress: Observable<Double> { get }
   var isPlaying: Observable<Bool> { get }
   func setPlaybackProgress(_ value: Double)
@@ -71,7 +71,7 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
     player.pause()
   }
   
-  func setItem(_ item: _PlayerItem) {
+  func setItem(_ item: PlayerItem) {
     let plItem = AVPlayerItem(url: item.contentURL)
     player.replaceCurrentItem(with: plItem)
   }
