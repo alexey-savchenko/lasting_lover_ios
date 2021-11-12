@@ -38,7 +38,15 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			}
 			.share()
 		
-		presentedAllSleepStories
+		let presentedSleepCategoryStories = mainController.sleepViewController.viewModel.output.selectedCategory
+			.debug()
+			.flatMapLatest { category in
+				return self.presentCategoryStoriesScreen(navigationContoller: self.navigationController, category: category)
+			}
+			.share(replay: 1, scope: .whileConnected)
+		
+		Observable
+			.merge(presentedAllSleepStories, presentedSleepCategoryStories)
 			.subscribe(onNext: { [unowned self] v in
 				if case .left = v {
 					self.navigationController.popViewController(animated: true)
@@ -46,8 +54,14 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			})
 			.disposed(by: disposeBag)
 		
-		presentedAllSleepStories
-			.compactMap { $0.right }
+		let selectedFeaturedSleepStory = mainController.sleepViewController.viewModel.output.selectedFeatuedStory
+		
+		Observable
+			.merge(
+				presentedAllSleepStories.compactMap { $0.right },
+				presentedSleepCategoryStories.compactMap { $0.right },
+				selectedFeaturedSleepStory
+			)
 			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
 			.flatMap { story, state -> Observable<Story> in
 //				if story.paid == 1 && !state.settingsState.subscriptionActive {
@@ -61,7 +75,6 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			}
 			.subscribe()
 			.disposed(by: disposeBag)
-		
 		
     return .never()
   }

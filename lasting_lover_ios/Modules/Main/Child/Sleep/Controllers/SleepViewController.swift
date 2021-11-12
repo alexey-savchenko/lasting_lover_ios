@@ -240,6 +240,13 @@ class SleepViewController: ViewController<BackgroundImageView> {
 			.map(toArray)
 			.bind(to: featuredStoriesCollectionView.rx.items(dataSource: featuredStoriesCollectionViewDataSource()))
 			.disposed(by: disposebag)
+		
+		categoriesCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedCategoryAtIndex)
+			.disposed(by: disposebag)
+		featuredStoriesCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedFeaturedStoryAtIndex)
+			.disposed(by: disposebag)
 	}
 	
 	private func featuredStoriesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SleepFeaturedStoryCellViewModel>> {
