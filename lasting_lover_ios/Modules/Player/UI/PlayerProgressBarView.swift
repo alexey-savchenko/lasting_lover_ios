@@ -87,6 +87,7 @@ class PlayerProgressBarView: UIView {
   }
   
   private func _setProgress(_ value: Double) {
+		guard value != .nan || value != .signalingNaN else { return }
     progressFillView.snp.remakeConstraints { make in
       make.leading.top.bottom.equalToSuperview()
       make.width.equalToSuperview().multipliedBy(value)

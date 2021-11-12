@@ -12,6 +12,7 @@
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
 		021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AD273AB74300A0F3CF /* Subscription.swift */; };
 		021BA2B3273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2B2273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift */; };
+		024CC199273E58AD00B2EDA4 /* UIPresentationController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CC198273E58AC00B2EDA4 /* UIPresentationController+Rx.swift */; };
 		0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB4D2705074200847ED7 /* AppDelegate.swift */; };
 		0262BB572705074300847ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB562705074300847ED7 /* Assets.xcassets */; };
 		0262BB5A2705074300847ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB582705074300847ED7 /* LaunchScreen.storyboard */; };
@@ -140,6 +141,7 @@
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		021BA2AD273AB74300A0F3CF /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		021BA2B2273BDAA800A0F3CF /* AllSleepTracksControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSleepTracksControllerViewModel.swift; sourceTree = "<group>"; };
+		024CC198273E58AC00B2EDA4 /* UIPresentationController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPresentationController+Rx.swift"; sourceTree = "<group>"; };
 		0262BB4A2705074200847ED7 /* lasting_lover_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasting_lover_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0262BB4D2705074200847ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0262BB562705074300847ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 		221C51ED2705E0230085534E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				024CC198273E58AC00B2EDA4 /* UIPresentationController+Rx.swift */,
 				02770AE02737D00F00DF4F49 /* Extensions */,
 				0237F9292732B89F00BE76E1 /* Model */,
 				2218AD86271D92DF002C405C /* Services */,
@@ -1124,6 +1127,7 @@
 				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
 				021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */,
 				02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */,
+				024CC199273E58AD00B2EDA4 /* UIPresentationController+Rx.swift in Sources */,
 				02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */,

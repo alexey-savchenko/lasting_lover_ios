@@ -52,12 +52,16 @@ enum Player {
     case setPlaybackProgress(value: Double)
     case fwdSeek
     case bcwdSeek
+		case forcePausePlayback
   }
   
   static let middleware: Middleware<Player.State, Player.Action> = { dispatch, getState in
     { next in
       { action in
         switch action {
+				case .forcePausePlayback:
+					Current.playerService().pause()
+					next(action)
         case .bcwdSeek:
           Current.playerService().seekBackward(offset: 15)
           next(action)
@@ -101,12 +105,14 @@ enum Player {
   static let reducer = Reducer<Player.State, Player.Action> { state, action in
     switch action {
     case .setPlaybackProgress(let value):
-      return Player.State.lens.playbackProgress.set(value)(state)
+			guard !value.isNaN else { return state } 
+			let clamped = value.clamped(min: 0, max: 1)
+      return Player.State.lens.playbackProgress.set(clamped)(state)
     case .setIsPlaying(let value):
       return Player.State.lens.isPlaying.set(value)(state)
     case .favoriteTap:
       return Player.State.lens.isFavourite.set(!state.isFavourite)(state)
-    case .initializePlayerWithItem, .fwdSeek, .bcwdSeek, .playTap, .seekToProgress:
+		case .initializePlayerWithItem, .fwdSeek, .bcwdSeek, .playTap, .seekToProgress, .forcePausePlayback:
       return state
     }
   }

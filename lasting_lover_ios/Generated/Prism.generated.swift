@@ -93,6 +93,10 @@ extension Player.Action {
             tryGet: { if case .bcwdSeek = $0 { return () } else { return nil } },
             inject: { .bcwdSeek })
 
+        internal static let forcePausePlayback = Prism<Player.Action, ()>(
+            tryGet: { if case .forcePausePlayback = $0 { return () } else { return nil } },
+            inject: { .forcePausePlayback })
+
     }
 }
 
