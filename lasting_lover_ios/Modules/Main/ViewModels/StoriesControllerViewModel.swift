@@ -1,5 +1,5 @@
 //
-//  SleepStoriesControllerViewModel.swift
+//  StoriesControllerViewModel.swift
 //  lasting_lover_ios
 //
 //  Created by Alexey Savchenko on 10.11.2021.
@@ -15,7 +15,7 @@ enum SleepStories {
 	case forCategory(value: Category)
 }
 
-class SleepStoriesControllerViewModel {
+class StoriesControllerViewModel {
 	struct Input {
 		let selectedItem: AnyObserver<Int>
 		let backTap: AnyObserver<Void>

@@ -1,5 +1,5 @@
 //
-//  SleepStoriesController.swift
+//  StoriesController.swift
 //  lasting_lover_ios
 //
 //  Created by Alexey Savchenko on 08.11.2021.
@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class SleepStoriesController: ViewController<BackgroundImageView> {
+class StoriesController: ViewController<BackgroundImageView> {
 	
-	let viewModel: SleepStoriesControllerViewModel
+	let viewModel: StoriesControllerViewModel
 	private let disposeBag = DisposeBag()
 	
 	let navbar = BackButtonNavbarView()
@@ -28,7 +28,7 @@ class SleepStoriesController: ViewController<BackgroundImageView> {
 		return cv
 	}()
 	
-	init(viewModel: SleepStoriesControllerViewModel) {
+	init(viewModel: StoriesControllerViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -71,7 +71,7 @@ class SleepStoriesController: ViewController<BackgroundImageView> {
 		}
 	}
 	
-	func configure(with viewModel: SleepStoriesControllerViewModel) {
+	func configure(with viewModel: StoriesControllerViewModel) {
 		
 		let data = viewModel.output.contents.share(replay: 1, scope: .whileConnected)
 		

@@ -25,6 +25,16 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
     let mainController = MainModuleViewController(viewModel: viewModel)
     navigationController.setViewControllers([mainController], animated: false)
 
+		mainController.discoverViewController.viewModel.output.selectedAuthor
+			.flatMap { author in
+				return self.presentAuthorContent(
+					navigationController: self.navigationController,
+					author: author
+				)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
+		
     viewModel.output.settingsButtonTap
       .flatMap { _ in
         self.presentSettingsModule(navigationController: self.navigationController)
@@ -34,14 +44,20 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		
 		let presentedAllSleepStories = mainController.sleepViewController.featuredStoriesSeeAllButton.rx.tap
 			.flatMap {
-				return self.presentAllSleepStoriesScreen(navigationContoller: self.navigationController)
+				return self.presentCategoryStoriesScreen(
+					navigationContoller: self.navigationController,
+					target: .all
+				)
 			}
 			.share()
 		
 		let presentedSleepCategoryStories = mainController.sleepViewController.viewModel.output.selectedCategory
 			.debug()
 			.flatMapLatest { category in
-				return self.presentCategoryStoriesScreen(navigationContoller: self.navigationController, category: category)
+				return self.presentCategoryStoriesScreen(
+					navigationContoller: self.navigationController,
+					target: .forCategory(value: category)
+				)
 			}
 			.share(replay: 1, scope: .whileConnected)
 		
@@ -97,35 +113,24 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		return coordinate(to: coordinator)
 	}
 	
-	func presentCategoryStoriesScreen(
-		navigationContoller: UINavigationController,
-		category: Category
-	) -> Observable<Either<Void, Story>> {
-		let viewModel = SleepStoriesControllerViewModel(
-			target: .forCategory(value: category),
-			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
-			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+	func presentAuthorContent(navigationController: UINavigationController, author: Author) -> Observable<Void> {
+		let authorModuleCoordinator = AuthorModuleCoordinator(
+			author: author,
+			navigationController: navigationController
 		)
-		let contoller = SleepStoriesController(viewModel: viewModel)
-	
-		navigationController.pushViewController(contoller, animated: true)
-		
-		let result = Observable
-			.merge(
-				viewModel.output.backTap.map { Either<Void, Story>.left(value: Void()) },
-				viewModel.output.selectedStory.map { value in Either<Void, Story>.right(value: value) }
-			)
-		
-		return result
+		return coordinate(to: authorModuleCoordinator)
 	}
 	
-	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) -> Observable<Either<Void, Story>> {
-		let viewModel = SleepStoriesControllerViewModel(
-			target: .all,
+	func presentCategoryStoriesScreen(
+		navigationContoller: UINavigationController,
+		target: SleepStories
+	) -> Observable<Either<Void, Story>> {
+		let viewModel = StoriesControllerViewModel(
+			target: target,
 			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
 			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
 		)
-		let contoller = SleepStoriesController(viewModel: viewModel)
+		let contoller = StoriesController(viewModel: viewModel)
 	
 		navigationController.pushViewController(contoller, animated: true)
 		

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		021BA2A82739A5D100A0F3CF /* SleepStoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* SleepStoriesController.swift */; };
+		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
 		021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AD273AB74300A0F3CF /* Subscription.swift */; };
-		021BA2B3273BDAA800A0F3CF /* SleepStoriesControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2B2273BDAA800A0F3CF /* SleepStoriesControllerViewModel.swift */; };
+		021BA2B3273BDAA800A0F3CF /* StoriesControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2B2273BDAA800A0F3CF /* StoriesControllerViewModel.swift */; };
 		024CC199273E58AD00B2EDA4 /* UIPresentationController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CC198273E58AC00B2EDA4 /* UIPresentationController+Rx.swift */; };
 		0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262BB4D2705074200847ED7 /* AppDelegate.swift */; };
 		0262BB572705074300847ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0262BB562705074300847ED7 /* Assets.xcassets */; };
@@ -31,6 +31,9 @@
 		02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF1273806BE00DF4F49 /* SleepState.swift */; };
 		02770AF427385DE900DF4F49 /* SleepCategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */; };
 		02770AF6273864C700DF4F49 /* SleepFeaturedStoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */; };
+		029EEDFF273E8F5D005DAC05 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */; };
+		029EEE01273E9551005DAC05 /* AuthorViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */; };
+		029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -136,11 +139,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		021BA2A72739A5D100A0F3CF /* SleepStoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStoriesController.swift; sourceTree = "<group>"; };
+		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		021BA2AD273AB74300A0F3CF /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
-		021BA2B2273BDAA800A0F3CF /* SleepStoriesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStoriesControllerViewModel.swift; sourceTree = "<group>"; };
+		021BA2B2273BDAA800A0F3CF /* StoriesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesControllerViewModel.swift; sourceTree = "<group>"; };
 		024CC198273E58AC00B2EDA4 /* UIPresentationController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPresentationController+Rx.swift"; sourceTree = "<group>"; };
 		0262BB4A2705074200847ED7 /* lasting_lover_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasting_lover_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0262BB4D2705074200847ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +165,9 @@
 		02770AF1273806BE00DF4F49 /* SleepState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepState.swift; sourceTree = "<group>"; };
 		02770AF327385DE900DF4F49 /* SleepCategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCategoryCellViewModel.swift; sourceTree = "<group>"; };
 		02770AF5273864C600DF4F49 /* SleepFeaturedStoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepFeaturedStoryCellViewModel.swift; sourceTree = "<group>"; };
+		029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
+		029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewControllerViewModel.swift; sourceTree = "<group>"; };
+		029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -416,6 +422,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		029EEE02273E9E23005DAC05 /* Author */ = {
+			isa = PBXGroup;
+			children = (
+				029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */,
+				029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */,
+				029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */,
+			);
+			path = Author;
+			sourceTree = "<group>";
+		};
 		02F57EE7272BFD1C00BB1E7C /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +532,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				029EEE02273E9E23005DAC05 /* Author */,
 				0262BB692705084300847ED7 /* AppState */,
 				02F57EE7272BFD1C00BB1E7C /* Category */,
 				2218AD7827185CE2002C405C /* Purchase */,
@@ -672,6 +689,7 @@
 		221C52502709CCB10085534E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				021BA2A72739A5D100A0F3CF /* StoriesController.swift */,
 				221C52542709CD330085534E /* MainModuleViewController.swift */,
 			);
 			path = Controllers;
@@ -688,6 +706,7 @@
 		221C525B270A4ABF0085534E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				021BA2B2273BDAA800A0F3CF /* StoriesControllerViewModel.swift */,
 				221C525C270A4ACE0085534E /* MainControllerViewModel.swift */,
 				02770ADD2737C61C00DF4F49 /* Cells */,
 			);
@@ -738,7 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				221C5260270A4DF60085534E /* SleepViewController.swift */,
-				021BA2A72739A5D100A0F3CF /* SleepStoriesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -748,7 +766,6 @@
 			children = (
 				221C5271270A59F90085534E /* SleepControllerViewModel.swift */,
 				021BA2B1273BDA8300A0F3CF /* Cells */,
-				021BA2B2273BDAA800A0F3CF /* SleepStoriesControllerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1134,17 +1151,18 @@
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
 				02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */,
 				2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */,
-				021BA2A82739A5D100A0F3CF /* SleepStoriesController.swift in Sources */,
+				021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */,
 				221E22CE270DE985003F324B /* CategoryCell.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
 				02F57EF5272C135400BB1E7C /* DiscoverState.swift in Sources */,
+				029EEDFF273E8F5D005DAC05 /* AuthorViewController.swift in Sources */,
 				2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */,
 				021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */,
 				02770AF427385DE900DF4F49 /* SleepCategoryCellViewModel.swift in Sources */,
 				221C51E82705DC1B0085534E /* AuthTitleViewController.swift in Sources */,
 				22BF198E272D608000FAA6C6 /* AudioItemCell.swift in Sources */,
 				22BF1990272E790B00FAA6C6 /* BackendService.swift in Sources */,
-				021BA2B3273BDAA800A0F3CF /* SleepStoriesControllerViewModel.swift in Sources */,
+				021BA2B3273BDAA800A0F3CF /* StoriesControllerViewModel.swift in Sources */,
 				02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */,
 				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
@@ -1157,6 +1175,7 @@
 				221C52012705ECF60085534E /* Assets.swift in Sources */,
 				221E22BE270C5969003F324B /* SettingsViewController.swift in Sources */,
 				221E22BC270C5919003F324B /* SettingsModuleCoordinator.swift in Sources */,
+				029EEE01273E9551005DAC05 /* AuthorViewControllerViewModel.swift in Sources */,
 				2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* AppState.swift in Sources */,
@@ -1168,6 +1187,7 @@
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
 				2218AD7F27185DDF002C405C /* PlayerModuleCoordinator.swift in Sources */,
 				22B8192227230F7F00BFDB8B /* Constants.swift in Sources */,
+				029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */,
 				02770AD62735B8F000DF4F49 /* AuthorCellViewModel.swift in Sources */,
 				221E22C8270DCC8D003F324B /* CircleImageAndTitleCellCell.swift in Sources */,
 				021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */,

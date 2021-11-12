@@ -27,6 +27,14 @@ extension DiscoverTab.Action {
             tryGet: { if case .loadData = $0 { return () } else { return nil } },
             inject: { .loadData })
 
+        internal static let loadAuthorStories = Prism<DiscoverTab.Action,Author>(
+            tryGet: { if case .loadAuthorStories(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .loadAuthorStories(value:x1) })
+
+        internal static let setAuthorStoriesData = Prism<DiscoverTab.Action,(Author, Loadable<[Story], HashableWrapper<DiscoverTab.Error>>)>(
+            tryGet: { if case .setAuthorStoriesData(let value) = $0 { return value } else { return nil } },
+            inject: { (x1, x2) in .setAuthorStoriesData(value:x1, content:x2) })
+
         internal static let setDiscoverData = Prism<DiscoverTab.Action,DiscoverData>(
             tryGet: { if case .setDiscoverData(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setDiscoverData(value:x1) })

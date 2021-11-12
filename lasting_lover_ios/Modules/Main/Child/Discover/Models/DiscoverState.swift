@@ -26,11 +26,14 @@ enum DiscoverTab {
 	/// sourcery: lens
 	struct State: Hashable {
 		let data: Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>
+		let authorStories: [Author: Loadable<[Story], HashableWrapper<DiscoverTab.Error>>]
 	}
 	
 	/// sourcery: prism
 	enum Action {
 		case loadData
+		case loadAuthorStories(value: Author)
+		case setAuthorStoriesData(value: Author, content: Loadable<[Story], HashableWrapper<DiscoverTab.Error>>)
 		case setDiscoverData(value: DiscoverData)
 		case setError(value: DiscoverTab.Error)
 	}
@@ -40,7 +43,8 @@ enum DiscoverTab {
 			{ action in
 				switch action {
 				case .setDiscoverData,
-						.setError:
+						.setError,
+						.setAuthorStoriesData:
 					next(action)
 				case .loadData:
 					
@@ -60,6 +64,29 @@ enum DiscoverTab {
 								disposable?.dispose()
 							}
 						)
+				case .loadAuthorStories(let value):
+					var disposable: Disposable?
+					
+					disposable = Current
+						.backend()
+						.getStoriesFor(value)
+						.subscribe(
+							onNext: { data in
+								dispatch(.setAuthorStoriesData(value: value, content: .item(item: data)))
+								disposable?.dispose()
+							},
+							onError: { error in
+								dispatch(
+									.setAuthorStoriesData(
+										value: value,
+										content: .error(
+											error: HashableWrapper<Error>(value: .networkError)
+										)
+									)
+								)
+								disposable?.dispose()
+							}
+						)
 				}
 			}
 		}
@@ -67,8 +94,12 @@ enum DiscoverTab {
 	
 	static let reducer = Reducer<DiscoverTab.State, DiscoverTab.Action> { state, action in
 		switch action {
-		case .loadData:
+		case .loadData, .loadAuthorStories:
 			return state
+		case .setAuthorStoriesData(let author, let content):
+			var subState = state.authorStories
+			subState[author] = content
+			return DiscoverTab.State.lens.authorStories.set(subState)(state)
 		case .setDiscoverData(let value):
 			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>.item(item: value))(state)
 		case .setError(let value):

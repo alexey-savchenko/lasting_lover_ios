@@ -26,7 +26,8 @@ enum App {
 				mainModuleState: MainModule.State(
 					selectedTabIndex: 0,
 					discoverState: DiscoverTab.State(
-						data: Loadable.indefiniteLoading
+						data: Loadable.indefiniteLoading,
+						authorStories: [:]
 					),
 					sleepState: SleepTab.State(
 						data: .indefiniteLoading,

@@ -384,6 +384,9 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			}
 			.disposed(by: disposebag)
 		
+		authorsCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedAuthorAtIndex)
+			.disposed(by: disposebag)
 	}
 	
 	private func storiesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<DiscoverStoryCellViewModel>> {

@@ -65,7 +65,15 @@ extension DiscoverTab.State {
       get: { $0.data },
       set: { part in 
         { whole in
-          DiscoverTab.State.init(data: part)
+          DiscoverTab.State.init(data: part, authorStories: whole.authorStories)
+        }
+      }
+    )
+    static let authorStories = Lens<DiscoverTab.State, [Author: Loadable<[Story], HashableWrapper<DiscoverTab.Error>>]>(
+      get: { $0.authorStories },
+      set: { part in 
+        { whole in
+          DiscoverTab.State.init(data: whole.data, authorStories: part)
         }
       }
     )
