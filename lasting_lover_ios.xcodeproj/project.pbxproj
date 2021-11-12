@@ -34,6 +34,7 @@
 		029EEDFF273E8F5D005DAC05 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */; };
 		029EEE01273E9551005DAC05 /* AuthorViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */; };
 		029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */; };
+		029EEE06273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
 		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
 		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
@@ -168,6 +169,7 @@
 		029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewControllerViewModel.swift; sourceTree = "<group>"; };
 		029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModuleCoordinator.swift; sourceTree = "<group>"; };
+		029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorStoryCellViewModel.swift; sourceTree = "<group>"; };
 		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
 		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */,
 				029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */,
 				029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */,
+				029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */,
 			);
 			path = Author;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				221C52582709DC3D0085534E /* ToolbarItem.swift in Sources */,
 				221C525D270A4ACF0085534E /* MainControllerViewModel.swift in Sources */,
 				2218AD85271D772A002C405C /* PlayerProgressBarView.swift in Sources */,
+				029EEE06273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift in Sources */,
 				221C5274270A61330085534E /* DiscoverControllerViewModel.swift in Sources */,
 				221C5243270714900085534E /* TextfieldView.swift in Sources */,
 				221E22CC270DE585003F324B /* InsetLabel.swift in Sources */,

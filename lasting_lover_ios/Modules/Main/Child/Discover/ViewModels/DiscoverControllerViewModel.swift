@@ -18,7 +18,7 @@ class DiscoverControllerViewModel {
 	private let selectedAuthorAtIndexSubject = PublishSubject<IndexPath>()
 	
   struct Output {
-		let data: Observable<Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>>
+		let data: Observable<Loadable<DiscoverData, HashableWrapper<AppError>>>
 		let selectedAuthor: Observable<Author>
   }
   

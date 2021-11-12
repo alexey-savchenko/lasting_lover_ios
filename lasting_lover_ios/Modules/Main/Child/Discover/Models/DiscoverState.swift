@@ -12,30 +12,19 @@ import RxSwift
 
 enum DiscoverTab {
 	
-	enum Error: LocalizedError, Hashable {
-		case networkError
-		
-		var errorDescription: String? {
-			switch self {
-			case .networkError:
-				return L10n.errorNetworkUnreachable
-			}
-		}
-	}
-	
 	/// sourcery: lens
 	struct State: Hashable {
-		let data: Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>
-		let authorStories: [Author: Loadable<[Story], HashableWrapper<DiscoverTab.Error>>]
+		let data: Loadable<DiscoverData, HashableWrapper<AppError>>
+		let authorStories: [Author: Loadable<[Story], HashableWrapper<AppError>>]
 	}
 	
 	/// sourcery: prism
 	enum Action {
 		case loadData
 		case loadAuthorStories(value: Author)
-		case setAuthorStoriesData(value: Author, content: Loadable<[Story], HashableWrapper<DiscoverTab.Error>>)
+		case setAuthorStoriesData(value: Author, content: Loadable<[Story], HashableWrapper<AppError>>)
 		case setDiscoverData(value: DiscoverData)
-		case setError(value: DiscoverTab.Error)
+		case setError(value: AppError)
 	}
 	
 	static let middleware: Middleware<DiscoverTab.State, DiscoverTab.Action> = { dispatch, getState in
@@ -80,7 +69,7 @@ enum DiscoverTab {
 									.setAuthorStoriesData(
 										value: value,
 										content: .error(
-											error: HashableWrapper<Error>(value: .networkError)
+											error: HashableWrapper<AppError>(value: .networkError)
 										)
 									)
 								)
@@ -101,9 +90,9 @@ enum DiscoverTab {
 			subState[author] = content
 			return DiscoverTab.State.lens.authorStories.set(subState)(state)
 		case .setDiscoverData(let value):
-			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>.item(item: value))(state)
+			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<AppError>>.item(item: value))(state)
 		case .setError(let value):
-			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>.error(error: HashableWrapper(value: value)))(state)
+			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<AppError>>.error(error: HashableWrapper(value: value)))(state)
 		}
 	}
 }

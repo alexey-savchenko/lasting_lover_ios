@@ -20,7 +20,7 @@ class SleepControllerViewModel {
 	private let selectedFeaturedStoryAtIndexSubject = PublishSubject<IndexPath>()
 	
 	struct Output {
-		let data: Observable<Loadable<SleepData, HashableWrapper<SleepTab.Error>>>
+		let data: Observable<Loadable<SleepData, HashableWrapper<AppError>>>
 		let selectedCategory: Observable<Category>
 		let selectedFeatuedStory: Observable<Story>
 	}

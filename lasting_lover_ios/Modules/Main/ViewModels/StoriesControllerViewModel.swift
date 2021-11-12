@@ -10,9 +10,10 @@ import RxSwift
 import UNILibCore
 import RxUNILib
 
-enum SleepStories {
-	case all
-	case forCategory(value: Category)
+enum StoryRequestTarget {
+	case allSleepStories
+	case sleepStoriesForCategory(value: Category)
+	case discoverStoriesForAutor(author: Author)
 }
 
 class StoriesControllerViewModel {
@@ -25,7 +26,7 @@ class StoriesControllerViewModel {
 	let backTapSubject = PublishSubject<Void>()
 	
 	struct Output {
-		let contents: Observable<Loadable<[Section<StoryCellViewModel>], HashableWrapper<SleepTab.Error>>>
+		let contents: Observable<Loadable<[Section<StoryCellViewModel>], HashableWrapper<AppError>>>
 		let selectedStory: Observable<Story>
 		let backTap: Observable<Void>
 		let title: String
@@ -39,16 +40,18 @@ class StoriesControllerViewModel {
 	private let disposeBag = DisposeBag()
 	
 	init(
-		target: SleepStories,
-		state: Observable<SleepTab.State>,
-		dispatch: @escaping DispatchFunction<SleepTab.Action>
+		target: StoryRequestTarget,
+		state: Observable<App.State>,
+		dispatch: @escaping DispatchFunction<App.Action>
 	) {
 		
 		switch target {
-		case .all:
-			dispatch(.loadSleepStories)
-		case .forCategory(let value):
-			dispatch(.loadStoriesForCategory(value: value))
+		case .discoverStoriesForAutor(let author):
+			dispatch(.mainModuleAction(action: .discoverAction(value: .loadAuthorStories(value: author))))
+		case .allSleepStories:
+			dispatch(.mainModuleAction(action: .sleepAction(value: .loadSleepStories)))
+		case .sleepStoriesForCategory(let value):
+			dispatch(.mainModuleAction(action: .sleepAction(value: .loadStoriesForCategory(value: value))))
 		}
 		
 		self.input = Input(
@@ -57,12 +60,14 @@ class StoriesControllerViewModel {
 		)
 		self.output = Output(
 			contents: state
-				.map { s -> Loadable<[Story], HashableWrapper<SleepTab.Error>> in
+				.map { s -> Loadable<[Story], HashableWrapper<AppError>> in
 					switch target {
-					case .all:
-						return s.sleepStories
-					case .forCategory(let value):
-						return s.categoryStories[value] ?? .indefiniteLoading
+					case .discoverStoriesForAutor(let author):
+						return s.mainModuleState.discoverState.authorStories[author] ?? .indefiniteLoading
+					case .allSleepStories:
+						return s.mainModuleState.sleepState.sleepStories
+					case .sleepStoriesForCategory(let value):
+						return s.mainModuleState.sleepState.categoryStories[value] ?? .indefiniteLoading
 					}
 				}
 				.map { l in l
@@ -76,10 +81,12 @@ class StoriesControllerViewModel {
 			backTap: backTapSubject.asObservable(),
 			title: {
 				switch target {
-				case .all:
+				case .allSleepStories:
 					return L10n.allTracks
-				case .forCategory(let value):
+				case .sleepStoriesForCategory(let value):
 					return value.name
+				case .discoverStoriesForAutor(let author):
+					return author.name
 				}
 			}()
 		)

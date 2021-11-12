@@ -20,12 +20,17 @@ class SeriesLayout: UICollectionViewFlowLayout {
 	
 	private func setup() {
 		let inset: CGFloat = 24
-		scrollDirection = .horizontal
+		scrollDirection = .vertical
 		minimumLineSpacing = 16
-		let itemWidth = collectionView!.bounds.width / 2 - inset / 2 - minimumLineSpacing
-		let itemHeight = collectionView!.bounds.height - 60
+		minimumInteritemSpacing = 16
+//		16
+		
+		let itemWidth = collectionView!.bounds.width / 2 - minimumLineSpacing * 2
+//		- inset / 2 - minimumLineSpacing * 2
+		let itemHeight = 244.0
+//		collectionView!.bounds.height - 60
 		itemSize = CGSize(width: itemWidth, height: itemHeight)
-		collectionView!.contentInset = .init(top: 0, left: inset, bottom: 0, right: inset)
+		collectionView!.contentInset = .init(top: 24, left: inset, bottom: 24, right: inset)
 	}
 	
 	override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {

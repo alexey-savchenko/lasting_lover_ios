@@ -44,9 +44,9 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		
 		let presentedAllSleepStories = mainController.sleepViewController.featuredStoriesSeeAllButton.rx.tap
 			.flatMap {
-				return self.presentCategoryStoriesScreen(
+				return self.presentStoriesScreen(
 					navigationContoller: self.navigationController,
-					target: .all
+					target: .allSleepStories
 				)
 			}
 			.share()
@@ -54,9 +54,9 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		let presentedSleepCategoryStories = mainController.sleepViewController.viewModel.output.selectedCategory
 			.debug()
 			.flatMapLatest { category in
-				return self.presentCategoryStoriesScreen(
+				return self.presentStoriesScreen(
 					navigationContoller: self.navigationController,
-					target: .forCategory(value: category)
+					target: .sleepStoriesForCategory(value: category)
 				)
 			}
 			.share(replay: 1, scope: .whileConnected)
@@ -121,14 +121,14 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		return coordinate(to: authorModuleCoordinator)
 	}
 	
-	func presentCategoryStoriesScreen(
+	func presentStoriesScreen(
 		navigationContoller: UINavigationController,
-		target: SleepStories
+		target: StoryRequestTarget
 	) -> Observable<Either<Void, Story>> {
 		let viewModel = StoriesControllerViewModel(
 			target: target,
-			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
-			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+			state: appStore.stateObservable,
+			dispatch: appStore.dispatch
 		)
 		let contoller = StoriesController(viewModel: viewModel)
 	

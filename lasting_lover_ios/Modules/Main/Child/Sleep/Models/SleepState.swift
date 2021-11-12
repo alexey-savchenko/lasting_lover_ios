@@ -10,34 +10,35 @@ import UNILibCore
 import RxUNILib
 import RxSwift
 
-enum SleepTab {
+enum AppError: LocalizedError, Hashable {
+	case networkError
 	
-	enum Error: LocalizedError, Hashable {
-		case networkError
-		
-		var errorDescription: String? {
-			switch self {
-			case .networkError:
-				return L10n.errorNetworkUnreachable
-			}
+	var errorDescription: String? {
+		switch self {
+		case .networkError:
+			return L10n.errorNetworkUnreachable
 		}
 	}
+}
+
+enum SleepTab {
+		
 	/// sourcery: lens
 	struct State: Hashable {
-		let data: Loadable<SleepData, HashableWrapper<SleepTab.Error>>
-		let sleepStories: Loadable<[Story], HashableWrapper<SleepTab.Error>>
-		let categoryStories: [Category: Loadable<[Story], HashableWrapper<SleepTab.Error>>]
+		let data: Loadable<SleepData, HashableWrapper<AppError>>
+		let sleepStories: Loadable<[Story], HashableWrapper<AppError>>
+		let categoryStories: [Category: Loadable<[Story], HashableWrapper<AppError>>]
 	}
 	/// sourcery: prism
 	enum Action {
 		case loadData
 		case loadSleepStories
 		case setSleepStories(value: [Story])
-		case setSleepStoriesError(value: SleepTab.Error)
+		case setSleepStoriesError(value: AppError)
 		case setSleepData(value: SleepData)
-		case setSleepDataError(value: SleepTab.Error)
+		case setSleepDataError(value: AppError)
 		case loadStoriesForCategory(value: Category)
-		case setStoriesForCategory(value: Category, content: Loadable<[Story], HashableWrapper<SleepTab.Error>>)
+		case setStoriesForCategory(value: Category, content: Loadable<[Story], HashableWrapper<AppError>>)
 	}
 	
 	static let reducer = Reducer<SleepTab.State, SleepTab.Action> { state, action in

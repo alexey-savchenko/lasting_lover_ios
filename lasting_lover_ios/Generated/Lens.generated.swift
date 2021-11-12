@@ -61,7 +61,7 @@ extension Auth.State {
 }
 extension DiscoverTab.State {
   enum lens {
-    static let data = Lens<DiscoverTab.State, Loadable<DiscoverData, HashableWrapper<DiscoverTab.Error>>>(
+    static let data = Lens<DiscoverTab.State, Loadable<DiscoverData, HashableWrapper<AppError>>>(
       get: { $0.data },
       set: { part in 
         { whole in
@@ -69,7 +69,7 @@ extension DiscoverTab.State {
         }
       }
     )
-    static let authorStories = Lens<DiscoverTab.State, [Author: Loadable<[Story], HashableWrapper<DiscoverTab.Error>>]>(
+    static let authorStories = Lens<DiscoverTab.State, [Author: Loadable<[Story], HashableWrapper<AppError>>]>(
       get: { $0.authorStories },
       set: { part in 
         { whole in
@@ -177,7 +177,7 @@ extension SleepData {
 }
 extension SleepTab.State {
   enum lens {
-    static let data = Lens<SleepTab.State, Loadable<SleepData, HashableWrapper<SleepTab.Error>>>(
+    static let data = Lens<SleepTab.State, Loadable<SleepData, HashableWrapper<AppError>>>(
       get: { $0.data },
       set: { part in 
         { whole in
@@ -185,7 +185,7 @@ extension SleepTab.State {
         }
       }
     )
-    static let sleepStories = Lens<SleepTab.State, Loadable<[Story], HashableWrapper<SleepTab.Error>>>(
+    static let sleepStories = Lens<SleepTab.State, Loadable<[Story], HashableWrapper<AppError>>>(
       get: { $0.sleepStories },
       set: { part in 
         { whole in
@@ -193,7 +193,7 @@ extension SleepTab.State {
         }
       }
     )
-    static let categoryStories = Lens<SleepTab.State, [Category: Loadable<[Story], HashableWrapper<SleepTab.Error>>]>(
+    static let categoryStories = Lens<SleepTab.State, [Category: Loadable<[Story], HashableWrapper<AppError>>]>(
       get: { $0.categoryStories },
       set: { part in 
         { whole in

@@ -12,6 +12,8 @@ import Foundation
 internal enum L10n {
   /// All Tracks
   internal static let allTracks = L10n.tr("Localizable", "All Tracks")
+  /// Top
+  internal static let authorTopStoriesTitle = L10n.tr("Localizable", "author_topStories_title")
   /// Next
   internal static let buttonNext = L10n.tr("Localizable", "button_next")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more.

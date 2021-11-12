@@ -31,11 +31,84 @@ class AuthorModuleCoordinator: RxBaseCoordinator<Void> {
 		
 		let controller = AuthorViewController(viewModel: viewModel)
 		
+		let presentedStories = controller.authorAllStoriesButton.rx.tap
+			.flatMapLatest { [unowned self] in
+				self.presentStoriesScreen(
+					navigationContoller: self.navigationController,
+					target: .discoverStoriesForAutor(author: self.author)
+				)
+			}
+			.share(replay: 1, scope: .whileConnected)
+		
+		presentedStories
+			.subscribe(onNext: { [unowned self] v in
+				if case .left = v {
+					self.navigationController.popViewController(animated: true)
+				}
+			})
+			.disposed(by: disposeBag)
+				
+		presentedStories
+			.compactMap { $0.right }
+			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
+			.flatMap { story, state -> Observable<Story> in
+//				if story.paid == 1 && !state.settingsState.subscriptionActive {
+//
+//				} else {
+					return Observable.just(story)
+//				}
+			}
+			.flatMap { story in
+				self.presentPlayerModule(navigationContoller: self.navigationController, story: story)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
+		
 		navigationController.pushViewController(controller, animated: true)
 		
 		return controller.navbar.backButton.rx.tap.asObservable()
 			.do(onNext: { [unowned navigationController] in
 				navigationController.popViewController(animated: true)
 		})
+	}
+	
+	func presentPlayerModule(
+		navigationContoller: UINavigationController,
+		story: Story
+	) -> Observable<Void> {
+		let coordinator = PlayerModuleCoordinator(
+			navigationController: navigationController,
+			playerItem: PlayerItem(
+				title: story.name,
+				authorName: story.authorName,
+				artworkURL: story.artworkURL,
+				contentURL: story.contentURL,
+				id: story.id
+			)
+		)
+		
+		return coordinate(to: coordinator)
+	}
+	
+	func presentStoriesScreen(
+		navigationContoller: UINavigationController,
+		target: StoryRequestTarget
+	) -> Observable<Either<Void, Story>> {
+		let viewModel = StoriesControllerViewModel(
+			target: target,
+			state: appStore.stateObservable,
+			dispatch: appStore.dispatch
+		)
+		let contoller = StoriesController(viewModel: viewModel)
+	
+		navigationController.pushViewController(contoller, animated: true)
+		
+		let result = Observable
+			.merge(
+				viewModel.output.backTap.map { Either<Void, Story>.left(value: Void()) },
+				viewModel.output.selectedStory.map { value in Either<Void, Story>.right(value: value) }
+			)
+		
+		return result
 	}
 }

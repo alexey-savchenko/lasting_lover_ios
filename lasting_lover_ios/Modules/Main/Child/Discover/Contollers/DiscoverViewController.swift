@@ -371,7 +371,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.disposed(by: disposebag)
 		
 		data
-			.compactMap { value -> HashableWrapper<DiscoverTab.Error>? in
+			.compactMap { value -> HashableWrapper<AppError>? in
 				if case .error(let wrapped) = value {
 					return wrapped
 				} else {

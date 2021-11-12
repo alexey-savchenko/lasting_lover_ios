@@ -25,10 +25,6 @@ class SettingsViewController: ViewController<BackgroundImageView> {
     fatalError("init(coder:) has not been implemented")
   }
 
-  deinit {
-    print("\(self) dealloc")
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
 

@@ -48,4 +48,8 @@ class ViewController<BackgroundView: UIImageView>: UIViewController {
       make.edges.equalToSuperview()
     }
   }
+	
+	deinit {
+		print("\(self) deinit")
+	}
 }
