@@ -13,14 +13,17 @@ import UNILibCore
 
 class AuthorViewControllerViewModel {
 	struct Input {
-		
+		let selectedStoryAtIndex: AnyObserver<IndexPath>
 	}
+	
+	private let selectedStoryAtIndexSubject = PublishSubject<IndexPath>()
 	
 	struct Output {
 		let title: String
 		let subtitle: String
 		let titleImage: Observable<UIImage>
 		let content: Observable<Loadable<[Section<AuthorStoryCellViewModel>], HashableWrapper<AppError>>>
+		let selectedStory: Observable<Story>
 	}
 	
 	let input: Input
@@ -34,7 +37,9 @@ class AuthorViewControllerViewModel {
 		
 		dispatch(.loadAuthorStories(value: author))
 		
-		self.input = Input()
+		self.input = Input(
+			selectedStoryAtIndex: selectedStoryAtIndexSubject.asObserver()
+		)
 		self.ouput = Output(
 			title: "\(author.name), \(author.age)",
 			subtitle: author.authorDescription,
@@ -43,12 +48,27 @@ class AuthorViewControllerViewModel {
 				return state.authorStories[author]
 			}
 				.map { l in
-					return l.map { array in return array.map(AuthorStoryCellViewModel.init) }
+					return l.map { array in
+						return array.map(AuthorStoryCellViewModel.init)
+					}
 					.map(Section.init)
 					.map(toArray)
+				},
+			selectedStory: selectedStoryAtIndexSubject
+				.flatMap { index in
+					return state
+						.take(1)
+						.compactMap { state in
+							return state.authorStories[author]
+						}
+						.compactMap { l -> Story? in
+							if case .item(let items) = l {
+								return items[index.item]
+							} else {
+								return nil
+							}
+						}
 				}
 		)
-		
-		
 	}
 }

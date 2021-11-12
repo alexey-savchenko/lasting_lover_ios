@@ -48,8 +48,11 @@ class AuthorModuleCoordinator: RxBaseCoordinator<Void> {
 			})
 			.disposed(by: disposeBag)
 				
-		presentedStories
-			.compactMap { $0.right }
+		Observable
+			.merge(
+				presentedStories.compactMap { $0.right },
+				viewModel.ouput.selectedStory
+			)
 			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
 			.flatMap { story, state -> Observable<Story> in
 //				if story.paid == 1 && !state.settingsState.subscriptionActive {

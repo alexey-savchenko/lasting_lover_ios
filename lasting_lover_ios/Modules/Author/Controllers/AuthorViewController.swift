@@ -194,6 +194,10 @@ class AuthorViewController: ViewController<BackgroundImageView> {
 			}
 			.bind(to: authorTopStoriesCollectionView.rx.items(dataSource: datasource()))
 			.disposed(by: disposeBag)
+		
+		authorTopStoriesCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedStoryAtIndex)
+			.disposed(by: disposeBag)
 	}
 	
 	func datasource() -> RxCollectionViewSectionedReloadDataSource<Section<AuthorStoryCellViewModel>> {
