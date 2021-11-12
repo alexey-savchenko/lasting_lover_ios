@@ -427,12 +427,36 @@
 		029EEE02273E9E23005DAC05 /* Author */ = {
 			isa = PBXGroup;
 			children = (
-				029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */,
-				029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */,
-				029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */,
-				029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */,
+				029EEE07273EBD2C005DAC05 /* ViewModels */,
+				029EEE08273EBD35005DAC05 /* Controllers */,
+				029EEE09273EBD3D005DAC05 /* Coordinators */,
 			);
 			path = Author;
+			sourceTree = "<group>";
+		};
+		029EEE07273EBD2C005DAC05 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */,
+				029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		029EEE08273EBD35005DAC05 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		029EEE09273EBD3D005DAC05 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		02F57EE7272BFD1C00BB1E7C /* Category */ = {
