@@ -1,5 +1,5 @@
 //
-//  AllSleepTracksController.swift
+//  SleepStoriesController.swift
 //  lasting_lover_ios
 //
 //  Created by Alexey Savchenko on 08.11.2021.
@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class AllSleepTracksController: ViewController<BackgroundImageView> {
+class SleepStoriesController: ViewController<BackgroundImageView> {
 	
-	let viewModel: AllSleepTracksControllerViewModel
+	let viewModel: SleepStoriesControllerViewModel
 	private let disposeBag = DisposeBag()
 	
 	let navbar = BackButtonNavbarView()
@@ -28,7 +28,7 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 		return cv
 	}()
 	
-	init(viewModel: AllSleepTracksControllerViewModel) {
+	init(viewModel: SleepStoriesControllerViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -59,11 +59,7 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 			make.top.equalTo(navbar.snp.bottom)
 			make.leading.equalToSuperview().offset(24)
 		}
-		titleLabel.attributedText = NSAttributedString(
-			string: L10n.allTracks,
-			attributes: [.font: FontFamily.Nunito.bold.font(size: 36),
-										.foregroundColor: Asset.Colors.white.color]
-		)
+		
 		contentCollectionView.backgroundColor = .clear
 		contentCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
@@ -75,7 +71,7 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 		}
 	}
 	
-	func configure(with viewModel: AllSleepTracksControllerViewModel) {
+	func configure(with viewModel: SleepStoriesControllerViewModel) {
 		
 		let data = viewModel.output.contents.share(replay: 1, scope: .whileConnected)
 		
@@ -118,6 +114,12 @@ class AllSleepTracksController: ViewController<BackgroundImageView> {
 			.map { $0.item }
 			.subscribe(viewModel.input.selectedItem)
 			.disposed(by: disposeBag)
+		
+		titleLabel.attributedText = NSAttributedString(
+			string: viewModel.output.title,
+			attributes: [.font: FontFamily.Nunito.bold.font(size: 36),
+										.foregroundColor: Asset.Colors.white.color]
+		)
 	}
 	
 	func datasource() -> RxCollectionViewSectionedReloadDataSource<Section<StoryCellViewModel>> {

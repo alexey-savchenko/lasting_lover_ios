@@ -139,6 +139,14 @@ extension SleepTab.Action {
             tryGet: { if case .setSleepDataError(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setSleepDataError(value:x1) })
 
+        internal static let loadStoriesForCategory = Prism<SleepTab.Action,Category>(
+            tryGet: { if case .loadStoriesForCategory(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .loadStoriesForCategory(value:x1) })
+
+        internal static let setStoriesForCategory = Prism<SleepTab.Action,(Category, Loadable<[Story], HashableWrapper<SleepTab.Error>>)>(
+            tryGet: { if case .setStoriesForCategory(let value) = $0 { return value } else { return nil } },
+            inject: { (x1, x2) in .setStoriesForCategory(value:x1, content:x2) })
+
     }
 }
 

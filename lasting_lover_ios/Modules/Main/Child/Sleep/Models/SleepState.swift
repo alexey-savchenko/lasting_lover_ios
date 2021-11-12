@@ -26,6 +26,7 @@ enum SleepTab {
 	struct State: Hashable {
 		let data: Loadable<SleepData, HashableWrapper<SleepTab.Error>>
 		let sleepStories: Loadable<[Story], HashableWrapper<SleepTab.Error>>
+		let categoryStories: [Category: Loadable<[Story], HashableWrapper<SleepTab.Error>>]
 	}
 	/// sourcery: prism
 	enum Action {
@@ -35,11 +36,13 @@ enum SleepTab {
 		case setSleepStoriesError(value: SleepTab.Error)
 		case setSleepData(value: SleepData)
 		case setSleepDataError(value: SleepTab.Error)
+		case loadStoriesForCategory(value: Category)
+		case setStoriesForCategory(value: Category, content: Loadable<[Story], HashableWrapper<SleepTab.Error>>)
 	}
 	
 	static let reducer = Reducer<SleepTab.State, SleepTab.Action> { state, action in
 		switch action {
-		case .loadData, .loadSleepStories:
+		case .loadData, .loadSleepStories, .loadStoriesForCategory:
 			return state
 		case .setSleepData(let value):
 			return SleepTab.State.lens.data.set(.item(item: value))(state)
@@ -49,6 +52,10 @@ enum SleepTab {
 			return SleepTab.State.lens.sleepStories.set(.item(item: value))(state)
 		case .setSleepStoriesError(value: let value):
 			return SleepTab.State.lens.sleepStories.set(.error(error: HashableWrapper(value: value)))(state)
+		case .setStoriesForCategory(let value, let content):
+			var subState = state.categoryStories
+			subState[value] = content
+			return SleepTab.State.lens.categoryStories.set(subState)(state)
 		}
 	}
 	
@@ -59,8 +66,36 @@ enum SleepTab {
 				case .setSleepData,
 						.setSleepDataError,
 						.setSleepStories,
-						.setSleepStoriesError:
+						.setSleepStoriesError,
+						.setStoriesForCategory:
 					next(action)
+					
+				case .loadStoriesForCategory(let value):
+					var disposable: Disposable?
+					
+					dispatch(.setStoriesForCategory(value: value, content: .indefiniteLoading))
+					
+					disposable = Current
+						.backend()
+						.getSleepStoriesFor(value)
+						.subscribe(
+							onNext: { data in
+								
+								dispatch(.setStoriesForCategory(value: value, content: .item(item: data)))
+								disposable?.dispose()
+							},
+							onError: { error in
+								dispatch(
+									.setStoriesForCategory(
+										value: value,
+										content: .error(
+											error: HashableWrapper(value: .networkError)
+										)
+									)
+								)
+								disposable?.dispose()
+							}
+						)
 				case .loadData:
 					
 					var disposable: Disposable?

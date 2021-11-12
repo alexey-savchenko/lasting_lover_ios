@@ -84,12 +84,35 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		return coordinate(to: coordinator)
 	}
 	
-	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) -> Observable<Either<Void, Story>> {
-		let viewModel = AllSleepTracksControllerViewModel(
+	func presentCategoryStoriesScreen(
+		navigationContoller: UINavigationController,
+		category: Category
+	) -> Observable<Either<Void, Story>> {
+		let viewModel = SleepStoriesControllerViewModel(
+			target: .forCategory(value: category),
 			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
 			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
 		)
-		let contoller = AllSleepTracksController(viewModel: viewModel)
+		let contoller = SleepStoriesController(viewModel: viewModel)
+	
+		navigationController.pushViewController(contoller, animated: true)
+		
+		let result = Observable
+			.merge(
+				viewModel.output.backTap.map { Either<Void, Story>.left(value: Void()) },
+				viewModel.output.selectedStory.map { value in Either<Void, Story>.right(value: value) }
+			)
+		
+		return result
+	}
+	
+	func presentAllSleepStoriesScreen(navigationContoller: UINavigationController) -> Observable<Either<Void, Story>> {
+		let viewModel = SleepStoriesControllerViewModel(
+			target: .all,
+			state: appStore.stateObservable.map { $0.mainModuleState.sleepState },
+			dispatch: MainModule.Action.sleepAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
+		let contoller = SleepStoriesController(viewModel: viewModel)
 	
 		navigationController.pushViewController(contoller, animated: true)
 		

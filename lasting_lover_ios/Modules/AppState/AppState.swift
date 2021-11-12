@@ -30,7 +30,8 @@ enum App {
 					),
 					sleepState: SleepTab.State(
 						data: .indefiniteLoading,
-						sleepStories: .indefiniteLoading
+						sleepStories: .indefiniteLoading,
+						categoryStories: [:]
 					)
 				)
 			)

@@ -173,7 +173,7 @@ extension SleepTab.State {
       get: { $0.data },
       set: { part in 
         { whole in
-          SleepTab.State.init(data: part, sleepStories: whole.sleepStories)
+          SleepTab.State.init(data: part, sleepStories: whole.sleepStories, categoryStories: whole.categoryStories)
         }
       }
     )
@@ -181,7 +181,15 @@ extension SleepTab.State {
       get: { $0.sleepStories },
       set: { part in 
         { whole in
-          SleepTab.State.init(data: whole.data, sleepStories: part)
+          SleepTab.State.init(data: whole.data, sleepStories: part, categoryStories: whole.categoryStories)
+        }
+      }
+    )
+    static let categoryStories = Lens<SleepTab.State, [Category: Loadable<[Story], HashableWrapper<SleepTab.Error>>]>(
+      get: { $0.categoryStories },
+      set: { part in 
+        { whole in
+          SleepTab.State.init(data: whole.data, sleepStories: whole.sleepStories, categoryStories: part)
         }
       }
     )

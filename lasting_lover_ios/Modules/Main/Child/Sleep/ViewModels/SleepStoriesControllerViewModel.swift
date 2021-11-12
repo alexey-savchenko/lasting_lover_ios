@@ -1,5 +1,5 @@
 //
-//  AllSleepTracksControllerViewModel.swift
+//  SleepStoriesControllerViewModel.swift
 //  lasting_lover_ios
 //
 //  Created by Alexey Savchenko on 10.11.2021.
@@ -10,7 +10,12 @@ import RxSwift
 import UNILibCore
 import RxUNILib
 
-class AllSleepTracksControllerViewModel {
+enum SleepStories {
+	case all
+	case forCategory(value: Category)
+}
+
+class SleepStoriesControllerViewModel {
 	struct Input {
 		let selectedItem: AnyObserver<Int>
 		let backTap: AnyObserver<Void>
@@ -23,6 +28,7 @@ class AllSleepTracksControllerViewModel {
 		let contents: Observable<Loadable<[Section<StoryCellViewModel>], HashableWrapper<SleepTab.Error>>>
 		let selectedStory: Observable<Story>
 		let backTap: Observable<Void>
+		let title: String
 	}
 	
 	let selectedStorySubject = PublishSubject<Story>()
@@ -33,16 +39,32 @@ class AllSleepTracksControllerViewModel {
 	private let disposeBag = DisposeBag()
 	
 	init(
+		target: SleepStories,
 		state: Observable<SleepTab.State>,
 		dispatch: @escaping DispatchFunction<SleepTab.Action>
 	) {
+		
+		switch target {
+		case .all:
+			dispatch(.loadSleepStories)
+		case .forCategory(let value):
+			dispatch(.loadStoriesForCategory(value: value))
+		}
+		
 		self.input = Input(
 			selectedItem: selectedItemSubject.asObserver(),
 			backTap: backTapSubject.asObserver()
 		)
 		self.output = Output(
 			contents: state
-				.map { $0.sleepStories }
+				.map { s -> Loadable<[Story], HashableWrapper<SleepTab.Error>> in
+					switch target {
+					case .all:
+						return s.sleepStories
+					case .forCategory(let value):
+						return s.categoryStories[value] ?? .indefiniteLoading
+					}
+				}
 				.map { l in l
 				.map { array -> [StoryCellViewModel] in
 					return array.map(StoryCellViewModel.init)
@@ -51,15 +73,21 @@ class AllSleepTracksControllerViewModel {
 				.map(toArray)
 				},
 			selectedStory: selectedStorySubject.asObservable(),
-			backTap: backTapSubject.asObservable()
+			backTap: backTapSubject.asObservable(),
+			title: {
+				switch target {
+				case .all:
+					return L10n.allTracks
+				case .forCategory(let value):
+					return value.name
+				}
+			}()
 		)
-		
-		dispatch(.loadSleepStories)
-		
+
 		selectedItemSubject
-			.withLatestFrom(state) { ($0, $1) }
-			.map { index, state in
-				return state.sleepStories.map { $0[index] }
+			.withLatestFrom(output.contents) { ($0, $1) }
+			.map { index, content in
+				return content.map { sections in return sections[0].items[index].story }
 			}
 			.compactMap { value -> Story? in
 				if case .item(let item) = value {

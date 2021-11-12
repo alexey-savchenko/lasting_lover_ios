@@ -17,6 +17,7 @@ protocol BackendServiceProtocol {
   func getDiscoverData() -> Observable<DiscoverData>
 	func getSleepData() -> Observable<SleepData>
 	func getAllSleepStories() -> Observable<[Story]>
+	func getSleepStoriesFor(_ category: Category) -> Observable<[Story]>
 }
 
 class BackendService: BackendServiceProtocol {
@@ -27,6 +28,23 @@ class BackendService: BackendServiceProtocol {
   private init() {
     provider.session.sessionConfiguration.timeoutIntervalForRequest = 10
   }
+	
+	func getSleepStoriesFor(_ category: Category) -> Observable<[Story]> {
+		return provider.rx
+			.request(
+				.listStories(
+					type:
+							.storiesByCategory(
+								categoryID: "\(category.id)",
+								featured: false,
+								type: .sleep
+							)
+				)
+			)
+			.asObservable()
+			.map(BackendResponse<Story>.self)
+			.map { $0.data }
+	}
 	
 	func getAllSleepStories() -> Observable<[Story]> {
 		return provider.rx
@@ -47,15 +65,6 @@ class BackendService: BackendServiceProtocol {
 			.asObservable()
 			.map(BackendResponse<Story>.self)
 			.map { $0.data }
-//			.do(onNext: { data in
-//				benchmark {
-//					data.forEach { s in
-//						let item = AVURLAsset(url: URL(string: s.audioURL)!)
-//						let s = item.duration.seconds
-//						print("Duration \(s)")
-//					}
-//				}
-//			})
 		return Observable
 			.zip(categories, stories)
 			.map(SleepData.init)
