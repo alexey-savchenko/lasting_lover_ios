@@ -1,0 +1,42 @@
+//
+//  SeriesControllerViewModel.swift
+//  lasting_lover_ios
+//
+//  Created by Alexey Savchenko on 13.11.2021.
+//
+
+import Foundation
+import RxSwift
+import UIKit
+import UNILibCore
+import RxUNILib
+
+class SeriesControllerViewModel {
+	struct Input {
+		
+	}
+	
+	struct Output {
+		let title: String
+		let subtitle: String
+		let image: Observable<UIImage>
+		let authors: Observable<[Section<AuthorCellViewModel>]>
+	}
+	
+	let input: Input
+	let output: Output
+	
+	init(
+		series: Series,
+		state: Observable<DiscoverTab.State>,
+		dispatch: @escaping DispatchFunction<DiscoverTab.Action>
+	) {
+		self.input = Input()
+		self.output = Output(
+			title: series.name,
+			subtitle: series.description,
+			image: Current.imageLoadingService().image(URL(string: series.avatar)!),
+			authors: Observable.just(series.authors.map(AuthorCellViewModel.init)).map(Section.init).map(toArray)
+		)
+	}
+}

@@ -400,7 +400,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.subscribe(viewModel.input.allSeriesButtonTap)
 			.disposed(by: disposebag)
 		
-		featuredStoriesCollectionView.rx.itemSelected
+		seriesCollectionView.rx.itemSelected
 			.subscribe(viewModel.input.featuredSeriesSelectedAtIndex)
 			.disposed(by: disposebag)
 	}

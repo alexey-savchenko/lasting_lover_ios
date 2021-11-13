@@ -25,6 +25,7 @@ class DiscoverControllerViewModel {
 		let data: Observable<Loadable<DiscoverData, HashableWrapper<AppError>>>
 		let selectedAuthor: Observable<Author>
 		let allSeriesButtonTap: Observable<Void>
+		let selectedFeaturedSeries: Observable<Series>
   }
   
   let input: Input
@@ -51,7 +52,15 @@ class DiscoverControllerViewModel {
 						}
 					}
 				},
-			allSeriesButtonTap: allSeriesButtonTapSubject.asObservable()
+			allSeriesButtonTap: allSeriesButtonTapSubject.asObservable(),
+			selectedFeaturedSeries: featuredSeriesSelectedAtIndexSubject
+				.flatMap { index in
+					return state.take(1).compactMap { state in
+						return state.data.item.map { data in
+							return data.series.filter { $0.featured == 1 }.prefix(2)[index.item]
+						}
+					}
+			}
 		)
 		
 		dispatch(.loadData)

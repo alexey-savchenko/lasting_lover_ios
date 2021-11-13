@@ -91,6 +91,9 @@ class AllSeriesViewController: ViewController<BackgroundImageView> {
 		viewModel.output.contents
 			.bind(to: collectionView.rx.items(dataSource: datasource()))
 			.disposed(by: disposeBag)
+		collectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedSeriesAtIndex)
+			.disposed(by: disposeBag)
 	}
 	
 	private func datasource() -> RxCollectionViewSectionedReloadDataSource<Section<AllSeriesCellViewModel>> {

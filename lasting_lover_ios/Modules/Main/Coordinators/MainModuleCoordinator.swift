@@ -36,16 +36,33 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			.disposed(by: disposeBag)
 		
 		mainController
-			.discoverViewController.seeAllSeriesButton.rx.tap.flatMap {
+			.discoverViewController.seeAllSeriesButton.rx.tap
+			.flatMap {
 				return self.presentAllSeriesScreen(
 					navigationController: self.navigationController
 				)
 			}
 			.compactMap { $0.right }
+			.flatMap { series in
+				return self.presentSeriesModule(
+					series: series,
+					navigationController: self.navigationController
+				)
+			}
 			.subscribe()
 			.disposed(by: disposeBag)
 		
-    viewModel.output.settingsButtonTap
+		mainController.discoverViewController.viewModel.output.selectedFeaturedSeries
+			.flatMap { series in
+				return self.presentSeriesModule(
+					series: series,
+					navigationController: self.navigationController
+				)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
+		
+		viewModel.output.settingsButtonTap
       .flatMap { _ in
         self.presentSettingsModule(navigationController: self.navigationController)
       }
@@ -104,6 +121,11 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		
     return .never()
   }
+	
+	func presentSeriesModule(series: Series, navigationController: UINavigationController) -> Observable<Void> {
+		let coordinator = SeriesModuleCoordinator(navigationController: navigationController, series: series)
+		return coordinate(to: coordinator)
+	}
 	
 	func presentPlayerModule(
 		navigationContoller: UINavigationController,
