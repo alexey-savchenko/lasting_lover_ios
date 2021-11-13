@@ -99,7 +99,7 @@ class BackendService: BackendServiceProtocol {
 			.map(BackendResponse<Category>.self)
 			.map { $0.data }
 		let discoverSeries = provider.rx
-			.request(.discoverSeries(featured: true))
+			.request(.discoverSeries(featured: false))
 			.asObservable()
 			.map(BackendResponse<Series>.self)
 			.map { $0.data }

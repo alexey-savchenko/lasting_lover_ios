@@ -35,6 +35,16 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			.subscribe()
 			.disposed(by: disposeBag)
 		
+		mainController
+			.discoverViewController.seeAllSeriesButton.rx.tap.flatMap {
+				return self.presentAllSeriesScreen(
+					navigationController: self.navigationController
+				)
+			}
+			.compactMap { $0.right }
+			.subscribe()
+			.disposed(by: disposeBag)
+		
     viewModel.output.settingsButtonTap
       .flatMap { _ in
         self.presentSettingsModule(navigationController: self.navigationController)
@@ -111,6 +121,25 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		)
 		
 		return coordinate(to: coordinator)
+	}
+	
+	func presentAllSeriesScreen(navigationController: UINavigationController) -> Observable<Either<Void, Series>> {
+		let viewModel = AllSeriesControllerViewModel(
+			state: appStore.stateObservable.map { $0.mainModuleState.discoverState }.distinctUntilChanged(),
+			dispatch: MainModule.Action.discoverAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
+		let controller = AllSeriesViewController(viewModel: viewModel)
+		navigationController.pushViewController(controller, animated: true)
+		
+		let dismiss = controller.navbar.backButton.rx.tap.asObservable()
+			.do(onNext: { [unowned navigationController] in
+				navigationController.popViewController(animated: true)
+			})
+			.map { Either<Void, Series>.left(value: Void()) }
+		let selectedSeries = viewModel.output.selectedSeries
+			.map { Either<Void, Series>.right(value: $0) }
+		
+		return Observable.merge(dismiss, selectedSeries)
 	}
 	
 	func presentAuthorContent(navigationController: UINavigationController, author: Author) -> Observable<Void> {

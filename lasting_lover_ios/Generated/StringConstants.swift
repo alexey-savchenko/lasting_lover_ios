@@ -20,6 +20,8 @@ internal enum L10n {
   internal static let congratulationsSubtitle = L10n.tr("Localizable", "congratulations_subtitle")
   /// Congratulations!
   internal static let congratulationsTitle = L10n.tr("Localizable", "congratulations_title")
+  /// All Series
+  internal static let discoverAllSeries = L10n.tr("Localizable", "discover_All_Series")
   /// Authors
   internal static let discoverAuthors = L10n.tr("Localizable", "discover_authors")
   /// Categories

@@ -13,13 +13,18 @@ import UNILibCore
 class DiscoverControllerViewModel {
   struct Input {
 		let selectedAuthorAtIndex: AnyObserver<IndexPath>
+		let allSeriesButtonTap: AnyObserver<Void>
+		let featuredSeriesSelectedAtIndex: AnyObserver<IndexPath>
   }
   
 	private let selectedAuthorAtIndexSubject = PublishSubject<IndexPath>()
+	private let allSeriesButtonTapSubject = PublishSubject<Void>()
+	private let featuredSeriesSelectedAtIndexSubject = PublishSubject<IndexPath>()
 	
   struct Output {
 		let data: Observable<Loadable<DiscoverData, HashableWrapper<AppError>>>
 		let selectedAuthor: Observable<Author>
+		let allSeriesButtonTap: Observable<Void>
   }
   
   let input: Input
@@ -30,7 +35,9 @@ class DiscoverControllerViewModel {
 		dispatch: @escaping DispatchFunction<DiscoverTab.Action>
 	) {
     self.input = Input(
-			selectedAuthorAtIndex: selectedAuthorAtIndexSubject.asObserver()
+			selectedAuthorAtIndex: selectedAuthorAtIndexSubject.asObserver(),
+			allSeriesButtonTap: allSeriesButtonTapSubject.asObserver(),
+			featuredSeriesSelectedAtIndex: featuredSeriesSelectedAtIndexSubject.asObserver()
 		)
 		self.output = Output(
 			data: state.map { $0.data }.distinctUntilChanged(),
@@ -43,7 +50,8 @@ class DiscoverControllerViewModel {
 							return nil
 						}
 					}
-				}
+				},
+			allSeriesButtonTap: allSeriesButtonTapSubject.asObservable()
 		)
 		
 		dispatch(.loadData)

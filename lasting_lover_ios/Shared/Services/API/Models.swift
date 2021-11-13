@@ -59,7 +59,7 @@ struct Series: Codable, Hashable {
 struct DiscoverData: Hashable {
 	let authors: [Author]
 	let categories: [Category]
-	let featuredSeries: [Series]
+	let series: [Series]
 	let featuredStories: [Story]
 }
 

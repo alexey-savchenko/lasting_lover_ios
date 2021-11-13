@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02195F3D273FDCD400BD5A5D /* AllSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F3C273FDCD400BD5A5D /* AllSeriesViewController.swift */; };
+		02195F3F273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F3E273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift */; };
+		02195F41273FE7FA00BD5A5D /* SeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F40273FE7FA00BD5A5D /* SeriesCell.swift */; };
+		02195F43273FE81600BD5A5D /* SeriesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F42273FE81600BD5A5D /* SeriesCellViewModel.swift */; };
+		02195F45273FECFB00BD5A5D /* Loadable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F44273FECFB00BD5A5D /* Loadable+Ext.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -140,6 +145,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02195F3C273FDCD400BD5A5D /* AllSeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesViewController.swift; sourceTree = "<group>"; };
+		02195F3E273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesControllerViewModel.swift; sourceTree = "<group>"; };
+		02195F40273FE7FA00BD5A5D /* SeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCell.swift; sourceTree = "<group>"; };
+		02195F42273FE81600BD5A5D /* SeriesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCellViewModel.swift; sourceTree = "<group>"; };
+		02195F44273FECFB00BD5A5D /* Loadable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Loadable+Ext.swift"; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -371,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				02770AE12737D02E00DF4F49 /* UIViewController+Ext.swift */,
+				02195F44273FECFB00BD5A5D /* Loadable+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -776,6 +787,7 @@
 			isa = PBXGroup;
 			children = (
 				221C52512709CCC70085534E /* DiscoverViewController.swift */,
+				02195F3C273FDCD400BD5A5D /* AllSeriesViewController.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";
@@ -801,6 +813,8 @@
 			isa = PBXGroup;
 			children = (
 				221C5273270A61330085534E /* DiscoverControllerViewModel.swift */,
+				02195F3E273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift */,
+				02195F42273FE81600BD5A5D /* SeriesCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -818,6 +832,7 @@
 				221E22CF270DEB15003F324B /* TodayPopularView.swift */,
 				02770ADB2735E04300DF4F49 /* SeriesLayout.swift */,
 				02770AE32737E93400DF4F49 /* StoriesLayout.swift */,
+				02195F40273FE7FA00BD5A5D /* SeriesCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1171,6 +1186,7 @@
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
 				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
 				021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */,
+				02195F3F273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift in Sources */,
 				02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */,
 				024CC199273E58AD00B2EDA4 /* UIPresentationController+Rx.swift in Sources */,
 				02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */,
@@ -1192,6 +1208,7 @@
 				22BF1990272E790B00FAA6C6 /* BackendService.swift in Sources */,
 				021BA2B3273BDAA800A0F3CF /* StoriesControllerViewModel.swift in Sources */,
 				02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */,
+				02195F41273FE7FA00BD5A5D /* SeriesCell.swift in Sources */,
 				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
 				221C524F27086EA80085534E /* CongratulationsController.swift in Sources */,
@@ -1208,6 +1225,7 @@
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* AppState.swift in Sources */,
 				02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */,
+				02195F43273FE81600BD5A5D /* SeriesCellViewModel.swift in Sources */,
 				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,
 				02770AE62737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift in Sources */,
 				2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */,
@@ -1226,8 +1244,10 @@
 				02770AED2737F1D000DF4F49 /* FavoritesViewController.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
 				02770AE42737E93400DF4F49 /* StoriesLayout.swift in Sources */,
+				02195F3D273FDCD400BD5A5D /* AllSeriesViewController.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,
 				221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */,
+				02195F45273FECFB00BD5A5D /* Loadable+Ext.swift in Sources */,
 				221C52522709CCC70085534E /* DiscoverViewController.swift in Sources */,
 				221E22C0270C5A02003F324B /* SettingsControllerViewModel.swift in Sources */,
 			);

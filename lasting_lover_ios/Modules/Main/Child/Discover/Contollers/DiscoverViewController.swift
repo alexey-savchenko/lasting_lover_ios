@@ -163,6 +163,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 				.font: FontFamily.Nunito.semiBold.font(size: 22)
 			]
 		)
+//		categoriesCollectionView.isScrollEnabled = false
 		categoriesCollectionView.backgroundColor = .clear
 		categoriesCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
@@ -253,6 +254,7 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			make.leading.equalToSuperview().offset(24)
 			make.top.equalToSuperview()
 		}
+		seriesCollectionView.isScrollEnabled = false
 		seriesCollectionView.backgroundColor = .clear
 		seriesCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
@@ -338,8 +340,13 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 			.disposed(by: disposebag)
 		
 		content
-			.map { $0.featuredSeries }
-			.map { array in return array.map(SeriesCellViewModel.init) }
+			.map { $0.series }
+			.map { array in
+				return array
+					.filter { $0.featured == 1 }
+					.prefix(2)
+					.map(SeriesCellViewModel.init)
+			}
 			.map(Section.init)
 			.map(toArray)
 			.bind(to: seriesCollectionView.rx.items(dataSource: seriesCollectionViewDataSource()))
@@ -356,7 +363,8 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		content
 			.map { $0.featuredStories }
 			.map { array in
-				return array.enumerated()
+				return array
+					.enumerated()
 					.map { idx, value -> DiscoverStoryCellViewModel in
 						if idx == 0 {
 							return DiscoverStoryCellViewModel(story: value, showNewTopicAccessory: true)
@@ -386,6 +394,14 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		
 		authorsCollectionView.rx.itemSelected
 			.subscribe(viewModel.input.selectedAuthorAtIndex)
+			.disposed(by: disposebag)
+		
+		seeAllSeriesButton.rx.tap
+			.subscribe(viewModel.input.allSeriesButtonTap)
+			.disposed(by: disposebag)
+		
+		featuredStoriesCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.featuredSeriesSelectedAtIndex)
 			.disposed(by: disposebag)
 	}
 	
