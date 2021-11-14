@@ -42,7 +42,7 @@ class UICollectionViewCenterLayout: UICollectionViewFlowLayout {
 		for attribute in attributes {
 			if currentRowY != attribute.frame.midY {
 				currentRowY = attribute.frame.midY
-				rows.append(CollectionViewRow(spacing: 10))
+				rows.append(CollectionViewRow(spacing: 40))
 			}
 			rows.last?.add(attribute: attribute)
 		}

@@ -19,6 +19,7 @@ protocol BackendServiceProtocol {
 	func getAllSleepStories() -> Observable<[Story]>
 	func getSleepStoriesFor(_ category: Category) -> Observable<[Story]>
 	func getStoriesFor(_ author: Author) -> Observable<[Story]>
+	func getStoriesFor(_ series: Series) -> Observable<[Story]>
 }
 
 class BackendService: BackendServiceProtocol {
@@ -28,6 +29,21 @@ class BackendService: BackendServiceProtocol {
 	
 	private init() {
 		provider.session.sessionConfiguration.timeoutIntervalForRequest = 10
+	}
+	
+	func getStoriesFor(_ series: Series) -> Observable<[Story]> {
+		return provider.rx.request(
+			.listStories(
+				type: .storiesBySeries(
+					seriesID: "\(series.id)",
+					featured: false,
+					type: .discover
+				)
+			)
+		)
+			.asObservable()
+			.map(BackendResponse<Story>.self)
+			.map { $0.data }
 	}
 	
 	func getStoriesFor(_ author: Author) -> Observable<[Story]> {

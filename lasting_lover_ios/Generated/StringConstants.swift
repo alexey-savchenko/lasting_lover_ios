@@ -48,6 +48,8 @@ internal enum L10n {
   internal static let mainTabFavorites = L10n.tr("Localizable", "main_tab_favorites")
   /// Sleep
   internal static let mainTabSleep = L10n.tr("Localizable", "main_tab_sleep")
+  /// Series List
+  internal static let seriesList = L10n.tr("Localizable", "series_list")
   /// Settings
   internal static let settings = L10n.tr("Localizable", "settings")
   /// Email Adress

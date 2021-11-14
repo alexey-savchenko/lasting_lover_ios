@@ -22,7 +22,14 @@ class AudioItemCell: UICollectionViewCell {
   }
 }
 
-class StoryCellViewModel {
+class StoryCellViewModel: Hashable {
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(story)
+	}
+	
+	static func == (lhs: StoryCellViewModel, rhs: StoryCellViewModel) -> Bool {
+		return lhs.story == rhs.story
+	}
 	
 	struct Input {
 		
@@ -54,6 +61,8 @@ class StoryCellViewModel {
 			duration: "6 min"
 		)
 	}
+		
+	
 }
 
 class StoryCell: AudioItemCell {

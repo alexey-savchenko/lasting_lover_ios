@@ -16,6 +16,7 @@ enum DiscoverTab {
 	struct State: Hashable {
 		let data: Loadable<DiscoverData, HashableWrapper<AppError>>
 		let authorStories: [Author: Loadable<[Story], HashableWrapper<AppError>>]
+		let seriesStories: [Series: Loadable<[Story], HashableWrapper<AppError>>]
 	}
 	
 	/// sourcery: prism
@@ -25,6 +26,8 @@ enum DiscoverTab {
 		case setAuthorStoriesData(value: Author, content: Loadable<[Story], HashableWrapper<AppError>>)
 		case setDiscoverData(value: DiscoverData)
 		case setError(value: AppError)
+		case loadSeriesStories(value: Series)
+		case setSeriesStoriesData(series: Series, content: Loadable<[Story], HashableWrapper<AppError>>)
 	}
 	
 	static let middleware: Middleware<DiscoverTab.State, DiscoverTab.Action> = { dispatch, getState in
@@ -33,8 +36,30 @@ enum DiscoverTab {
 				switch action {
 				case .setDiscoverData,
 						.setError,
-						.setAuthorStoriesData:
+						.setAuthorStoriesData,
+						.setSeriesStoriesData:
 					next(action)
+				case .loadSeriesStories(let value):
+					
+					guard getState()?.seriesStories[value]?.item == nil else {
+						next(action)
+						return
+					}
+					
+					var disposable: Disposable?
+					
+					disposable = Current.backend()
+						.getStoriesFor(value)
+						.subscribe(onNext: { data in
+							dispatch(.setSeriesStoriesData(series: value, content: .item(item: data)))
+							disposable?.dispose()
+						}, onError: { error in
+							dispatch(.setSeriesStoriesData(
+								series: value,
+								content: .error(error: HashableWrapper<AppError>(value: .networkError)))
+							)
+							disposable?.dispose()
+						})
 				case .loadData:
 					
 					var disposable: Disposable?
@@ -83,12 +108,16 @@ enum DiscoverTab {
 	
 	static let reducer = Reducer<DiscoverTab.State, DiscoverTab.Action> { state, action in
 		switch action {
-		case .loadData, .loadAuthorStories:
+		case .loadData, .loadAuthorStories, .loadSeriesStories:
 			return state
 		case .setAuthorStoriesData(let author, let content):
 			var subState = state.authorStories
 			subState[author] = content
 			return DiscoverTab.State.lens.authorStories.set(subState)(state)
+		case .setSeriesStoriesData(let series, let content):
+			var subState = state.seriesStories
+			subState[series] = content
+			return DiscoverTab.State.lens.seriesStories.set(subState)(state)
 		case .setDiscoverData(let value):
 			return DiscoverTab.State.lens.data.set(Loadable<DiscoverData, HashableWrapper<AppError>>.item(item: value))(state)
 		case .setError(let value):
