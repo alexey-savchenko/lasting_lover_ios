@@ -15,17 +15,20 @@ class DiscoverControllerViewModel {
 		let selectedAuthorAtIndex: AnyObserver<IndexPath>
 		let allSeriesButtonTap: AnyObserver<Void>
 		let featuredSeriesSelectedAtIndex: AnyObserver<IndexPath>
+		let selectedCategoryAtIndex: AnyObserver<IndexPath>
   }
   
 	private let selectedAuthorAtIndexSubject = PublishSubject<IndexPath>()
 	private let allSeriesButtonTapSubject = PublishSubject<Void>()
 	private let featuredSeriesSelectedAtIndexSubject = PublishSubject<IndexPath>()
+	private let selectedCategoryAtIndexSubject = PublishSubject<IndexPath>()
 	
   struct Output {
 		let data: Observable<Loadable<DiscoverData, HashableWrapper<AppError>>>
 		let selectedAuthor: Observable<Author>
 		let allSeriesButtonTap: Observable<Void>
 		let selectedFeaturedSeries: Observable<Series>
+		let selectedCategory: Observable<Category>
   }
   
   let input: Input
@@ -38,7 +41,8 @@ class DiscoverControllerViewModel {
     self.input = Input(
 			selectedAuthorAtIndex: selectedAuthorAtIndexSubject.asObserver(),
 			allSeriesButtonTap: allSeriesButtonTapSubject.asObserver(),
-			featuredSeriesSelectedAtIndex: featuredSeriesSelectedAtIndexSubject.asObserver()
+			featuredSeriesSelectedAtIndex: featuredSeriesSelectedAtIndexSubject.asObserver(),
+			selectedCategoryAtIndex: selectedCategoryAtIndexSubject.asObserver()
 		)
 		self.output = Output(
 			data: state.map { $0.data }.distinctUntilChanged(),
@@ -60,7 +64,14 @@ class DiscoverControllerViewModel {
 							return data.series.filter { $0.featured == 1 }.prefix(2)[index.item]
 						}
 					}
-			}
+				},
+			selectedCategory: selectedCategoryAtIndexSubject.flatMap { index in
+				return state.take(1).compactMap { state in
+					 return state.data.item.map { data in
+						 return data.categories[index.item]
+					 }
+				 }
+			 }
 		)
 		
 		dispatch(.loadData)

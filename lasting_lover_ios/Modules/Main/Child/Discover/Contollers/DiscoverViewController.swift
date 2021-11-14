@@ -403,6 +403,10 @@ class DiscoverViewController: ViewController<BackgroundImageView> {
 		seriesCollectionView.rx.itemSelected
 			.subscribe(viewModel.input.featuredSeriesSelectedAtIndex)
 			.disposed(by: disposebag)
+		
+		categoriesCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedCategoryAtIndex)
+			.disposed(by: disposebag)
 	}
 	
 	private func storiesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<DiscoverStoryCellViewModel>> {

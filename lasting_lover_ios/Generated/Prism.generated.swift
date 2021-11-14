@@ -51,6 +51,14 @@ extension DiscoverTab.Action {
             tryGet: { if case .setSeriesStoriesData(let value) = $0 { return value } else { return nil } },
             inject: { (x1, x2) in .setSeriesStoriesData(series:x1, content:x2) })
 
+        internal static let loadCategoryStories = Prism<DiscoverTab.Action,Category>(
+            tryGet: { if case .loadCategoryStories(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .loadCategoryStories(value:x1) })
+
+        internal static let setCategoryStoriesData = Prism<DiscoverTab.Action,(Category, Loadable<[Story], HashableWrapper<AppError>>)>(
+            tryGet: { if case .setCategoryStoriesData(let value) = $0 { return value } else { return nil } },
+            inject: { (x1, x2) in .setCategoryStoriesData(category:x1, content:x2) })
+
     }
 }
 

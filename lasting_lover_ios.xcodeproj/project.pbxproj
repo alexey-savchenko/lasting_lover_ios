@@ -16,6 +16,8 @@
 		02195F4A274027F200BD5A5D /* SeriesControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F49274027F200BD5A5D /* SeriesControllerViewModel.swift */; };
 		02195F4C2740281100BD5A5D /* SeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F4B2740281100BD5A5D /* SeriesViewController.swift */; };
 		02195F4E2740351000BD5A5D /* CenteredLayout.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */; };
+		02195F502741413900BD5A5D /* CategoryControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F4F2741413900BD5A5D /* CategoryControllerViewModel.swift */; };
+		02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F512741472900BD5A5D /* CategoryViewController.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -45,10 +47,6 @@
 		029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */; };
 		029EEE06273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */; };
 		02A2437627050ACF0048DB0D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2437527050ACF0048DB0D /* SnapKit */; };
-		02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */; };
-		02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEA272BFDA800BB1E7C /* CategoryController.swift */; };
-		02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */; };
-		02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EF2272BFE3B00BB1E7C /* Category.swift */; };
 		02F57EF5272C135400BB1E7C /* DiscoverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F57EF4272C135400BB1E7C /* DiscoverState.swift */; };
 		2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */; };
 		2218AD7D27185D61002C405C /* PlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218AD7C27185D61002C405C /* PlayerItem.swift */; };
@@ -158,6 +156,8 @@
 		02195F49274027F200BD5A5D /* SeriesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesControllerViewModel.swift; sourceTree = "<group>"; };
 		02195F4B2740281100BD5A5D /* SeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesViewController.swift; sourceTree = "<group>"; };
 		02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredLayout.swift.swift; sourceTree = "<group>"; };
+		02195F4F2741413900BD5A5D /* CategoryControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryControllerViewModel.swift; sourceTree = "<group>"; };
+		02195F512741472900BD5A5D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -188,10 +188,6 @@
 		029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewControllerViewModel.swift; sourceTree = "<group>"; };
 		029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModuleCoordinator.swift; sourceTree = "<group>"; };
 		029EEE05273EA3C7005DAC05 /* AuthorStoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorStoryCellViewModel.swift; sourceTree = "<group>"; };
-		02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModuleCoordinator.swift; sourceTree = "<group>"; };
-		02F57EEA272BFDA800BB1E7C /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
-		02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
-		02F57EF2272BFE3B00BB1E7C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		02F57EF4272C135400BB1E7C /* DiscoverState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverState.swift; sourceTree = "<group>"; };
 		197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasting_lover_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2218AD7927185CF2002C405C /* PurchaseModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModuleCoordinator.swift; sourceTree = "<group>"; };
@@ -489,49 +485,6 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		02F57EE7272BFD1C00BB1E7C /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				02F57EF1272BFDD200BB1E7C /* Models */,
-				02F57EEE272BFDBC00BB1E7C /* Coordinators */,
-				02F57EEF272BFDC500BB1E7C /* Controllers */,
-				02F57EF0272BFDCC00BB1E7C /* ViewModels */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		02F57EEE272BFDBC00BB1E7C /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				02F57EE8272BFD3800BB1E7C /* CategoryModuleCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		02F57EEF272BFDC500BB1E7C /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				02F57EEA272BFDA800BB1E7C /* CategoryController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		02F57EF0272BFDCC00BB1E7C /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				02F57EEC272BFDB600BB1E7C /* CategoryViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		02F57EF1272BFDD200BB1E7C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				02F57EF2272BFE3B00BB1E7C /* Category.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		15FAF97D83017AC640C5F5D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,7 +545,6 @@
 				02195F462740278A00BD5A5D /* Series */,
 				029EEE02273E9E23005DAC05 /* Author */,
 				0262BB692705084300847ED7 /* AppState */,
-				02F57EE7272BFD1C00BB1E7C /* Category */,
 				2218AD7827185CE2002C405C /* Purchase */,
 				221E22D1270F2F50003F324B /* Player */,
 				221C526C270A55FD0085534E /* Settings */,
@@ -808,6 +760,7 @@
 			children = (
 				221C52512709CCC70085534E /* DiscoverViewController.swift */,
 				02195F3C273FDCD400BD5A5D /* AllSeriesViewController.swift */,
+				02195F512741472900BD5A5D /* CategoryViewController.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";
@@ -835,6 +788,7 @@
 				221C5273270A61330085534E /* DiscoverControllerViewModel.swift */,
 				02195F3E273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift */,
 				02195F42273FE81600BD5A5D /* SeriesCellViewModel.swift */,
+				02195F4F2741413900BD5A5D /* CategoryControllerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1180,6 +1134,7 @@
 			files = (
 				02770AF6273864C700DF4F49 /* SleepFeaturedStoryCellViewModel.swift in Sources */,
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
+				02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */,
 				221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */,
 				02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */,
 				221C51E42705DB890085534E /* Lens.generated.swift in Sources */,
@@ -1205,12 +1160,11 @@
 				02770AD82735BA9900DF4F49 /* Secrion.swift in Sources */,
 				221C51F32705E1F50085534E /* Environment.swift in Sources */,
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
-				02F57EED272BFDB600BB1E7C /* CategoryViewModel.swift in Sources */,
+				02195F502741413900BD5A5D /* CategoryControllerViewModel.swift in Sources */,
 				021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */,
 				02195F3F273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift in Sources */,
 				02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */,
 				024CC199273E58AD00B2EDA4 /* UIPresentationController+Rx.swift in Sources */,
-				02F57EF3272BFE3B00BB1E7C /* Category.swift in Sources */,
 				221C51E22705DB890085534E /* Prism.generated.swift in Sources */,
 				221E22C3270C5AA0003F324B /* SettingsState.swift in Sources */,
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
@@ -1228,7 +1182,6 @@
 				22BF198E272D608000FAA6C6 /* AudioItemCell.swift in Sources */,
 				22BF1990272E790B00FAA6C6 /* BackendService.swift in Sources */,
 				021BA2B3273BDAA800A0F3CF /* StoriesControllerViewModel.swift in Sources */,
-				02F57EE9272BFD3800BB1E7C /* CategoryModuleCoordinator.swift in Sources */,
 				02195F41273FE7FA00BD5A5D /* SeriesCell.swift in Sources */,
 				221E22C5270C5E16003F324B /* SettingsItem.swift in Sources */,
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
@@ -1246,7 +1199,6 @@
 				2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* AppState.swift in Sources */,
-				02F57EEB272BFDA800BB1E7C /* CategoryController.swift in Sources */,
 				02195F4C2740281100BD5A5D /* SeriesViewController.swift in Sources */,
 				02195F43273FE81600BD5A5D /* SeriesCellViewModel.swift in Sources */,
 				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,

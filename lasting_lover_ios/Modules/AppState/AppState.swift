@@ -28,7 +28,8 @@ enum App {
 					discoverState: DiscoverTab.State(
 						data: Loadable.indefiniteLoading,
 						authorStories: [:],
-						seriesStories: [:]
+						seriesStories: [:],
+						categoryStories: [:]
 					),
 					sleepState: SleepTab.State(
 						data: .indefiniteLoading,

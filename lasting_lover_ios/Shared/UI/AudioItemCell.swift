@@ -62,7 +62,9 @@ class StoryCellViewModel: Hashable {
 		)
 	}
 		
-	
+	deinit {
+		print("\(self) deinit")
+	}
 }
 
 class StoryCell: AudioItemCell {
@@ -128,6 +130,7 @@ class StoryCell: AudioItemCell {
   }
 	
 	func configure(with viewModel: StoryCellViewModel) {
+		self.viewModel = viewModel
 		viewModel.output.state
 			.bind { [weak self] value in
 				self?.setPlayButtonState(value)

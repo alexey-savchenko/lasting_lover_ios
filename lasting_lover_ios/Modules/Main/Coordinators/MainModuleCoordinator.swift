@@ -99,8 +99,25 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		
 		let selectedFeaturedSleepStory = mainController.sleepViewController.viewModel.output.selectedFeatuedStory
 		
+		let presentedCategoryScreen = mainController.discoverViewController.viewModel.output.selectedCategory
+			.flatMap { cat in
+				return self.presentCategoryScreen(
+					navigationContoller: self.navigationController,
+					category: cat
+				)
+			}
+			.share()
+		
+		presentedCategoryScreen
+			.compactMap { $0.left }
+			.bind {
+				self.navigationController.popViewController(animated: true)
+			}
+			.disposed(by: disposeBag)
+		
 		Observable
 			.merge(
+				presentedCategoryScreen.compactMap { $0.right },
 				presentedAllSleepStories.compactMap { $0.right },
 				presentedSleepCategoryStories.compactMap { $0.right },
 				selectedFeaturedSleepStory
@@ -170,6 +187,29 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			navigationController: navigationController
 		)
 		return coordinate(to: authorModuleCoordinator)
+	}
+	
+	func presentCategoryScreen(
+		navigationContoller: UINavigationController,
+		category: Category
+	) -> Observable<Either<Void, Story>> {
+		let vm = CategoryControllerViewModel(
+			category: category,
+			state: appStore.stateObservable.map { $0.mainModuleState.discoverState }.distinctUntilChanged(),
+			dispatch: MainModule.Action.discoverAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
+		
+		let controller = CategoryViewController(viewModel: vm)
+
+		navigationController.pushViewController(controller, animated: true)
+
+		let result = Observable
+			.merge(
+				vm.output.backTap.map { Either<Void, Story>.left(value: Void()) },
+				vm.output.selectedStory.map { value in Either<Void, Story>.right(value: value) }
+			)
+
+		return result
 	}
 	
 	func presentStoriesScreen(

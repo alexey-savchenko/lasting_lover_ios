@@ -17,6 +17,7 @@ enum DiscoverTab {
 		let data: Loadable<DiscoverData, HashableWrapper<AppError>>
 		let authorStories: [Author: Loadable<[Story], HashableWrapper<AppError>>]
 		let seriesStories: [Series: Loadable<[Story], HashableWrapper<AppError>>]
+		let categoryStories: [Category: Loadable<[Story], HashableWrapper<AppError>>]
 	}
 	
 	/// sourcery: prism
@@ -28,6 +29,8 @@ enum DiscoverTab {
 		case setError(value: AppError)
 		case loadSeriesStories(value: Series)
 		case setSeriesStoriesData(series: Series, content: Loadable<[Story], HashableWrapper<AppError>>)
+		case loadCategoryStories(value: Category)
+		case setCategoryStoriesData(category: Category, content: Loadable<[Story], HashableWrapper<AppError>>)
 	}
 	
 	static let middleware: Middleware<DiscoverTab.State, DiscoverTab.Action> = { dispatch, getState in
@@ -37,8 +40,32 @@ enum DiscoverTab {
 				case .setDiscoverData,
 						.setError,
 						.setAuthorStoriesData,
-						.setSeriesStoriesData:
+						.setSeriesStoriesData,
+						.setCategoryStoriesData:
 					next(action)
+				case .loadCategoryStories(let value):
+					guard getState()?.categoryStories[value]?.item == nil else {
+						next(action)
+						return
+					}
+					
+					var disposable: Disposable?
+					
+					next(.setCategoryStoriesData(category: value, content: .indefiniteLoading))
+					
+					disposable = Current.backend()
+						.getStoriesFor(value)
+						.subscribe(onNext: { data in
+							dispatch(.setCategoryStoriesData(category: value, content: .item(item: data)))
+							disposable?.dispose()
+						}, onError: { error in
+							dispatch(.setCategoryStoriesData(
+								category: value,
+								content: .error(error: HashableWrapper<AppError>(value: .networkError)))
+							)
+							disposable?.dispose()
+						})
+
 				case .loadSeriesStories(let value):
 					
 					guard getState()?.seriesStories[value]?.item == nil else {
@@ -47,6 +74,8 @@ enum DiscoverTab {
 					}
 					
 					var disposable: Disposable?
+					
+					next(.setSeriesStoriesData(series: value, content: .indefiniteLoading))
 					
 					disposable = Current.backend()
 						.getStoriesFor(value)
@@ -79,6 +108,12 @@ enum DiscoverTab {
 							}
 						)
 				case .loadAuthorStories(let value):
+					
+					guard getState()?.authorStories[value]?.item == nil else {
+						next(action)
+						return
+					}
+					
 					var disposable: Disposable?
 					
 					disposable = Current
@@ -108,8 +143,15 @@ enum DiscoverTab {
 	
 	static let reducer = Reducer<DiscoverTab.State, DiscoverTab.Action> { state, action in
 		switch action {
-		case .loadData, .loadAuthorStories, .loadSeriesStories:
+		case .loadData,
+				.loadAuthorStories,
+				.loadSeriesStories,
+				.loadCategoryStories:
 			return state
+		case .setCategoryStoriesData(let category, let content):
+			var subState = state.categoryStories
+			subState[category] = content
+			return DiscoverTab.State.lens.categoryStories.set(subState)(state)
 		case .setAuthorStoriesData(let author, let content):
 			var subState = state.authorStories
 			subState[author] = content

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxDataSources
+import UNILibCore
 
 class SeriesViewController: ViewController<BackgroundImageView> {
 	
@@ -42,10 +43,10 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 	}()
 	let categoriesCollectionViewSeparatorView = UIView()
 	
+	let activityIndicator = UIActivityIndicatorView(style: .large)
 	let listTitleLabel = UILabel()
 	let listStackView = UIStackView()
 	var cells: [StoryCell] = []
-	
 	
 	let viewModel: SeriesControllerViewModel
 	private let disposeBag = DisposeBag()
@@ -96,7 +97,8 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 			categoriesCollectionView,
 			categoriesCollectionViewSeparatorView,
 			listTitleLabel,
-			listStackView
+			listStackView,
+			activityIndicator
 		]
 			.forEach(contentScrollView.containerView.addSubview)
 		
@@ -166,6 +168,9 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 			make.top.equalTo(listTitleLabel.snp.bottom).offset(16)
 			make.bottom.equalToSuperview().offset(-8)
 		}
+		activityIndicator.snp.makeConstraints { make in
+			make.center.equalTo(listStackView)
+		}
 	}
 	
 	private func configure(with viewModel: SeriesControllerViewModel) {
@@ -194,16 +199,62 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 				}
 				return cells
 			}
-			.subscribe(onNext: { [weak self] cells in
-				self?.cells = cells
-				cells.forEach { cell in
-					self?.listStackView.addArrangedSubview(cell)
+			.subscribe(onNext: { [unowned self, unowned viewModel] cells in
+				self.cells = cells
+				cells.enumerated().forEach { idx, cell in
+					self.listStackView.addArrangedSubview(cell)
 					cell.snp.makeConstraints { make in
 						make.leading.trailing.equalToSuperview()
 						make.height.equalTo(68)
 					}
+					let gesture = UITapGestureRecognizer(target: nil, action: nil)
+					cell.contentView.addGestureRecognizer(gesture)
+					gesture.rx.event
+						.compactMap { _ in IndexPath(row: idx, section: 0) }
+						.subscribe(viewModel.input.storySelectedAtIndex)
+						.disposed(by: self.disposeBag)
 				}
 			})
+			.disposed(by: disposeBag)
+		
+		content
+			.compactMap { value -> HashableWrapper<AppError>? in
+				if case .error(let wrapped) = value {
+					return wrapped
+				} else {
+					return nil
+				}
+			}
+			.distinctUntilChanged()
+			.bind { value in
+				self.presentError(value.value)
+			}
+			.disposed(by: disposeBag)
+		
+		content
+			.map { value -> Bool in
+				if case .loading = value {
+					return true
+				} else {
+					return false
+				}
+			}
+			.bind { value in
+				self.activityIndicator.isHidden = !value
+				self.contentScrollView.isHidden = value
+				if value {
+					self.activityIndicator.startAnimating()
+				} else {
+					self.activityIndicator.stopAnimating()
+				}
+			}
+			.disposed(by: disposeBag)
+		
+		authorsCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.authorSelectedAtIndex)
+			.disposed(by: disposeBag)
+		categoriesCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.categorySelectedAtIndex)
 			.disposed(by: disposeBag)
 	}
 	

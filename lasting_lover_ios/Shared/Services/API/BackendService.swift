@@ -20,6 +20,7 @@ protocol BackendServiceProtocol {
 	func getSleepStoriesFor(_ category: Category) -> Observable<[Story]>
 	func getStoriesFor(_ author: Author) -> Observable<[Story]>
 	func getStoriesFor(_ series: Series) -> Observable<[Story]>
+	func getStoriesFor(_ category: Category) -> Observable<[Story]>
 }
 
 class BackendService: BackendServiceProtocol {
@@ -56,6 +57,22 @@ class BackendService: BackendServiceProtocol {
 				)
 			)
 		)
+			.asObservable()
+			.map(BackendResponse<Story>.self)
+			.map { $0.data }
+	}
+	func getStoriesFor(_ category: Category) -> Observable<[Story]> {
+		return provider.rx
+			.request(
+				.listStories(
+					type:
+							.storiesByCategory(
+								categoryID: "\(category.id)",
+								featured: false,
+								type: .discover
+							)
+				)
+			)
 			.asObservable()
 			.map(BackendResponse<Story>.self)
 			.map { $0.data }

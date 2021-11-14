@@ -32,9 +32,97 @@ class SeriesModuleCoordinator: RxBaseCoordinator<Void> {
 		
 		navigationController.pushViewController(controller, animated: true)
 		
+		viewModel.output.selectedAuthor.flatMap { [unowned self] value in
+			return self.presentAuthorContent(navigationController: self.navigationController, author: value)
+		}
+		.subscribe()
+		.disposed(by: disposeBag)
+		
+		let presentedCategoryScreen = viewModel.output.categorySelected
+			.flatMap { [unowned self] cat in
+				return self.presentCategoryScreen(navigationContoller: self.navigationController, category: cat)
+			}
+			.share()
+		
+		presentedCategoryScreen
+			.compactMap { $0.left }
+			.bind {
+				self.navigationController.popViewController(animated: true)
+			}
+			.disposed(by: disposeBag)
+		
+		Observable
+			.merge(
+				viewModel.output.storySelected,
+				presentedCategoryScreen.compactMap { $0.right }
+			)
+			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
+			.flatMap { story, state -> Observable<Story> in
+//				if story.paid == 1 && !state.settingsState.subscriptionActive {
+//
+//				} else {
+					return Observable.just(story)
+//				}
+			}
+			.flatMap { story in
+				self.presentPlayerModule(navigationContoller: self.navigationController, story: story)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
+		
 		return controller.navbarView.backButton.rx.tap.asObservable()
 			.do(onNext: { [unowned navigationController] in
 				navigationController.popViewController(animated: true)
 			})
+	}
+	
+	func presentCategoryScreen(
+		navigationContoller: UINavigationController,
+		category: Category
+	) -> Observable<Either<Void, Story>> {
+		let vm = CategoryControllerViewModel(
+			category: category,
+			state: appStore.stateObservable.map { $0.mainModuleState.discoverState }.distinctUntilChanged(),
+			dispatch: MainModule.Action.discoverAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
+		
+		let controller = CategoryViewController(viewModel: vm)
+
+		navigationController.pushViewController(controller, animated: true)
+
+		let result = Observable
+			.merge(
+				vm.output.backTap.map { Either<Void, Story>.left(value: Void()) },
+				vm.output.selectedStory.map { value in Either<Void, Story>.right(value: value) }
+			)
+
+		return result
+	}
+	
+	func presentPlayerModule(
+		navigationContoller: UINavigationController,
+		story: Story
+	) -> Observable<Void> {
+		let coordinator = PlayerModuleCoordinator(
+			navigationController: navigationController,
+			playerItem: PlayerItem(
+				title: story.name,
+				authorName: story.authorName,
+				artworkURL: story.artworkURL,
+				contentURL: story.contentURL,
+				id: story.id
+			)
+		)
+		
+		return coordinate(to: coordinator)
+	}
+
+	
+	func presentAuthorContent(navigationController: UINavigationController, author: Author) -> Observable<Void> {
+		let authorModuleCoordinator = AuthorModuleCoordinator(
+			author: author,
+			navigationController: navigationController
+		)
+		return coordinate(to: authorModuleCoordinator)
 	}
 }
