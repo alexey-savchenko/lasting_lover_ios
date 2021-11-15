@@ -56,8 +56,8 @@ class SeriesCell: UICollectionViewCell {
 			make.trailing.equalToSuperview()
 		}
 
-		subtitleLabel.font = FontFamily.Nunito.regular.font(size: 12)
-		subtitleLabel.textColor = .white.withAlphaComponent(0.5)
+		episodeCountLabel.font = FontFamily.Nunito.regular.font(size: 12)
+		episodeCountLabel.textColor = .white.withAlphaComponent(0.5)
 		episodeCountLabel.snp.makeConstraints { make in
 			make.top.equalTo(subtitleLabel.snp.bottom).offset(10)
 			make.leading.equalTo(imageView.snp.trailing).offset(24)
@@ -73,6 +73,10 @@ class SeriesCell: UICollectionViewCell {
 			.disposed(by: disposeBag)
 		titleLabel.text = viewModel.output.title
 		subtitleLabel.text = viewModel.output.subtitle
+		viewModel.output.episodeInfo
+			.map(Optional.init)
+			.subscribe(episodeCountLabel.rx.text)
+			.disposed(by: disposeBag)
 	}
 	
 	override func prepareForReuse() {

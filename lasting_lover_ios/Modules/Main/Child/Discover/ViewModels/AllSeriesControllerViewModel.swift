@@ -51,10 +51,49 @@ class AllSeriesControllerViewModel {
 		)
 		
 		state
+			.map { $0.data }
+			.distinctUntilChanged()
 			.compactMap { s -> [AllSeriesCellViewModel]? in
-				return s.data.item.map { $0.series.map(AllSeriesCellViewModel.init) }
+				return s.item.map { $0.series.map(AllSeriesCellViewModel.init) }
 			}
 			.subscribe(cellViewModelsSubject)
+			.disposed(by: disposeBag)
+		
+		state
+			.bind { state in
+				state.data.item
+					.map { data in
+						data.series
+							.forEach { s in
+								dispatch(.loadSeriesStories(value: s))
+							}
+					}
+			}
+			.disposed(by: disposeBag)
+
+		state
+			.map { $0.seriesStories }
+			.withLatestFrom(cellViewModelsSubject) { ($0, $1) }
+			.bind { state, vms in
+				vms.forEach { vm in
+					if let stories = state[vm.series]?.item {
+						let duration = stories.map { $0.audioDuration }.reduce(0, +)
+						var durationString: String {
+							let minutes = duration / 60
+							if minutes > 60 {
+								let doubleTime = Double(minutes) / 60.0
+								let hours = Double(Int(doubleTime))
+								let minutes = (doubleTime - hours) * 60
+								return "\(Int(hours))h \(Int(minutes))m"
+							} else {
+								return "\(minutes) min"
+							}
+						}
+						let resultString = "\(stories.count) episodes - \(durationString)"
+						vm.input.episodesInfo.onNext(resultString)
+					}
+				}
+			}
 			.disposed(by: disposeBag)
 	}
 }

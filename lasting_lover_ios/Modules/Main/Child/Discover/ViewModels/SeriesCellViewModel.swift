@@ -12,17 +12,17 @@ import RxUNILib
 
 class AllSeriesCellViewModel {
 	struct Input {
-		
+		let episodesInfo: AnyObserver<String>
 	}
 	
 	struct Output {
 		let image: Observable<UIImage>
 		let title: String
 		let subtitle: String
-		let episodeCount: Observable<String>
+		let episodeInfo: Observable<String>
 	}
 	
-	private let episodeCountSubject = ReplaySubject<String>.createUnbounded()
+	private let episodeInfoSubject = ReplaySubject<String>.createUnbounded()
 	
 	let input: Input
 	let output: Output
@@ -33,12 +33,14 @@ class AllSeriesCellViewModel {
 		series: Series
 	) {
 		self.series = series
-		self.input = Input()
+		self.input = Input(
+			episodesInfo: episodeInfoSubject.asObserver()
+		)
 		self.output = Output(
 			image: Current.imageLoadingService().image(URL(string: series.avatar)!),
 			title: series.name,
 			subtitle: series.description,
-			episodeCount: episodeCountSubject.asObservable().startWith("...")
+			episodeInfo: episodeInfoSubject.asObservable().startWith("...")
 		)
 	}
 }

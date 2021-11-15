@@ -77,8 +77,10 @@ struct Story: Codable, Hashable {
 	let author: Author
 	let series: SeriesTruncated
 	let categories: [Category]
+	let audioDuration: Int
 	
 	enum CodingKeys: String, CodingKey {
+		case audioDuration = "audio_duration"
 		case id, name
 		case storyDescription = "description"
 		case audioURL = "audio_url"

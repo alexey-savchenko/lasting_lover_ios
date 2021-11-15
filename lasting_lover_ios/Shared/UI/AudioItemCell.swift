@@ -58,7 +58,7 @@ class StoryCellViewModel: Hashable {
 					return subActive ? (hadListened ? .played : .readyToPlay) : .locked
 				},
 			title: story.name,
-			duration: "6 min"
+			duration: "\(Int(story.audioDuration / 60)) min"
 		)
 	}
 		
