@@ -18,6 +18,8 @@
 		02195F4E2740351000BD5A5D /* CenteredLayout.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */; };
 		02195F502741413900BD5A5D /* CategoryControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F4F2741413900BD5A5D /* CategoryControllerViewModel.swift */; };
 		02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F512741472900BD5A5D /* CategoryViewController.swift */; };
+		02195F552742754D00BD5A5D /* IAP.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F542742754D00BD5A5D /* IAP.swift.swift */; };
+		02195F5727427C6500BD5A5D /* PurchaseScreenOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -158,6 +160,8 @@
 		02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredLayout.swift.swift; sourceTree = "<group>"; };
 		02195F4F2741413900BD5A5D /* CategoryControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryControllerViewModel.swift; sourceTree = "<group>"; };
 		02195F512741472900BD5A5D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		02195F542742754D00BD5A5D /* IAP.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift.swift; sourceTree = "<group>"; };
+		02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenOrigin.swift; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -311,6 +315,15 @@
 				02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */,
 			);
 			path = Series;
+			sourceTree = "<group>";
+		};
+		02195F532742753D00BD5A5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02195F542742754D00BD5A5D /* IAP.swift.swift */,
+				02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		021BA2B1273BDA8300A0F3CF /* Cells */ = {
@@ -496,6 +509,7 @@
 		2218AD7827185CE2002C405C /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
+				02195F532742753D00BD5A5D /* Models */,
 				2218AD7B27185D23002C405C /* Coordinators */,
 			);
 			path = Purchase;
@@ -965,6 +979,7 @@
 				0262BB462705074200847ED7 /* Sources */,
 				0262BB472705074200847ED7 /* Frameworks */,
 				0262BB482705074200847ED7 /* Resources */,
+				D6E6306CDCFC897E6DEF09B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1125,6 +1140,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D6E6306CDCFC897E6DEF09B3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1132,6 +1164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02195F552742754D00BD5A5D /* IAP.swift.swift in Sources */,
 				02770AF6273864C700DF4F49 /* SleepFeaturedStoryCellViewModel.swift in Sources */,
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
 				02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */,
@@ -1219,6 +1252,7 @@
 				02770AED2737F1D000DF4F49 /* FavoritesViewController.swift in Sources */,
 				221C51F12705E1C60085534E /* DefaultsStoreServiceProtocol.swift in Sources */,
 				02770AE42737E93400DF4F49 /* StoriesLayout.swift in Sources */,
+				02195F5727427C6500BD5A5D /* PurchaseScreenOrigin.swift in Sources */,
 				02195F3D273FDCD400BD5A5D /* AllSeriesViewController.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,
 				221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */,

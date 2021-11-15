@@ -3,20 +3,24 @@ PODS:
     - AppsFlyerFramework/Main (= 6.3.5)
   - AppsFlyerFramework/Main (6.3.5)
   - Sourcery (1.5.0)
+  - SwiftyStoreKit (0.16.1)
 
 DEPENDENCIES:
   - AppsFlyerFramework
   - Sourcery
+  - SwiftyStoreKit
 
 SPEC REPOS:
   trunk:
     - AppsFlyerFramework
     - Sourcery
+    - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   AppsFlyerFramework: fa7e2e8234e6d285256bcb948eb2b77aee84ba81
   Sourcery: eecfeb011c61d150ffc4f306d2fbf52ae89019d5
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: c0826dd19329bf22a7bdf08e1e1d94a191cc53a9
+PODFILE CHECKSUM: 1ecf118b32e7fd9cc51c591deaab05bb34c3643d
 
 COCOAPODS: 1.10.1
