@@ -173,7 +173,23 @@ extension Settings.State {
       get: { $0.subscriptionActive },
       set: { part in 
         { whole in
-          Settings.State.init(subscriptionActive: part)
+          Settings.State.init(subscriptionActive: part, items: whole.items, notificationsEnabled: whole.notificationsEnabled)
+        }
+      }
+    )
+    static let items = Lens<Settings.State, [SettingsItem]>(
+      get: { $0.items },
+      set: { part in 
+        { whole in
+          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: part, notificationsEnabled: whole.notificationsEnabled)
+        }
+      }
+    )
+    static let notificationsEnabled = Lens<Settings.State, Bool>(
+      get: { $0.notificationsEnabled },
+      set: { part in 
+        { whole in
+          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: whole.items, notificationsEnabled: part)
         }
       }
     )

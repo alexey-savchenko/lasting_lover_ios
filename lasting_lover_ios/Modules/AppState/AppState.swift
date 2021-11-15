@@ -18,11 +18,8 @@ enum App {
 		let mainModuleState: MainModule.State
 
 		static func `default`() -> App.State {
-			let isSubActive = Current.localStorageService().isSubsctiptionActive
 			return App.State(
-				settingsState: Settings.State(
-					subscriptionActive: isSubActive
-				),
+				settingsState: Settings.State.default(),
 				mainModuleState: MainModule.State(
 					selectedTabIndex: 0,
 					discoverState: DiscoverTab.State(
@@ -67,12 +64,17 @@ enum App {
 				case .mainModuleAction(let action):
 					MainModule
 						.middleware(
-							App.Action.prism.mainModuleAction.inject <*> dispatch, { getState().map { $0.mainModuleState } }
+							App.Action.mainModuleAction <*> dispatch, { getState().map { $0.mainModuleState } }
 						)(
-							App.Action.prism.mainModuleAction.inject <*> next
+							App.Action.mainModuleAction <*> next
 						)(action)
 				case .settingsAction(let action):
-					break
+					Settings
+						.middleware(
+							App.Action.settingsAction <*> dispatch, { getState().map { $0.settingsState } }
+						)(
+							App.Action.settingsAction <*> next
+						)(action)
 				}
 //				next(action)
 			}

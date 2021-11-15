@@ -52,6 +52,14 @@ internal enum L10n {
   internal static let seriesList = L10n.tr("Localizable", "series_list")
   /// Settings
   internal static let settings = L10n.tr("Localizable", "settings")
+  /// Manage Subscription
+  internal static let settingsManageSubscription = L10n.tr("Localizable", "settings_Manage Subscription")
+  /// Notifications
+  internal static let settingsNotifications = L10n.tr("Localizable", "settings_Notifications")
+  /// Privacy Policy
+  internal static let settingsPrivacyPolicy = L10n.tr("Localizable", "settings_Privacy Policy")
+  /// Terms and Conditions
+  internal static let settingsTermsAndConditions = L10n.tr("Localizable", "settings_Terms and Conditions")
   /// Email Adress
   internal static let signInEmailTextfieldPlaceholder = L10n.tr("Localizable", "signIn_emailTextfield_placeholder")
   /// or sign up with social media

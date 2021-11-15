@@ -8,6 +8,8 @@
 import Foundation
 import UNILibCore
 import RxUNILib
+import AVFoundation
+import MediaPlayer
 
 enum Player {
   
@@ -61,6 +63,15 @@ enum Player {
         switch action {
 				case .forcePausePlayback:
 					Current.playerService().pause()
+					
+					let audioSession = AVAudioSession.sharedInstance()
+					do {
+						try audioSession.setCategory(.ambient)
+					}
+					catch {
+						print("Setting category to AVAudioSessionCategoryPlayback failed.")
+					}
+					
 					next(action)
         case .bcwdSeek:
           Current.playerService().seekBackward(offset: 15)

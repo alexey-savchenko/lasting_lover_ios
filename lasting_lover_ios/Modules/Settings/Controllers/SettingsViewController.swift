@@ -7,11 +7,20 @@
 
 import UIKit
 import RxSwift
+import RxDataSources
 
 class SettingsViewController: ViewController<BackgroundImageView> {
   let navbar = BackButtonNavbarView()
 
   let titleLabel = UILabel()
+	let collectionView: UICollectionView = {
+		let layout = UICollectionViewFlowLayout()
+		layout.scrollDirection = .vertical
+		layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 44)
+		let cv = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
+		cv.registerClass(SettingsCell.self)
+		return cv
+	}()
 
   let disposeBag = DisposeBag()
   let viewModel: SettingsControllerViewModel
@@ -55,11 +64,29 @@ class SettingsViewController: ViewController<BackgroundImageView> {
   }
 
   func setupUI() {
-    [navbar, titleLabel].forEach(view.addSubview)
+    [navbar, titleLabel, collectionView].forEach(view.addSubview)
 
     setupNavBar()
     setupTitleLabel()
+		collectionView.backgroundColor = .clear
+		collectionView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+			make.top.equalTo(titleLabel.snp.bottom).offset(16)
+			make.bottom.equalTo(view.safeAreaLayoutGuide)
+		}
   }
 
-  func configure(with viewModel: SettingsControllerViewModel) {}
+  func configure(with viewModel: SettingsControllerViewModel) {
+		viewModel.output.contents
+			.bind(to: collectionView.rx.items(dataSource: dataSource()))
+			.disposed(by: disposeBag)
+	}
+	
+	func dataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SettingsCellViewModel>> {
+		return .init { ds, cv, indexPath, item in
+			let cell: SettingsCell = cv.dequeueReusableCell(forIndexPath: indexPath)
+			cell.configure(with: item)
+			return cell
+		}
+	}
 }

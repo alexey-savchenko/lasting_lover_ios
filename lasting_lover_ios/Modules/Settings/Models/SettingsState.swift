@@ -7,11 +7,22 @@
 
 import Foundation
 import UNILibCore
+import RxUNILib
 
 enum Settings {
 	/// sourcery: lens
-	struct State: Hashable, Codable {
+	struct State: Hashable {
 		let subscriptionActive: Bool
+		let items: [SettingsItem]
+		let notificationsEnabled: Bool
+		
+		static func `default`() -> Settings.State {
+			return .init(
+				subscriptionActive: Current.localStorageService().isSubsctiptionActive,
+				items: SettingsItem.allCases,
+				notificationsEnabled: false
+			)
+		}
 	}
 	
 	/// sourcery: prism
@@ -23,6 +34,17 @@ enum Settings {
 		switch action {
 		case .setSubscriptionActive(let value):
 			return Settings.State.lens.subscriptionActive.set(value)(state)
+		}
+	}
+	
+	static let middleware: Middleware<Settings.State, Settings.Action> = { dispatch, getState in
+		{ next in
+			{ action in
+				switch action {
+				case .setSubscriptionActive:
+					next(action)
+				}
+			}
 		}
 	}
 }

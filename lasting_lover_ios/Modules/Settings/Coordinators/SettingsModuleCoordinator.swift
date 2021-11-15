@@ -19,7 +19,10 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
   let finishFlow = PublishSubject<Void>()
 
   override func start() -> Observable<Void> {
-    let viewModel = SettingsControllerViewModel()
+		let viewModel = SettingsControllerViewModel(
+			state: appStore.stateObservable.map { $0.settingsState }.distinctUntilChanged(),
+			dispatch: App.Action.settingsAction <*> appStore.dispatch
+		)
     let controller = SettingsViewController(viewModel: viewModel)
 
     navigationController.interactivePopGestureRecognizer!.rx

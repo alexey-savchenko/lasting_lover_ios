@@ -7,11 +7,9 @@
 
 import Foundation
 
-enum SettingsItem: String, Hashable {
-  case subsction
+enum SettingsItem: String, Hashable, CaseIterable {
+  case manageSubscription
   case notifications
-  case favourites
-  case helpCenter
   case termsAndConditions
   case privacyPolicy
 }

@@ -9,12 +9,13 @@ import UIKit
 import RxSwift
 
 protocol ImageLoadingServiceProtocol {
+	func image(_ url: URL) -> UIImage
   func image(_ url: URL) -> Observable<UIImage>
   func image(_ url: URL, completion: @escaping (UIImage) -> Void)
 }
 
 class ImageLoadingService: ImageLoadingServiceProtocol {
-  
+
   var cachedImageNames: [String] = []
   
   private init() {
@@ -39,6 +40,7 @@ class ImageLoadingService: ImageLoadingServiceProtocol {
   }
   
   static let shared = ImageLoadingService()
+	private let sync = DispatchSemaphore(value: 0)
   
   func image(_ url: URL) -> Observable<UIImage> {
     return Observable.create { obs in
@@ -82,4 +84,14 @@ class ImageLoadingService: ImageLoadingServiceProtocol {
       }
     }
   }
+	
+	func image(_ url: URL) -> UIImage {
+		var image = Asset.Images.placeholder.image
+		self.image(url) { _image in
+			image = _image
+			self.sync.signal()
+		}
+		sync.wait()
+		return image
+	}
 }

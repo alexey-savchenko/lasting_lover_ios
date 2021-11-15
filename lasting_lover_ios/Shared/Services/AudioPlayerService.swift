@@ -19,6 +19,8 @@ protocol AudioPlayerServiceProtocol {
   func seekForward(offset: Double)
   func seekBackward(offset: Double)
   var seeking: Bool { get }
+	var currentTimestamp: Double { get }
+	var rate: Float { get }
 }
 
 class AudioPlayerService: AudioPlayerServiceProtocol {
@@ -37,9 +39,14 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
   let player = AVPlayer()
   
   private(set) var seeking = false
+	var currentTimestamp: Double = 0
+	var rate: Float {
+		return player.rate
+	}
   
   private init() {
     player.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 30), queue: nil) { [unowned self] currentTime in
+			self.currentTimestamp = currentTime.seconds
       if let duration = player.currentItem?.duration.seconds {
         let progress = currentTime.seconds / duration
         playbackProgressSubject.onNext(progress)

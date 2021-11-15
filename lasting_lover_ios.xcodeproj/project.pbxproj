@@ -20,6 +20,8 @@
 		02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F512741472900BD5A5D /* CategoryViewController.swift */; };
 		02195F552742754D00BD5A5D /* IAP.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F542742754D00BD5A5D /* IAP.swift.swift */; };
 		02195F5727427C6500BD5A5D /* PurchaseScreenOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */; };
+		02195F5A274305E300BD5A5D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F59274305E300BD5A5D /* SettingsCell.swift */; };
+		02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -162,6 +164,8 @@
 		02195F512741472900BD5A5D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		02195F542742754D00BD5A5D /* IAP.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift.swift; sourceTree = "<group>"; };
 		02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenOrigin.swift; sourceTree = "<group>"; };
+		02195F59274305E300BD5A5D /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionController.swift.swift; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -324,6 +328,14 @@
 				02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		02195F58274305D500BD5A5D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				02195F59274305E300BD5A5D /* SettingsCell.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		021BA2B1273BDA8300A0F3CF /* Cells */ = {
@@ -828,8 +840,8 @@
 		221C526C270A55FD0085534E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				02195F58274305D500BD5A5D /* UI */,
 				221E22C1270C5A97003F324B /* Models */,
-				221C5270270A56280085534E /* UI */,
 				221C526F270A561E0085534E /* ViewModels */,
 				221C526E270A56160085534E /* Controllers */,
 				221C526D270A560A0085534E /* Coordinators */,
@@ -849,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				221E22BD270C5969003F324B /* SettingsViewController.swift */,
+				02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -859,13 +872,6 @@
 				221E22BF270C5A02003F324B /* SettingsControllerViewModel.swift */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		221C5270270A56280085534E /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		221E22C1270C5A97003F324B /* Models */ = {
@@ -1186,6 +1192,7 @@
 				221C5243270714900085534E /* TextfieldView.swift in Sources */,
 				221E22CC270DE585003F324B /* InsetLabel.swift in Sources */,
 				02195F482740279A00BD5A5D /* SeriesModuleCoordinator.swift in Sources */,
+				02195F5A274305E300BD5A5D /* SettingsCell.swift in Sources */,
 				221C523A2705FB390085534E /* Fonts.swift in Sources */,
 				02770ADC2735E04300DF4F49 /* SeriesLayout.swift in Sources */,
 				221E22DC270F48E0003F324B /* PlayerControllerViewModel.swift in Sources */,
@@ -1247,6 +1254,7 @@
 				021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
 				02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */,
+				02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
 				02770AED2737F1D000DF4F49 /* FavoritesViewController.swift in Sources */,
