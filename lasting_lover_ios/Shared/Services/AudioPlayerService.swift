@@ -73,6 +73,12 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
   
   func setItem(_ item: PlayerItem) {
     let plItem = AVPlayerItem(url: item.contentURL)
+		NotificationCenter.default.addObserver(
+			forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+			object: plItem,
+			queue: nil) { _ in
+				self.setPlaybackProgress(0)
+			}
     player.replaceCurrentItem(with: plItem)
   }
   

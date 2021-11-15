@@ -139,6 +139,14 @@ class PlayerController: ViewController<BackgroundImageView> {
   }
   
   private func configure(with viewModel: PlayerControllerViewModel) {
+		viewModel.output.currentTime
+			.map(Optional.init)
+			.subscribe(currentTimeLabel.rx.text)
+			.disposed(by: disposeBag)
+		viewModel.output.totalDuration
+			.map(Optional.init)
+			.subscribe(durationLabel.rx.text)
+			.disposed(by: disposeBag)
     viewModel.output.playbackProgress
       .bind { [weak self] value in
         self?.progressBarView.setProgress(value)

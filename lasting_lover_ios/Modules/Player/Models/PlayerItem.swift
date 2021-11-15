@@ -21,13 +21,15 @@ struct PlayerItem: Hashable, PlayerItemProtocol, Codable {
   let artworkURL: URL
   let contentURL: URL
 	let id: Int
+	let duration: Int
   
   static let mock = PlayerItem(
     title: "Sample title",
     authorName: "Sample author",
     artworkURL: URL(string: "https://picsum.photos/seed/somerandomvalue/500/500")!,
     contentURL: Bundle.main.url(forResource: "placeholderAudio", withExtension: "mp3")!,
-		id: 100
+		id: 100,
+		duration: 100
   )
 }
 //

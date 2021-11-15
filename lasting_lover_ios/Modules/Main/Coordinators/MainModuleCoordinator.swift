@@ -171,7 +171,8 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 				authorName: story.authorName,
 				artworkURL: story.artworkURL,
 				contentURL: story.contentURL,
-				id: story.id
+				id: story.id,
+				duration: story.audioDuration
 			)
 		)
 		

@@ -34,6 +34,8 @@ class PlayerControllerViewModel {
     let isPlaying: Observable<Bool>
     let image: Observable<UIImage>
     let playbackProgress: Observable<Double>
+		let currentTime: Observable<String>
+		let totalDuration: Observable<String>
   }
   
   let input: Input
@@ -59,7 +61,9 @@ class PlayerControllerViewModel {
       isFavorite: state.map { $0.isFavourite }.distinctUntilChanged(),
       isPlaying: state.map { $0.isPlaying }.distinctUntilChanged(),
       image: state.map { $0.item.artworkURL }.distinctUntilChanged().flatMap { url in Current.imageLoadingService().image(url) },
-      playbackProgress: state.map { $0.playbackProgress }.distinctUntilChanged()
+			playbackProgress: state.map { $0.playbackProgress }.distinctUntilChanged(),
+			currentTime: state.map { Int(Double($0.item.duration) * $0.playbackProgress).secondsToTime() },
+			totalDuration: state.map { $0.item.duration.secondsToTime() }
     )
     
     dispatch(.initializePlayerWithItem)
