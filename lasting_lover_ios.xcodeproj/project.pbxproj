@@ -22,6 +22,7 @@
 		02195F5727427C6500BD5A5D /* PurchaseScreenOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */; };
 		02195F5A274305E300BD5A5D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F59274305E300BD5A5D /* SettingsCell.swift */; };
 		02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */; };
+		02195F5E2743182E00BD5A5D /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5D2743182E00BD5A5D /* SettingsScreen.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -166,6 +167,7 @@
 		02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenOrigin.swift; sourceTree = "<group>"; };
 		02195F59274305E300BD5A5D /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionController.swift.swift; sourceTree = "<group>"; };
+		02195F5D2743182E00BD5A5D /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 			children = (
 				221E22BD270C5969003F324B /* SettingsViewController.swift */,
 				02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */,
+				02195F5D2743182E00BD5A5D /* SettingsScreen.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1243,6 +1246,7 @@
 				02195F43273FE81600BD5A5D /* SeriesCellViewModel.swift in Sources */,
 				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,
 				02770AE62737E9C400DF4F49 /* DiscoverStoryCellViewModel.swift in Sources */,
+				02195F5E2743182E00BD5A5D /* SettingsScreen.swift in Sources */,
 				2218AD88271D92F7002C405C /* AudioPlayerService.swift in Sources */,
 				221C5261270A4DF60085534E /* SleepViewController.swift in Sources */,
 				221C525F270A4B5D0085534E /* MainModuleState.swift in Sources */,
