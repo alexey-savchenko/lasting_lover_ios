@@ -65,7 +65,7 @@ extension DiscoverTab.State {
       get: { $0.data },
       set: { part in 
         { whole in
-          DiscoverTab.State.init(data: part, authorStories: whole.authorStories, seriesStories: whole.seriesStories, categoryStories: whole.categoryStories)
+          DiscoverTab.State.init(data: part, authorStories: whole.authorStories, seriesStories: whole.seriesStories, categoryStories: whole.categoryStories, allStories: whole.allStories)
         }
       }
     )
@@ -73,7 +73,7 @@ extension DiscoverTab.State {
       get: { $0.authorStories },
       set: { part in 
         { whole in
-          DiscoverTab.State.init(data: whole.data, authorStories: part, seriesStories: whole.seriesStories, categoryStories: whole.categoryStories)
+          DiscoverTab.State.init(data: whole.data, authorStories: part, seriesStories: whole.seriesStories, categoryStories: whole.categoryStories, allStories: whole.allStories)
         }
       }
     )
@@ -81,7 +81,7 @@ extension DiscoverTab.State {
       get: { $0.seriesStories },
       set: { part in 
         { whole in
-          DiscoverTab.State.init(data: whole.data, authorStories: whole.authorStories, seriesStories: part, categoryStories: whole.categoryStories)
+          DiscoverTab.State.init(data: whole.data, authorStories: whole.authorStories, seriesStories: part, categoryStories: whole.categoryStories, allStories: whole.allStories)
         }
       }
     )
@@ -89,7 +89,15 @@ extension DiscoverTab.State {
       get: { $0.categoryStories },
       set: { part in 
         { whole in
-          DiscoverTab.State.init(data: whole.data, authorStories: whole.authorStories, seriesStories: whole.seriesStories, categoryStories: part)
+          DiscoverTab.State.init(data: whole.data, authorStories: whole.authorStories, seriesStories: whole.seriesStories, categoryStories: part, allStories: whole.allStories)
+        }
+      }
+    )
+    static let allStories = Lens<DiscoverTab.State, Loadable<[Story], HashableWrapper<AppError>>>(
+      get: { $0.allStories },
+      set: { part in 
+        { whole in
+          DiscoverTab.State.init(data: whole.data, authorStories: whole.authorStories, seriesStories: whole.seriesStories, categoryStories: whole.categoryStories, allStories: part)
         }
       }
     )

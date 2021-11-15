@@ -14,6 +14,7 @@ enum StoryRequestTarget {
 	case allSleepStories
 	case sleepStoriesForCategory(value: Category)
 	case discoverStoriesForAutor(author: Author)
+	case allDiscoverStories
 }
 
 class StoriesControllerViewModel {
@@ -46,6 +47,8 @@ class StoriesControllerViewModel {
 	) {
 		
 		switch target {
+		case .allDiscoverStories:
+			dispatch(.mainModuleAction(action: .discoverAction(value: .loadAllStories)))
 		case .discoverStoriesForAutor(let author):
 			dispatch(.mainModuleAction(action: .discoverAction(value: .loadAuthorStories(value: author))))
 		case .allSleepStories:
@@ -62,6 +65,8 @@ class StoriesControllerViewModel {
 			contents: state
 				.map { s -> Loadable<[Story], HashableWrapper<AppError>> in
 					switch target {
+					case .allDiscoverStories:
+						return s.mainModuleState.discoverState.allStories
 					case .discoverStoriesForAutor(let author):
 						return s.mainModuleState.discoverState.authorStories[author] ?? .indefiniteLoading
 					case .allSleepStories:
@@ -81,7 +86,7 @@ class StoriesControllerViewModel {
 			backTap: backTapSubject.asObservable(),
 			title: {
 				switch target {
-				case .allSleepStories:
+				case .allSleepStories, .allDiscoverStories:
 					return L10n.allTracks
 				case .sleepStoriesForCategory(let value):
 					return value.name

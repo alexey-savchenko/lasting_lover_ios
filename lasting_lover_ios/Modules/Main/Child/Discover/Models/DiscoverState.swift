@@ -18,10 +18,13 @@ enum DiscoverTab {
 		let authorStories: [Author: Loadable<[Story], HashableWrapper<AppError>>]
 		let seriesStories: [Series: Loadable<[Story], HashableWrapper<AppError>>]
 		let categoryStories: [Category: Loadable<[Story], HashableWrapper<AppError>>]
+		let allStories: Loadable<[Story], HashableWrapper<AppError>>
 	}
 	
 	/// sourcery: prism
 	enum Action {
+		case loadAllStories
+		case setAllStoriesData(value: Loadable<[Story], HashableWrapper<AppError>>)
 		case loadData
 		case loadAuthorStories(value: Author)
 		case setAuthorStoriesData(value: Author, content: Loadable<[Story], HashableWrapper<AppError>>)
@@ -41,8 +44,32 @@ enum DiscoverTab {
 						.setError,
 						.setAuthorStoriesData,
 						.setSeriesStoriesData,
-						.setCategoryStoriesData:
+						.setCategoryStoriesData,
+						.setAllStoriesData:
 					next(action)
+				case .loadAllStories:
+					
+					guard getState()?.allStories.item == nil else {
+						next(action)
+						return
+					}
+					
+					var disposable: Disposable?
+					
+					next(.setAllStoriesData(value: .indefiniteLoading))
+					
+					disposable = Current.backend()
+						.getAllDiscoverStories()
+						.subscribe(onNext: { data in
+							dispatch(.setAllStoriesData(value: .item(item: data)))
+							disposable?.dispose()
+						}, onError: { error in
+							dispatch(.setAllStoriesData(
+								value: .error(error: HashableWrapper<AppError>(value: .networkError)))
+							)
+							disposable?.dispose()
+						})
+					
 				case .loadCategoryStories(let value):
 					guard getState()?.categoryStories[value]?.item == nil else {
 						next(action)
@@ -146,8 +173,11 @@ enum DiscoverTab {
 		case .loadData,
 				.loadAuthorStories,
 				.loadSeriesStories,
-				.loadCategoryStories:
+				.loadCategoryStories,
+				.loadAllStories:
 			return state
+		case .setAllStoriesData(let value):
+			return DiscoverTab.State.lens.allStories.set(value)(state)
 		case .setCategoryStoriesData(let category, let content):
 			var subState = state.categoryStories
 			subState[category] = content

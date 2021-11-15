@@ -23,6 +23,14 @@ extension App.Action {
 
 extension DiscoverTab.Action {
     internal enum prism {
+        internal static let loadAllStories = Prism<DiscoverTab.Action, ()>(
+            tryGet: { if case .loadAllStories = $0 { return () } else { return nil } },
+            inject: { .loadAllStories })
+
+        internal static let setAllStoriesData = Prism<DiscoverTab.Action,Loadable<[Story], HashableWrapper<AppError>>>(
+            tryGet: { if case .setAllStoriesData(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setAllStoriesData(value:x1) })
+
         internal static let loadData = Prism<DiscoverTab.Action, ()>(
             tryGet: { if case .loadData = $0 { return () } else { return nil } },
             inject: { .loadData })

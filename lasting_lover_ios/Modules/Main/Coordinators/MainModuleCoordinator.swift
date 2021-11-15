@@ -88,8 +88,21 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			}
 			.share(replay: 1, scope: .whileConnected)
 		
+		let presentedAllDiscoverStories = mainController.discoverViewController.viewModel.output.allStoriesButtonTap
+			.flatMap {
+				return self.presentStoriesScreen(
+					navigationContoller: self.navigationController,
+					target: .allDiscoverStories
+				)
+			}
+			.share()
+		
 		Observable
-			.merge(presentedAllSleepStories, presentedSleepCategoryStories)
+			.merge(
+				presentedAllSleepStories,
+				presentedSleepCategoryStories,
+				presentedAllDiscoverStories
+			)
 			.subscribe(onNext: { [unowned self] v in
 				if case .left = v {
 					self.navigationController.popViewController(animated: true)
@@ -98,6 +111,7 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			.disposed(by: disposeBag)
 		
 		let selectedFeaturedSleepStory = mainController.sleepViewController.viewModel.output.selectedFeatuedStory
+		let selectedFeaturedDiscoverStory = mainController.discoverViewController.viewModel.output.selectedFeaturedStory
 		
 		let presentedCategoryScreen = mainController.discoverViewController.viewModel.output.selectedCategory
 			.flatMap { cat in
@@ -117,10 +131,12 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		
 		Observable
 			.merge(
+				presentedAllDiscoverStories.compactMap { $0.right },
 				presentedCategoryScreen.compactMap { $0.right },
 				presentedAllSleepStories.compactMap { $0.right },
 				presentedSleepCategoryStories.compactMap { $0.right },
-				selectedFeaturedSleepStory
+				selectedFeaturedSleepStory,
+				selectedFeaturedDiscoverStory
 			)
 			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
 			.flatMap { story, state -> Observable<Story> in

@@ -17,6 +17,7 @@ protocol BackendServiceProtocol {
 	func getDiscoverData() -> Observable<DiscoverData>
 	func getSleepData() -> Observable<SleepData>
 	func getAllSleepStories() -> Observable<[Story]>
+	func getAllDiscoverStories() -> Observable<[Story]>
 	func getSleepStoriesFor(_ category: Category) -> Observable<[Story]>
 	func getStoriesFor(_ author: Author) -> Observable<[Story]>
 	func getStoriesFor(_ series: Series) -> Observable<[Story]>
@@ -30,6 +31,14 @@ class BackendService: BackendServiceProtocol {
 	
 	private init() {
 		provider.session.sessionConfiguration.timeoutIntervalForRequest = 10
+	}
+	
+	func getAllDiscoverStories() -> Observable<[Story]> {
+		return provider.rx
+			.request(.listStories(type: .allStories(featured: false, type: .discover)))
+			.asObservable()
+			.map(BackendResponse<Story>.self)
+			.map { $0.data }
 	}
 	
 	func getStoriesFor(_ series: Series) -> Observable<[Story]> {
@@ -137,7 +146,7 @@ class BackendService: BackendServiceProtocol {
 			.map(BackendResponse<Series>.self)
 			.map { $0.data }
 		let discoverFeaturedStories = provider.rx
-			.request(.listStories(type: StoryRequestType.allStories(featured: false, type: .discover)))
+			.request(.listStories(type: .allStories(featured: false, type: .discover)))
 			.asObservable()
 			.map(BackendResponse<Story>.self)
 			.map { $0.data }

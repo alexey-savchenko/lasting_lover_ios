@@ -26,10 +26,11 @@ enum App {
 				mainModuleState: MainModule.State(
 					selectedTabIndex: 0,
 					discoverState: DiscoverTab.State(
-						data: Loadable.indefiniteLoading,
+						data: .indefiniteLoading,
 						authorStories: [:],
 						seriesStories: [:],
-						categoryStories: [:]
+						categoryStories: [:],
+						allStories: .indefiniteLoading
 					),
 					sleepState: SleepTab.State(
 						data: .indefiniteLoading,
