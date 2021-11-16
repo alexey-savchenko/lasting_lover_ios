@@ -11,6 +11,7 @@ protocol LocalStorageServiceProtocol: AnyObject {
   var userToken: String { get set }
   var isSubsctiptionActive: Bool { get set }
   var favoriteItems: [PlayerItem] { get set }
+	var notificationsToken: String { get set }
 }
 
 class LocalStorageService: LocalStorageServiceProtocol {
@@ -30,7 +31,14 @@ class LocalStorageService: LocalStorageServiceProtocol {
       Current.defaultsStoreService().setObject(newValue, forKey: #function)
     }
   }
-
+	var notificationsToken: String {
+		get {
+			return Current.defaultsStoreService().string(forKey: #function) ?? ""
+		}
+		set {
+			Current.defaultsStoreService().setObject(newValue, forKey: #function)
+		}
+	}
   var isSubsctiptionActive: Bool {
     get {
       return Current.defaultsStoreService().bool(forKey: #function)

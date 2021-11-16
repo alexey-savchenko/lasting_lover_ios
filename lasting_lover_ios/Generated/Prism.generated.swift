@@ -16,6 +16,14 @@ extension App.Action {
             tryGet: { if case .settingsAction(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .settingsAction(action:x1) })
 
+        internal static let requestNotificationAccess = Prism<App.Action, ()>(
+            tryGet: { if case .requestNotificationAccess = $0 { return () } else { return nil } },
+            inject: { .requestNotificationAccess })
+
+        internal static let refreshNotificationAccess = Prism<App.Action, ()>(
+            tryGet: { if case .refreshNotificationAccess = $0 { return () } else { return nil } },
+            inject: { .refreshNotificationAccess })
+
     }
 }
 
@@ -139,6 +147,14 @@ extension Settings.Action {
         internal static let setSubscriptionActive = Prism<Settings.Action,Bool>(
             tryGet: { if case .setSubscriptionActive(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .setSubscriptionActive(value:x1) })
+
+        internal static let setNotificationsActive = Prism<Settings.Action,Bool>(
+            tryGet: { if case .setNotificationsActive(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setNotificationsActive(value:x1) })
+
+        internal static let openAppSettings = Prism<Settings.Action, ()>(
+            tryGet: { if case .openAppSettings = $0 { return () } else { return nil } },
+            inject: { .openAppSettings })
 
     }
 }

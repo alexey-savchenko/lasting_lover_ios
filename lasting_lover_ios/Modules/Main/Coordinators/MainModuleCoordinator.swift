@@ -25,6 +25,8 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
     let mainController = MainModuleViewController(viewModel: viewModel)
     navigationController.setViewControllers([mainController], animated: false)
 
+		appStore.dispatch(.requestNotificationAccess)
+		
 		mainController.discoverViewController.viewModel.output.selectedAuthor
 			.flatMap { author in
 				return self.presentAuthorContent(

@@ -19,22 +19,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    
-//    window?.rootViewController = PlayerController(
-//      viewModel: PlayerControllerViewModel(
-//        state: Player.mockStore.stateObservable,
-//        dispatch: Player.mockStore.dispatch
-//      )
-//    )
-//    window?.makeKeyAndVisible()
-		
-//		appCoordinator = AppCoordinator(window: window!)
-//		appCoordinator.start().subscribe().disposed(by: disposeBag)
 
-		let c = SnapshotController<NotificationsController>()
-    window?.rootViewController = c
-    window?.makeKeyAndVisible()
+		appCoordinator = AppCoordinator(window: window!)
+		appCoordinator.start().subscribe().disposed(by: disposeBag)
+
+//		let c = SnapshotController<NotificationsController>()
+//    window?.rootViewController = c
+//    window?.makeKeyAndVisible()
     
     return true
   }
+	
+	func application(
+		_ application: UIApplication,
+		didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+	) {
+		let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+		print(token)
+		Current.localStorageService().notificationsToken = token
+	}
+	
+	func applicationDidBecomeActive(_ application: UIApplication) {
+		appStore.dispatch(.refreshNotificationAccess)
+	}
 }

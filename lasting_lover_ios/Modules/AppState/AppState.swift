@@ -8,6 +8,7 @@
 import Foundation
 import UNILibCore
 import RxUNILib
+import UserNotifications
 
 typealias Trigger = IdentifiedBox<_Void>?
 
@@ -43,6 +44,8 @@ enum App {
 	enum Action {
 		case mainModuleAction(action: MainModule.Action)
 		case settingsAction(action: Settings.Action)
+		case requestNotificationAccess
+		case refreshNotificationAccess
 	}
 
 	static let reducer = MainModule.reducer
@@ -61,6 +64,16 @@ enum App {
 		{ next in
 			{ action in
 				switch action {
+				case .refreshNotificationAccess:
+					UNUserNotificationCenter.current().getNotificationSettings { settings in
+						let granted = settings.authorizationStatus == .authorized
+						dispatch(.settingsAction(action: .setNotificationsActive(value: granted)))
+					}
+				case .requestNotificationAccess:
+					UNUserNotificationCenter.current().requestAuthorization(
+						options: [.alert, .badge]) { granted, error in
+							dispatch(.settingsAction(action: .setNotificationsActive(value: granted)))
+						}
 				case .mainModuleAction(let action):
 					MainModule
 						.middleware(

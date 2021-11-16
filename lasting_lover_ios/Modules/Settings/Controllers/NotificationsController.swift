@@ -7,12 +7,15 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+import UNILibCore
 
 class NotificationsController: SettingsScreen {
 	
 	let labelsStackView = UIStackView()
 	let smallTitleLabel = UILabel()
 	let subtitleLabel = UILabel()
+	let hiddenButton = UIButton()
 	let `switch` = UISwitch()
 	
 	let viewModel: NotificationsControllerViewModel
@@ -35,7 +38,7 @@ class NotificationsController: SettingsScreen {
 	override func setupUI() {
 		super.setupUI()
 		
-		[labelsStackView, `switch`].forEach(view.addSubview)
+		[labelsStackView, `switch`, hiddenButton].forEach(view.addSubview)
 		
 		labelsStackView.distribution = .fill
 		labelsStackView.axis = .vertical
@@ -56,9 +59,14 @@ class NotificationsController: SettingsScreen {
 		subtitleLabel.textColor = .white.withAlphaComponent(0.5)
 		subtitleLabel.font = FontFamily.Nunito.regular.font(size: 15)
 		
+		`switch`.isUserInteractionEnabled = false
 		`switch`.snp.makeConstraints { make in
 			make.trailing.equalToSuperview().offset(-24)
 			make.centerY.equalTo(smallTitleLabel)
+		}
+		
+		hiddenButton.snp.makeConstraints { make in
+			make.edges.equalTo(`switch`)
 		}
 	}
 	
@@ -66,6 +74,12 @@ class NotificationsController: SettingsScreen {
 		viewModel.output.subtitle
 			.map(Optional.init)
 			.subscribe(subtitleLabel.rx.text)
+			.disposed(by: disposeBag)
+		viewModel.output.switchIsOn
+			.subscribe(`switch`.rx.isOn)
+			.disposed(by: disposeBag)
+		hiddenButton.rx.tap
+			.subscribe(viewModel.input.switchTap)
 			.disposed(by: disposeBag)
 	}
 }

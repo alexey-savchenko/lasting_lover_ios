@@ -56,6 +56,13 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 				}
 				.disposed(by: disposeBag)
 		
+		selectedSettingsItem
+		.filter { $0 == .notifications }
+		.bind { [unowned self] _ in
+			self.presentNotificationManagement(navigationController: self.navigationController)
+		}
+		.disposed(by: disposeBag)
+		
 		
 		return Observable
 			.merge(backButtonTap, finishFlow)
@@ -68,6 +75,15 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 			dispatch: App.Action.settingsAction <*> appStore.dispatch
 		)
 		let c = SubscriptionManagementController(viewModel: vm)
+		navigationController.pushViewController(c, animated: true)
+	}
+	
+	func presentNotificationManagement(navigationController: UINavigationController) {
+		let vm = NotificationsControllerViewModel(
+			state: appStore.stateObservable.map { $0.settingsState }.distinctUntilChanged(),
+			dispatch: App.Action.settingsAction <*> appStore.dispatch
+		)
+		let c = NotificationsController(viewModel: vm)
 		navigationController.pushViewController(c, animated: true)
 	}
 }
