@@ -10,12 +10,12 @@ import Foundation
 protocol LocalStorageServiceProtocol: AnyObject {
   var userToken: String { get set }
   var isSubsctiptionActive: Bool { get set }
-  var favoriteItems: [PlayerItem] { get set }
+  var favoriteItems: [Story] { get set }
 	var notificationsToken: String { get set }
 }
 
 class LocalStorageService: LocalStorageServiceProtocol {
-  var favoriteItems: [PlayerItem] {
+  var favoriteItems: [Story] {
     get {
       return Current.defaultsStoreService().getObject(forKey: #function) ?? []
     }

@@ -13,28 +13,28 @@ import MediaPlayer
 
 enum Player {
   
-  static let mockStore: RxStore<Player.State, Player.Action> = {
-    let s = RxStore<Player.State, Player.Action>(
-      inputState: .mock,
-      middleware: [Player.middleware],
-      reducer: Player.reducer
-    )
-    
-    s.attach(Player.Plugin.isPlayingPlugin)
-    s.attach(Player.Plugin.playbackProgressPlugin)
-    return s
-  }()
+//  static let mockStore: RxStore<Player.State, Player.Action> = {
+//    let s = RxStore<Player.State, Player.Action>(
+//      inputState: .mock,
+//      middleware: [Player.middleware],
+//      reducer: Player.reducer
+//    )
+//    
+//    s.attach(Player.Plugin.isPlayingPlugin)
+//    s.attach(Player.Plugin.playbackProgressPlugin)
+//    return s
+//  }()
   
   /// sourcery: lens
   struct State: Hashable {
     let playbackProgress: Double
     let isPlaying: Bool
     let isFavourite: Bool
-    let item: PlayerItem
+    let item: Story
     
-    static let mock = State(playbackProgress: 0, isPlaying: false, isFavourite: false, item: .mock)
+//    static let mock = State(playbackProgress: 0, isPlaying: false, isFavourite: false, item: .mock)
     
-    static func `default`(item: PlayerItem) -> State {
+    static func `default`(item: Story) -> State {
       return State(
         playbackProgress: 0,
         isPlaying: false,

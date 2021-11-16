@@ -12,7 +12,7 @@ import RxSwift
 protocol AudioPlayerServiceProtocol {
   func play()
   func pause()
-  func setItem(_ item: PlayerItem)
+  func setItem(_ item: Story)
   var playbackProgress: Observable<Double> { get }
   var isPlaying: Observable<Bool> { get }
   func setPlaybackProgress(_ value: Double)
@@ -78,7 +78,7 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
     player.pause()
   }
   
-  func setItem(_ item: PlayerItem) {
+  func setItem(_ item: Story) {
     let plItem = AVPlayerItem(url: item.contentURL)
 		NotificationCenter.default.addObserver(
 			forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime,

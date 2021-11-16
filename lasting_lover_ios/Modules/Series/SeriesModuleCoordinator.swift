@@ -105,14 +105,7 @@ class SeriesModuleCoordinator: RxBaseCoordinator<Void> {
 	) -> Observable<Void> {
 		let coordinator = PlayerModuleCoordinator(
 			navigationController: navigationController,
-			playerItem: PlayerItem(
-				title: story.name,
-				authorName: story.authorName,
-				artworkURL: story.artworkURL,
-				contentURL: story.contentURL,
-				id: story.id,
-				duration: story.audioDuration
-			)
+			playerItem: story
 		)
 		
 		return coordinate(to: coordinator)

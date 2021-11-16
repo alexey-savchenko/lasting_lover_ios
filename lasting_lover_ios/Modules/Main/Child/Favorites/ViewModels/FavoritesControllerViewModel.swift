@@ -7,4 +7,22 @@
 
 import Foundation
 
-class FavoritesControllerViewModel {}
+class FavoritesControllerViewModel {
+	struct Input {
+		
+	}
+	
+	struct Output {
+		
+	}
+	
+	let input: Input
+	let output: Output
+	
+	init(
+		
+	) {
+		self.input = Input()
+		self.output = Output()
+	}
+}

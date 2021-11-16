@@ -105,6 +105,33 @@ extension Story {
 	var contentURL: URL {
 		return URL(string: audioURL)!
 	}
+	
+//	(
+	//    title: "Sample title",
+	//    authorName: "Sample author",
+	//    artworkURL: URL(string: "https://picsum.photos/seed/somerandomvalue/500/500")!,
+	//    contentURL: Bundle.main.url(forResource: "placeholderAudio", withExtension: "mp3")!,
+	//		id: 100,
+	//		duration: 100
+	//  )
+		
+//	static let mock = Story(
+//		id: Int.max,
+//		name: "Sample title",
+//		audioURL: Bundle.main.url(forResource: "placeholderAudio", withExtension: "mp3")!.path,
+//		audioImg: "https://picsum.photos/seed/somerandomvalue/500/500",
+//		paid: 1,
+//		author: .init(
+//			id: Int.max,
+//			name: "Sample author",
+//			avatar: "https://picsum.photos/seed/somerandomvalue/500/500",
+//			authorDescription: "Sample description",
+//			age: 42
+//		),
+//		series: .init(id: nil, name: nil, image: nil),
+//		categories: [],
+//		audioDuration: 100
+//	)
 }
 
 struct SeriesTruncated: Codable, Hashable {

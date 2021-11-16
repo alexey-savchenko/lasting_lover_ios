@@ -62,8 +62,8 @@ class PlayerControllerViewModel {
       isPlaying: state.map { $0.isPlaying }.distinctUntilChanged(),
       image: state.map { $0.item.artworkURL }.distinctUntilChanged().flatMap { url in Current.imageLoadingService().image(url) },
 			playbackProgress: state.map { $0.playbackProgress }.distinctUntilChanged(),
-			currentTime: state.map { Int(Double($0.item.duration) * $0.playbackProgress).secondsToTime() },
-			totalDuration: state.map { $0.item.duration.secondsToTime() }
+			currentTime: state.map { Int(Double($0.item.audioDuration) * $0.playbackProgress).secondsToTime() },
+			totalDuration: state.map { $0.item.audioDuration.secondsToTime() }
     )
     
     dispatch(.initializePlayerWithItem)

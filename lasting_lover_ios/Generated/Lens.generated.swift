@@ -157,7 +157,7 @@ extension Player.State {
         }
       }
     )
-    static let item = Lens<Player.State, PlayerItem>(
+    static let item = Lens<Player.State, Story>(
       get: { $0.item },
       set: { part in 
         { whole in

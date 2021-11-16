@@ -12,7 +12,7 @@ import UNILibCore
 
 class PlayerModuleCoordinator: RxBaseCoordinator<Void> {
 	
-	let playerItem: PlayerItem
+	let playerItem: Story
 	let navigationController: UINavigationController
 	
 	lazy var store = RxStore(
@@ -21,7 +21,7 @@ class PlayerModuleCoordinator: RxBaseCoordinator<Void> {
 		reducer: Player.reducer
 	)
 	
-	init(navigationController: UINavigationController, playerItem: PlayerItem) {
+	init(navigationController: UINavigationController, playerItem: Story) {
 		self.navigationController = navigationController
 		self.playerItem = playerItem
 	}
