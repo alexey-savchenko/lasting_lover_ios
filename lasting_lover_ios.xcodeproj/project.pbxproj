@@ -24,6 +24,8 @@
 		02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift */; };
 		02195F5E2743182E00BD5A5D /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5D2743182E00BD5A5D /* SettingsScreen.swift */; };
 		02195F602743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5F2743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift */; };
+		02195F622743DD8200BD5A5D /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F612743DD8200BD5A5D /* NotificationsController.swift */; };
+		02195F642743E70500BD5A5D /* NotificationsControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F632743E70500BD5A5D /* NotificationsControllerViewModel.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -170,6 +172,8 @@
 		02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionController.swift; sourceTree = "<group>"; };
 		02195F5D2743182E00BD5A5D /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		02195F5F2743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementControllerViewModel.swift; sourceTree = "<group>"; };
+		02195F612743DD8200BD5A5D /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		02195F632743E70500BD5A5D /* NotificationsControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsControllerViewModel.swift; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -867,6 +871,7 @@
 				221E22BD270C5969003F324B /* SettingsViewController.swift */,
 				02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift */,
 				02195F5D2743182E00BD5A5D /* SettingsScreen.swift */,
+				02195F612743DD8200BD5A5D /* NotificationsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -876,6 +881,7 @@
 			children = (
 				221E22BF270C5A02003F324B /* SettingsControllerViewModel.swift */,
 				02195F5F2743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift */,
+				02195F632743E70500BD5A5D /* NotificationsControllerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1179,6 +1185,7 @@
 				02195F552742754D00BD5A5D /* IAP.swift.swift in Sources */,
 				02770AF6273864C700DF4F49 /* SleepFeaturedStoryCellViewModel.swift in Sources */,
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
+				02195F642743E70500BD5A5D /* NotificationsControllerViewModel.swift in Sources */,
 				02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */,
 				221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */,
 				02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */,
@@ -1276,6 +1283,7 @@
 				02195F4A274027F200BD5A5D /* SeriesControllerViewModel.swift in Sources */,
 				221C52522709CCC70085534E /* DiscoverViewController.swift in Sources */,
 				221E22C0270C5A02003F324B /* SettingsControllerViewModel.swift in Sources */,
+				02195F622743DD8200BD5A5D /* NotificationsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

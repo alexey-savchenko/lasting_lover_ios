@@ -62,6 +62,12 @@ internal enum L10n {
   internal static let settingsManageSubscriptionUnsubsribedSubtitle = L10n.tr("Localizable", "settings_Manage_Subscription_unsubsribed_subtitle")
   /// Notifications
   internal static let settingsNotifications = L10n.tr("Localizable", "settings_Notifications")
+  /// General Notification
+  internal static let settingsNotificationsGeneralNotification = L10n.tr("Localizable", "settings_notifications_General Notification")
+  /// New releases, stories just for you, flirty affirmations
+  internal static let settingsNotificationsSubtitleSwitchOff = L10n.tr("Localizable", "settings_notifications_subtitleSwitchOff")
+  /// Nightly invitations to unwind
+  internal static let settingsNotificationsSubtitleSwitchOn = L10n.tr("Localizable", "settings_notifications_subtitleSwitchOn")
   /// Privacy Policy
   internal static let settingsPrivacyPolicy = L10n.tr("Localizable", "settings_Privacy Policy")
   /// Restore Purchase

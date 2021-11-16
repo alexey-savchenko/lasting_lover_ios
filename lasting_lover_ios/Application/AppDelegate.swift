@@ -28,11 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    )
 //    window?.makeKeyAndVisible()
 		
-		appCoordinator = AppCoordinator(window: window!)
-		appCoordinator.start().subscribe().disposed(by: disposeBag)
+//		appCoordinator = AppCoordinator(window: window!)
+//		appCoordinator.start().subscribe().disposed(by: disposeBag)
 
-//		let c = SnapshotController<SubscriptionManagementController>()
-//    window?.rootViewController = c
+		let c = SnapshotController<NotificationsController>()
+    window?.rootViewController = c
     window?.makeKeyAndVisible()
     
     return true

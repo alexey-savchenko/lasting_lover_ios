@@ -48,3 +48,6 @@
 "settings_Cancel_Subscription" = "Cancel Subscription";
 "settings_Manage_Subscription_unsubsribed_subtitle" = "You do not currently have an active subscription to Cherrie";
 "settings_Manage_Subscription_subsribed_subtitle" = "You are currently subscribed to Cherrie";
+"settings_notifications_General Notification" = "General Notification";
+"settings_notifications_subtitleSwitchOn" = "Nightly invitations to unwind";
+"settings_notifications_subtitleSwitchOff" = "New releases, stories just for you, flirty affirmations";
