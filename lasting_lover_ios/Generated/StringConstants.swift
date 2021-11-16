@@ -52,12 +52,22 @@ internal enum L10n {
   internal static let seriesList = L10n.tr("Localizable", "series_list")
   /// Settings
   internal static let settings = L10n.tr("Localizable", "settings")
+  /// Cancel Subscription
+  internal static let settingsCancelSubscription = L10n.tr("Localizable", "settings_Cancel_Subscription")
   /// Manage Subscription
   internal static let settingsManageSubscription = L10n.tr("Localizable", "settings_Manage Subscription")
+  /// You are currently subscribed to Cherrie
+  internal static let settingsManageSubscriptionSubsribedSubtitle = L10n.tr("Localizable", "settings_Manage_Subscription_subsribed_subtitle")
+  /// You do not currently have an active subscription to Cherrie
+  internal static let settingsManageSubscriptionUnsubsribedSubtitle = L10n.tr("Localizable", "settings_Manage_Subscription_unsubsribed_subtitle")
   /// Notifications
   internal static let settingsNotifications = L10n.tr("Localizable", "settings_Notifications")
   /// Privacy Policy
   internal static let settingsPrivacyPolicy = L10n.tr("Localizable", "settings_Privacy Policy")
+  /// Restore Purchase
+  internal static let settingsRestorePurchase = L10n.tr("Localizable", "settings_restore_purchase")
+  /// Subscribe
+  internal static let settingsSubscribe = L10n.tr("Localizable", "settings_subscribe")
   /// Terms and Conditions
   internal static let settingsTermsAndConditions = L10n.tr("Localizable", "settings_Terms and Conditions")
   /// Email Adress

@@ -21,8 +21,9 @@
 		02195F552742754D00BD5A5D /* IAP.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F542742754D00BD5A5D /* IAP.swift.swift */; };
 		02195F5727427C6500BD5A5D /* PurchaseScreenOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */; };
 		02195F5A274305E300BD5A5D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F59274305E300BD5A5D /* SettingsCell.swift */; };
-		02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */; };
+		02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift */; };
 		02195F5E2743182E00BD5A5D /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5D2743182E00BD5A5D /* SettingsScreen.swift */; };
+		02195F602743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02195F5F2743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift */; };
 		021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A72739A5D100A0F3CF /* StoriesController.swift */; };
 		021BA2AA273AB4B000A0F3CF /* ListenedItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */; };
 		021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */; };
@@ -166,8 +167,9 @@
 		02195F542742754D00BD5A5D /* IAP.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift.swift; sourceTree = "<group>"; };
 		02195F5627427C6500BD5A5D /* PurchaseScreenOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenOrigin.swift; sourceTree = "<group>"; };
 		02195F59274305E300BD5A5D /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
-		02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionController.swift.swift; sourceTree = "<group>"; };
+		02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionController.swift; sourceTree = "<group>"; };
 		02195F5D2743182E00BD5A5D /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		02195F5F2743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementControllerViewModel.swift; sourceTree = "<group>"; };
 		021BA2A72739A5D100A0F3CF /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
 		021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenedItemsService.swift; sourceTree = "<group>"; };
 		021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -863,7 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				221E22BD270C5969003F324B /* SettingsViewController.swift */,
-				02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift.swift */,
+				02195F5B2743168700BD5A5D /* ManageSubscriptionController.swift */,
 				02195F5D2743182E00BD5A5D /* SettingsScreen.swift */,
 			);
 			path = Controllers;
@@ -873,6 +875,7 @@
 			isa = PBXGroup;
 			children = (
 				221E22BF270C5A02003F324B /* SettingsControllerViewModel.swift */,
+				02195F5F2743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1205,6 +1208,7 @@
 				221E22CA270DCFB0003F324B /* RoundedRectAndTitleCell.swift in Sources */,
 				02195F502741413900BD5A5D /* CategoryControllerViewModel.swift in Sources */,
 				021BA2AC273AB69200A0F3CF /* SubscriptionService.swift in Sources */,
+				02195F602743D5D700BD5A5D /* SubscriptionManagementControllerViewModel.swift in Sources */,
 				02195F3F273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift in Sources */,
 				02770AF2273806BF00DF4F49 /* SleepState.swift in Sources */,
 				024CC199273E58AD00B2EDA4 /* UIPresentationController+Rx.swift in Sources */,
@@ -1258,7 +1262,7 @@
 				021BA2AE273AB74300A0F3CF /* Subscription.swift in Sources */,
 				221C524D270750E60085534E /* FullscreenLoadingView.swift in Sources */,
 				02770AD42735B38100DF4F49 /* VerticalScrollingView.swift in Sources */,
-				02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift.swift in Sources */,
+				02195F5C2743168700BD5A5D /* ManageSubscriptionController.swift in Sources */,
 				221E22DA270F43CC003F324B /* PlayerController.swift in Sources */,
 				221C52412706FC440085534E /* NavbarView.swift in Sources */,
 				02770AED2737F1D000DF4F49 /* FavoritesViewController.swift in Sources */,

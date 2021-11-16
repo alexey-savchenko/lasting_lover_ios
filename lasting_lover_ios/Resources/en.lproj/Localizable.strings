@@ -43,3 +43,8 @@
 "settings_Notifications" = "Notifications";
 "settings_Terms and Conditions" = "Terms and Conditions";
 "settings_Privacy Policy" = "Privacy Policy";
+"settings_subscribe" = "Subscribe";
+"settings_restore_purchase" = "Restore Purchase";
+"settings_Cancel_Subscription" = "Cancel Subscription";
+"settings_Manage_Subscription_unsubsribed_subtitle" = "You do not currently have an active subscription to Cherrie";
+"settings_Manage_Subscription_subsribed_subtitle" = "You are currently subscribed to Cherrie";

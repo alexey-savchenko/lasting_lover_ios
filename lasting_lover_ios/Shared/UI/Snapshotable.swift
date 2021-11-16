@@ -31,9 +31,7 @@ extension Snapshotable where Self: UIViewController {
   }
 
   func layoutIn(_ view: UIView) {
-    view.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
-    }
+		self.view.frame = view.bounds
   }
 }
 

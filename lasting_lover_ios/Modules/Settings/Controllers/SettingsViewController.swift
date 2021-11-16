@@ -80,6 +80,9 @@ class SettingsViewController: ViewController<BackgroundImageView> {
 		viewModel.output.contents
 			.bind(to: collectionView.rx.items(dataSource: dataSource()))
 			.disposed(by: disposeBag)
+		collectionView.rx.itemSelected
+			.subscribe(viewModel.input.settingsItemSelectedAtIndex)
+			.disposed(by: disposeBag)
 	}
 	
 	func dataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SettingsCellViewModel>> {

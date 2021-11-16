@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class SettingsScreen: ViewController<BackgroundImageView> {
 	let navbarView = BackButtonNavbarView()
 	let titleLabel = UILabel()
+	
+	let disposeBag = DisposeBag()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,6 +29,8 @@ class SettingsScreen: ViewController<BackgroundImageView> {
 			make.height.equalTo(44)
 		}
 		
+		titleLabel.textColor = .white
+		titleLabel.font = FontFamily.Nunito.semiBold.font(size: 22)
 		titleLabel.snp.makeConstraints { make in
 			make.leading.equalTo(24)
 			make.top.equalTo(navbarView.snp.bottom).offset(8)
