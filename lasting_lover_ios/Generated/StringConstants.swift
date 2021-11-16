@@ -48,6 +48,8 @@ internal enum L10n {
   internal static let mainTabFavorites = L10n.tr("Localizable", "main_tab_favorites")
   /// Sleep
   internal static let mainTabSleep = L10n.tr("Localizable", "main_tab_sleep")
+  /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. 
+  internal static let privacyPolicyText = L10n.tr("Localizable", "privacy policy text")
   /// Series List
   internal static let seriesList = L10n.tr("Localizable", "series_list")
   /// Settings
@@ -114,6 +116,8 @@ internal enum L10n {
   internal static let sleepFeatured = L10n.tr("Localizable", "sleep_Featured")
   /// Sleep
   internal static let sleepTitle = L10n.tr("Localizable", "sleep_title")
+  /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. 
+  internal static let termsAndConditionsText = L10n.tr("Localizable", "terms and conditions text")
   /// Today popular?
   internal static let todaysPopular = L10n.tr("Localizable", "Todays_popular")
 }

@@ -81,6 +81,10 @@ class NotificationsController: SettingsScreen {
 		hiddenButton.rx.tap
 			.subscribe(viewModel.input.switchTap)
 			.disposed(by: disposeBag)
+		navbarView.backButton.rx.tap.bind { [unowned self] in
+			self.navigationController?.popViewController(animated: true)
+		}
+		.disposed(by: disposeBag)
 	}
 }
 

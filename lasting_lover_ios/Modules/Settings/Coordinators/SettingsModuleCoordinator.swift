@@ -45,7 +45,7 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 			.do(onNext: { [unowned navigationController] _ in
 				navigationController.popViewController(animated: true)
 			})
-				.asObservable()
+			.asObservable()
 				
 				let selectedSettingsItem = viewModel.output.selectedSettingsItem.share()
 				
@@ -57,16 +57,40 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 				.disposed(by: disposeBag)
 		
 		selectedSettingsItem
-		.filter { $0 == .notifications }
-		.bind { [unowned self] _ in
-			self.presentNotificationManagement(navigationController: self.navigationController)
-		}
-		.disposed(by: disposeBag)
+			.filter { $0 == .notifications }
+			.bind { [unowned self] _ in
+				self.presentNotificationManagement(navigationController: self.navigationController)
+			}
+			.disposed(by: disposeBag)
+		
+		selectedSettingsItem
+			.filter { $0 == .termsAndConditions }
+			.bind { [unowned self] _ in
+				self.presentTermsAndConditions(navigationController: self.navigationController)
+			}
+			.disposed(by: disposeBag)
+		
+		selectedSettingsItem
+			.filter { $0 == .privacyPolicy }
+			.bind { [unowned self] _ in
+				self.presentPrivacyPolicy(navigationController: self.navigationController)
+			}
+			.disposed(by: disposeBag)
 		
 		
 		return Observable
 			.merge(backButtonTap, finishFlow)
 			.debug()
+	}
+	
+	func presentTermsAndConditions(navigationController: UINavigationController) {
+		let c = TermsAndConditionsController()
+		navigationController.pushViewController(c, animated: true)
+	}
+	
+	func presentPrivacyPolicy(navigationController: UINavigationController) {
+		let c = PrivacyPolicyController()
+		navigationController.pushViewController(c, animated: true)
 	}
 	
 	func presentSubscriptionManagement(navigationController: UINavigationController) {
