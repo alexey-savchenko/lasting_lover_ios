@@ -103,13 +103,25 @@ extension DiscoverTab.State {
     )
   }
 }
+extension Favorites.State {
+  enum lens {
+    static let items = Lens<Favorites.State, [Story]>(
+      get: { $0.items },
+      set: { part in 
+        { whole in
+          Favorites.State.init(items: part)
+        }
+      }
+    )
+  }
+}
 extension MainModule.State {
   enum lens {
     static let selectedTabIndex = Lens<MainModule.State, Int>(
       get: { $0.selectedTabIndex },
       set: { part in 
         { whole in
-          MainModule.State.init(selectedTabIndex: part, discoverState: whole.discoverState, sleepState: whole.sleepState)
+          MainModule.State.init(selectedTabIndex: part, discoverState: whole.discoverState, sleepState: whole.sleepState, favoritesState: whole.favoritesState)
         }
       }
     )
@@ -117,7 +129,7 @@ extension MainModule.State {
       get: { $0.discoverState },
       set: { part in 
         { whole in
-          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: part, sleepState: whole.sleepState)
+          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: part, sleepState: whole.sleepState, favoritesState: whole.favoritesState)
         }
       }
     )
@@ -125,7 +137,15 @@ extension MainModule.State {
       get: { $0.sleepState },
       set: { part in 
         { whole in
-          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: whole.discoverState, sleepState: part)
+          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: whole.discoverState, sleepState: part, favoritesState: whole.favoritesState)
+        }
+      }
+    )
+    static let favoritesState = Lens<MainModule.State, Favorites.State>(
+      get: { $0.favoritesState },
+      set: { part in 
+        { whole in
+          MainModule.State.init(selectedTabIndex: whole.selectedTabIndex, discoverState: whole.discoverState, sleepState: whole.sleepState, favoritesState: part)
         }
       }
     )

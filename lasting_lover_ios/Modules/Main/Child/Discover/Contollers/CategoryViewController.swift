@@ -109,6 +109,10 @@ class CategoryViewController: ViewController<BackgroundImageView> {
 		titleLabel.text = viewModel.output.title
 		subtitleLabel.text = viewModel.output.subtitle
 		
+		contentCollectionView.rx.itemSelected
+			.subscribe(viewModel.input.selectedStoryAtIndex)
+			.disposed(by: disposeBag)
+		
 		let contents = viewModel.output.stories.share()
 		
 		contents

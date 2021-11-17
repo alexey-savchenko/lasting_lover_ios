@@ -34,6 +34,9 @@ enum App {
 						data: .indefiniteLoading,
 						sleepStories: .indefiniteLoading,
 						categoryStories: [:]
+					),
+					favoritesState: Favorites.State(
+						items: Current.favoritesService().favoriteItems()
 					)
 				)
 			)

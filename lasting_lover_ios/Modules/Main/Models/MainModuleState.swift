@@ -15,6 +15,7 @@ enum MainModule {
 		let selectedTabIndex: Int
 		let discoverState: DiscoverTab.State
 		let sleepState: SleepTab.State
+		let favoritesState: Favorites.State
 	}
 	
 	/// sourcery: prism
@@ -22,18 +23,29 @@ enum MainModule {
 		case setTabIndex(value: Int)
 		case discoverAction(value: DiscoverTab.Action)
 		case sleepAction(value: SleepTab.Action)
+		case favoritesAction(value: Favorites.Action)
 	}
 
-	static let reducer = Reducer<MainModule.State, MainModule.Action> { state, action in
-		switch action {
-		case .setTabIndex(let value):
+	static let reducer: Reducer<MainModule.State, MainModule.Action> =
+	Favorites.reducer.lift(
+		localStateLens: MainModule.State.lens.favoritesState,
+		localActionPrism: MainModule.Action.prism.favoritesAction
+	) <>
+	DiscoverTab.reducer.lift(
+		localStateLens: MainModule.State.lens.discoverState,
+		localActionPrism: MainModule.Action.prism.discoverAction
+	) <>
+	SleepTab.reducer.lift(
+		localStateLens: MainModule.State.lens.sleepState,
+		localActionPrism: MainModule.Action.prism.sleepAction
+	) <>
+	Reducer<MainModule.State, MainModule.Action>(reduce: { state, action in
+		if case .setTabIndex(let value) = action {
 			return MainModule.State.lens.selectedTabIndex.set(value)(state)
-		case .discoverAction(let value):
-			return State.lens.discoverState.set(DiscoverTab.reducer.reduce(state.discoverState, value))(state)
-		case .sleepAction(let value):
-			return State.lens.sleepState.set(SleepTab.reducer.reduce(state.sleepState, value))(state)
+		} else {
+			return state
 		}
-	}
+	})
 	
 	static let middleware: Middleware<MainModule.State, MainModule.Action> = { dispatch, getState in
 		return { next in
@@ -41,6 +53,14 @@ enum MainModule {
 				switch action {
 				case .setTabIndex:
 					next(action)
+				case .favoritesAction(let value):
+					Favorites
+						.middleware(
+							MainModule.Action.favoritesAction <*> dispatch, { getState().map { $0.favoritesState } }
+						)(
+							MainModule.Action.favoritesAction <*> next
+						)(value)
+
 				case .sleepAction(let value):
 					SleepTab
 						.middleware(
