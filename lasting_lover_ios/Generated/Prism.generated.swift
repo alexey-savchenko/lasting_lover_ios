@@ -94,7 +94,7 @@ extension MainModule.Action {
             tryGet: { if case .sleepAction(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .sleepAction(value:x1) })
 
-        internal static let favoritesAction = Prism<MainModule.Action,Favorites.Action>(
+        internal static let favoritesAction = Prism<MainModule.Action,FavoritesTab.Action>(
             tryGet: { if case .favoritesAction(let value) = $0 { return value } else { return nil } },
             inject: { (x1) in .favoritesAction(value:x1) })
 

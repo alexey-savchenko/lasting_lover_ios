@@ -13,32 +13,18 @@ import MediaPlayer
 
 enum Player {
   
-//  static let mockStore: RxStore<Player.State, Player.Action> = {
-//    let s = RxStore<Player.State, Player.Action>(
-//      inputState: .mock,
-//      middleware: [Player.middleware],
-//      reducer: Player.reducer
-//    )
-//    
-//    s.attach(Player.Plugin.isPlayingPlugin)
-//    s.attach(Player.Plugin.playbackProgressPlugin)
-//    return s
-//  }()
-  
   /// sourcery: lens
   struct State: Hashable {
     let playbackProgress: Double
     let isPlaying: Bool
     let isFavourite: Bool
     let item: Story
-    
-//    static let mock = State(playbackProgress: 0, isPlaying: false, isFavourite: false, item: .mock)
-    
+        
     static func `default`(item: Story) -> State {
       return State(
         playbackProgress: 0,
         isPlaying: false,
-        isFavourite: Current.favoritesService().favoriteItems().contains(item),
+				isFavourite: Current.favoritesService().favoriteItems().contains(where: { $0.id == item.id }),
         item: item
       )
     }
@@ -97,15 +83,23 @@ enum Player {
           next(action)
         case .favoriteTap:
           guard let state = getState() else { return }
-          if state.isFavourite {
-            Current.favoritesService().removeFavorite(state.item)
-          } else {
-            Current.favoritesService().addFavorite(state.item)
-          }
-          next(action)
-        case .initializePlayerWithItem:
-          guard let state = getState() else { return }
-          Current.playerService().setItem(state.item)
+//          if state.isFavourite {
+//            Current.favoritesService().removeFavorite(state.item)
+//          } else {
+					//            Current.favoritesService().addFavorite(state.item)
+					//          }
+					appStore.dispatch(
+						.mainModuleAction(
+							action: .favoritesAction(
+								value: .itemTap(
+									item: state.item
+								)
+							)
+						))
+					next(action)
+				case .initializePlayerWithItem:
+					guard let state = getState() else { return }
+					Current.playerService().setItem(state.item)
 					Current.listentedItemsService().setListened(state.item.id)
           dispatch(.playTap)
         }

@@ -15,7 +15,7 @@ enum MainModule {
 		let selectedTabIndex: Int
 		let discoverState: DiscoverTab.State
 		let sleepState: SleepTab.State
-		let favoritesState: Favorites.State
+		let favoritesState: FavoritesTab.State
 	}
 	
 	/// sourcery: prism
@@ -23,11 +23,11 @@ enum MainModule {
 		case setTabIndex(value: Int)
 		case discoverAction(value: DiscoverTab.Action)
 		case sleepAction(value: SleepTab.Action)
-		case favoritesAction(value: Favorites.Action)
+		case favoritesAction(value: FavoritesTab.Action)
 	}
 
 	static let reducer: Reducer<MainModule.State, MainModule.Action> =
-	Favorites.reducer.lift(
+	FavoritesTab.reducer.lift(
 		localStateLens: MainModule.State.lens.favoritesState,
 		localActionPrism: MainModule.Action.prism.favoritesAction
 	) <>
@@ -54,7 +54,7 @@ enum MainModule {
 				case .setTabIndex:
 					next(action)
 				case .favoritesAction(let value):
-					Favorites
+					FavoritesTab
 						.middleware(
 							MainModule.Action.favoritesAction <*> dispatch, { getState().map { $0.favoritesState } }
 						)(
@@ -80,4 +80,3 @@ enum MainModule {
 		}
 	}
 }
-

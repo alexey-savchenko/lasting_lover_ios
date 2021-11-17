@@ -57,7 +57,10 @@ class MainModuleViewController: UIViewController {
 		)
   )
 	lazy var favoritesViewController = FavoritesViewController(
-		viewModel: FavoritesControllerViewModel()
+		viewModel: FavoritesControllerViewModel(
+			state: appStore.stateObservable.map { $0.mainModuleState.favoritesState }.distinctUntilChanged(),
+			dispatch: MainModule.Action.favoritesAction <*> App.Action.mainModuleAction <*> appStore.dispatch
+		)
 	)
   lazy var sleepViewController = SleepViewController(
 		viewModel: SleepControllerViewModel(

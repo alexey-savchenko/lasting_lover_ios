@@ -103,13 +103,13 @@ extension DiscoverTab.State {
     )
   }
 }
-extension Favorites.State {
+extension FavoritesTab.State {
   enum lens {
-    static let items = Lens<Favorites.State, [Story]>(
+    static let items = Lens<FavoritesTab.State, [Story]>(
       get: { $0.items },
       set: { part in 
         { whole in
-          Favorites.State.init(items: part)
+          FavoritesTab.State.init(items: part)
         }
       }
     )
@@ -141,7 +141,7 @@ extension MainModule.State {
         }
       }
     )
-    static let favoritesState = Lens<MainModule.State, Favorites.State>(
+    static let favoritesState = Lens<MainModule.State, FavoritesTab.State>(
       get: { $0.favoritesState },
       set: { part in 
         { whole in
