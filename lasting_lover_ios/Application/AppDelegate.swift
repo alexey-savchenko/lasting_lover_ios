@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
 //
-//		appCoordinator = AppCoordinator(window: window!)
-//		appCoordinator.start().subscribe().disposed(by: disposeBag)
+		appCoordinator = AppCoordinator(window: window!)
+		appCoordinator.start().subscribe().disposed(by: disposeBag)
 
-		let c = SnapshotController<StarterPurchaseScreenView>()
-    window?.rootViewController = c
-    window?.makeKeyAndVisible()
+//		let c = SnapshotController<StarterPurchaseScreenView>()
+//    window?.rootViewController = c
+//    window?.makeKeyAndVisible()
     
     return true
   }

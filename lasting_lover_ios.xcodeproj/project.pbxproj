@@ -56,6 +56,10 @@
 		0298E7E4275028DD00F66F13 /* PurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7E3275028DD00F66F13 /* PurchaseScreen.swift */; };
 		0298E7E62750290600F66F13 /* PurchaseScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7E52750290600F66F13 /* PurchaseScreenFactory.swift */; };
 		0298E7E827502D2300F66F13 /* PurchaseModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7E727502D2300F66F13 /* PurchaseModuleState.swift */; };
+		0298E7EA27511DC900F66F13 /* StarterIAPOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7E927511DC900F66F13 /* StarterIAPOptionView.swift */; };
+		0298E7EC275162FB00F66F13 /* PurchaseScreenViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7EB275162FB00F66F13 /* PurchaseScreenViewProtocol.swift */; };
+		0298E7EE275168D600F66F13 /* HyperLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7ED275168D600F66F13 /* HyperLink.swift */; };
+		0298E7F127516D7A00F66F13 /* PolicyModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */; };
 		029EEDFF273E8F5D005DAC05 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */; };
 		029EEE01273E9551005DAC05 /* AuthorViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */; };
 		029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */; };
@@ -214,6 +218,10 @@
 		0298E7E3275028DD00F66F13 /* PurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreen.swift; sourceTree = "<group>"; };
 		0298E7E52750290600F66F13 /* PurchaseScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenFactory.swift; sourceTree = "<group>"; };
 		0298E7E727502D2300F66F13 /* PurchaseModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModuleState.swift; sourceTree = "<group>"; };
+		0298E7E927511DC900F66F13 /* StarterIAPOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterIAPOptionView.swift; sourceTree = "<group>"; };
+		0298E7EB275162FB00F66F13 /* PurchaseScreenViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenViewProtocol.swift; sourceTree = "<group>"; };
+		0298E7ED275168D600F66F13 /* HyperLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperLink.swift; sourceTree = "<group>"; };
+		0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyModuleCoordinator.swift; sourceTree = "<group>"; };
 		029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewControllerViewModel.swift; sourceTree = "<group>"; };
 		029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModuleCoordinator.swift; sourceTree = "<group>"; };
@@ -378,6 +386,7 @@
 			children = (
 				02770AD72735BA9900DF4F49 /* Secrion.swift */,
 				021BA2AD273AB74300A0F3CF /* Subscription.swift */,
+				0298E7ED275168D600F66F13 /* HyperLink.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -522,8 +531,18 @@
 			isa = PBXGroup;
 			children = (
 				0298E7E1275027F700F66F13 /* PurchaseScreenView.swift */,
+				0298E7E927511DC900F66F13 /* StarterIAPOptionView.swift */,
+				0298E7EB275162FB00F66F13 /* PurchaseScreenViewProtocol.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		0298E7EF27516D6500F66F13 /* Policy */ = {
+			isa = PBXGroup;
+			children = (
+				0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */,
+			);
+			path = Policy;
 			sourceTree = "<group>";
 		};
 		029EEE02273E9E23005DAC05 /* Author */ = {
@@ -623,6 +642,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0298E7EF27516D6500F66F13 /* Policy */,
 				02195F462740278A00BD5A5D /* Series */,
 				029EEE02273E9E23005DAC05 /* Author */,
 				0262BB692705084300847ED7 /* AppState */,
@@ -1236,6 +1256,7 @@
 				221C523D2705FCE90085534E /* BackgroundGradientView.swift in Sources */,
 				02F85118274460DC0050CE63 /* FavoritesState.swift in Sources */,
 				02195F642743E70500BD5A5D /* NotificationsControllerViewModel.swift in Sources */,
+				0298E7EC275162FB00F66F13 /* PurchaseScreenViewProtocol.swift in Sources */,
 				02195F522741472900BD5A5D /* CategoryViewController.swift in Sources */,
 				221E22D8270F2FAA003F324B /* Snapshotable.swift in Sources */,
 				02770AE22737D02F00DF4F49 /* UIViewController+Ext.swift in Sources */,
@@ -1275,6 +1296,7 @@
 				221C523F2706F9C30085534E /* AuthViewController.swift in Sources */,
 				02770ADA2735DA3A00DF4F49 /* SeriesCellViewModel.swift.swift in Sources */,
 				2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */,
+				0298E7F127516D7A00F66F13 /* PolicyModuleCoordinator.swift in Sources */,
 				021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */,
 				221E22CE270DE985003F324B /* CategoryCell.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
@@ -1292,6 +1314,7 @@
 				221C51EF2705E0360085534E /* LocalStorageService.swift in Sources */,
 				221C524F27086EA80085534E /* CongratulationsController.swift in Sources */,
 				221C5248270737A40085534E /* AuthControllerViewModel.swift in Sources */,
+				0298E7EE275168D600F66F13 /* HyperLink.swift in Sources */,
 				02195F4E2740351000BD5A5D /* CenteredLayout.swift.swift in Sources */,
 				0298E7E62750290600F66F13 /* PurchaseScreenFactory.swift in Sources */,
 				221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */,
@@ -1308,6 +1331,7 @@
 				2218AD8C271DA53A002C405C /* FavoritesService.swift in Sources */,
 				221C51E32705DB890085534E /* StringConstants.swift in Sources */,
 				0262BB6B2705084C00847ED7 /* AppState.swift in Sources */,
+				0298E7EA27511DC900F66F13 /* StarterIAPOptionView.swift in Sources */,
 				02195F4C2740281100BD5A5D /* SeriesViewController.swift in Sources */,
 				02195F43273FE81600BD5A5D /* SeriesCellViewModel.swift in Sources */,
 				22B8192027230DD900BFDB8B /* ImageLoadingService.swift in Sources */,

@@ -26,9 +26,6 @@ class AppCoordinator: RxBaseCoordinator<Never> {
   override func start() -> Observable<Never> {
     window.rootViewController = navigationController
     navigationController.navigationBar.isHidden = true
-//      .setNavigationBarHidden(true, animated: false)
-//    navigationController.interactivePopGestureRecognizer?.isEnabled = true
-//    navigationController.rx.willShow
     window.makeKeyAndVisible()
 
     presentMainModule(controller: navigationController)

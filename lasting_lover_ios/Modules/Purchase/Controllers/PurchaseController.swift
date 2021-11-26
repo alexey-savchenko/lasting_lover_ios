@@ -65,8 +65,11 @@ class PurchaseController: UIViewController {
 		_view.restoreTap
 			.subscribe(viewModel.input.restoreTap)
 			.disposed(by: disposeBag)
-		_view.selectedIAP
+		_view.selectedIAPTap
 			.subscribe(viewModel.input.selectedIAP)
+			.disposed(by: disposeBag)
+		_view.policyTap
+			.subscribe(viewModel.input.policyTap)
 			.disposed(by: disposeBag)
 		viewModel.output.isLoading
 			.bind { [weak self] value in

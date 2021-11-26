@@ -16,17 +16,20 @@ class PurchaseControllerViewModel {
 		let selectedIAP: AnyObserver<IAP>
 		let purchaseTap: AnyObserver<Void>
 		let restoreTap: AnyObserver<Void>
+		let policyTap: AnyObserver<Policy>
 	}
 	
 	private let dismissTapSubject = PublishSubject<Void>()
 	private let purchaseTapSubject = PublishSubject<Void>()
 	private let restoreTapSubject = PublishSubject<Void>()
 	private let selectedIAPSubject = PublishSubject<IAP>()
+	private let policyTapSubject = PublishSubject<Policy>()
 	
 	struct Output {
 		let dismissTap: Observable<Void>
 		let origin: Observable<PurchaseScreenOrigin>
 		let isLoading: Observable<Bool>
+		let policyTap: Observable<Policy>
 	}
 	
 	let input: Input
@@ -42,12 +45,14 @@ class PurchaseControllerViewModel {
 			dismissTap: dismissTapSubject.asObserver(),
 			selectedIAP: selectedIAPSubject.asObserver(),
 			purchaseTap: purchaseTapSubject.asObserver(),
-			restoreTap: restoreTapSubject.asObserver()
+			restoreTap: restoreTapSubject.asObserver(),
+			policyTap: policyTapSubject.asObserver()
 		)
 		self.output = Output(
 			dismissTap: dismissTapSubject.asObservable(),
 			origin: state.map { $0.origin }.distinctUntilChanged(),
-			isLoading: state.map { $0.isLoading }.distinctUntilChanged()
+			isLoading: state.map { $0.isLoading }.distinctUntilChanged(),
+			policyTap: policyTapSubject.asObservable()
 		)
 		
 		disposeBag.insert(

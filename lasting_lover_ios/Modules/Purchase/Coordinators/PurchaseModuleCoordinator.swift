@@ -42,16 +42,33 @@ class PurchaseModuleCoordinator: RxBaseCoordinator<PurchaseModuleCoordinator.Res
 	)
 	
 	override func start() -> Observable<Result> {
-		
 		let viewModel = PurchaseControllerViewModel(
 			state: store.stateObservable,
 			dispatch: store.dispatch
 		)
 		let controller = PurchaseController(viewModel: viewModel)
+		controller.modalPresentationStyle = .fullScreen
+		
+		viewModel.output.policyTap
+			.flatMap { [unowned self, unowned controller] value in
+				return self.presentPolicyModule(
+					policy: value,
+					presentingController: controller
+				)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
 		
 		navigationController.present(controller, animated: true)
 		
 		return .never()
-		
+	}
+	
+	func presentPolicyModule(policy: Policy, presentingController: UIViewController) -> Observable<Void> {
+		let coordinator = PolicyModuleCoordinator(
+			policy: policy,
+			presentingController: presentingController
+		)
+		return coordinate(to: coordinator)
 	}
 }

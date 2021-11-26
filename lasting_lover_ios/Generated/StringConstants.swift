@@ -48,8 +48,20 @@ internal enum L10n {
   internal static let mainTabFavorites = L10n.tr("Localizable", "main_tab_favorites")
   /// Sleep
   internal static let mainTabSleep = L10n.tr("Localizable", "main_tab_sleep")
+  /// month
+  internal static let month = L10n.tr("Localizable", "month")
+  /// months
+  internal static let monthPlural = L10n.tr("Localizable", "month_plural")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. 
   internal static let privacyPolicyText = L10n.tr("Localizable", "privacy policy text")
+  /// 100+ stories with new releases every week for you
+  internal static let purchase100StoriesWithNewReleasesEveryWeekForYou = L10n.tr("Localizable", "purchase_100 stories with new releases every week for you")
+  /// Hot and heavy, straight and queer, diverse themes
+  internal static let purchaseHotAndHeavyStraightAndQueerDiverseThemes = L10n.tr("Localizable", "purchase_Hot and heavy, straight and queer, diverse themes")
+  /// Popular
+  internal static let purchasePopular = L10n.tr("Localizable", "purchase_popular")
+  /// Soothing bedtime stories and wellness sessions
+  internal static let purchaseSoothingBedtimeStoriesAndWellnessSessions = L10n.tr("Localizable", "purchase_Soothing bedtime stories and wellness sessions")
   /// The Pleasure You’ve Been Waiting For...
   internal static let purchaseThePleasureYouVeBeenWaitingFor = L10n.tr("Localizable", "purchase_The Pleasure You’ve Been Waiting For")
   /// Try free and subscribe
@@ -122,6 +134,8 @@ internal enum L10n {
   internal static let sleepTitle = L10n.tr("Localizable", "sleep_title")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. 
   internal static let termsAndConditionsText = L10n.tr("Localizable", "terms and conditions text")
+  /// Terms of Use
+  internal static let termsOfUse = L10n.tr("Localizable", "Terms of Use")
   /// Today popular?
   internal static let todaysPopular = L10n.tr("Localizable", "Todays_popular")
 }

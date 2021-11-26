@@ -142,11 +142,20 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			)
 			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
 			.flatMap { story, state -> Observable<Story> in
-//				if story.paid == 1 && !state.settingsState.subscriptionActive {
-//
-//				} else {
+				if story.paid == 1 && !state.settingsState.subscriptionActive {
+					return self.presentPurchaseModule(
+						navigationController: self.navigationController,
+						origin: .storyPlay
+					).compactMap { value -> Story? in
+						if value {
+							return story
+						} else {
+							return nil
+						}
+					}
+				} else {
 					return Observable.just(story)
-//				}
+				}
 			}
 			.flatMap { story in
 				self.presentPlayerModule(navigationContoller: self.navigationController, story: story)
@@ -156,6 +165,24 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 		
     return .never()
   }
+	
+	func presentPurchaseModule(
+		navigationController: UINavigationController,
+		origin: PurchaseScreenOrigin
+	) -> Observable<Bool> {
+		let coordinator = PurchaseModuleCoordinator(
+			navigationController: navigationController,
+			origin: origin
+		)
+		return coordinate(to: coordinator).map { result in
+			switch result {
+			case .purchased, .restored:
+				return true
+			case .dismissed:
+				return false
+			}
+		}
+	}
 	
 	func presentSeriesModule(series: Series, navigationController: UINavigationController) -> Observable<Void> {
 		let coordinator = SeriesModuleCoordinator(navigationController: navigationController, series: series)
