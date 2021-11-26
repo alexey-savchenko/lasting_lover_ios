@@ -8,5 +8,6 @@
 import Foundation
 
 enum IAP: String {
-	case none
+	case cherrie_1_month_15_99
+	case cherrie_12_month_99_99
 }

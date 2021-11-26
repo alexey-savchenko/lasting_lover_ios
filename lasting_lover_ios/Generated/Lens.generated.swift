@@ -187,6 +187,42 @@ extension Player.State {
     )
   }
 }
+extension PurchaseModule.State {
+  enum lens {
+    static let isLoading = Lens<PurchaseModule.State, Bool>(
+      get: { $0.isLoading },
+      set: { part in 
+        { whole in
+          PurchaseModule.State.init(isLoading: part, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss)
+        }
+      }
+    )
+    static let origin = Lens<PurchaseModule.State, PurchaseScreenOrigin>(
+      get: { $0.origin },
+      set: { part in 
+        { whole in
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: part, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss)
+        }
+      }
+    )
+    static let selectedIAP = Lens<PurchaseModule.State, IAP?>(
+      get: { $0.selectedIAP },
+      set: { part in 
+        { whole in
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: part, dismiss: whole.dismiss)
+        }
+      }
+    )
+    static let dismiss = Lens<PurchaseModule.State, Bool>(
+      get: { $0.dismiss },
+      set: { part in 
+        { whole in
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: part)
+        }
+      }
+    )
+  }
+}
 extension Settings.State {
   enum lens {
     static let subscriptionActive = Lens<Settings.State, Bool>(

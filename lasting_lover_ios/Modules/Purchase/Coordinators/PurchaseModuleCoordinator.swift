@@ -9,6 +9,7 @@ import Foundation
 import RxUNILib
 import UIKit
 import SwiftyStoreKit
+import RxSwift
 
 class PurchaseModuleCoordinator: RxBaseCoordinator<PurchaseModuleCoordinator.Result> {
 	
@@ -29,6 +30,28 @@ class PurchaseModuleCoordinator: RxBaseCoordinator<PurchaseModuleCoordinator.Res
 		self.origin = origin
 	}
 	
+	lazy var store = RxStore<PurchaseModule.State, PurchaseModule.Action>(
+		inputState: PurchaseModule.State(
+			isLoading: false,
+			origin: origin,
+			selectedIAP: nil,
+			dismiss: false
+		),
+		middleware: [],
+		reducer: PurchaseModule.reducer
+	)
 	
-  
+	override func start() -> Observable<Result> {
+		
+		let viewModel = PurchaseControllerViewModel(
+			state: store.stateObservable,
+			dispatch: store.dispatch
+		)
+		let controller = PurchaseController(viewModel: viewModel)
+		
+		navigationController.present(controller, animated: true)
+		
+		return .never()
+		
+	}
 }

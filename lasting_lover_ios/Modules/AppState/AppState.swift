@@ -48,7 +48,7 @@ enum App {
 		case mainModuleAction(action: MainModule.Action)
 		case settingsAction(action: Settings.Action)
 		case requestNotificationAccess
-		case refreshNotificationAccess
+		case applicationDidBecomeActive
 	}
 
 	static let reducer = MainModule.reducer
@@ -67,7 +67,7 @@ enum App {
 		{ next in
 			{ action in
 				switch action {
-				case .refreshNotificationAccess:
+				case .applicationDidBecomeActive:
 					UNUserNotificationCenter.current().getNotificationSettings { settings in
 						let granted = settings.authorizationStatus == .authorized
 						dispatch(.settingsAction(action: .setNotificationsActive(value: granted)))

@@ -50,6 +50,10 @@ internal enum L10n {
   internal static let mainTabSleep = L10n.tr("Localizable", "main_tab_sleep")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. 
   internal static let privacyPolicyText = L10n.tr("Localizable", "privacy policy text")
+  /// The Pleasure You’ve Been Waiting For...
+  internal static let purchaseThePleasureYouVeBeenWaitingFor = L10n.tr("Localizable", "purchase_The Pleasure You’ve Been Waiting For")
+  /// Try free and subscribe
+  internal static let purchaseTryFreeAndSubscribe = L10n.tr("Localizable", "purchase_Try free and subscribe")
   /// Series List
   internal static let seriesList = L10n.tr("Localizable", "series_list")
   /// Settings

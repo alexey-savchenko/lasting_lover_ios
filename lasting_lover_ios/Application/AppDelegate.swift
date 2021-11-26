@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
+//
+//		appCoordinator = AppCoordinator(window: window!)
+//		appCoordinator.start().subscribe().disposed(by: disposeBag)
 
-		appCoordinator = AppCoordinator(window: window!)
-		appCoordinator.start().subscribe().disposed(by: disposeBag)
-
-//		let c = SnapshotController<NotificationsController>()
-//    window?.rootViewController = c
-//    window?.makeKeyAndVisible()
+		let c = SnapshotController<StarterPurchaseScreenView>()
+    window?.rootViewController = c
+    window?.makeKeyAndVisible()
     
     return true
   }
@@ -40,6 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
-		appStore.dispatch(.refreshNotificationAccess)
+		appStore.dispatch(.applicationDidBecomeActive)
 	}
 }

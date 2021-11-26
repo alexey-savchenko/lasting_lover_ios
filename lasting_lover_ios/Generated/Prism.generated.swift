@@ -20,9 +20,9 @@ extension App.Action {
             tryGet: { if case .requestNotificationAccess = $0 { return () } else { return nil } },
             inject: { .requestNotificationAccess })
 
-        internal static let refreshNotificationAccess = Prism<App.Action, ()>(
-            tryGet: { if case .refreshNotificationAccess = $0 { return () } else { return nil } },
-            inject: { .refreshNotificationAccess })
+        internal static let applicationDidBecomeActive = Prism<App.Action, ()>(
+            tryGet: { if case .applicationDidBecomeActive = $0 { return () } else { return nil } },
+            inject: { .applicationDidBecomeActive })
 
     }
 }
