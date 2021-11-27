@@ -23,7 +23,9 @@ final class SubscriptionService: SubscriptionServiceProtocol {
 	
 	private let storageService = Current.defaultsStoreService()
 	
-	private let subSubject = BehaviorRelay<Bool>(value: Current.defaultsStoreService().string(forKey: Constants.UserDefaults.purchasedPlanKey) != nil)
+	private let subSubject = BehaviorRelay<Bool>(
+		value: (Current.defaultsStoreService().getObject(forKey: Constants.UserDefaults.purchasedPlanKey) as String?) != nil
+	)
 	private let subOverrideSubject = PublishSubject<Bool>()
 	private let disposeBag = DisposeBag()
 	
@@ -36,13 +38,16 @@ final class SubscriptionService: SubscriptionServiceProtocol {
 	}
 	
 	var currentSubscription: IAP? {
-		storageService
-			.string(forKey: Constants.UserDefaults.purchasedPlanKey)
+		return storageService
+			.getObject(forKey: Constants.UserDefaults.purchasedPlanKey)
+//		storageService
+//			.string(forKey: Constants.UserDefaults.purchasedPlanKey)
 			.flatMap(IAP.init)
 	}
 	
 	func setSubscriptionActive(_ product: IAP) {
-		storageService.set(product.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
+		storageService.setObject(product.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
+//			.set(product.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
 	}
 	
 	func setSubscriptionActiveForDebug(_ active: Bool) {

@@ -15,8 +15,6 @@ enum PlayButtonState: Int, Hashable {
 }
 
 class AudioItemCell: UICollectionViewCell {
-
-  
   open func setPlayButtonState(_ value: PlayButtonState) {
     
   }
