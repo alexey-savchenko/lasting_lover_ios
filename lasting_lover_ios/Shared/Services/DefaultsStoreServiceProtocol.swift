@@ -23,7 +23,7 @@ protocol DefaultsStoreServiceProtocol {
   func string(forKey defaultName: String) -> String?
   func dictionaryRepresentation() -> [String: Any]
 
-  func observeReactive<E>(key defaultName: String) -> Observable<E?>
+	func observeReactive<E: Codable>(key defaultName: String) -> Observable<E?>
   func synchronize() -> Bool
 }
 
@@ -41,9 +41,18 @@ extension UserDefaults: DefaultsStoreServiceProtocol {
       }
   }
 
-  func observeReactive<E>(key defaultName: String) -> Observable<E?> {
-    return UserDefaults.standard.rx
-      .observe(E.self, defaultName)
-      .startWith(UserDefaults.standard.object(forKey: defaultName) as? E)
+  func observeReactive<E>(key defaultName: String) -> Observable<E?> where E: Decodable, E: Encodable {
+		return UserDefaults.standard.rx
+			.observe(String.self, defaultName)
+			.map { str in
+				return str
+					.flatMap { unwrap in
+						return unwrap.data(using: .utf8)
+					}
+					.flatMap { data in
+						try? JSONDecoder().decode(E.self, from: data)
+					}
+			}
+      .startWith(getObject(forKey: defaultName))
   }
 }

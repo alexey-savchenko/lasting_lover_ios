@@ -17,7 +17,8 @@ class ListenedItemsService: ListenedItemsServiceProtocol {
 	let defaults = Current.defaultsStoreService()
 	
 	lazy var allListenedIDs: Observable<[Int]> = {
-		return (defaults.observeReactive(key: #function) as Observable<[Int]?>).map { $0 ?? [] }
+		let key = #function
+		return (defaults.observeReactive(key: key) as Observable<[Int]?>).map { $0 ?? [] }
 	}()
 	
 	var allListenedIDsSync: [Int] {
@@ -29,7 +30,8 @@ class ListenedItemsService: ListenedItemsServiceProtocol {
 	}
 	
 	func setListened(_ audioitemID: Int) {
-		let idsToSet = Set(allListenedIDsSync + [audioitemID]).flatMap { $0 }
-		defaults.set(idsToSet, forKey: "allListenedIDs")
+		let initialIDs = allListenedIDsSync
+		let idsToSet = Set(initialIDs + [audioitemID]).flatMap { $0 }
+		defaults.setObject(idsToSet, forKey: "allListenedIDs")
 	}
 }
