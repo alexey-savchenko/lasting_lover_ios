@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum Subscription: String {
-	case none
-}
+//enum Subscription: String {
+//	case none
+//}

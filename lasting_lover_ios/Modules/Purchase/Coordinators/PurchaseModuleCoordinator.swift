@@ -14,9 +14,8 @@ import RxSwift
 class PurchaseModuleCoordinator: RxBaseCoordinator<PurchaseModuleCoordinator.Result> {
 	
 	enum Result {
-		case purchased(value: IAP)
+		case purchasedOrRestored
 		case dismissed
-		case restored
 	}
 	
 	let navigationController: UINavigationController
@@ -35,9 +34,11 @@ class PurchaseModuleCoordinator: RxBaseCoordinator<PurchaseModuleCoordinator.Res
 			isLoading: false,
 			origin: origin,
 			selectedIAP: nil,
-			dismiss: false
+			dismiss: false,
+			error: nil,
+			purchasedOrRestored: false
 		),
-		middleware: [],
+		middleware: [PurchaseModule.middleware],
 		reducer: PurchaseModule.reducer
 	)
 	
@@ -61,7 +62,20 @@ class PurchaseModuleCoordinator: RxBaseCoordinator<PurchaseModuleCoordinator.Res
 		
 		navigationController.present(controller, animated: true)
 		
-		return .never()
+		let dismiss = store.stateObservable
+			.map { $0.dismiss }
+			.filter { $0 }
+			.map { _ in Result.dismissed }
+		let purchaseOrRestore = store.stateObservable
+			.map { $0.purchasedOrRestored }
+			.filter { $0 }
+			.map { _ in  Result.purchasedOrRestored }
+		
+		return Observable
+			.merge(dismiss, purchaseOrRestore)
+			.do(onNext: { [unowned controller] _ in
+				controller.dismiss(animated: true)
+			})
 	}
 	
 	func presentPolicyModule(policy: Policy, presentingController: UIViewController) -> Observable<Void> {

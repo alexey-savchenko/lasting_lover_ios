@@ -32,7 +32,11 @@ class TermsAndConditionsController: SettingsScreen {
 		textView.text = L10n.termsAndConditionsText
 		
 		navbarView.backButton.rx.tap.bind { [unowned self] in
-			self.navigationController?.popViewController(animated: true)
+			if self.presentingViewController != nil {
+				self.dismiss(animated: true)
+			} else {
+				self.navigationController?.popViewController(animated: true)
+			}
 		}
 		.disposed(by: disposeBag)
 	}

@@ -7,8 +7,14 @@
 
 import Foundation
 import UNILibCore
+import RxUNILib
+import RxSwift
 
 enum PurchaseModule {
+	
+	enum Error: LocalizedError {
+		case purchaseUnsuccessful
+	}
 	
 	/// sourcery: lens
 	struct State: Hashable {
@@ -16,6 +22,8 @@ enum PurchaseModule {
 		let origin: PurchaseScreenOrigin
 		let selectedIAP: IAP?
 		let dismiss: Bool
+		let error: HashableWrapper<PurchaseModule.Error>?
+		let purchasedOrRestored: Bool
 	}
 	
 	enum Action {
@@ -24,6 +32,47 @@ enum PurchaseModule {
 		case dismissTap
 		case purchase
 		case restore
+		case setError(value: PurchaseModule.Error)
+		case successfulPurchaseOrRestore
+	}
+	
+	static let middleware: Middleware<PurchaseModule.State, PurchaseModule.Action> = { dispatch, getState in
+		{ next in
+			{ action in
+				switch action {
+				case .selectedIAP, .setIsLoading, .dismissTap:
+					next(action)
+				case .purchase:
+					
+					guard
+						let state = getState(),
+						let selectedIAP = state.selectedIAP
+					else { next(action); return }
+					dispatch(.setIsLoading(value: true))
+					var d: Disposable?
+					d = Current.purchaseService()
+						.purchase(selectedIAP)
+						.subscribe(onNext: { value in
+							dispatch(.setIsLoading(value: false))
+							if let value = value {
+								Current.subscriptionService().setSubscriptionActive(value)
+								appStore.dispatch(.settingsAction(action: .setSubscriptionActive(value: true)))
+								dispatch(.successfulPurchaseOrRestore)
+							} else {
+								dispatch(.setError(value: .purchaseUnsuccessful))
+							}
+							
+							d?.dispose()
+						})
+				case .restore:
+					next(action)
+				case .setError:
+					next(action)
+				case .successfulPurchaseOrRestore:
+					next(action)
+				}
+			}
+		}
 	}
 	
 	static let reducer = Reducer<PurchaseModule.State, PurchaseModule.Action> { state, action in
@@ -32,6 +81,10 @@ enum PurchaseModule {
 			return state
 		case .dismissTap:
 			return PurchaseModule.State.lens.dismiss.set(true)(state)
+		case .setError(let value):
+			return PurchaseModule.State.lens.error.set(.init(value: value))(state)
+		case .successfulPurchaseOrRestore:
+			return PurchaseModule.State.lens.purchasedOrRestored.set(true)(state)
 		case .selectedIAP(let value):
 			return PurchaseModule.State.lens.selectedIAP.set(value)(state)
 		case .setIsLoading(let value):

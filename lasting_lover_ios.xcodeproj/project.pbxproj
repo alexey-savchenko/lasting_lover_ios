@@ -60,6 +60,7 @@
 		0298E7EC275162FB00F66F13 /* PurchaseScreenViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7EB275162FB00F66F13 /* PurchaseScreenViewProtocol.swift */; };
 		0298E7EE275168D600F66F13 /* HyperLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7ED275168D600F66F13 /* HyperLink.swift */; };
 		0298E7F127516D7A00F66F13 /* PolicyModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */; };
+		0298E7F52752747F00F66F13 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F42752747F00F66F13 /* PurchaseService.swift */; };
 		029EEDFF273E8F5D005DAC05 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */; };
 		029EEE01273E9551005DAC05 /* AuthorViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */; };
 		029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */; };
@@ -222,6 +223,7 @@
 		0298E7EB275162FB00F66F13 /* PurchaseScreenViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreenViewProtocol.swift; sourceTree = "<group>"; };
 		0298E7ED275168D600F66F13 /* HyperLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperLink.swift; sourceTree = "<group>"; };
 		0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyModuleCoordinator.swift; sourceTree = "<group>"; };
+		0298E7F42752747F00F66F13 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewControllerViewModel.swift; sourceTree = "<group>"; };
 		029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModuleCoordinator.swift; sourceTree = "<group>"; };
@@ -621,6 +623,7 @@
 				021BA2A9273AB4AF00A0F3CF /* ListenedItemsService.swift */,
 				021BA2AB273AB69200A0F3CF /* SubscriptionService.swift */,
 				0298E7E52750290600F66F13 /* PurchaseScreenFactory.swift */,
+				0298E7F42752747F00F66F13 /* PurchaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1298,6 +1301,7 @@
 				2218AD7A27185CF3002C405C /* PurchaseModuleCoordinator.swift in Sources */,
 				0298E7F127516D7A00F66F13 /* PolicyModuleCoordinator.swift in Sources */,
 				021BA2A82739A5D100A0F3CF /* StoriesController.swift in Sources */,
+				0298E7F52752747F00F66F13 /* PurchaseService.swift in Sources */,
 				221E22CE270DE985003F324B /* CategoryCell.swift in Sources */,
 				221C52552709CD330085534E /* MainModuleViewController.swift in Sources */,
 				02F57EF5272C135400BB1E7C /* DiscoverState.swift in Sources */,

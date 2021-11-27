@@ -193,7 +193,7 @@ extension PurchaseModule.State {
       get: { $0.isLoading },
       set: { part in 
         { whole in
-          PurchaseModule.State.init(isLoading: part, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss)
+          PurchaseModule.State.init(isLoading: part, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss, error: whole.error, purchasedOrRestored: whole.purchasedOrRestored)
         }
       }
     )
@@ -201,7 +201,7 @@ extension PurchaseModule.State {
       get: { $0.origin },
       set: { part in 
         { whole in
-          PurchaseModule.State.init(isLoading: whole.isLoading, origin: part, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss)
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: part, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss, error: whole.error, purchasedOrRestored: whole.purchasedOrRestored)
         }
       }
     )
@@ -209,7 +209,7 @@ extension PurchaseModule.State {
       get: { $0.selectedIAP },
       set: { part in 
         { whole in
-          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: part, dismiss: whole.dismiss)
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: part, dismiss: whole.dismiss, error: whole.error, purchasedOrRestored: whole.purchasedOrRestored)
         }
       }
     )
@@ -217,7 +217,23 @@ extension PurchaseModule.State {
       get: { $0.dismiss },
       set: { part in 
         { whole in
-          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: part)
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: part, error: whole.error, purchasedOrRestored: whole.purchasedOrRestored)
+        }
+      }
+    )
+    static let error = Lens<PurchaseModule.State, HashableWrapper<PurchaseModule.Error>?>(
+      get: { $0.error },
+      set: { part in 
+        { whole in
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss, error: part, purchasedOrRestored: whole.purchasedOrRestored)
+        }
+      }
+    )
+    static let purchasedOrRestored = Lens<PurchaseModule.State, Bool>(
+      get: { $0.purchasedOrRestored },
+      set: { part in 
+        { whole in
+          PurchaseModule.State.init(isLoading: whole.isLoading, origin: whole.origin, selectedIAP: whole.selectedIAP, dismiss: whole.dismiss, error: whole.error, purchasedOrRestored: part)
         }
       }
     )

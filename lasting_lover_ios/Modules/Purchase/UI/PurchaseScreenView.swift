@@ -58,7 +58,7 @@ class StarterPurchaseScreenView: UIView, PurchaseScreenViewProtocol, Snapshotabl
 	let separatorLabel = UILabel()
 	let privacyPolicyButton = UIButton()
 	
-	private let selectedIAPTapSubject = PublishSubject<IAP>()
+	private let selectedIAPTapSubject = ReplaySubject<IAP>.createUnbounded()
 	var selectedIAPTap: Observable<IAP> {
 		return selectedIAPTapSubject.asObservable()
 	}

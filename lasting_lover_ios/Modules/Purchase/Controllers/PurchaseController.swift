@@ -76,5 +76,10 @@ class PurchaseController: UIViewController {
 				self?.loadingView.isHidden = !value
 			}
 			.disposed(by: disposeBag)
+		viewModel.output.error
+			.bind { [weak self] error in
+				self?.presentError(error)
+			}
+			.disposed(by: disposeBag)
 	}
 }

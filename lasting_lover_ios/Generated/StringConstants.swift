@@ -66,6 +66,8 @@ internal enum L10n {
   internal static let purchaseThePleasureYouVeBeenWaitingFor = L10n.tr("Localizable", "purchase_The Pleasure You’ve Been Waiting For")
   /// Try free and subscribe
   internal static let purchaseTryFreeAndSubscribe = L10n.tr("Localizable", "purchase_Try free and subscribe")
+  /// Purchase is unsuccessful
+  internal static let purchaseUnsuccessful = L10n.tr("Localizable", "purchaseUnsuccessful")
   /// Series List
   internal static let seriesList = L10n.tr("Localizable", "series_list")
   /// Settings

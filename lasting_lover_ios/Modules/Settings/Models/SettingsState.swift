@@ -19,7 +19,7 @@ enum Settings {
 		
 		static func `default`() -> Settings.State {
 			return .init(
-				subscriptionActive: Current.localStorageService().isSubsctiptionActive,
+				subscriptionActive: Current.subscriptionService().subscriptionActive,
 				items: SettingsItem.allCases,
 				notificationsEnabled: false
 			)

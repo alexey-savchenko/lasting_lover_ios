@@ -22,7 +22,7 @@ class PolicyModuleCoordinator: RxBaseCoordinator<Void> {
 	
 	override func start() -> Observable<Void> {
 		
-		var controller: SettingsScreen {
+		var controller: TermsAndConditionsController {
 			switch policy {
 			case .termsOfUse:
 				return TermsAndConditionsController()
@@ -30,7 +30,7 @@ class PolicyModuleCoordinator: RxBaseCoordinator<Void> {
 				return PrivacyPolicyController()
 			}
 		}
-		controller.modalPresentationStyle = .overFullScreen
+		controller.modalPresentationStyle = .fullScreen
 		
 		presentingController.present(controller, animated: true)
 		

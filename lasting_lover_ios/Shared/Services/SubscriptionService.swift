@@ -11,9 +11,9 @@ import RxCocoa
 
 protocol SubscriptionServiceProtocol {
 	var subscriptionActive: Bool { get }
-	var currentSubscription: Subscription? { get }
+	var currentSubscription: IAP? { get }
 	var subscriptionActiveObservable: Observable<Bool> { get }
-	func setSubscriptionActive(_ product: Subscription)
+	func setSubscriptionActive(_ product: IAP)
 	func setSubscriptionActiveForDebug(_ active: Bool)
 }
 
@@ -35,14 +35,14 @@ final class SubscriptionService: SubscriptionServiceProtocol {
 		subSubject.value
 	}
 	
-	var currentSubscription: Subscription? {
+	var currentSubscription: IAP? {
 		storageService
 			.string(forKey: Constants.UserDefaults.purchasedPlanKey)
-			.flatMap(Subscription.init)
+			.flatMap(IAP.init)
 	}
 	
-	func setSubscriptionActive(_ product: Subscription) {
-		storageService.set(product, forKey: Constants.UserDefaults.purchasedPlanKey)
+	func setSubscriptionActive(_ product: IAP) {
+		storageService.set(product.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
 	}
 	
 	func setSubscriptionActiveForDebug(_ active: Bool) {

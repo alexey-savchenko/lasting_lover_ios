@@ -175,12 +175,7 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 			origin: origin
 		)
 		return coordinate(to: coordinator).map { result in
-			switch result {
-			case .purchased, .restored:
-				return true
-			case .dismissed:
-				return false
-			}
+			return result == .purchasedOrRestored
 		}
 	}
 	

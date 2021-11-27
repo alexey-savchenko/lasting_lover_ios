@@ -30,6 +30,7 @@ class PurchaseControllerViewModel {
 		let origin: Observable<PurchaseScreenOrigin>
 		let isLoading: Observable<Bool>
 		let policyTap: Observable<Policy>
+		let error: Observable<LocalizedError>
 	}
 	
 	let input: Input
@@ -52,7 +53,8 @@ class PurchaseControllerViewModel {
 			dismissTap: dismissTapSubject.asObservable(),
 			origin: state.map { $0.origin }.distinctUntilChanged(),
 			isLoading: state.map { $0.isLoading }.distinctUntilChanged(),
-			policyTap: policyTapSubject.asObservable()
+			policyTap: policyTapSubject.asObservable(),
+			error: state.map { $0.error }.filterNil().distinctUntilChanged().map { $0.value } 
 		)
 		
 		disposeBag.insert(

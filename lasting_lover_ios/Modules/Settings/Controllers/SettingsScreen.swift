@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 
 class SettingsScreen: ViewController<BackgroundImageView> {
+	
 	let navbarView = BackButtonNavbarView()
 	let titleLabel = UILabel()
 	
