@@ -46,7 +46,7 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 				navigationController.popViewController(animated: true)
 			})
 			.asObservable()
-				
+		
 				let selectedSettingsItem = viewModel.output.selectedSettingsItem.share()
 				
 				selectedSettingsItem
@@ -83,6 +83,19 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 			.debug()
 	}
 	
+	func presentPurchaseModule(
+		navigationController: UINavigationController,
+		origin: PurchaseScreenOrigin
+	) -> Observable<Bool> {
+		let coordinator = PurchaseModuleCoordinator(
+			navigationController: navigationController,
+			origin: origin
+		)
+		return coordinate(to: coordinator).map { result in
+			return result == .purchasedOrRestored
+		}
+	}
+	
 	func presentTermsAndConditions(navigationController: UINavigationController) {
 		let c = TermsAndConditionsController()
 		navigationController.pushViewController(c, animated: true)
@@ -100,6 +113,16 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 		)
 		let c = SubscriptionManagementController(viewModel: vm)
 		navigationController.pushViewController(c, animated: true)
+		
+		vm.output.showPurchaseScreen
+			.flatMap { [unowned self] _ in
+			return self.presentPurchaseModule(
+				navigationController: self.navigationController,
+				origin: .settings
+			)
+		}
+		.subscribe()
+		.disposed(by: disposeBag)
 	}
 	
 	func presentNotificationManagement(navigationController: UINavigationController) {

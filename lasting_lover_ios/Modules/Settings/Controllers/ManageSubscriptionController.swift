@@ -77,7 +77,8 @@ class SubscriptionManagementController: SettingsScreen {
 	}
 	
 	private func configure(with viewModel: SubscriptionManagementControllerViewModel) {
-		navbarView.backButton.rx.tap.bind { [unowned self] in
+		navbarView.backButton.rx.tap
+			.bind { [unowned self] in
 			self.navigationController?.popViewController(animated: true)
 		}
 		.disposed(by: disposeBag)
@@ -94,6 +95,12 @@ class SubscriptionManagementController: SettingsScreen {
 			.bind { [unowned self] value in
 				self.apply(value, to: self.button2)
 			}
+			.disposed(by: disposeBag)
+		button1.rx.tap
+			.subscribe(viewModel.input.primaryButtonTap)
+			.disposed(by: disposeBag)
+		button2.rx.tap
+			.subscribe(viewModel.input.secondaryButtonTap)
 			.disposed(by: disposeBag)
 	}
 }

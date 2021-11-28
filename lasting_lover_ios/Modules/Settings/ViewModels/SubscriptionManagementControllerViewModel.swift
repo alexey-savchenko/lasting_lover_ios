@@ -8,19 +8,25 @@
 import Foundation
 import RxSwift
 import RxUNILib
+import UNILibCore
 
 class SubscriptionManagementControllerViewModel {
 	struct Input {
+		let primaryButtonTap: AnyObserver<Void>
+		let secondaryButtonTap: AnyObserver<Void>
 		let dismissTap: AnyObserver<Void>
 	}
 	
 	private let dismissTapSubject = PublishSubject<Void>()
+	private let primaryButtonTapSubject = PublishSubject<Void>()
+	private let secondaryButtonTapSubject = PublishSubject<Void>()
 	
 	struct Output {
 		let subtitle: Observable<String>
 		let button1Config: Observable<SubscriptionManagementController.ButtonConfig>
 		let button2Config: Observable<SubscriptionManagementController.ButtonConfig>
 		let dismissTap: Observable<Void>
+		let showPurchaseScreen: Observable<Void>
 	}
 	
 	let input: Input
@@ -33,6 +39,8 @@ class SubscriptionManagementControllerViewModel {
 		dispatch: @escaping DispatchFunction<Settings.Action>
 	) {
 		self.input = Input(
+			primaryButtonTap: primaryButtonTapSubject.asObserver(),
+			secondaryButtonTap: secondaryButtonTapSubject.asObserver(),
 			dismissTap: dismissTapSubject.asObserver()
 		)
 		self.output = Output(
@@ -53,7 +61,11 @@ class SubscriptionManagementControllerViewModel {
 					.hidden :
 					.shown(title: L10n.settingsRestorePurchase)
 			},
-			dismissTap: dismissTapSubject.asObservable()
+			dismissTap: dismissTapSubject.asObservable(),
+			showPurchaseScreen: primaryButtonTapSubject
+				.withLatestFrom(state.map { $0.subscriptionActive })
+				.filter { !$0 }
+				.map(toVoid)
 		)
 	}
 }

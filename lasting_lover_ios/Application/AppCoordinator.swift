@@ -30,6 +30,9 @@ class AppCoordinator: RxBaseCoordinator<Never> {
 		
 		if !Current.localStorageService().shownOnboarding {
 			presentWelcomeModule(controller: navigationController)
+				.do(onNext: {
+					Current.localStorageService().shownOnboarding = true
+				})
 				.flatMap {
 					return self.presentMainModule(controller: self.navigationController)
 				}

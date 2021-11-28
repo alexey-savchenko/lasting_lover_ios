@@ -103,11 +103,11 @@ class WelcomeController: ViewController<BackgroundImageView> {
 					switch stage {
 						
 					case .finish:
-						self.subtitleLabel.isHidden = true
+						self.subtitleLabel.alpha = 0
 						self.titleLabel.text =  L10n.welcomeStage2Title
 						self.titleImageView.image = Asset.Images.welcomeFinishArtwork.image
 					case .prePurhcase:
-						self.subtitleLabel.isHidden = true
+						self.subtitleLabel.alpha = 0
 						self.titleLabel.text =  L10n.welcomeStage1Title
 						self.titleImageView.image = Asset.Images.welcomePrepurchaseArtwork.image
 					case .welcome:
