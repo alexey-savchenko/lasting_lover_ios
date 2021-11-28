@@ -54,12 +54,14 @@ class AuthorModuleCoordinator: RxBaseCoordinator<Void> {
 				viewModel.ouput.selectedStory
 			)
 			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
-			.flatMap { story, state -> Observable<Story> in
-//				if story.paid == 1 && !state.settingsState.subscriptionActive {
-//
-//				} else {
+			.flatMap { [unowned self] story, state -> Observable<Story> in
+				if story.paid == 1 && !state.settingsState.subscriptionActive {
+					return self.presentPurchaseModule(navigationController: self.navigationController, origin: .storyPlay)
+						.filter { $0 }
+						.map { _ in story }
+				} else {
 					return Observable.just(story)
-//				}
+				}
 			}
 			.flatMap { story in
 				self.presentPlayerModule(navigationContoller: self.navigationController, story: story)
@@ -73,6 +75,19 @@ class AuthorModuleCoordinator: RxBaseCoordinator<Void> {
 			.do(onNext: { [unowned navigationController] in
 				navigationController.popViewController(animated: true)
 		})
+	}
+	
+	func presentPurchaseModule(
+		navigationController: UINavigationController,
+		origin: PurchaseScreenOrigin
+	) -> Observable<Bool> {
+		let coordinator = PurchaseModuleCoordinator(
+			navigationController: navigationController,
+			origin: origin
+		)
+		return coordinate(to: coordinator).map { result in
+			return result == .purchasedOrRestored
+		}
 	}
 	
 	func presentPlayerModule(
