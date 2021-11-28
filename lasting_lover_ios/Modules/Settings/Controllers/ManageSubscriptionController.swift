@@ -77,6 +77,10 @@ class SubscriptionManagementController: SettingsScreen {
 	}
 	
 	private func configure(with viewModel: SubscriptionManagementControllerViewModel) {
+		navbarView.backButton.rx.tap.bind { [unowned self] in
+			self.navigationController?.popViewController(animated: true)
+		}
+		.disposed(by: disposeBag)
 		viewModel.output.subtitle
 			.map(Optional.init)
 			.subscribe(subtitleLabel.rx.text)

@@ -53,7 +53,11 @@ class StoryCellViewModel: Hashable {
 					Current.listentedItemsService().hadListened(story.id)
 				)
 				.map { subActive, hadListened in
-					return subActive ? (hadListened ? .played : .readyToPlay) : .locked
+					if story.paid == 1 {
+						return subActive ? (hadListened ? .played : .readyToPlay) : .locked
+					} else {
+						return hadListened ? .played : .readyToPlay
+					}
 				},
 			title: story.name,
 			duration: "\(Int(story.audioDuration / 60)) min"
