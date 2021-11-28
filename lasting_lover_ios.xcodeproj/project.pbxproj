@@ -61,6 +61,8 @@
 		0298E7EE275168D600F66F13 /* HyperLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7ED275168D600F66F13 /* HyperLink.swift */; };
 		0298E7F127516D7A00F66F13 /* PolicyModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */; };
 		0298E7F52752747F00F66F13 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F42752747F00F66F13 /* PurchaseService.swift */; };
+		0298E7F82753FF1C00F66F13 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F72753FF1C00F66F13 /* WelcomeController.swift */; };
+		0298E7FA2754013400F66F13 /* WelcomeModuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298E7F92754013400F66F13 /* WelcomeModuleController.swift */; };
 		029EEDFF273E8F5D005DAC05 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */; };
 		029EEE01273E9551005DAC05 /* AuthorViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */; };
 		029EEE04273E9E32005DAC05 /* AuthorModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */; };
@@ -224,6 +226,8 @@
 		0298E7ED275168D600F66F13 /* HyperLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperLink.swift; sourceTree = "<group>"; };
 		0298E7F027516D7A00F66F13 /* PolicyModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyModuleCoordinator.swift; sourceTree = "<group>"; };
 		0298E7F42752747F00F66F13 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
+		0298E7F72753FF1C00F66F13 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
+		0298E7F92754013400F66F13 /* WelcomeModuleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModuleController.swift; sourceTree = "<group>"; };
 		029EEDFE273E8F5D005DAC05 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		029EEE00273E9551005DAC05 /* AuthorViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewControllerViewModel.swift; sourceTree = "<group>"; };
 		029EEE03273E9E32005DAC05 /* AuthorModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModuleCoordinator.swift; sourceTree = "<group>"; };
@@ -547,6 +551,15 @@
 			path = Policy;
 			sourceTree = "<group>";
 		};
+		0298E7F62753FEFC00F66F13 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				0298E7F72753FF1C00F66F13 /* WelcomeController.swift */,
+				0298E7F92754013400F66F13 /* WelcomeModuleController.swift */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
 		029EEE02273E9E23005DAC05 /* Author */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,6 +658,7 @@
 		221C51C62705C7990085534E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0298E7F62753FEFC00F66F13 /* Startup */,
 				0298E7EF27516D6500F66F13 /* Policy */,
 				02195F462740278A00BD5A5D /* Series */,
 				029EEE02273E9E23005DAC05 /* Author */,
@@ -1320,6 +1334,7 @@
 				221C5248270737A40085534E /* AuthControllerViewModel.swift in Sources */,
 				0298E7EE275168D600F66F13 /* HyperLink.swift in Sources */,
 				02195F4E2740351000BD5A5D /* CenteredLayout.swift.swift in Sources */,
+				0298E7FA2754013400F66F13 /* WelcomeModuleController.swift in Sources */,
 				0298E7E62750290600F66F13 /* PurchaseScreenFactory.swift in Sources */,
 				221C51EC2705DD8B0085534E /* SplashViewController.swift in Sources */,
 				0262BB4E2705074200847ED7 /* AppDelegate.swift in Sources */,
@@ -1363,6 +1378,7 @@
 				02195F3D273FDCD400BD5A5D /* AllSeriesViewController.swift in Sources */,
 				221C51F62705E3A00085534E /* MainModuleCoordinator.swift in Sources */,
 				221C51E62705DC0C0085534E /* SignInModuleCoordinator.swift in Sources */,
+				0298E7F82753FF1C00F66F13 /* WelcomeController.swift in Sources */,
 				02195F45273FECFB00BD5A5D /* Loadable+Ext.swift in Sources */,
 				02195F4A274027F200BD5A5D /* SeriesControllerViewModel.swift in Sources */,
 				221C52522709CCC70085534E /* DiscoverViewController.swift in Sources */,

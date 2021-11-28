@@ -140,6 +140,20 @@ internal enum L10n {
   internal static let termsOfUse = L10n.tr("Localizable", "Terms of Use")
   /// Today popular?
   internal static let todaysPopular = L10n.tr("Localizable", "Todays_popular")
+  /// Enter
+  internal static let welcomeEnter = L10n.tr("Localizable", "welcome_Enter")
+  /// I'm ready
+  internal static let welcomeImReady = L10n.tr("Localizable", "welcome_im ready")
+  /// Proceed
+  internal static let welcomeProceed = L10n.tr("Localizable", "welcome_proceed")
+  /// Ready to find a lover for the night?
+  internal static let welcomeStage0Subtitle = L10n.tr("Localizable", "welcome_stage0_subtitle")
+  /// Welcome to Cherrie
+  internal static let welcomeStage0Title = L10n.tr("Localizable", "welcome_stage0_title")
+  /// Your Wildest Fantasies are Just a Click Away...
+  internal static let welcomeStage1Title = L10n.tr("Localizable", "welcome_stage1_title")
+  /// Welcome to Cherrie!
+  internal static let welcomeStage2Title = L10n.tr("Localizable", "welcome_stage2_title")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

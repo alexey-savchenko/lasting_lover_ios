@@ -12,9 +12,18 @@ protocol LocalStorageServiceProtocol: AnyObject {
   var isSubsctiptionActive: Bool { get set }
   var favoriteItems: [Story] { get set }
 	var notificationsToken: String { get set }
+	var shownOnboarding: Bool { get set }
 }
 
 class LocalStorageService: LocalStorageServiceProtocol {
+	var shownOnboarding: Bool {
+		get {
+			return Current.defaultsStoreService().getObject(forKey: #function) ?? false
+		}
+		set {
+			Current.defaultsStoreService().setObject(newValue, forKey: #function)
+		}
+	}
   var favoriteItems: [Story] {
     get {
       return Current.defaultsStoreService().getObject(forKey: #function) ?? []

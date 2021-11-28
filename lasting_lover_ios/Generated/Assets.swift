@@ -76,6 +76,9 @@ internal enum Asset {
     internal static let storyCellPlayed = ImageAsset(name: "storyCellPlayed")
     internal static let upload = ImageAsset(name: "upload")
     internal static let user = ImageAsset(name: "user")
+    internal static let welcomeFinishArtwork = ImageAsset(name: "welcome_finish_artwork")
+    internal static let welcomePrepurchaseArtwork = ImageAsset(name: "welcome_prepurchase_artwork")
+    internal static let welcomeWelcomeArtwork = ImageAsset(name: "welcome_welcome_artwork")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
