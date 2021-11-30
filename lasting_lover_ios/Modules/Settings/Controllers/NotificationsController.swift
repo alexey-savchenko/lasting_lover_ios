@@ -81,10 +81,11 @@ class NotificationsController: SettingsScreen {
 		hiddenButton.rx.tap
 			.subscribe(viewModel.input.switchTap)
 			.disposed(by: disposeBag)
-		navbarView.backButton.rx.tap.bind { [unowned self] in
-			self.navigationController?.popViewController(animated: true)
-		}
-		.disposed(by: disposeBag)
+		navbarView.backButton.rx.tap
+			.bind { [unowned self] in
+				self.navigationController?.popViewController(animated: true)
+			}
+			.disposed(by: disposeBag)
 	}
 }
 
@@ -94,7 +95,9 @@ extension NotificationsController: Snapshotable {
 			state: .just(Settings.State(
 				subscriptionActive: false,
 				items: [],
-				notificationsEnabled: false
+				notificationsEnabled: false,
+				isLoading: false,
+				errors: nil
 			)),
 			dispatch: { _ in  }
 		)

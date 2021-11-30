@@ -160,6 +160,18 @@ extension Settings.Action {
             tryGet: { if case .openAppSettings = $0 { return () } else { return nil } },
             inject: { .openAppSettings })
 
+        internal static let restorePurchase = Prism<Settings.Action, ()>(
+            tryGet: { if case .restorePurchase = $0 { return () } else { return nil } },
+            inject: { .restorePurchase })
+
+        internal static let setIsLoading = Prism<Settings.Action,Bool>(
+            tryGet: { if case .setIsLoading(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setIsLoading(value:x1) })
+
+        internal static let setError = Prism<Settings.Action,Settings.Error>(
+            tryGet: { if case .setError(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .setError(value:x1) })
+
     }
 }
 

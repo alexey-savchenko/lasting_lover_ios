@@ -19,14 +19,14 @@ class MockPurchaseService: PurchaseServiceProtocol {
 			obs.onNext(iap)
 			return Disposables.create()
 		}
-		.delay(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+		.debounce(.seconds(3), scheduler: MainScheduler.instance)
 	}
 	
 	func restore() -> Observable<IAP?> {
 		return Observable.create { obs in
-			obs.onNext(.cherrie_12_month_99_99)
+			obs.onNext(nil)
 			return Disposables.create()
 		}
-		.delay(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+		.debounce(.seconds(3), scheduler: MainScheduler.instance)
 	}
 }

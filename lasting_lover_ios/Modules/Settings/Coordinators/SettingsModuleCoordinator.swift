@@ -114,15 +114,25 @@ class SettingsModuleCoordinator: RxBaseCoordinator<Void> {
 		let c = SubscriptionManagementController(viewModel: vm)
 		navigationController.pushViewController(c, animated: true)
 		
+		vm.output.showSubManageScreen
+			.bind {
+				if let url = URL(string: "itms-apps://apps.apple.com/account/subscriptions") {
+					if UIApplication.shared.canOpenURL(url) {
+						UIApplication.shared.open(url, options: [:])
+					}
+				}
+			}
+			.disposed(by: disposeBag)
+		
 		vm.output.showPurchaseScreen
 			.flatMap { [unowned self] _ in
-			return self.presentPurchaseModule(
-				navigationController: self.navigationController,
-				origin: .settings
-			)
-		}
-		.subscribe()
-		.disposed(by: disposeBag)
+				return self.presentPurchaseModule(
+					navigationController: self.navigationController,
+					origin: .settings
+				)
+			}
+			.subscribe()
+			.disposed(by: disposeBag)
 	}
 	
 	func presentNotificationManagement(navigationController: UINavigationController) {

@@ -62,6 +62,7 @@
 "month_plural" = "months";
 "purchase_popular" = "Popular";
 "Terms of Use" = "Terms of Use";
+"noPurchasesToRestore" = "No purchases to restore";
 "purchaseUnsuccessful" = "Purchase is unsuccessful";
 "welcome_proceed" = "Proceed";
 "welcome_im ready" = "I'm ready";

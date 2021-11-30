@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreMedia
 
 class SubscriptionManagementController: SettingsScreen {
 	
@@ -20,6 +21,8 @@ class SubscriptionManagementController: SettingsScreen {
 	let button2 = Button(style: .secondary, title: L10n.settingsRestorePurchase)
 	
 	let viewModel: SubscriptionManagementControllerViewModel
+	
+	let loaderView = FullscreenLoadingView()
 	
 	
 	init(viewModel: SubscriptionManagementControllerViewModel) {
@@ -43,7 +46,7 @@ class SubscriptionManagementController: SettingsScreen {
 		titleLabel.text = L10n.settingsManageSubscription
 		subtitleLabel.text = L10n.settingsManageSubscriptionUnsubsribedSubtitle
 		
-		[subtitleLabel, buttonsStackView].forEach(view.addSubview)
+		[subtitleLabel, buttonsStackView, loaderView].forEach(view.addSubview)
 		subtitleLabel.textColor = .white.withAlphaComponent(0.5)
 		subtitleLabel.font = FontFamily.Nunito.regular.font(size: 15)
 		subtitleLabel.numberOfLines = 0
@@ -64,6 +67,10 @@ class SubscriptionManagementController: SettingsScreen {
 			}
 			buttonsStackView.addArrangedSubview(b)
 		}
+		
+		loaderView.snp.makeConstraints { make in
+			make.edges.equalToSuperview()
+		}
 	}
 	
 	private func apply(_ cfg: ButtonConfig, to button: Button) {
@@ -82,6 +89,16 @@ class SubscriptionManagementController: SettingsScreen {
 			self.navigationController?.popViewController(animated: true)
 		}
 		.disposed(by: disposeBag)
+		viewModel.output.error
+			.bind { [unowned self] error in
+				self.presentError(error)
+			}
+			.disposed(by: disposeBag)
+		viewModel.output.isLoading
+			.bind { [unowned self] value in
+				self.loaderView.isHidden = !value
+			}
+			.disposed(by: disposeBag)
 		viewModel.output.subtitle
 			.map(Optional.init)
 			.subscribe(subtitleLabel.rx.text)
@@ -112,7 +129,9 @@ extension SubscriptionManagementController: Snapshotable {
 				Settings.State(
 					subscriptionActive: true,
 					items: SettingsItem.allCases,
-					notificationsEnabled: false
+					notificationsEnabled: false,
+					isLoading: false,
+					errors: nil
 				)
 			),
 			dispatch: { _ in }

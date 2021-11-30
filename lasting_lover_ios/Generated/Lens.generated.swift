@@ -245,7 +245,7 @@ extension Settings.State {
       get: { $0.subscriptionActive },
       set: { part in 
         { whole in
-          Settings.State.init(subscriptionActive: part, items: whole.items, notificationsEnabled: whole.notificationsEnabled)
+          Settings.State.init(subscriptionActive: part, items: whole.items, notificationsEnabled: whole.notificationsEnabled, isLoading: whole.isLoading, errors: whole.errors)
         }
       }
     )
@@ -253,7 +253,7 @@ extension Settings.State {
       get: { $0.items },
       set: { part in 
         { whole in
-          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: part, notificationsEnabled: whole.notificationsEnabled)
+          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: part, notificationsEnabled: whole.notificationsEnabled, isLoading: whole.isLoading, errors: whole.errors)
         }
       }
     )
@@ -261,7 +261,23 @@ extension Settings.State {
       get: { $0.notificationsEnabled },
       set: { part in 
         { whole in
-          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: whole.items, notificationsEnabled: part)
+          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: whole.items, notificationsEnabled: part, isLoading: whole.isLoading, errors: whole.errors)
+        }
+      }
+    )
+    static let isLoading = Lens<Settings.State, Bool>(
+      get: { $0.isLoading },
+      set: { part in 
+        { whole in
+          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: whole.items, notificationsEnabled: whole.notificationsEnabled, isLoading: part, errors: whole.errors)
+        }
+      }
+    )
+    static let errors = Lens<Settings.State, HashableWrapper<Settings.Error>?>(
+      get: { $0.errors },
+      set: { part in 
+        { whole in
+          Settings.State.init(subscriptionActive: whole.subscriptionActive, items: whole.items, notificationsEnabled: whole.notificationsEnabled, isLoading: whole.isLoading, errors: part)
         }
       }
     )

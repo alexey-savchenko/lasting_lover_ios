@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxUNILib
+import UIKit
 import UNILibCore
 
 class SubscriptionManagementControllerViewModel {
@@ -27,6 +28,9 @@ class SubscriptionManagementControllerViewModel {
 		let button2Config: Observable<SubscriptionManagementController.ButtonConfig>
 		let dismissTap: Observable<Void>
 		let showPurchaseScreen: Observable<Void>
+		let showSubManageScreen: Observable<Void>
+		let isLoading: Observable<Bool>
+		let error: Observable<LocalizedError>
 	}
 	
 	let input: Input
@@ -51,21 +55,39 @@ class SubscriptionManagementControllerViewModel {
 					L10n.settingsManageSubscriptionSubsribedSubtitle :
 					L10n.settingsManageSubscriptionUnsubsribedSubtitle
 				},
-			button1Config: state.map { state -> SubscriptionManagementController.ButtonConfig in
-				return state.subscriptionActive ?
-					.shown(title: L10n.settingsCancelSubscription) :
-					.shown(title: L10n.settingsSubscribe)
-			},
-			button2Config: state.map { state -> SubscriptionManagementController.ButtonConfig in
-				return state.subscriptionActive ?
-					.hidden :
-					.shown(title: L10n.settingsRestorePurchase)
-			},
+			button1Config: state.map { $0.subscriptionActive }.distinctUntilChanged()
+				.debug()
+				.map { state -> SubscriptionManagementController.ButtonConfig in
+					return state ?
+						.shown(title: L10n.settingsCancelSubscription) :
+						.shown(title: L10n.settingsSubscribe)
+				},
+			button2Config: state.map { $0.subscriptionActive }.distinctUntilChanged()
+				.debug()
+				.map { state -> SubscriptionManagementController.ButtonConfig in
+					return state ?
+						.hidden :
+						.shown(title: L10n.settingsRestorePurchase)
+				},
 			dismissTap: dismissTapSubject.asObservable(),
 			showPurchaseScreen: primaryButtonTapSubject
 				.withLatestFrom(state.map { $0.subscriptionActive })
 				.filter { !$0 }
-				.map(toVoid)
+				.map(toVoid),
+			showSubManageScreen: primaryButtonTapSubject
+				.withLatestFrom(state.map { $0.subscriptionActive })
+				.filter { $0 }
+				.map(toVoid),
+			isLoading: state.map { $0.isLoading },
+			error: state.map { $0.errors }.filterNil().distinctUntilChanged().map { $0.value } 
 		)
+		
+		secondaryButtonTapSubject
+			.withLatestFrom(state.map { $0.subscriptionActive })
+			.filter { !$0 }
+			.bind { _ in
+				dispatch(.restorePurchase)
+			}
+			.disposed(by: disposeBag)
 	}
 }

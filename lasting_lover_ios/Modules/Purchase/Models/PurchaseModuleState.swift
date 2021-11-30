@@ -14,6 +14,16 @@ enum PurchaseModule {
 	
 	enum Error: LocalizedError {
 		case purchaseUnsuccessful
+		case noPurchasesToRestore
+		
+		var noPurchasesToRestore: String? {
+			switch self {
+			case .purchaseUnsuccessful:
+				return L10n.purchaseUnsuccessful
+			case .noPurchasesToRestore:
+				return L10n.noPurchasesToRestore
+			}
+		}
 	}
 	
 	/// sourcery: lens
@@ -65,7 +75,22 @@ enum PurchaseModule {
 							d?.dispose()
 						})
 				case .restore:
-					next(action)
+					dispatch(.setIsLoading(value: true))
+					var d: Disposable?
+					d = Current.purchaseService()
+						.restore()
+						.subscribe(onNext: { value in
+							dispatch(.setIsLoading(value: false))
+							if let value = value {
+								Current.subscriptionService().setSubscriptionActive(value)
+								appStore.dispatch(.settingsAction(action: .setSubscriptionActive(value: true)))
+								dispatch(.successfulPurchaseOrRestore)
+							} else {
+								dispatch(.setError(value: .noPurchasesToRestore))
+							}
+							
+							d?.dispose()
+						})
 				case .setError:
 					next(action)
 				case .successfulPurchaseOrRestore:

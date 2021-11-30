@@ -52,6 +52,8 @@ internal enum L10n {
   internal static let month = L10n.tr("Localizable", "month")
   /// months
   internal static let monthPlural = L10n.tr("Localizable", "month_plural")
+  /// No purchases to restore
+  internal static let noPurchasesToRestore = L10n.tr("Localizable", "noPurchasesToRestore")
   /// Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. Lorem ipsum dolor sit amet, consectetur adipiscing elit elit more. 
   internal static let privacyPolicyText = L10n.tr("Localizable", "privacy policy text")
   /// 100+ stories with new releases every week for you
