@@ -35,8 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
 	) {
 		let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-		print(token)
+		print("Push notification token - \(token)")
 		Current.localStorageService().notificationsToken = token
+	}
+	
+	func application(
+		_ application: UIApplication,
+		didFailToRegisterForRemoteNotificationsWithError error: Error
+	) {
+		print(#function + " \(error.localizedDescription)")
 	}
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {

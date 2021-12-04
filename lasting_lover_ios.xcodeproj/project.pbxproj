@@ -170,6 +170,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02102274275B77E0003F506D /* lasting_lover_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lasting_lover_ios.entitlements; sourceTree = "<group>"; };
 		02195F3C273FDCD400BD5A5D /* AllSeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesViewController.swift; sourceTree = "<group>"; };
 		02195F3E273FE65E00BD5A5D /* AllSeriesControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesControllerViewModel.swift; sourceTree = "<group>"; };
 		02195F40273FE7FA00BD5A5D /* SeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCell.swift; sourceTree = "<group>"; };
@@ -418,6 +419,7 @@
 		0262BB4C2705074200847ED7 /* lasting_lover_ios */ = {
 			isa = PBXGroup;
 			children = (
+				02102274275B77E0003F506D /* lasting_lover_ios.entitlements */,
 				0262BB662705083200847ED7 /* Application */,
 				221C51C62705C7990085534E /* Modules */,
 				221C51C02705C7240085534E /* Resources */,
@@ -1531,6 +1533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = lasting_lover_ios/lasting_lover_ios.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4X554LFLG8;
@@ -1554,6 +1557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = lasting_lover_ios/lasting_lover_ios.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4X554LFLG8;

@@ -130,12 +130,14 @@ class MainModuleViewController: UIViewController {
     self.toolbar.tapWithIndex
       .subscribe(viewModel.input.selectedTabWithIndex)
       .disposed(by: disposeBag)
-
-    discoverViewController.navbar.rightButton.rx.tap
-      .subscribe(viewModel.input.settingsButtonTap)
-      .disposed(by: disposeBag)
-    sleepViewController.navbar.rightButton.rx.tap
-      .subscribe(viewModel.input.settingsButtonTap)
-      .disposed(by: disposeBag)
+		
+		Observable
+			.merge(
+				discoverViewController.navbar.rightButton.rx.tap.asObservable(),
+				sleepViewController.navbar.rightButton.rx.tap.asObservable(),
+				favoritesViewController.navbar.rightButton.rx.tap.asObservable()
+			)
+			.subscribe(viewModel.input.settingsButtonTap)
+			.disposed(by: disposeBag)
   }
 }
