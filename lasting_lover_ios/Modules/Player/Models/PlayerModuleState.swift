@@ -65,9 +65,20 @@ enum Player {
         case .fwdSeek:
           Current.playerService().seekForward(offset: 15)
           next(action)
-        case .setPlaybackProgress:
+        case .setPlaybackProgress(let value):
           guard !Current.playerService().seeking else { return }
-          next(action)
+					
+					guard !value.isNaN, let state = getState() else { return }
+					next(action)
+					
+					if !Current.listentedItemsService().hadListened(state.item.id) {
+						let clamped = value.clamped(min: 0, max: 1)
+						let playbackTime = Double(state.item.audioDuration) * value
+						if playbackTime >= 60 {
+							Current.listentedItemsService().setListened(state.item.id)
+						}
+					}
+					
         case .seekToProgress(let value):
           Current.playerService().setPlaybackProgress(value)
           next(action)
@@ -100,7 +111,7 @@ enum Player {
 				case .initializePlayerWithItem:
 					guard let state = getState() else { return }
 					Current.playerService().setItem(state.item)
-					Current.listentedItemsService().setListened(state.item.id)
+					
           dispatch(.playTap)
         }
       }

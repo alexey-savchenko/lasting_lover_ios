@@ -10,6 +10,7 @@ import RxSwift
 
 protocol ListenedItemsServiceProtocol {
 	func hadListened(_ audioitemID: Int) -> Observable<Bool>
+	func hadListened(_ audioitemID: Int) -> Bool
 	func setListened(_ audioitemID: Int)
 }
 
@@ -27,6 +28,10 @@ class ListenedItemsService: ListenedItemsServiceProtocol {
 	
 	func hadListened(_ audioitemID: Int) -> Observable<Bool> {
 		return allListenedIDs.map { $0.contains(audioitemID) }
+	}
+	
+	func hadListened(_ audioitemID: Int) -> Bool {
+		return allListenedIDsSync.contains(audioitemID)
 	}
 	
 	func setListened(_ audioitemID: Int) {
