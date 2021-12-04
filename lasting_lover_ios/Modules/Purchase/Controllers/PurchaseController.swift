@@ -24,17 +24,11 @@ class PurchaseController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	var _view: PurchaseScreenViewProtocol {
-		return self.view as! PurchaseScreenViewProtocol
-	}
+	var _view: PurchaseScreenViewProtocol?
 	
-	override func loadView() {
-		viewModel.output.origin
-			.bind { [unowned self] value in
-				self.view = Current.purchaseScreenFactory().make(from: value)
-			}
-			.disposed(by: disposeBag)
-	}
+//	override func loadView() {
+//
+//	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -56,21 +50,34 @@ class PurchaseController: UIViewController {
 	}
 	
 	private func configure(with viewModel: PurchaseControllerViewModel) {
-		_view.dismissTap
-			.subscribe(viewModel.input.dismissTap)
+		viewModel.output.origin
+			.bind { [unowned self] value in
+				let view = Current.purchaseScreenFactory().make(from: value)
+				self.view.addSubview(view)
+				self._view = view
+				self.view.sendSubviewToBack(view)
+				view.snp.makeConstraints { make in
+					make.edges.equalToSuperview()
+				}
+				
+				view.dismissTap
+					.subscribe(viewModel.input.dismissTap)
+					.disposed(by: self.disposeBag)
+				view.purchaseTap
+					.subscribe(viewModel.input.purchaseTap)
+					.disposed(by: self.disposeBag)
+				view.restoreTap
+					.subscribe(viewModel.input.restoreTap)
+					.disposed(by: self.disposeBag)
+				view.selectedIAPTap
+					.subscribe(viewModel.input.selectedIAP)
+					.disposed(by: self.disposeBag)
+				view.policyTap
+					.subscribe(viewModel.input.policyTap)
+					.disposed(by: self.disposeBag)
+			}
 			.disposed(by: disposeBag)
-		_view.purchaseTap
-			.subscribe(viewModel.input.purchaseTap)
-			.disposed(by: disposeBag)
-		_view.restoreTap
-			.subscribe(viewModel.input.restoreTap)
-			.disposed(by: disposeBag)
-		_view.selectedIAPTap
-			.subscribe(viewModel.input.selectedIAP)
-			.disposed(by: disposeBag)
-		_view.policyTap
-			.subscribe(viewModel.input.policyTap)
-			.disposed(by: disposeBag)
+
 		viewModel.output.isLoading
 			.bind { [weak self] value in
 				self?.loadingView.isHidden = !value

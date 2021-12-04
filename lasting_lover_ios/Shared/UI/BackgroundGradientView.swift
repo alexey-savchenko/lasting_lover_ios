@@ -49,6 +49,10 @@ class ViewController<BackgroundView: UIImageView>: UIViewController {
     }
   }
 	
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+			return .lightContent
+	}
+	
 	deinit {
 		print("\(self) deinit")
 	}
