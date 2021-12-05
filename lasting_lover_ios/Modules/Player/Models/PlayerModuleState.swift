@@ -94,11 +94,7 @@ enum Player {
           next(action)
         case .favoriteTap:
           guard let state = getState() else { return }
-//          if state.isFavourite {
-//            Current.favoritesService().removeFavorite(state.item)
-//          } else {
-					//            Current.favoritesService().addFavorite(state.item)
-					//          }
+
 					appStore.dispatch(
 						.mainModuleAction(
 							action: .favoritesAction(
@@ -111,8 +107,9 @@ enum Player {
 				case .initializePlayerWithItem:
 					guard let state = getState() else { return }
 					Current.playerService().setItem(state.item)
-					
           dispatch(.playTap)
+					
+					try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback, options: .duckOthers)
         }
       }
     }
