@@ -24,7 +24,7 @@ class FavoritesViewController: ViewController<BackgroundImageView> {
 		layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 68)
 		layout.minimumLineSpacing = 16
 		let cv = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
-		cv.registerClass(StoryCell.self)
+		cv.registerClass(SwipeableStoryCell.self)
 		return cv
 	}()
 
@@ -83,7 +83,7 @@ class FavoritesViewController: ViewController<BackgroundImageView> {
 	
 	func datasource() -> RxCollectionViewSectionedReloadDataSource<Section<StoryCellViewModel>> {
 		return RxCollectionViewSectionedReloadDataSource<Section<StoryCellViewModel>> { ds, cv, indexPath, item in
-			let cell: StoryCell = cv.dequeueReusableCell(forIndexPath: indexPath)
+			let cell: SwipeableStoryCell = cv.dequeueReusableCell(forIndexPath: indexPath)
 			cell.configure(with: item)
 			return cell
 		}

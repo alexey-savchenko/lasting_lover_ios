@@ -22,13 +22,26 @@ class FavoritesControllerViewModel {
 		let contents: Observable<[Section<StoryCellViewModel>]>
 	}
 	
+	let viewModelsSubject = ReplaySubject<[StoryCellViewModel]>.createUnbounded()
+	
 	let input: Input
 	let output: Output
+	
+	private let disposeBag = DisposeBag()
 	
 	init(
 		state: Observable<FavoritesTab.State>,
 		dispatch: @escaping DispatchFunction<FavoritesTab.Action>
 	) {
+		
+		state
+			.map { state in
+				return state.items
+					.map(StoryCellViewModel.init)
+			}
+			.subscribe(viewModelsSubject)
+			.disposed(by: disposeBag)
+		
 		self.input = Input(
 			selectedStoryAtIndex: selectedStoryAtIndexSubject.asObserver()
 		)
@@ -38,12 +51,16 @@ class FavoritesControllerViewModel {
 					return state.items[index.item]
 				}
 			}),
-			contents: state.map { state in
-				return state.items
-					.map(StoryCellViewModel.init)
-			}
+			contents: viewModelsSubject
 				.map(Section.init)
 				.map(toArray)
 		)
+	
+		viewModelsSubject
+			.flatMap { vms in return Observable.merge(vms.map { $0.output.deleteItem }) }
+			.bind { story in
+				dispatch(.removeItem(item: story))
+			}
+			.disposed(by: disposeBag)
 	}
 }
