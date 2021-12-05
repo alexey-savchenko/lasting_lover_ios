@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 import RxSwift
+import MediaPlayer
 
 protocol AudioPlayerServiceProtocol {
   func play()
@@ -87,6 +88,50 @@ class AudioPlayerService: AudioPlayerServiceProtocol {
 				self.setPlaybackProgress(0)
 			}
     player.replaceCurrentItem(with: plItem)
+		
+		try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, policy: .longFormAudio)
+		try? AVAudioSession.sharedInstance().setActive(true, options: [])
+		
+		DispatchQueue.global().async {
+			let infoCenter = MPNowPlayingInfoCenter.default()
+			
+			var nowPlayingInfo = [String : Any]()
+			nowPlayingInfo[MPMediaItemPropertyTitle] = item.title
+			nowPlayingInfo[MPMediaItemPropertyArtist] = item.author.name
+			nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.player.currentTime())
+			nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = plItem.duration.seconds
+			nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player.rate
+			let image: UIImage = Current.imageLoadingService().image(item.artworkURL)
+			nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+				return image
+			}
+
+			infoCenter.nowPlayingInfo = nowPlayingInfo
+		}
+		
+		let commandCenter = MPRemoteCommandCenter.shared()
+		
+		commandCenter.playCommand.isEnabled = true
+		commandCenter.playCommand.addTarget {  event in
+			if self.player.rate == 0 {
+				Current.playerService().play()
+				return .success
+			} else {
+				return .commandFailed
+			}
+		}
+
+		// Add handler for Pause Command
+		commandCenter.pauseCommand.isEnabled = true
+		commandCenter.pauseCommand.addTarget {  event in
+			if self.player.rate != 0 {
+				Current.playerService().pause()
+				return .success
+			} else {
+				return .commandFailed
+			}
+		}
+		
   }
   
   func setPlaybackProgress(_ value: Double) {
