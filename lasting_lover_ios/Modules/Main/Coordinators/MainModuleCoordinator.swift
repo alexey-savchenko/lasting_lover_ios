@@ -138,7 +138,8 @@ class MainModuleCoordinator: RxBaseCoordinator<Void> {
 				presentedAllSleepStories.compactMap { $0.right },
 				presentedSleepCategoryStories.compactMap { $0.right },
 				selectedFeaturedSleepStory,
-				selectedFeaturedDiscoverStory
+				selectedFeaturedDiscoverStory,
+				mainController.favoritesViewController.viewModel.output.seleсtedStory
 			)
 			.withLatestFrom(appStore.stateObservable) { ($0, $1) }
 			.flatMap { story, state -> Observable<Story> in
