@@ -16,7 +16,7 @@ enum PurchaseModule {
 		case purchaseUnsuccessful
 		case noPurchasesToRestore
 		
-		var noPurchasesToRestore: String? {
+		var errorDescription: String? {
 			switch self {
 			case .purchaseUnsuccessful:
 				return L10n.purchaseUnsuccessful

@@ -15,6 +15,7 @@ class StarterPurchaseScreenView: UIView, PurchaseScreenViewProtocol, Snapshotabl
 	private let backgroundImageView = BackgroundImageView(frame: .zero)
 	private let topArtworkImageView = UIImageView(image: Asset.Images.starterPurchaseScreenTopArtwork.image)
 	private let dismissButton = UIButton()
+	private let restoreButton = UIButton()
 	
 	private let contentStackView = UIStackView()
 	
@@ -105,6 +106,7 @@ class StarterPurchaseScreenView: UIView, PurchaseScreenViewProtocol, Snapshotabl
 			backgroundImageView,
 			topArtworkImageView,
 			dismissButton,
+			restoreButton,
 			contentStackView,
 			option2ViewAccesoryImageView,
 			option2ViewAccesoryLabel
@@ -126,6 +128,18 @@ class StarterPurchaseScreenView: UIView, PurchaseScreenViewProtocol, Snapshotabl
 			make.top.equalTo(safeAreaLayoutGuide).offset(12)
 			make.size.equalTo(44)
 		}
+		
+		restoreButton.snp.makeConstraints { make in
+			make.trailing.equalToSuperview().offset(-12)
+			make.centerY.equalTo(dismissButton)
+		}
+		restoreButton.setAttributedTitle(NSAttributedString(
+			string: L10n.settingsRestorePurchase,
+			attributes: [
+				.foregroundColor: Asset.Colors.white.color,
+				.font: FontFamily.Nunito.regular.font(size: 14)
+			]
+		), for: .normal)
 		
 		contentStackView.axis = .vertical
 		contentStackView.alignment = .center
@@ -299,6 +313,9 @@ class StarterPurchaseScreenView: UIView, PurchaseScreenViewProtocol, Snapshotabl
 	}
 	
 	private func bind() {
+		restoreButton.rx.tap
+			.subscribe(restoreTapSubject)
+			.disposed(by: disposeBag)
 		purchaseButton.rx.tap
 			.subscribe(purchaseTapSubject)
 			.disposed(by: disposeBag)

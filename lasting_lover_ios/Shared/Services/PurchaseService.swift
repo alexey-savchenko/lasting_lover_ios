@@ -12,9 +12,29 @@ import SwiftyStoreKit
 protocol PurchaseServiceProtocol {
 	func purchase(_ iap: IAP) -> Observable<IAP?>
 	func restore(forceRefresh: Bool) -> Observable<IAP?>
+	func completeTransactions()
 }
 
 final class PurchaseService: PurchaseServiceProtocol {
+	
+	func completeTransactions() {
+		SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+				for purchase in purchases {
+						switch purchase.transaction.transactionState {
+						case .purchased, .restored:
+								if purchase.needsFinishTransaction {
+										// Deliver content from server, then:
+										SwiftyStoreKit.finishTransaction(purchase.transaction)
+								}
+								// Unlock content
+						case .failed, .purchasing, .deferred:
+								break // do nothing
+						@unknown default:
+							break // do nothing
+						}
+				}
+		}
+	}
 	
 	func purchase(_ iap: IAP) -> Observable<IAP?> {
 		return Observable.create { obs in
@@ -88,6 +108,10 @@ final class PurchaseService: PurchaseServiceProtocol {
 }
 
 class MockPurchaseService: PurchaseServiceProtocol {
+	func completeTransactions() {
+		
+	}
+	
 	func purchase(_ iap: IAP) -> Observable<IAP?> {
 		return Observable.create { obs in
 			obs.onNext(iap)

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 		appCoordinator = AppCoordinator(window: window!)
 		appCoordinator.start().subscribe().disposed(by: disposeBag)
-
+		appStore.dispatch(.didFinishLaunchingWithOptions)
 //		let c = SnapshotController<StarterPurchaseScreenView>()
 //    window?.rootViewController = c
 //    window?.makeKeyAndVisible()

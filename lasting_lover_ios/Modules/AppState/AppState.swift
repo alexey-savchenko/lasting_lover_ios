@@ -10,6 +10,7 @@ import UNILibCore
 import RxUNILib
 import UserNotifications
 import RxSwift
+import SwiftyStoreKit
 
 typealias Trigger = IdentifiedBox<_Void>?
 
@@ -70,13 +71,20 @@ enum App {
 			{ action in
 				switch action {
 				case .didFinishLaunchingWithOptions:
-					var d: Disposable?
-					d = Current.purchaseService()
-						.restore(forceRefresh: false)
-						.subscribe(onNext: { value in
-							Current.subscriptionService().setSubscriptionActive(value)
-							d?.dispose()
-						})
+					
+					if Current.subscriptionService().subscriptionActive {
+						var d: Disposable?
+						
+						d = Current.purchaseService()
+							.restore(forceRefresh: false)
+							.subscribe(onNext: { value in
+								Current.subscriptionService().setSubscriptionActive(value)
+								d?.dispose()
+							})
+					}
+					
+					Current.purchaseService().completeTransactions()
+					
 				case .applicationDidBecomeActive:
 					UNUserNotificationCenter.current().getNotificationSettings { settings in
 						let granted = settings.authorizationStatus == .authorized

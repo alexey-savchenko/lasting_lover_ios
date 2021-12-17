@@ -17,7 +17,10 @@ struct Environment {
 	var subscriptionService: () -> SubscriptionServiceProtocol = { SubscriptionService.shared }
 	var listentedItemsService: () -> ListenedItemsServiceProtocol = { ListenedItemsService() }
 	var purchaseScreenFactory: () -> PuchaseScreenFactoryProtocol = { PuchaseScreenFactory() }
-	var purchaseService: () -> PurchaseServiceProtocol = { MockPurchaseService() }
+	var purchaseService: () -> PurchaseServiceProtocol = {
+		PurchaseService()
+//		MockPurchaseService()
+	}
 }
 
 #if DEBUG
