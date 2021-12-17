@@ -21,4 +21,8 @@ enum Constants {
 		static let purchasedPlanKey = "purchasedPlanKey"
 		static let cachedAudioDurations = "cachedAudioDurations"
 	}
+	
+	enum Other {
+		static let sharedSecret = "bf93d2b29f0b4034be46df8a4541a084"
+	}
 }

@@ -9,6 +9,7 @@ import Foundation
 import UNILibCore
 import RxUNILib
 import UserNotifications
+import RxSwift
 
 typealias Trigger = IdentifiedBox<_Void>?
 
@@ -49,6 +50,7 @@ enum App {
 		case settingsAction(action: Settings.Action)
 		case requestNotificationAccess
 		case applicationDidBecomeActive
+		case didFinishLaunchingWithOptions
 	}
 
 	static let reducer = MainModule.reducer
@@ -67,6 +69,14 @@ enum App {
 		{ next in
 			{ action in
 				switch action {
+				case .didFinishLaunchingWithOptions:
+					var d: Disposable?
+					d = Current.purchaseService()
+						.restore(forceRefresh: false)
+						.subscribe(onNext: { value in
+							Current.subscriptionService().setSubscriptionActive(value)
+							d?.dispose()
+						})
 				case .applicationDidBecomeActive:
 					UNUserNotificationCenter.current().getNotificationSettings { settings in
 						let granted = settings.authorizationStatus == .authorized
@@ -92,7 +102,6 @@ enum App {
 							App.Action.settingsAction <*> next
 						)(action)
 				}
-//				next(action)
 			}
 		}
 	}

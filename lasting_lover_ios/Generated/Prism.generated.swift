@@ -24,6 +24,10 @@ extension App.Action {
             tryGet: { if case .applicationDidBecomeActive = $0 { return () } else { return nil } },
             inject: { .applicationDidBecomeActive })
 
+        internal static let didFinishLaunchingWithOptions = Prism<App.Action, ()>(
+            tryGet: { if case .didFinishLaunchingWithOptions = $0 { return () } else { return nil } },
+            inject: { .didFinishLaunchingWithOptions })
+
     }
 }
 

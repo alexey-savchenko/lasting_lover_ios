@@ -13,7 +13,7 @@ protocol SubscriptionServiceProtocol {
 	var subscriptionActive: Bool { get }
 	var currentSubscription: IAP? { get }
 	var subscriptionActiveObservable: Observable<Bool> { get }
-	func setSubscriptionActive(_ product: IAP)
+	func setSubscriptionActive(_ product: IAP?)
 	func setSubscriptionActiveForDebug(_ active: Bool)
 }
 
@@ -45,8 +45,8 @@ final class SubscriptionService: SubscriptionServiceProtocol {
 			.flatMap(IAP.init)
 	}
 	
-	func setSubscriptionActive(_ product: IAP) {
-		storageService.setObject(product.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
+	func setSubscriptionActive(_ product: IAP?) {
+		storageService.setObject(product?.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
 //			.set(product.rawValue, forKey: Constants.UserDefaults.purchasedPlanKey)
 	}
 	

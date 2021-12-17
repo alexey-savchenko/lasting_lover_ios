@@ -10,7 +10,7 @@ import RxSwift
 
 protocol DefaultsStoreServiceProtocol {
   func set(_ value: Any?, forKey defaultName: String)
-  func setObject<T: Codable>(_ value: T, forKey defaultName: String)
+  func setObject<T: Codable>(_ value: T?, forKey defaultName: String)
   func getObject<T: Codable>(forKey defaultName: String) -> T?
   func object(forKey defaultName: String) -> Any?
 
@@ -28,9 +28,12 @@ protocol DefaultsStoreServiceProtocol {
 }
 
 extension UserDefaults: DefaultsStoreServiceProtocol {
-  func setObject<T>(_ value: T, forKey defaultName: String) where T: Decodable, T: Encodable {
-    let data = String(data: try! JSONEncoder().encode(value), encoding: .utf8)!
-    set(data, forKey: defaultName)
+  func setObject<T>(_ value: T?, forKey defaultName: String) where T: Decodable, T: Encodable {
+		let string = value
+			.flatMap { try? JSONEncoder().encode($0) }
+			.flatMap { String.init(data: $0, encoding: .utf8) }
+//    let data = String(data: try! JSONEncoder().encode(value), encoding: .utf8)!
+    set(string, forKey: defaultName)
   }
 
   func getObject<T>(forKey defaultName: String) -> T? where T: Decodable, T: Encodable {

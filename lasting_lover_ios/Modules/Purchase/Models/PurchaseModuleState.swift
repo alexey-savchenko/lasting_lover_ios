@@ -78,7 +78,7 @@ enum PurchaseModule {
 					dispatch(.setIsLoading(value: true))
 					var d: Disposable?
 					d = Current.purchaseService()
-						.restore()
+						.restore(forceRefresh: true)
 						.subscribe(onNext: { value in
 							dispatch(.setIsLoading(value: false))
 							if let value = value {
