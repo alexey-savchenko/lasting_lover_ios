@@ -74,12 +74,14 @@ struct Story: Codable, Hashable {
 	let audioURL: String
 	let audioImg: String
 	let paid, type, featured: Int
+    let spicyPoint: Int?
 	let author: Author
 	let series: SeriesTruncated
 	let categories: [Category]
 	let audioDuration: Int
 	
 	enum CodingKeys: String, CodingKey {
+        case spicyPoint = "audio_spicy"
 		case audioDuration = "audio_duration"
 		case id, name
 		case storyDescription = "description"
