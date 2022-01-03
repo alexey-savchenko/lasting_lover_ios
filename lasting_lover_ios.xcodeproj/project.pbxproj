@@ -1076,8 +1076,8 @@
 			buildConfigurationList = 0262BB5E2705074300847ED7 /* Build configuration list for PBXNativeTarget "lasting_lover_ios" */;
 			buildPhases = (
 				54941526B3934CE20219AFCB /* [CP] Check Pods Manifest.lock */,
+				93BF7C55278330D300A7C3D4 /* ShellScript */,
 				221C51DC2705DB2F0085534E /* ShellScript */,
-				221C51DD2705DB380085534E /* ShellScript */,
 				0262BB462705074200847ED7 /* Sources */,
 				0262BB472705074200847ED7 /* Frameworks */,
 				0262BB482705074200847ED7 /* Resources */,
@@ -1203,23 +1203,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Sourcery/bin/sourcery\"\n";
 		};
-		221C51DD2705DB380085534E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "swiftgen\n";
-		};
 		54941526B3934CE20219AFCB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1241,6 +1224,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		93BF7C55278330D300A7C3D4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
 		};
 		D6E6306CDCFC897E6DEF09B3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

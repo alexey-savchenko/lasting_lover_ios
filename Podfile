@@ -4,5 +4,6 @@ target 'lasting_lover_ios' do
   pod 'Sourcery'
   pod 'AppsFlyerFramework'
 	pod 'SwiftyStoreKit'
+  pod 'SwiftGen', '~> 6.0'
 
 end
