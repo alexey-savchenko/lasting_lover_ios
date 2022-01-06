@@ -16,15 +16,17 @@ class SeriesControllerViewModel {
 		let authorSelectedAtIndex: AnyObserver<IndexPath>
 		let categorySelectedAtIndex: AnyObserver<IndexPath>
 		let storySelectedAtIndex: AnyObserver<IndexPath>
+    let expandDesriptionTap: AnyObserver<Void>
 	}
 	
 	private let authorSelectedAtIndexSubject = PublishSubject<IndexPath>()
 	private let categorySelectedAtIndexSubject = PublishSubject<IndexPath>()
 	private let storySelectedAtIndexSubject = PublishSubject<IndexPath>()
+  private let expandDesriptionTapSubject = PublishSubject<Void>()
 	
 	struct Output {
 		let title: String
-		let subtitle: String
+		let subtitle: Observable<NSAttributedString>
 		let image: Observable<UIImage>
 		let authors: Observable<[Section<AuthorCellViewModel>]>
 		let categories: Observable<[Section<SleepCategoryCellViewModel>]>
@@ -33,9 +35,13 @@ class SeriesControllerViewModel {
 		let categorySelected: Observable<Category>
 		let storySelected: Observable<Story>
 	}
+  
+  let isExpandedDesctiptionSubject = BehaviorSubject<Bool>(value: false)
 	
 	let input: Input
 	let output: Output
+  
+  private let disposeBag = DisposeBag()
 	
 	init(
 		series: Series,
@@ -48,11 +54,48 @@ class SeriesControllerViewModel {
 		self.input = Input(
 			authorSelectedAtIndex: authorSelectedAtIndexSubject.asObserver(),
 			categorySelectedAtIndex: categorySelectedAtIndexSubject.asObserver(),
-			storySelectedAtIndex: storySelectedAtIndexSubject.asObserver()
+      storySelectedAtIndex: storySelectedAtIndexSubject.asObserver(),
+      expandDesriptionTap: expandDesriptionTapSubject.asObserver()
 		)
 		self.output = Output(
 			title: series.name,
-			subtitle: series.description,
+      subtitle: Observable
+        .combineLatest(
+          isExpandedDesctiptionSubject,
+          state.map { $0.seriesStories[series] }
+            .map { $0?.item }
+            .filterNil()
+            .distinctUntilChanged()
+        )
+        .map({ isExpanded, stories in
+          let story = stories[0]
+          if isExpanded {
+            return NSAttributedString(
+              string: story.storyDescription,
+              attributes: [
+                .font: FontFamily.Nunito.regular.font(size: 17),
+                .foregroundColor: UIColor.white.withAlphaComponent(0.8)
+              ]
+            )
+          } else {
+            let substring = story.storyDescription.prefix(64)
+            let attrsString = NSMutableAttributedString(
+              string: substring + " " + L10n.seeMore,
+              attributes: [
+                .font: FontFamily.Nunito.regular.font(size: 17),
+                .foregroundColor: UIColor.white.withAlphaComponent(0.8)
+              ]
+            )
+            
+            attrsString.addAttribute(
+              .foregroundColor,
+              value: UIColor(hexString: "4831A9"),
+              range: attrsString.mutableString.range(of: L10n.seeMore)
+            )
+            
+            return attrsString
+          }
+        }),
 			image: Current.imageLoadingService().image(URL(string: series.avatar)!),
 			authors: Observable.just(series.authors.map(AuthorCellViewModel.init)).map(Section.init).map(toArray),
 			categories: Observable.just(series.categories.map(SleepCategoryCellViewModel.init)).map(Section.init).map(toArray),
@@ -67,5 +110,10 @@ class SeriesControllerViewModel {
 				}
 			}
 		)
+    
+    expandDesriptionTapSubject
+      .map { _ in true }
+      .subscribe(isExpandedDesctiptionSubject)
+      .disposed(by: disposeBag)
 	}
 }

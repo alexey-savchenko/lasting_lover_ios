@@ -13,7 +13,9 @@ import UNILibCore
 class SeriesViewController: ViewController<BackgroundImageView> {
 	
 	let navbarView = BackButtonNavbarView()
+  let playButton = UIButton()
 	let imageView = UIImageView()
+  let titleLabelTapGesture = UITapGestureRecognizer(target: nil, action: nil)
 	let titleLabel = UILabel()
 	let subtitleLabel = UILabel()
 	
@@ -79,8 +81,9 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		[
 			navbarView,
 			imageView,
-			titleLabel,
-			subtitleLabel,
+      playButton,
+//			titleLabel,
+//			subtitleLabel,
 			contentScrollView
 		]
 			.forEach(view.addSubview)
@@ -88,36 +91,50 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		contentScrollView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
 			make.bottom.equalTo(view.safeAreaLayoutGuide)
-			make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+			make.top.equalTo(imageView.snp.bottom).offset(8)
 		}
-		
-		[
-			authorsCollectionView,
-			authorsCollectionViewSeparatorView,
-			categoriesCollectionView,
-			categoriesCollectionViewSeparatorView,
-			listTitleLabel,
+    
+    [
+      titleLabel,
+      subtitleLabel,
+      authorsCollectionView,
+      authorsCollectionViewSeparatorView,
+      categoriesCollectionView,
+      categoriesCollectionViewSeparatorView,
+      listTitleLabel,
 			listStackView,
 			activityIndicator
 		]
 			.forEach(contentScrollView.containerView.addSubview)
 		
 		setupNavbarView()
+    
+    playButton.setImage(Asset.Images.playInWhiteCircle.image, for: .normal)
+    playButton.snp.makeConstraints { make in
+      make.center.equalTo(imageView)
+      make.size.equalTo(150)
+    }
+    
 		imageView.contentMode = .scaleAspectFit
 		imageView.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
-			make.top.equalTo(navbarView)
-			make.size.equalTo(150)
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(-30)
+      make.height.equalTo(296)
+      make.leading.trailing.equalToSuperview().inset(40)
 		}
+
 		titleLabel.textColor = .white
 		titleLabel.font = FontFamily.Nunito.semiBold.font(size: 22)
 		titleLabel.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(30)
-			make.top.equalTo(imageView.snp.bottom).offset(8)
+      make.top.equalToSuperview().offset(8)
+//			make.top.equalTo(imageView.snp.bottom).offset(8)
 		}
 		
-		subtitleLabel.textColor = .white.withAlphaComponent(0.8)
-		subtitleLabel.font = FontFamily.Nunito.regular.font(size: 17)
+//		subtitleLabel.textColor = .white.withAlphaComponent(0.8)
+//		subtitleLabel.font = FontFamily.Nunito.regular.font(size: 17)
+    subtitleLabel.isUserInteractionEnabled = true
+    subtitleLabel.addGestureRecognizer(titleLabelTapGesture)
 		subtitleLabel.numberOfLines = 0
 		subtitleLabel.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(30)
@@ -126,7 +143,7 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		authorsCollectionView.backgroundColor = .clear
 		authorsCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
-			make.top.equalToSuperview().offset(8)
+      make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
 			make.height.equalTo(110)
 		}
 		authorsCollectionViewSeparatorView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
@@ -174,12 +191,20 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 	}
 	
 	private func configure(with viewModel: SeriesControllerViewModel) {
+    
+    titleLabelTapGesture.rx.event
+      .map(toVoid)
+      .subscribe(viewModel.input.expandDesriptionTap)
+      .disposed(by: disposeBag)
 		viewModel.output.image
 			.map(Optional.init)
 			.subscribe(imageView.rx.image)
 			.disposed(by: disposeBag)
 		titleLabel.text = viewModel.output.title
-		subtitleLabel.text = viewModel.output.subtitle
+    viewModel.output.subtitle
+      .map(Optional.init)
+      .subscribe(subtitleLabel.rx.attributedText)
+      .disposed(by: disposeBag)
 		viewModel.output.authors
 			.bind(to: authorsCollectionView.rx.items(dataSource: authorsCollectionViewDataSource()))
 			.disposed(by: disposeBag)
