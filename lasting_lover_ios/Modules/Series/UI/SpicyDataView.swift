@@ -47,12 +47,41 @@ class SpicyDataView: UIView {
   
   class ProgressBar: UIView {
     
+    class MarkView: UIView {
+      
+      let dotView = UIView()
+      
+      override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = .white
+        addSubview(dotView)
+        dotView.backgroundColor = UIColor(hexString: "4831A9")
+        dotView.snp.makeConstraints { make in
+          make.size.equalTo(6)
+          make.centerY.equalToSuperview()
+          make.trailing.equalToSuperview().offset(-2)
+        }
+      }
+      
+      required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+      }
+      
+      override func layoutSubviews() {
+        super.layoutSubviews()
+        dotView.layer.cornerRadius = dotView.bounds.height / 2
+        layer.cornerRadius = bounds.height / 2
+      }
+    }
+    
     let progressLayer = CAShapeLayer()
+    let markView = MarkView()
     
     var progressValue: Double = 0 {
       didSet {
-//        setNeedsLayout()
         progressLayer.strokeEnd = progressValue
+        setNeedsLayout()
       }
     }
     
@@ -67,7 +96,6 @@ class SpicyDataView: UIView {
     }
     
     private func setupUI() {
-      clipsToBounds = true
       backgroundColor = UIColor(
         red: 32.0 / 255.0, green: 14.0 / 255.0, blue: 42.0 / 255.0, alpha: 0.8)
       layer.addSublayer(progressLayer)
@@ -77,6 +105,7 @@ class SpicyDataView: UIView {
       progressLayer.lineWidth = 10
       progressLayer.lineCap = .round
       progressLayer.strokeEnd = 0
+      addSubview(markView)
     }
     
     override func layoutSubviews() {
@@ -88,6 +117,8 @@ class SpicyDataView: UIView {
       path.move(to: CGPoint.init(x: 0, y: bounds.height / 2))
       path.addLine(to: CGPoint.init(x: bounds.width, y: bounds.height / 2))
       progressLayer.path = path
+      
+      markView.frame = CGRect(x: bounds.width * progressValue - 8, y: -0.5, width: 16, height: 11)
     }
   }
 
