@@ -54,6 +54,7 @@ internal enum Asset {
     internal static let fiMoreVertical = ImageAsset(name: "fi_more-vertical")
     internal static let fiTrash = ImageAsset(name: "fi_trash")
     internal static let fwd = ImageAsset(name: "fwd")
+    internal static let fxemojiFire = ImageAsset(name: "fxemoji_fire")
     internal static let googleIcon = ImageAsset(name: "google_icon")
     internal static let headphoneFill = ImageAsset(name: "headphone-fill")
     internal static let heart = ImageAsset(name: "heart")

@@ -34,6 +34,8 @@ class SeriesControllerViewModel {
 		let selectedAuthor: Observable<Author>
 		let categorySelected: Observable<Category>
 		let storySelected: Observable<Story>
+    let durationString: Observable<String>
+    let spicyData: Observable<(Double, String)?>
 	}
   
   let isExpandedDesctiptionSubject = BehaviorSubject<Bool>(value: false)
@@ -108,7 +110,26 @@ class SeriesControllerViewModel {
 				return state.take(1).compactMap { state in
 					return state.seriesStories[series]?.item?[index.item]
 				}
-			}
+			},
+      durationString: state.map { $0.seriesStories[series] }
+        .map { $0?.item }
+        .filterNil()
+        .distinctUntilChanged()
+        .map { $0[0].audioDuration }
+        .map(durationString)
+        .map { "Length: \($0)" },
+      spicyData: state.map { $0.seriesStories[series] }
+        .map { $0?.item }
+        .filterNil()
+        .distinctUntilChanged()
+        .map { $0[0] }
+        .map { story in
+          let duration = story.audioDuration
+          let spicyPointData = story.spicyPoint.map { p in
+            return (Double(p) / Double(duration), durationString(duration: p))
+          }
+          return spicyPointData
+        }
 		)
     
     expandDesriptionTapSubject

@@ -166,6 +166,7 @@
 		22BF1990272E790B00FAA6C6 /* BackendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF198F272E790B00FAA6C6 /* BackendService.swift */; };
 		22BF1993272E852D00FAA6C6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF1992272E852D00FAA6C6 /* Models.swift */; };
 		250E2BCCE4F8F0FEA0BC707C /* Pods_lasting_lover_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197C3DCDABF5E70B71772671 /* Pods_lasting_lover_ios.framework */; };
+		93A3E3362787A447002E5C50 /* SpicyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3E3352787A447002E5C50 /* SpicyDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -322,6 +323,7 @@
 		22BF198D272D608000FAA6C6 /* AudioItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemCell.swift; sourceTree = "<group>"; };
 		22BF198F272E790B00FAA6C6 /* BackendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendService.swift; sourceTree = "<group>"; };
 		22BF1992272E852D00FAA6C6 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		93A3E3352787A447002E5C50 /* SpicyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpicyDataView.swift; sourceTree = "<group>"; };
 		B943057AC6DC82CD98DA5A82 /* Pods-lasting_lover_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.debug.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D40174DF5527B78AE4BA6C5C /* Pods-lasting_lover_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasting_lover_ios.release.xcconfig"; path = "Target Support Files/Pods-lasting_lover_ios/Pods-lasting_lover_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,10 +352,10 @@
 		02195F462740278A00BD5A5D /* Series */ = {
 			isa = PBXGroup;
 			children = (
-				02195F472740279A00BD5A5D /* SeriesModuleCoordinator.swift */,
-				02195F49274027F200BD5A5D /* SeriesControllerViewModel.swift */,
-				02195F4B2740281100BD5A5D /* SeriesViewController.swift */,
-				02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */,
+				93A3E3312787A41A002E5C50 /* Coordinator */,
+				93A3E3322787A422002E5C50 /* ViewModel */,
+				93A3E3332787A42C002E5C50 /* ViewControllers */,
+				93A3E3342787A434002E5C50 /* UI */,
 			);
 			path = Series;
 			sourceTree = "<group>";
@@ -1068,6 +1070,39 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		93A3E3312787A41A002E5C50 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				02195F472740279A00BD5A5D /* SeriesModuleCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		93A3E3322787A422002E5C50 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				02195F49274027F200BD5A5D /* SeriesControllerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		93A3E3332787A42C002E5C50 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				02195F4B2740281100BD5A5D /* SeriesViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		93A3E3342787A434002E5C50 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				02195F4D2740351000BD5A5D /* CenteredLayout.swift.swift */,
+				93A3E3352787A447002E5C50 /* SpicyDataView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1281,6 +1316,7 @@
 				221C524527072C2F0085534E /* Button.swift in Sources */,
 				221C524B270738CB0085534E /* State.swift in Sources */,
 				22BF1993272E852D00FAA6C6 /* Models.swift in Sources */,
+				93A3E3362787A447002E5C50 /* SpicyDataView.swift in Sources */,
 				221E22D0270DEB15003F324B /* TodayPopularView.swift in Sources */,
 				02770ADF2737C63000DF4F49 /* CategoryCellViewModel.swift in Sources */,
 				02770AEF2737F1F700DF4F49 /* FavoritesControllerViewModel.swift in Sources */,

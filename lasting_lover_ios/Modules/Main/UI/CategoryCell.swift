@@ -20,7 +20,7 @@ class CategoryCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  fileprivate func setupTitleLabel() {
+  func setupTitleLabel() {
     titleLabel.textColor = Asset.Colors.white.color
     titleLabel.font = FontFamily.Nunito.regular.font(size: 15)
     titleLabel.snp.makeConstraints { make in
@@ -45,4 +45,22 @@ class CategoryCell: UICollectionViewCell {
 	func configure(with viewModel: CategoryCellViewModelProtocol) {
 		titleLabel.text = viewModel.title
 	}
+}
+
+class SeriesCategoryCell: CategoryCell {
+  override func setupTitleLabel() {
+    titleLabel.textColor = Asset.Colors.white.color
+    titleLabel.font = FontFamily.Nunito.regular.font(size: 15)
+    titleLabel.snp.makeConstraints { make in
+      make.leading.trailing.equalToSuperview().inset(24)
+      make.centerY.equalToSuperview()
+      make.top.bottom.equalToSuperview().inset(8)
+    }
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    
+    contentView.layer.cornerRadius = contentView.bounds.height / 2
+  }
 }

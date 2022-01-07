@@ -22,28 +22,31 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 	let contentScrollView = VerticalScrollingView()
 	
 	let authorsCollectionView: UICollectionView = {
-		let layout = UICollectionViewCenterLayout()
+		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
 		layout.minimumLineSpacing = 24
 		layout.minimumInteritemSpacing = 24
 		layout.itemSize = CGSize(width: 60, height: 90)
+    layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 		let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		cv.registerClass(CircleImageAndTitleCellCell.self)
 		return cv
 	}()
-	let authorsCollectionViewSeparatorView = UIView()
+  
+  let durationLabel = UILabel()
+  let progressBar = SpicyDataView()
 	
 	let categoriesCollectionView: UICollectionView = {
-		let layout = UICollectionViewCenterLayout()
+		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
-		layout.minimumLineSpacing = 24
-		layout.minimumInteritemSpacing = 24
-		layout.itemSize = CGSize(width: 60, height: 90)
+		layout.minimumLineSpacing = 8
+		layout.minimumInteritemSpacing = 8
+    layout.estimatedItemSize = CGSize(width: 60, height: 90)
+    layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 		let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		cv.registerClass(CircleImageAndTitleCellCell.self)
+    cv.registerClass(SeriesCategoryCell.self)
 		return cv
 	}()
-	let categoriesCollectionViewSeparatorView = UIView()
 	
 	let activityIndicator = UIActivityIndicatorView(style: .large)
 	let listTitleLabel = UILabel()
@@ -82,8 +85,6 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 			navbarView,
 			imageView,
       playButton,
-//			titleLabel,
-//			subtitleLabel,
 			contentScrollView
 		]
 			.forEach(view.addSubview)
@@ -98,9 +99,9 @@ class SeriesViewController: ViewController<BackgroundImageView> {
       titleLabel,
       subtitleLabel,
       authorsCollectionView,
-      authorsCollectionViewSeparatorView,
+      durationLabel,
+      progressBar,
       categoriesCollectionView,
-      categoriesCollectionViewSeparatorView,
       listTitleLabel,
 			listStackView,
 			activityIndicator
@@ -128,11 +129,8 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		titleLabel.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(30)
       make.top.equalToSuperview().offset(8)
-//			make.top.equalTo(imageView.snp.bottom).offset(8)
 		}
-		
-//		subtitleLabel.textColor = .white.withAlphaComponent(0.8)
-//		subtitleLabel.font = FontFamily.Nunito.regular.font(size: 17)
+
     subtitleLabel.isUserInteractionEnabled = true
     subtitleLabel.addGestureRecognizer(titleLabelTapGesture)
 		subtitleLabel.numberOfLines = 0
@@ -142,30 +140,32 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		}
 		authorsCollectionView.backgroundColor = .clear
 		authorsCollectionView.snp.makeConstraints { make in
-			make.leading.trailing.equalToSuperview()
-      make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+      make.leading.trailing.equalToSuperview().inset(16)
+      make.top.equalTo(subtitleLabel.snp.bottom)
 			make.height.equalTo(110)
 		}
-		authorsCollectionViewSeparatorView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-		authorsCollectionViewSeparatorView.snp.makeConstraints { make in
-			make.leading.trailing.equalToSuperview().inset(8)
-			make.height.equalTo(1 / UIScreen.main.scale)
-			make.top.equalTo(authorsCollectionView.snp.bottom).offset(8)
-		}
+    
+    durationLabel.textColor = .white
+    durationLabel.font = FontFamily.Nunito.semiBold.font(size: 17)
+    durationLabel.snp.makeConstraints { make in
+      make.top.equalTo(authorsCollectionView.snp.bottom).offset(16)
+      make.leading.trailing.equalToSuperview().inset(24)
+    }
+    
+//    progressBar.setProgress(value: 0.5)
+    progressBar.snp.makeConstraints { make in
+      make.top.equalTo(durationLabel.snp.bottom).offset(24)
+      make.leading.trailing.equalToSuperview().inset(24)
+      make.height.equalTo(44)
+    }
 		
 		categoriesCollectionView.backgroundColor = .clear
 		categoriesCollectionView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
-			make.top.equalTo(authorsCollectionViewSeparatorView.snp.bottom).offset(8)
-			make.height.equalTo(110)
+			make.top.equalTo(progressBar.snp.bottom).offset(16)
+			make.height.equalTo(36)
 		}
-		categoriesCollectionViewSeparatorView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-		categoriesCollectionViewSeparatorView.snp.makeConstraints { make in
-			make.leading.trailing.equalToSuperview().inset(8)
-			make.height.equalTo(1 / UIScreen.main.scale)
-			make.top.equalTo(categoriesCollectionView.snp.bottom).offset(8)
-		}
-		
+    
 		listTitleLabel.attributedText = NSAttributedString(
 			string: L10n.seriesList,
 			attributes: [
@@ -175,7 +175,7 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		)
 		listTitleLabel.snp.makeConstraints { make in
 			make.leading.equalToSuperview().offset(24)
-			make.top.equalTo(categoriesCollectionViewSeparatorView.snp.bottom).offset(8)
+			make.top.equalTo(categoriesCollectionView.snp.bottom).offset(16)
 		}
 		
 		listStackView.axis = .vertical
@@ -190,8 +190,25 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 		}
 	}
 	
-	private func configure(with viewModel: SeriesControllerViewModel) {
-    
+  private func configure(with viewModel: SeriesControllerViewModel) {
+    viewModel.output.spicyData
+      .subscribe(onNext: { [unowned self] value in
+        if let value = value {
+          self.progressBar.setSpicyData(value: value)
+        } else {
+          self.progressBar.isHidden = true
+          self.categoriesCollectionView.snp.remakeConstraints { make in
+            make.top.equalTo(self.durationLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(36)
+          }
+        }
+      })
+      .disposed(by: disposeBag)
+    viewModel.output.durationString
+      .map(Optional.init)
+      .subscribe(durationLabel.rx.text)
+      .disposed(by: disposeBag)
     titleLabelTapGesture.rx.event
       .map(toVoid)
       .subscribe(viewModel.input.expandDesriptionTap)
@@ -285,7 +302,7 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 	
 	func categoriesCollectionViewDataSource() -> RxCollectionViewSectionedReloadDataSource<Section<SleepCategoryCellViewModel>> {
 		return .init { ds, cv, indexPath, item in
-			let cell: CircleImageAndTitleCellCell = cv.dequeueReusableCell(forIndexPath: indexPath)
+			let cell: SeriesCategoryCell = cv.dequeueReusableCell(forIndexPath: indexPath)
 			cell.configure(with: item)
 			return cell
 		}

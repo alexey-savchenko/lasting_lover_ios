@@ -97,3 +97,15 @@ class AllSeriesControllerViewModel {
 			.disposed(by: disposeBag)
 	}
 }
+
+func durationString(duration: Int) -> String {
+  let minutes = duration / 60
+  if minutes > 60 {
+    let doubleTime = Double(minutes) / 60.0
+    let hours = Double(Int(doubleTime))
+    let minutes = (doubleTime - hours) * 60
+    return "\(Int(hours))h \(Int(minutes))m"
+  } else {
+    return "\(minutes) min"
+  }
+}

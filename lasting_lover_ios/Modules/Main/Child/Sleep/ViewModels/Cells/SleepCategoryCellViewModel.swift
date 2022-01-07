@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import UIKit
 
-class SleepCategoryCellViewModel: CircleImageAndTitleCellCellViewModel {
+class SleepCategoryCellViewModel: CircleImageAndTitleCellCellViewModel, CategoryCellViewModelProtocol {
 	init(category: Category) {
 		self.category = category
 	}
