@@ -17,12 +17,14 @@ class SeriesControllerViewModel {
 		let categorySelectedAtIndex: AnyObserver<IndexPath>
 		let storySelectedAtIndex: AnyObserver<IndexPath>
     let expandDesriptionTap: AnyObserver<Void>
+    let playFirstStory: AnyObserver<Void>
 	}
 	
 	private let authorSelectedAtIndexSubject = PublishSubject<IndexPath>()
 	private let categorySelectedAtIndexSubject = PublishSubject<IndexPath>()
 	private let storySelectedAtIndexSubject = PublishSubject<IndexPath>()
   private let expandDesriptionTapSubject = PublishSubject<Void>()
+  private let playFirstStorySubject = PublishSubject<Void>()
 	
 	struct Output {
 		let title: String
@@ -57,7 +59,8 @@ class SeriesControllerViewModel {
 			authorSelectedAtIndex: authorSelectedAtIndexSubject.asObserver(),
 			categorySelectedAtIndex: categorySelectedAtIndexSubject.asObserver(),
       storySelectedAtIndex: storySelectedAtIndexSubject.asObserver(),
-      expandDesriptionTap: expandDesriptionTapSubject.asObserver()
+      expandDesriptionTap: expandDesriptionTapSubject.asObserver(),
+      playFirstStory: playFirstStorySubject.asObserver()
 		)
 		self.output = Output(
 			title: series.name,
@@ -135,6 +138,11 @@ class SeriesControllerViewModel {
     expandDesriptionTapSubject
       .map { _ in true }
       .subscribe(isExpandedDesctiptionSubject)
+      .disposed(by: disposeBag)
+    
+    playFirstStorySubject
+      .map { IndexPath(row: 0, section: 0) }
+      .subscribe(storySelectedAtIndexSubject)
       .disposed(by: disposeBag)
 	}
 }

@@ -191,6 +191,9 @@ class SeriesViewController: ViewController<BackgroundImageView> {
 	}
 	
   private func configure(with viewModel: SeriesControllerViewModel) {
+    playButton.rx.tap
+      .subscribe(viewModel.input.playFirstStory)
+      .disposed(by: disposeBag)
     viewModel.output.spicyData
       .subscribe(onNext: { [unowned self] value in
         if let value = value {
