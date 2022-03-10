@@ -28,6 +28,10 @@ extension App.Action {
             tryGet: { if case .didFinishLaunchingWithOptions = $0 { return () } else { return nil } },
             inject: { .didFinishLaunchingWithOptions })
 
+        internal static let didReceivePushToken = Prism<App.Action,String>(
+            tryGet: { if case .didReceivePushToken(let value) = $0 { return value } else { return nil } },
+            inject: { (x1) in .didReceivePushToken(value:x1) })
+
     }
 }
 

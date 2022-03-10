@@ -52,6 +52,7 @@ enum App {
 		case requestNotificationAccess
 		case applicationDidBecomeActive
 		case didFinishLaunchingWithOptions
+        case didReceivePushToken(value: String)
 	}
 
 	static let reducer = MainModule.reducer
@@ -94,6 +95,11 @@ enum App {
 					UNUserNotificationCenter.current().requestAuthorization(
 						options: [.alert, .badge]) { granted, error in
 							dispatch(.settingsAction(action: .setNotificationsActive(value: granted)))
+                            if granted {
+                                DispatchQueue.main.async {
+                                    UIApplication.shared.registerForRemoteNotifications()
+                                }
+                            }
 						}
 				case .mainModuleAction(let action):
 					MainModule
@@ -109,7 +115,15 @@ enum App {
 						)(
 							App.Action.settingsAction <*> next
 						)(action)
-				}
+                case .didReceivePushToken(let value):
+                    Current.localStorageService().notificationsToken = value
+                    var d: Disposable?
+                    d = Current.backend()
+                        .sendPushToken(value)
+                        .subscribe(onNext: { _ in
+                            d?.dispose()
+                        })
+                }
 			}
 		}
 	}

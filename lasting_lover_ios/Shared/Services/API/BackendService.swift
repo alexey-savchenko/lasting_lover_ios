@@ -22,6 +22,7 @@ protocol BackendServiceProtocol {
 	func getStoriesFor(_ author: Author) -> Observable<[Story]>
 	func getStoriesFor(_ series: Series) -> Observable<[Story]>
 	func getStoriesFor(_ category: Category) -> Observable<[Story]>
+    func sendPushToken(_ value: String) -> Observable<Void>
 }
 
 class BackendService: BackendServiceProtocol {
@@ -32,6 +33,16 @@ class BackendService: BackendServiceProtocol {
 	private init() {
 		provider.session.sessionConfiguration.timeoutIntervalForRequest = 10
 	}
+    
+    func sendPushToken(_ value: String) -> Observable<Void> {
+        return provider.rx
+            .request(.sendPushToken(value: value))
+            .asObservable()
+            .do(onNext: { response in
+                print(response)
+            })
+            .map(toVoid)
+    }
 	
 	func getAllDiscoverStories() -> Observable<[Story]> {
 		return provider.rx
@@ -164,6 +175,7 @@ enum Backend {
 	case discoverSeries(featured: Bool)
 	case sleepCategories
 	case listStories(type: StoryRequestType)
+    case sendPushToken(value: String)
 }
 
 enum StoryRequestType {
@@ -188,11 +200,17 @@ extension Backend: TargetType {
 		case .discoverSeries: return "/discover/series"
 		case .listStories: return "/story"
 		case .sleepCategories: return "/sleep/categories"
+        case .sendPushToken: return "/ptoken"
 		}
 	}
 	
 	var method: HTTPMethod {
-		return Method.get
+        switch self {
+        case .sendPushToken:
+            return .post
+        default:
+            return .get
+        }
 	}
 	
 	var sampleData: Data {
@@ -204,6 +222,8 @@ extension Backend: TargetType {
 		var params: [String: Any] = ["key": Constants.Backend.apiKEY]
 		
 		switch self {
+        case .sendPushToken(let value):
+            params["token"] = value
 		case .authorDetails(let id):
 			params["id"] = id
 		case .discoverAuthors: break
